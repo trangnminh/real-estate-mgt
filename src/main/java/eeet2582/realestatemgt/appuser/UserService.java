@@ -1,4 +1,4 @@
-package eeet2582.realestatemgt.user;
+package eeet2582.realestatemgt.appuser;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,13 +15,17 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public List<User> getAll() {
+    public List<AppUser> getAll() {
         return userRepository.findAll();
     }
 
-    public User getById(Long userId) {
+    public AppUser getById(Long userId) {
         return userRepository
                 .findById(userId)
                 .orElseThrow(() -> new IllegalStateException("User with userId=" + userId + " does not exist!"));
+    }
+
+    public void deleteById(Long userId) {
+        userRepository.deleteById(userId);
     }
 }
