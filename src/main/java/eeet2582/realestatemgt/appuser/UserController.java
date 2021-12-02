@@ -1,10 +1,7 @@
-package eeet2582.realestatemgt.user;
+package eeet2582.realestatemgt.appuser;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,12 +17,15 @@ public class UserController {
     }
 
     @GetMapping
-    public List<User> getAll() {
+    public List<AppUser> getAll() {
         return userService.getAll();
     }
 
-    @GetMapping(path = "{userId}")
-    public User getById(@PathVariable("userId") Long userId) {
+    @GetMapping("/{userId}")
+    public AppUser getById(@PathVariable("userId") Long userId) {
         return userService.getById(userId);
     }
+
+    @DeleteMapping("/{userId}")
+    public void deleteById(@PathVariable("userId") Long userId) { userService.deleteById(userId); }
 }

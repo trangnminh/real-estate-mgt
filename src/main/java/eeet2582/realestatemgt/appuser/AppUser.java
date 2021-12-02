@@ -1,4 +1,4 @@
-package eeet2582.realestatemgt.user;
+package eeet2582.realestatemgt.appuser;
 
 import lombok.*;
 
@@ -6,10 +6,11 @@ import javax.persistence.*;
 import java.util.Date;
 
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 @Entity
-public class User {
+public class AppUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,7 +23,12 @@ public class User {
     private Date dob;
     private String gender;
 
-    public User(String fullName, String email, String password, String phoneNumber, Date dob, String gender) {
+    public AppUser(String fullName,
+                   String email,
+                   String password,
+                   String phoneNumber,
+                   Date dob,
+                   String gender) {
         this.fullName = fullName;
         this.email = email;
         this.password = password;
