@@ -1,4 +1,4 @@
-package eeet2582.realestatemgt.meeting;
+package eeet2582.realestatemgt.model;
 
 import eeet2582.realestatemgt.helper.UserHouse;
 import lombok.AllArgsConstructor;

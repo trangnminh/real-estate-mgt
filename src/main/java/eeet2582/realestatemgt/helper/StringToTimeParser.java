@@ -6,20 +6,20 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 
 import java.lang.reflect.Type;
-import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-public class LocalDateAdapter implements JsonDeserializer<LocalDate> {
+public class StringToTimeParser implements JsonDeserializer<LocalTime> {
 
     @Override
-    public LocalDate deserialize(JsonElement jsonElement,
+    public LocalTime deserialize(JsonElement jsonElement,
                                  Type type,
                                  JsonDeserializationContext jsonDeserializationContext)
             throws JsonParseException {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");
         try {
-            return LocalDate.parse(jsonElement.getAsString(), dtf);
+            return LocalTime.parse(jsonElement.getAsString(), dtf);
         } catch (DateTimeParseException e) {
             return null;
         }
