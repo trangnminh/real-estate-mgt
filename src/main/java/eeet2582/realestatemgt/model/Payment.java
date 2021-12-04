@@ -1,6 +1,7 @@
-package eeet2582.realestatemgt.deposit;
+package eeet2582.realestatemgt.model;
 
-import eeet2582.realestatemgt.helper.UserHouse;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,14 +16,19 @@ import java.time.LocalTime;
 @Getter
 @Setter
 @Entity
-public class Deposit {
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "paymentId"
+)
+public class Payment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long depositId;
+    private Long paymentId;
 
-    @Embedded
-    private UserHouse userHouse;
+    @ManyToOne
+    @JoinColumn(name = "rental_id")
+    private Rental rental;
 
     private Double amount;
     private LocalDate date;
