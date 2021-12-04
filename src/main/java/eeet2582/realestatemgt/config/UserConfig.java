@@ -1,7 +1,9 @@
-package eeet2582.realestatemgt.appuser;
+package eeet2582.realestatemgt.config;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import eeet2582.realestatemgt.model.AppUser;
+import eeet2582.realestatemgt.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

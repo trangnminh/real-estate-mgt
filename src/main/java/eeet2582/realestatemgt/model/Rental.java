@@ -1,6 +1,7 @@
-package eeet2582.realestatemgt.rental;
+package eeet2582.realestatemgt.model;
 
-import eeet2582.realestatemgt.payment.Payment;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import eeet2582.realestatemgt.helper.UserHouse;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,6 +17,10 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "rentalId"
+)
 public class Rental {
 
     @Id
