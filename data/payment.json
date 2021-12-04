@@ -1,0 +1,5 @@
+[{"paymentId":1,"rental":1,"amount":498.51,"date":"2021-04-23","time":"09:49","note":"etiam justo etiam pretium iaculis justo in hac habitasse platea dictumst etiam faucibus"},
+{"paymentId":2,"rental":2,"amount":106.52,"date":"2021-04-30","time":"09:58","note":"lorem ipsum dolor sit amet consectetuer adipiscing elit proin risus praesent lectus vestibulum quam sapien varius ut blandit non interdum"},
+{"paymentId":3,"rental":3,"amount":424.46,"date":"2021-06-14","time":"01:02","note":"libero ut massa volutpat convallis morbi odio odio elementum eu interdum"},
+{"paymentId":4,"rental":4,"amount":482.72,"date":"2021-04-19","time":"08:31","note":"penatibus et magnis dis parturient montes nascetur ridiculus mus etiam vel augue vestibulum"},
+{"paymentId":5,"rental":5,"amount":316.42,"date":"2021-07-06","time":"10:52","note":"dictumst morbi vestibulum velit id pretium iaculis diam erat fermentum justo nec condimentum neque sapien"}]
