@@ -1,14 +1,14 @@
 package eeet2582.realestatemgt.meeting;
 
-import eeet2582.realestatemgt.appuser.AppUser;
-import eeet2582.realestatemgt.house.House;
+import eeet2582.realestatemgt.helper.UserHouse;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,16 +19,12 @@ public class Meeting {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long depositId;
+    private Long meetingId;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private AppUser user;
+    @Embedded
+    private UserHouse userHouse;
 
-    @ManyToOne
-    @JoinColumn(name = "house_id")
-    private House house;
-
-    private LocalDateTime dateTime;
+    private LocalDate date;
+    private LocalTime time;
     private String note;
 }
