@@ -26,6 +26,9 @@ public class HouseService {
     }
 
     public void deleteById(Long houseId) {
+        if (!houseRepository.existsById(houseId))
+            throw new IllegalStateException("House with houseId=" + houseId + " does not exist!");
+
         houseRepository.deleteById(houseId);
     }
 }
