@@ -1,14 +1,14 @@
 package eeet2582.realestatemgt.deposit;
 
-import eeet2582.realestatemgt.appuser.AppUser;
-import eeet2582.realestatemgt.house.House;
+import eeet2582.realestatemgt.helper.UserHouse;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,15 +21,11 @@ public class Deposit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long depositId;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private AppUser user;
-
-    @ManyToOne
-    @JoinColumn(name = "house_id")
-    private House house;
+    @Embedded
+    private UserHouse userHouse;
 
     private Double amount;
-    private Date date;
+    private LocalDate date;
+    private LocalTime time;
     private String note;
 }

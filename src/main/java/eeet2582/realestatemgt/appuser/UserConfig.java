@@ -2,7 +2,6 @@ package eeet2582.realestatemgt.appuser;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import eeet2582.realestatemgt.house.House;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -29,6 +29,8 @@ public class House {
     private Double latitude;
     private String image;
     private String type;
+    private Integer numberOfBeds;
+    private Integer squareFeet;
     private String status;
 
     public House(String name,
@@ -39,6 +41,8 @@ public class House {
                  Double latitude,
                  String image,
                  String type,
+                 Integer numberOfBeds,
+                 Integer squareFeet,
                  String status) {
         this.name = name;
         this.price = price;
@@ -48,6 +52,8 @@ public class House {
         this.latitude = latitude;
         this.image = image;
         this.type = type;
+        this.numberOfBeds = numberOfBeds;
+        this.squareFeet = squareFeet;
         this.status = status;
     }
 }

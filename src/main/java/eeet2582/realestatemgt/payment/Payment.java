@@ -7,7 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -20,17 +21,12 @@ public class Payment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long paymentId;
 
-    private Double amount;
-    private Date date;
-    private String note;
-
     @ManyToOne
     @JoinColumn(name = "rental_id")
     private Rental rental;
 
-    public Payment(Double amount, Date date, String note) {
-        this.amount = amount;
-        this.date = date;
-        this.note = note;
-    }
+    private Double amount;
+    private LocalDate date;
+    private LocalTime time;
+    private String note;
 }
