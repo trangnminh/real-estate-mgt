@@ -36,6 +36,6 @@ public class Rental {
     private Double monthlyFee;
     private Double payableFee;
 
-    @OneToMany(mappedBy = "rental")
+    @OneToMany(orphanRemoval = true, mappedBy = "rental")
     private List<Payment> paymentList;
 }

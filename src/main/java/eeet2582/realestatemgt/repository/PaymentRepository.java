@@ -10,5 +10,4 @@ import java.util.List;
 public interface PaymentRepository extends JpaRepository<Payment, Long> {
 
     List<Payment> findByRental_RentalId(Long rentalId);
-    void deleteByRental_RentalId(Long rentalId);
 }
