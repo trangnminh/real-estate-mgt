@@ -30,10 +30,7 @@ public class RentalService {
     }
 
     public Rental getRentalById(Long rentalId) {
-        if (!rentalRepository.existsById(rentalId))
-            throw new IllegalStateException("Rental with rentalId=" + rentalId + " does not exist!");
-
-        return rentalRepository.getById(rentalId);
+        return rentalRepository.findById(rentalId).orElseThrow(() -> new IllegalStateException("Rental with rentalId=" + rentalId + " does not exist!"));
     }
 
     @Transactional
@@ -41,7 +38,6 @@ public class RentalService {
         if (!rentalRepository.existsById(rentalId))
             throw new IllegalStateException("Rental with rentalId=" + rentalId + " does not exist!");
 
-        paymentRepository.deleteByRental_RentalId(rentalId);
         rentalRepository.deleteById(rentalId);
     }
 
