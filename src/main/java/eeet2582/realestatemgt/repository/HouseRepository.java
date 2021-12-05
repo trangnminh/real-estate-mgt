@@ -1,5 +1,6 @@
-package eeet2582.realestatemgt.house;
+package eeet2582.realestatemgt.repository;
 
+import eeet2582.realestatemgt.model.House;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
