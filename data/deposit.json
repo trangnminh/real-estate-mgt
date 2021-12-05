@@ -1,0 +1,5 @@
+[{"depositId":1,"userHouse":{"userId":1,"houseId":1},"amount":479.68,"date":"2021-05-15","time":"13:53","note":"lacus morbi sem mauris laoreet ut rhoncus aliquet pulvinar sed nisl nunc rhoncus"},
+{"depositId":2,"userHouse":{"userId":2,"houseId":2},"amount":111.76,"date":"2021-08-29","time":"15:12","note":"duis faucibus accumsan odio curabitur convallis duis consequat dui nec nisi volutpat eleifend donec ut"},
+{"depositId":3,"userHouse":{"userId":3,"houseId":3},"amount":286.13,"date":"2021-05-05","time":"11:49","note":"bibendum felis sed interdum venenatis turpis enim blandit mi in porttitor pede justo eu"},
+{"depositId":4,"userHouse":{"userId":4,"houseId":4},"amount":246.97,"date":"2021-08-29","time":"12:57","note":"imperdiet nullam orci pede venenatis non sodales sed tincidunt eu felis fusce posuere felis sed lacus morbi sem mauris"},
+{"depositId":5,"userHouse":{"userId":5,"houseId":5},"amount":110.19,"date":"2021-05-25","time":"16:56","note":"sed tristique in tempus sit amet sem fusce consequat nulla nisl nunc nisl duis bibendum felis"}]
