@@ -27,6 +27,8 @@ public class HouseConfig {
                 List<House> houses =
                         gson.fromJson(reader,
                                 new TypeToken<List<House>>() {}.getType());
+
+                houses.forEach(c -> c.setImage("https://real-estate-mgt-app.s3.ap-southeast-1.amazonaws.com/socal_pics/"+c.getImage()));
                 houseRepository.saveAll(houses);
             } catch (Exception e) {
                 e.printStackTrace();
