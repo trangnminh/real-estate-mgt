@@ -20,7 +20,7 @@
 
 
 ## Important note:
-- Before publishing to GitHub, please run the command line in terminal: `git rm -r --cached src/main/resources/application.properties` and put `src/main/resources/application.properties` in `README.md` --> otherwise, people would know my Amazon key and can take advantage of it
+- Before publishing to GitHub, please run the command line in terminal: `git rm -r --cached src/main/resources/application.properties` and put `src/main/resources/application.properties` in `.gitignore` --> otherwise, people would know my Amazon key and can take advantage of it
 
 ## Resources
 ### Lucid Chart
