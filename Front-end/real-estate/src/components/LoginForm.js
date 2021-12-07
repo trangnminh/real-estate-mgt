@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Card, Col, Container, Row, Button, Form, FormGroup } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-const LoginForm = ({ Login, error }) => {
+const LoginForm = ({ Login }) => {
 
     const [details, setDeatils] = useState({ email: "", password: "" });
     const submitHandler = (e) => {

@@ -5,14 +5,14 @@ import HouseItemCard from '../components/HouseItemCard';
 import HomeBanner from '../components/HomeBanner';
 import Footer from '../components/Footer';
 import Ads from '../components/Ads';
+import axios from 'axios'
 
 const Home = () => {
 
     const [houses, setHouses] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:8080/api/v1/houses")
-            .then((res) => res.json())
+        axios.get("http://localhost:8080/api/v1/houses")
             .then((res) => {
                 setHouses(res);
             });
