@@ -1,10 +1,12 @@
 package eeet2582.realestatemgt.model;
 
 import lombok.*;
-import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -27,7 +29,12 @@ public class House {
     private String address;
     private Double longitude;
     private Double latitude;
-    private String image;
+
+//    private String image;
+
+    @ElementCollection
+    private List<String> image;
+
     private String type;
     private Integer numberOfBeds;
     private Integer squareFeet;
@@ -39,7 +46,7 @@ public class House {
                  String address,
                  Double longitude,
                  Double latitude,
-                 String image,
+                 List<String> image,
                  String type,
                  Integer numberOfBeds,
                  Integer squareFeet,

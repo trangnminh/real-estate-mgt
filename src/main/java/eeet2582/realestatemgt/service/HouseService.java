@@ -51,7 +51,7 @@ public class HouseService {
                 .orElseThrow(() -> new IllegalStateException("House with houseId=" + houseId  + " does not exist!"));
     }
 
-    public void deleteHouseById(Long houseId) {
+    public String deleteHouseById(Long houseId) {
         if (!houseRepository.existsById(houseId))
             throw new IllegalStateException("House with houseId=" + houseId + " does not exist!");
 
@@ -61,36 +61,52 @@ public class HouseService {
         rentalService.deleteRentalsByHouseId(houseId);
 
         House houseObj = houseRepository.findById(houseId).orElseThrow(() -> new IllegalStateException("House with houseId=" + houseId  + " does not exist!"));
-        String fileName = houseObj.getImage().substring(houseObj.getImage().lastIndexOf("/")+1);
-        fileStore.delete(fileName);
+
+        String path = houseObj.getImage().get(0).substring(houseObj.getImage().get(0).indexOf("t/")+2,houseObj.getImage().get(0).lastIndexOf("/"));
+        String key = fileStore.delete(path);
 
         houseRepository.deleteById(houseId);
+        return key;
     }
 
-    public void addNewHouse(@NotNull House house, @NotNull MultipartFile file) {
+    public String addNewHouse(@NotNull House house, @NotNull MultipartFile[] files) {
         //check if the file is empty
-        if (file.isEmpty()) {
-            throw new IllegalStateException("Cannot upload empty file");
-        }
-        //Check if the file is an image
-        if (!Arrays.asList(IMAGE_PNG.getMimeType(),
-                IMAGE_JPEG.getMimeType())
-                .contains(file.getContentType())) {
-            throw new IllegalStateException("FIle uploaded is not an image");
-        }
-        //get file metadata
-        Map<String, String> metadata = new HashMap<>();
-        metadata.put("Content-Type", file.getContentType());
-        metadata.put("Content-Length", String.valueOf(file.getSize()));
+        Arrays.stream(files).forEach(file -> {
+            if (file.isEmpty()){
+                throw new IllegalStateException("Cannot upload empty file");
+            }
+        });
 
-        //Save Image in S3 and then save House in the database
-        String path = String.format("%s/%s", BucketName.HOUSE_IMAGE.getBucketName(), "socal_pics");
-        String fileName = String.format("%s", file.getOriginalFilename());
-        try {
-            fileStore.upload(path, fileName, Optional.of(metadata), file.getInputStream());
-        } catch (IOException e) {
-            throw new IllegalStateException("Failed to upload file", e);
-        }
+        //Check if the file is an image
+        Arrays.stream(files).forEach(file ->{
+            if(!Arrays.asList(IMAGE_PNG.getMimeType(),
+                    IMAGE_JPEG.getMimeType()).contains(file.getContentType())){
+                throw new IllegalStateException("FIle uploaded is not an image");
+            }
+        });
+
+        // get file metadata
+        // Save Image in S3 and then save House in the database
+        UUID uuid =  UUID.randomUUID();
+        String path = String.format("%s/%s", BucketName.HOUSE_IMAGE.getBucketName(), "dataset/"+uuid);
+
+        List<String> imageList = new ArrayList<>();
+        List<Optional<Map<String,String>>> metadataList = new ArrayList<>();
+
+        Arrays.stream(files).forEach(file ->{
+            String fileName = String.format("%s", file.getOriginalFilename());
+            try {
+                Map<String, String> metadata = new HashMap<>();
+                metadata.put("Content-Type", file.getContentType());
+                metadata.put("Content-Length", String.valueOf(file.getSize()));
+                metadataList.add(Optional.of(metadata));
+                fileStore.upload(path, fileName, metadataList, file.getInputStream());
+                imageList.add("https://real-estate-mgt-app.s3.ap-southeast-1.amazonaws.com/dataset/"+uuid+"/"+fileName);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
         House houseObj = House.builder()
                 .name(house.getName())
                 .price(house.getPrice())
@@ -98,10 +114,12 @@ public class HouseService {
                 .address(house.getAddress())
                 .longitude(house.getLongitude())
                 .latitude(house.getLatitude())
-                .image("https://real-estate-mgt-app.s3.ap-southeast-1.amazonaws.com/socal_pics/"+fileName)
+                .image(imageList)
                 .type(house.getType())
                 .numberOfBeds(house.getNumberOfBeds())
                 .squareFeet(house.getSquareFeet())
                 .status(house.getStatus()).build();
         houseRepository.save(houseObj);
-    }}
+        return "added successfully";
+    }
+}
