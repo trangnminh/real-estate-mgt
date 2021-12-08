@@ -6,6 +6,9 @@ const NavBar = () => {
 
     return (
         <>
+            <br />
+            <br />
+            <br />
             <Navbar collapseOnSelect expand="lg" bg="white" variant="white">
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
@@ -33,7 +36,7 @@ const NavBar = () => {
                             <Nav.Link href="/help" className="text-dark" style={{ fontSize: "20px" }}>Help</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link href="/login" className="text-dark" style={{ fontSize: "20px" }}>Log in</Nav.Link>
+                            <Nav.Link href="/login" className="text-dark" style={{ fontSize: "20px" }}>My page</Nav.Link>
                         </Nav.Item>
                     </Nav>
                 </Navbar.Collapse>

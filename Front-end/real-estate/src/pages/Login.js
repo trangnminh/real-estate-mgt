@@ -3,6 +3,7 @@ import decode from 'jwt-decode';
 import axios from 'axios';
 import LoginForm from '../components/LoginForm';
 import LoginFormError from '../components/LoginFormError';
+import Profile from './Profile';
 
 const Login = () => {
 
@@ -14,11 +15,10 @@ const Login = () => {
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:8080/api/v1/users")
-            .then((res) => res.json())
+        axios.get("http://localhost:8080/api/v1/users")
             .then((res) => {
                 setUsers(res);
-            });
+            })
     }, []);
 
     const [user, setUser] = useState({ email: "", password: "", })
@@ -48,8 +48,9 @@ const Login = () => {
 
     return (
         <>
-            <LoginForm Login={Login} />
-            <LoginFormError show={error} onHide={() => setError(false)} />
+            {/* <LoginForm Login={Login} />
+            <LoginFormError show={error} onHide={() => setError(false)} /> */}
+            <Profile />
         </>
     );
 };
