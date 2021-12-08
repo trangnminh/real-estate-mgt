@@ -34,8 +34,8 @@ public class HouseController {
     }
 
     @DeleteMapping("house/{houseId}")
-    public void deleteHouseById(@PathVariable("houseId") Long houseId) {
-        houseService.deleteHouseById(houseId);
+    public ResponseEntity<String> deleteHouseById(@PathVariable("houseId") Long houseId) {
+        return new ResponseEntity<>(houseService.deleteHouseById(houseId),HttpStatus.OK);
     }
 
     @PostMapping(
@@ -43,7 +43,7 @@ public class HouseController {
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public void addNewHouse(@ModelAttribute House house, @RequestParam("file") MultipartFile file) {
-        houseService.addNewHouse(house,file);
+    public ResponseEntity<String> addNewHouse(@ModelAttribute House house, @RequestParam("files") MultipartFile[] file) {
+        return new ResponseEntity<>(houseService.addNewHouse(house,file),HttpStatus.OK);
     }
 }

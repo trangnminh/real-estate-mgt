@@ -11,12 +11,16 @@
 - Added manual cascading when deleting User and House: all dependent Deposits, Meetings, and Rentals will be deleted
 - Added orphan removal when deleting Rental: all dependent Payments will be deleted
 
-### 06/12/2021 (Phuong)
-- Added upload image using S3 bucket
+### 08/12/2021 (Phuong)
+- Added upload images using S3 bucket
 - Change type of attribute `description` in class House
 - when you need to run along with S3 bucket, please ask me about the secret key and access key
-- When you need front end for fetching image API for posting houses, drop me text, and I will send you
-- `TODO:` Something wrong with delete by S3 Bucket URL --> This would be fixed later
+- When you need front end for fetching image API for posting houses, drop me text, and I will send you 
+- put this line in `application.properties`:
+`spring.servlet.multipart.max-file-size=100MB`
+`spring.servlet.multipart.max-request-size=100MB`
+> In `Postman` for POST request: choose `form-data`:
+`key` for uploading image is `files`, then select type `file` in the same field. It would automatically change the value to `select files` (you can select one or multiple file, but the type is always image). Then put another field like `name`, the default type of `key` would be `text`.
 
 
 ## Important note:
