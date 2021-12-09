@@ -1,6 +1,6 @@
-package eeet2582.realestatemgt.payment;
+package eeet2582.realestatemgt.model;
 
-import eeet2582.realestatemgt.rental.Rental;
+import eeet2582.realestatemgt.helper.UserHouse;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,17 +15,15 @@ import java.time.LocalTime;
 @Getter
 @Setter
 @Entity
-public class Payment {
+public class Meeting {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long paymentId;
+    private Long meetingId;
 
-    @ManyToOne
-    @JoinColumn(name = "rental_id")
-    private Rental rental;
+    @Embedded
+    private UserHouse userHouse;
 
-    private Double amount;
     private LocalDate date;
     private LocalTime time;
     private String note;
