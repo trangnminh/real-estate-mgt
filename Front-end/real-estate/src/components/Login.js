@@ -1,12 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import decode from 'jwt-decode';
 import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import LoginForm from '../components/LoginForm';
 import LoginFormError from '../components/LoginFormError';
-import Profile from './Profile';
 
 const Login = () => {
-
     const adminUser = {
         email: "admin@admin.com",
         password: "admin1234"
@@ -14,12 +11,12 @@ const Login = () => {
 
     const [users, setUsers] = useState([]);
 
-    useEffect(() => {
-        axios.get("http://localhost:8080/api/v1/users")
-            .then((res) => {
-                setUsers(res);
-            })
-    }, []);
+    // useEffect(() => {
+    //     axios.get("http://ec2-3-144-193-66.us-east-2.compute.amazonaws.com:8080/api/v1/users")
+    //         .then((res) => {
+    //             setUsers(res);
+    //         })
+    // }, []);
 
     const [user, setUser] = useState({ email: "", password: "", })
     const [error, setError] = useState(false);
@@ -48,9 +45,8 @@ const Login = () => {
 
     return (
         <>
-            {/* <LoginForm Login={Login} />
-            <LoginFormError show={error} onHide={() => setError(false)} /> */}
-            <Profile />
+            <LoginForm Login={Login} />
+            <LoginFormError show={error} onHide={() => setError(false)} />
         </>
     );
 };

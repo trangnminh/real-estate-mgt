@@ -5,15 +5,15 @@ import * as IoIcons from 'react-icons/io';
 
 export const SidebarData = [
     {
-        title: 'Profile',
-        path: '/',
-        icon: <AiIcons.AiFillProfile />,
+        title: 'Calendar',
+        path: '/auth/calendar',
+        icon: <FaIcons.FaCalendarAlt />,
         cName: 'nav-text'
     },
     {
-        title: 'Calemdar',
-        path: '/reports',
-        icon: <FaIcons.FaCalendarAlt />,
+        title: 'Profile',
+        path: '/auth/profile',
+        icon: <AiIcons.AiFillProfile />,
         cName: 'nav-text'
     },
     {

@@ -36,7 +36,7 @@ const NavBar = () => {
                             <Nav.Link href="/help" className="text-dark" style={{ fontSize: "20px" }}>Help</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link href="/login" className="text-dark" style={{ fontSize: "20px" }}>My page</Nav.Link>
+                            <Nav.Link href="/myPage" className="text-dark" style={{ fontSize: "20px" }}>My page</Nav.Link>
                         </Nav.Item>
                     </Nav>
                 </Navbar.Collapse>
