@@ -33,6 +33,11 @@ public class RentalController {
     @DeleteMapping("/rental/{rentalId}")
     public void deleteRentalById(@PathVariable("rentalId") Long rentalId) { rentalService.deleteRentalById(rentalId); }
 
+    @PutMapping("/rental/{rentalId}")
+    public void updateRentalById(@RequestBody Rental rental) {
+        rentalService.updateRentalById(rental);
+    }
+
     @GetMapping("/payments")
     public List<Payment> getAllPayments() {
         return rentalService.getAllPayments();
@@ -40,6 +45,16 @@ public class RentalController {
 
     @DeleteMapping("/payment/{paymentId}")
     public void deletePaymentById(@PathVariable("paymentId") Long paymentId) { rentalService.deletePaymentById(paymentId); }
+
+    @GetMapping("/payment/{paymentId}")
+    public Payment getPaymentById(@PathVariable("paymentId") Long paymentId) {
+        return rentalService.getPaymentById(paymentId);
+    }
+
+    @PutMapping("/payment/{paymentId}")
+    public void updatePaymentById(@RequestBody Payment payment) {
+        rentalService.updatePaymentById(payment);
+    }
 
     @GetMapping("/payments/byRental/{rentalId}")
     public List<Payment> getPaymentsByRentalId(@PathVariable("rentalId") Long rentalId) {
