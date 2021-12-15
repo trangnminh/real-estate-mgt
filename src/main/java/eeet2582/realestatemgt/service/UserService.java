@@ -49,4 +49,9 @@ public class UserService {
 
         userRepository.deleteById(userId);
     }
+
+    @Transactional
+    public void updateUserById(AppUser user) {
+        userRepository.save(user);
+    }
 }

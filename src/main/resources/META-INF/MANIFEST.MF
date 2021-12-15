@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Main-Class: eeet2582.realestatemgt.RealEstateMgtApplication
+
+
