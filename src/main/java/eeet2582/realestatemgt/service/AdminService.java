@@ -5,6 +5,7 @@ import eeet2582.realestatemgt.model.Meeting;
 import eeet2582.realestatemgt.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -46,6 +47,18 @@ public class AdminService {
         depositRepository.deleteById(depositId);
     }
 
+    public Deposit getDepositById(Long depositId) {
+        if (!depositRepository.existsById(depositId))
+            throw new IllegalStateException("Deposit with depositId=" + depositId + " does not exist!");
+
+        return depositRepository.getById(depositId);
+    }
+
+    @Transactional
+    public void updateDepositById(Deposit deposit) {
+        depositRepository.save(deposit);
+    }
+
     public List<Deposit> getDepositsByUserId(Long userId) {
         if (!userRepository.existsById(userId))
             throw new IllegalStateException("User with userId=" + userId + " does not exist!");
@@ -78,6 +91,18 @@ public class AdminService {
             throw new IllegalStateException("Meeting with meetingId=" + meetingId + " does not exist!");
 
         meetingRepository.deleteById(meetingId);
+    }
+
+    public Meeting getMeetingById(Long meetingId) {
+        if (!meetingRepository.existsById(meetingId))
+            throw new IllegalStateException("Meeting with meetingId=" + meetingId + " does not exist!");
+
+        return meetingRepository.getById(meetingId);
+    }
+
+    @Transactional
+    public void updateMeetingById(Meeting meeting) {
+        meetingRepository.save(meeting);
     }
 
     public List<Meeting> getMeetingsByUserId(Long userId) {

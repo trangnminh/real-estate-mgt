@@ -41,6 +41,11 @@ public class RentalService {
         rentalRepository.deleteById(rentalId);
     }
 
+    @Transactional
+    public void updateRentalById(Rental rental) {
+        rentalRepository.save(rental);
+    }
+
     public void deleteRentalsByUserId(Long userId) {
         rentalRepository.deleteByUserHouse_UserId(userId);
     }
@@ -59,6 +64,18 @@ public class RentalService {
             throw new IllegalStateException("Payment with paymentId=" + paymentId + " does not exist!");
 
         paymentRepository.deleteById(paymentId);
+    }
+
+    public Payment getPaymentById(Long paymentId) {
+        if (!paymentRepository.existsById(paymentId))
+            throw new IllegalStateException("Payment with paymentId=" + paymentId + " does not exist!");
+
+        return paymentRepository.getById(paymentId);
+    }
+
+    @Transactional
+    public void updatePaymentById(Payment payment) {
+        paymentRepository.save(payment);
     }
 
     public List<Payment> getPaymentsByRentalId(Long rentalId) {
