@@ -22,7 +22,7 @@ public class UserConfig {
             try {
                 Gson gson = new Gson();
 
-                Reader reader = Files.newBufferedReader(Paths.get("data/user.json"));
+                Reader reader = Files.newBufferedReader(Paths.get("src/main/java/eeet2582/realestatemgt/data/user.json"));
 
                 List<AppUser> users =
                         gson.fromJson(reader,
