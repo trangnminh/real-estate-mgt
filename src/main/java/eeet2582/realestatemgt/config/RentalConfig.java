@@ -34,7 +34,7 @@ public class RentalConfig {
                 StringToTimeParser stringToTimeParser = new StringToTimeParser();
 
                 // First read rentals
-                Reader rentalReader = Files.newBufferedReader(Paths.get("data/rental.json"));
+                Reader rentalReader = Files.newBufferedReader(Paths.get("src/main/java/eeet2582/realestatemgt/data/rental.json"));
                 Type rentalType = new TypeToken<List<Rental>>() {}.getType();
                 GsonBuilder rentalBuilder = new GsonBuilder();
 
@@ -46,7 +46,7 @@ public class RentalConfig {
                 rentalRepository.saveAll(rentals);
 
                 // ...then read payments and convert JSON data field "rental" to Rental objects
-                Reader paymentReader = Files.newBufferedReader(Paths.get("data/payment.json"));
+                Reader paymentReader = Files.newBufferedReader(Paths.get("src/main/java/eeet2582/realestatemgt/data/payment.json"));
                 Type paymentType = new TypeToken<List<Payment>>() {}.getType();
                 GsonBuilder paymentBuilder = new GsonBuilder();
 

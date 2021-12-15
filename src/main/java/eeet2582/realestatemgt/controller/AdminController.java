@@ -29,6 +29,16 @@ public class AdminController {
     @DeleteMapping("/deposit/{depositId}")
     public void deleteDepositById(@PathVariable("depositId") Long depositId) { adminService.deleteDepositById(depositId); }
 
+    @GetMapping("/deposit/{depositId}")
+    public Deposit getDepositById(@PathVariable("depositId") Long depositId) {
+        return adminService.getDepositById(depositId);
+    }
+
+    @PutMapping("/deposit/{depositId}")
+    public void updateDepositById(@RequestBody Deposit deposit) {
+        adminService.updateDepositById(deposit);
+    }
+
     @GetMapping("/deposits/byUser/{userId}")
     public List<Deposit> getDepositsByUserId(@PathVariable("userId") Long userId) {
         return adminService.getDepositsByUserId(userId);
@@ -37,6 +47,16 @@ public class AdminController {
     @GetMapping("/deposits/byHouse/{houseId}")
     public List<Deposit> getDepositsByHouseId(@PathVariable("houseId") Long houseId) {
         return adminService.getDepositsByHouseId(houseId);
+    }
+
+    @DeleteMapping("/deposits/byUser/{userId}")
+    public void deleteDepositsByUserId(@PathVariable("userId") Long userId) {
+        adminService.deleteDepositsByUserId(userId);
+    }
+
+    @DeleteMapping("/deposits/byHouse/{houseId}")
+    public void deleteDepositsByHouseId(@PathVariable("houseId") Long houseId) {
+        adminService.deleteDepositsByHouseId(houseId);
     }
 
     // Meeting
@@ -48,6 +68,14 @@ public class AdminController {
     @DeleteMapping("/meeting/{meetingId}")
     public void deleteMeetingById(@PathVariable("meetingId") Long meetingId) { adminService.deleteMeetingById(meetingId); }
 
+    @GetMapping("/meeting/{meetingId}")
+    public Meeting getMeetingById(@PathVariable("meetingId") Long meetingId) { return adminService.getMeetingById(meetingId); }
+
+    @PutMapping("/meeting/{meetingId}")
+    public void updateMeetingById(@RequestBody Meeting meeting) {
+        adminService.updateMeetingById(meeting);
+    }
+
     @GetMapping("/meetings/byUser/{userId}")
     public List<Meeting> getMeetingsByUserId(@PathVariable("userId") Long userId) {
         return adminService.getMeetingsByUserId(userId);
@@ -56,5 +84,15 @@ public class AdminController {
     @GetMapping("/meetings/byHouse/{houseId}")
     public List<Meeting> getMeetingsByHouseId(@PathVariable("houseId") Long houseId) {
         return adminService.getMeetingsByHouseId(houseId);
+    }
+
+    @DeleteMapping("/meetings/byUser/{userId}")
+    public void deleteMeetingsByUserId(@PathVariable("userId") Long userId) {
+        adminService.deleteMeetingsByUserId(userId);
+    }
+
+    @DeleteMapping("/meetings/byHouse/{houseId}")
+    public void deleteMeetingsByHouseId(@PathVariable("houseId") Long houseId) {
+        adminService.deleteMeetingsByHouseId(houseId);
     }
 }
