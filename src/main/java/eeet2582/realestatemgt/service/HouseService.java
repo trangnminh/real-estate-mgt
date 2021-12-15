@@ -64,7 +64,6 @@ public class HouseService {
 
         String path = houseObj.getImage().get(0).substring(houseObj.getImage().get(0).indexOf("t/")+2,houseObj.getImage().get(0).lastIndexOf("/"));
         String key = fileStore.delete(path);
-
         houseRepository.deleteById(houseId);
         return key;
     }
@@ -101,7 +100,7 @@ public class HouseService {
                 metadata.put("Content-Length", String.valueOf(file.getSize()));
                 metadataList.add(Optional.of(metadata));
                 fileStore.upload(path, fileName, metadataList, file.getInputStream());
-                imageList.add("https://real-estate-mgt-app.s3.ap-southeast-1.amazonaws.com/dataset/"+uuid+"/"+fileName);
+                imageList.add("https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/"+uuid+"/"+fileName);
             } catch (IOException e) {
                 e.printStackTrace();
             }

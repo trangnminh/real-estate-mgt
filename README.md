@@ -21,7 +21,8 @@
 `spring.servlet.multipart.max-request-size=100MB`
 > In `Postman` for POST request: choose `form-data`:
 `key` for uploading image is `files`, then select type `file` in the same field. It would automatically change the value to `select files` (you can select one or multiple file, but the type is always image). Then put another field like `name`, the default type of `key` would be `text`.
-
+- Link to image url: https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/1/1_bathroom.jpg
+> where 1 is the row id
 
 ## Important note:
 - Before publishing to GitHub, please run the command line in terminal: `git rm -r --cached src/main/resources/application.properties` and put `src/main/resources/application.properties` in `.gitignore` --> otherwise, people would know my Amazon key and can take advantage of it

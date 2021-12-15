@@ -51,7 +51,7 @@ public class FileStore {
             }
             return "successfully deleted";
         }catch (AmazonServiceException e){
-            throw new IllegalStateException("Error: "+e.getMessage());
+            throw new IllegalStateException("Error: "+e.getErrorMessage());
         }
     }
 }
