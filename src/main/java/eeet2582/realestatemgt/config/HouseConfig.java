@@ -23,11 +23,12 @@ public class HouseConfig {
                 Gson gson = new Gson();
 
                 Reader reader = Files.newBufferedReader(Paths.get("src/main/java/eeet2582/realestatemgt/data/house.json"));
-
                 List<House> houses =
                         gson.fromJson(reader,
                                 new TypeToken<List<House>>() {}.getType());
+
                 houseRepository.saveAll(houses);
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
