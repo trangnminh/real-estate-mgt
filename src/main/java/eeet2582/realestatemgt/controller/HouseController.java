@@ -46,4 +46,17 @@ public class HouseController {
     public ResponseEntity<String> addNewHouse(@ModelAttribute House house, @RequestParam("files") MultipartFile[] file) {
         return new ResponseEntity<>(houseService.addNewHouse(house,file),HttpStatus.OK);
     }
+
+    // get all houses with pagination and sort
+    @GetMapping(path="/houses/find/{page}/{category}")
+    public List<House> sortAndPagination(@PathVariable("page") int currPage,@PathVariable("category") String category){
+        return houseService.sortAndPagination(currPage,category);
+    }
+
+    // get all houses with name
+    @GetMapping(path="/houses/findByName/{page}/{name}")
+    public List<House> findHousesByName(@PathVariable("page") int currPage,@PathVariable("name") String name){
+        return houseService.findHouseByName(currPage,name);
+    }
+
 }

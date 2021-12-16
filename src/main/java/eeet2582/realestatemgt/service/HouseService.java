@@ -7,6 +7,9 @@ import eeet2582.realestatemgt.repository.HouseRepository;
 import org.apache.http.entity.ContentType;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -121,4 +124,16 @@ public class HouseService {
         houseRepository.save(houseObj);
         return "added successfully";
     }
+
+    public List<House> sortAndPagination(int currPage,String category){
+        Pageable page = PageRequest.of(currPage, 10,Sort.by(category).descending()); // 10 houses per page
+        return houseRepository.findAll(page).getContent();
+    }
+
+    public List<House> findHouseByName(int currPage,String name){
+        Pageable pageable = PageRequest.of(currPage,10,Sort.by("name").descending());
+        return houseRepository.findHousesByName(name,pageable);
+    }
+
+
 }

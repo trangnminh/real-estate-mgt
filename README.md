@@ -11,7 +11,7 @@
 - Added manual cascading when deleting User and House: all dependent Deposits, Meetings, and Rentals will be deleted
 - Added orphan removal when deleting Rental: all dependent Payments will be deleted
 
-### 08/12/2021 (Phuong)
+### 16/12/2021 (Phuong)
 - Added upload images using S3 bucket
 - Change type of attribute `description` in class House
 - when you need to run along with S3 bucket, please ask me about the secret key and access key
@@ -23,6 +23,7 @@
 `key` for uploading image is `files`, then select type `file` in the same field. It would automatically change the value to `select files` (you can select one or multiple file, but the type is always image). Then put another field like `name`, the default type of `key` would be `text`.
 - Link to image url: https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/1/1_bathroom.jpg
 > where 1 is the row id
+- Pagination and sort with house and users, search by name with `house` and search by name/phone/email with `user`
 
 ## Important note:
 - Before publishing to GitHub, please run the command line in terminal: `git rm -r --cached src/main/resources/application.properties` and put `src/main/resources/application.properties` in `.gitignore` --> otherwise, people would know my Amazon key and can take advantage of it
