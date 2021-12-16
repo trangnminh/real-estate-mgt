@@ -13,7 +13,7 @@ import org.springframework.context.annotation.PropertySource;
 public class AmazonConfig {
 
     private final String awsAccessKey = "abc";
-    private final String awsSecretKey = "xyz+H4HHMWR/U0/TwLxc+p4144T";
+    private final String awsSecretKey = "xyz";
     private final String awsRegion = "ap-southeast-1";
 
     @Bean
