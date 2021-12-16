@@ -51,7 +51,7 @@ public class UserController {
                              @RequestParam String email,
                              @RequestParam String password,
                              @RequestParam String phoneNumber,
-                             @RequestParam Date dob,
+                             @RequestParam String dob,
                              @RequestParam String gender) {
         userService.saveUserById(userId, fullName, email, password, phoneNumber, dob, gender);
     }
