@@ -11,6 +11,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -71,7 +72,14 @@ public class HouseService {
         return key;
     }
 
-    public String addNewHouse(@NotNull House house, @NotNull MultipartFile[] files) {
+    public String updateImages(String imageFolder){
+        if (imageFolder != null){
+            return imageFolder;
+        }
+        return UUID.randomUUID().toString();
+    }
+
+    public List<String> addImages(@NotNull MultipartFile[] files,String imageFolder){
         //check if the file is empty
         Arrays.stream(files).forEach(file -> {
             if (file.isEmpty()){
@@ -89,8 +97,7 @@ public class HouseService {
 
         // get file metadata
         // Save Image in S3 and then save House in the database
-        UUID uuid =  UUID.randomUUID();
-        String path = String.format("%s/%s", BucketName.HOUSE_IMAGE.getBucketName(), "dataset/"+uuid);
+        String path = String.format("%s/%s", BucketName.HOUSE_IMAGE.getBucketName(), "dataset/"+updateImages(imageFolder));
 
         List<String> imageList = new ArrayList<>();
         List<Optional<Map<String,String>>> metadataList = new ArrayList<>();
@@ -103,12 +110,16 @@ public class HouseService {
                 metadata.put("Content-Length", String.valueOf(file.getSize()));
                 metadataList.add(Optional.of(metadata));
                 fileStore.upload(path, fileName, metadataList, file.getInputStream());
-                imageList.add("https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/"+uuid+"/"+fileName);
+                imageList.add("https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/"+updateImages(imageFolder)+"/"+fileName);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         });
+        return imageList;
+    }
 
+    public String addNewHouse(@NotNull House house, @NotNull MultipartFile[] files) {
+        List<String> imageList = addImages(files,null);
         House houseObj = House.builder()
                 .name(house.getName())
                 .price(house.getPrice())
@@ -135,5 +146,58 @@ public class HouseService {
         return houseRepository.findHousesByName(name,pageable);
     }
 
+    // update house by description, address, price, status
+    //TODO: change longitude or latitude --> change address (google map api)
+    @Transactional
+    public void updateHouse(Long houseId, @NotNull House house,@NotNull MultipartFile[] files) {
+        House oldHouse = houseRepository.findById(houseId)
+                .orElseThrow(()-> new IllegalStateException("house with id "+houseId+" does not exist"));
+
+        if (house.getDescription() != null && house.getDescription().length() > 0 && !Objects.equals(oldHouse.getDescription(),house.getDescription())){
+            oldHouse.setDescription(house.getDescription());
+        }
+
+        if (house.getAddress() != null && house.getAddress().length() > 0 && !Objects.equals(oldHouse.getAddress(),house.getAddress())){
+            oldHouse.setAddress(house.getAddress());
+        }
+
+        if (house.getPrice() != null && !Objects.equals(oldHouse.getPrice(),house.getPrice())){
+            oldHouse.setPrice(house.getPrice());
+        }
+
+        if (house.getStatus() != null && !Objects.equals(oldHouse.getStatus(),house.getStatus())){
+            oldHouse.setStatus(house.getStatus());
+        }
+
+
+        // delete one or two in a folder
+        if(house.getImage() != null){
+            List<String> imageURL = new ArrayList<>();
+            List<String> newImageList = new ArrayList<>();
+
+            for (String path: house.getImage()) {
+                imageURL.add(path.substring(path.indexOf("com/")+4));
+            }
+            for (String url: oldHouse.getImage()) {
+                for (String image: imageURL) {
+                    if(!url.contains(image)){
+                        newImageList.add(url);
+                    }
+                }
+            }
+            fileStore.deletePicturesInFolder(imageURL);
+            oldHouse.setImage(newImageList);
+        }
+
+        // upload more images in a folder
+        if(house.getImage() == null && files.length != 0) {
+            String imageFolder = oldHouse.getImage().get(0).substring(oldHouse.getImage().get(0).indexOf("t/")+2,oldHouse.getImage().get(0).lastIndexOf("/"));
+            List<String> imageList = oldHouse.getImage();
+            imageList.addAll(addImages(files,imageFolder));
+            oldHouse.setImage(imageList);
+        }
+        houseRepository.save(oldHouse);
+
+    }
 
 }

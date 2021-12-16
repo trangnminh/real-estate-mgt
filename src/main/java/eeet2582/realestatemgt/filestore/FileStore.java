@@ -54,4 +54,14 @@ public class FileStore {
             throw new IllegalStateException("Error: "+e.getErrorMessage());
         }
     }
+
+    public void deletePicturesInFolder(List<String> image){
+        try{
+            for (String imageFile: image){
+                s3.deleteObject(new DeleteObjectRequest(BucketName.HOUSE_IMAGE.getBucketName(), imageFile));
+            }
+        }catch (AmazonServiceException e){
+            throw new IllegalStateException("Error: "+e.getErrorMessage());
+        }
+    }
 }
