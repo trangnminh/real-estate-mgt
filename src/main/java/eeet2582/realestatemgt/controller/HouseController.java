@@ -59,4 +59,13 @@ public class HouseController {
         return houseService.findHouseByName(currPage,name);
     }
 
+    @PutMapping(
+            path = "/house",
+            consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public void updateHouse(@RequestParam("houseId") Long houseId,@ModelAttribute House house, @RequestParam("files") MultipartFile[] file) {
+        houseService.updateHouse(houseId,house,file);
+    }
+
 }
