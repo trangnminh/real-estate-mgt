@@ -7,7 +7,8 @@ import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 // UserService only wires UserRepository, everything else is handled by child services
@@ -64,7 +65,7 @@ public class UserService {
 
     // Transactional means "all or nothing", if the transaction fails midway nothing is saved
     @Transactional
-    public void saveUserById(Long userId, String fullName, String email, String password, String phoneNumber, Date dob, String gender) {
+    public void saveUserById(Long userId, String fullName, String email, String password, String phoneNumber, String dob, String gender) {
         // If ID is provided, try to find the current user, else make new one
         AppUser user = (userId != null)? getUserById(userId) : new AppUser();
 
@@ -75,7 +76,7 @@ public class UserService {
         user.setEmail(email);
         user.setPassword(password);
         user.setPhoneNumber(phoneNumber);
-        user.setDob(dob);
+        user.setDob(LocalDate.parse(dob, DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         user.setGender(gender);
         userRepository.save(user);
     }
