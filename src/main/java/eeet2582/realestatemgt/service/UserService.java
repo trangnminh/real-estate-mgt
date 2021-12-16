@@ -3,6 +3,9 @@ package eeet2582.realestatemgt.service;
 import eeet2582.realestatemgt.model.AppUser;
 import eeet2582.realestatemgt.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -54,4 +57,25 @@ public class UserService {
     public void updateUserById(AppUser user) {
         userRepository.save(user);
     }
+
+    public List<AppUser> sortAndPagination(int currPage, String category){
+        Pageable page = PageRequest.of(currPage, 10, Sort.by(category).descending()); // 10 users per page
+        return userRepository.findAll(page).getContent();
+    }
+
+    public List<AppUser> findUsersByName(int currPage,String name){
+        Pageable pageable = PageRequest.of(currPage,10,Sort.by("name").descending());
+        return userRepository.findAppUsersByName(name,pageable);
+    }
+
+    public List<AppUser> findUsersByEmail(int currPage,String email){
+        Pageable pageable = PageRequest.of(currPage,10,Sort.by("name").descending());
+        return userRepository.findAppUsersByEmail(email,pageable);
+    }
+
+    public List<AppUser> findUsersByPhoneNumber(int currPage,String phoneNumber){
+        Pageable pageable = PageRequest.of(currPage,10,Sort.by("name").descending());
+        return userRepository.findAppUsersByPhoneNumber(phoneNumber,pageable);
+    }
+
 }

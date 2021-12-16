@@ -35,4 +35,28 @@ public class UserController {
     public void updateUserById(@RequestBody AppUser user) {
         userService.updateUserById(user);
     }
+
+    // get all users with pagination and sort
+    @GetMapping(path="/users/find/{page}/{category}")
+    public List<AppUser> sortAndPagination(@PathVariable("page") int currPage, @PathVariable("category") String category){
+        return userService.sortAndPagination(currPage,category);
+    }
+
+    // get all users with name
+    @GetMapping(path="/users/findByName/{page}/{name}")
+    public List<AppUser> findUsersByName(@PathVariable("page") int currPage,@PathVariable("name") String name){
+        return userService.findUsersByName(currPage,name);
+    }
+
+    // get all users with phone number
+    @GetMapping(path="/users/findByPhone/{page}/{phone}")
+    public List<AppUser> findUsersByPhone(@PathVariable("page") int currPage,@PathVariable("phone") String phone){
+        return userService.findUsersByPhoneNumber(currPage,phone);
+    }
+
+    // get all users with email
+    @GetMapping(path="/users/findByName/{page}/{email}")
+    public List<AppUser> findUsersByEmail(@PathVariable("page") int currPage,@PathVariable("email") String email){
+        return userService.findUsersByEmail(currPage,email);
+    }
 }
