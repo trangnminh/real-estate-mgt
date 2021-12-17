@@ -12,7 +12,5 @@ import java.util.Optional;
 @Repository
 public interface HouseRepository extends JpaRepository<House, Long> {
 
-    @Query("SELECT h FROM House h WHERE h.name LIKE %?1%")
-    List<House> findHousesByName(String name,Pageable pageable);
-
+    List<House> findHousesByPriceBetween(Double low,Double high,Pageable pageable);
 }

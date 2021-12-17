@@ -220,6 +220,14 @@ public class HouseService {
         return houseRepository.findAll(example, pageable);
     }
 
-
+    public List<House> getFilteredPrice(Double low, Double high, int pageNo, int pageSize, String sortBy, @NotNull String orderBy){
+        Pageable pageable;
+        if (orderBy.equals("asc")) {
+            pageable = PageRequest.of(pageNo, pageSize, Sort.by(sortBy).ascending());
+        } else {
+            pageable = PageRequest.of(pageNo, pageSize, Sort.by(sortBy).descending());
+        }
+        return houseRepository.findHousesByPriceBetween(low,high,pageable);
+    }
 
 }
