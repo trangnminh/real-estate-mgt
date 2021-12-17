@@ -3,6 +3,7 @@ package eeet2582.realestatemgt.controller;
 import eeet2582.realestatemgt.model.House;
 import eeet2582.realestatemgt.service.HouseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1")
+@RequestMapping("api/v1/houses")
 @CrossOrigin(origins = "*")
 public class HouseController {
 
@@ -23,12 +24,12 @@ public class HouseController {
         this.houseService = houseService;
     }
 
-    @GetMapping("/houses")
+    @GetMapping("")
     public List<House> getAllHouses() {
         return houseService.getAllHouses();
     }
 
-    @GetMapping("house/{houseId}")
+    @GetMapping("/{houseId}")
     public House getHouseById(@PathVariable("houseId") Long houseId) {
         return houseService.getHouseById(houseId);
     }
@@ -39,7 +40,7 @@ public class HouseController {
     }
 
     @PostMapping(
-            path = "/house",
+            path = "",
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
@@ -47,25 +48,29 @@ public class HouseController {
         return new ResponseEntity<>(houseService.addNewHouse(house,file),HttpStatus.OK);
     }
 
-    // get all houses with pagination and sort
-    @GetMapping(path="/houses/find/{page}/{category}")
-    public List<House> sortAndPagination(@PathVariable("page") int currPage,@PathVariable("category") String category){
-        return houseService.sortAndPagination(currPage,category);
-    }
-
-    // get all houses with name
-    @GetMapping(path="/houses/findByName/{page}/{name}")
-    public List<House> findHousesByName(@PathVariable("page") int currPage,@PathVariable("name") String name){
-        return houseService.findHouseByName(currPage,name);
+    @PutMapping(path = "/{houseId}")
+    public ResponseEntity<String> updateHouse(@PathVariable("houseId") Long houseId,@RequestBody House house) {
+        return new ResponseEntity<>(houseService.updateHouse(houseId,house),HttpStatus.OK);
     }
 
     @PutMapping(
-            path = "/house",
+            path = "/uploadMoreImages",
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public void updateHouse(@RequestParam("houseId") Long houseId,@ModelAttribute House house, @RequestParam("files") MultipartFile[] file) {
-        houseService.updateHouse(houseId,house,file);
+    public ResponseEntity<String> addMoreImage(@RequestParam("houseId") Long houseId,@RequestParam("files") MultipartFile[] file){
+        return new ResponseEntity<>(houseService.addMoreImage(houseId,file),HttpStatus.OK);
+    }
+
+    // Return house matching query with sort, order and pagination
+    // Params aren't mandatory, if not provided will use defaults
+    @GetMapping("/search")
+    public Page<House> getFilteredHouses(@RequestParam(value="query", defaultValue="") String query,
+                                        @RequestParam(value="pageNo", defaultValue="0") int pageNo,
+                                        @RequestParam(value="pageSize", defaultValue="5") int pageSize,
+                                        @RequestParam(value="sortBy", defaultValue="name") String sortBy,
+                                        @RequestParam(value="orderBy", defaultValue="asc") String orderBy) {
+        return houseService.getFilteredHouses(query, pageNo, pageSize, sortBy, orderBy);
     }
 
 }
