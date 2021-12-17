@@ -1,15 +1,30 @@
 # real-estate-mgt
 
 ## Note
-- Before publishing to GitHub, please run the command line in terminal: `git rm -r --cached src/main/resources/application.properties` and put `src/main/resources/application.properties` in `.gitignore` --> otherwise, people would know Phuong's Amazon key and can take advantage of it
+
+- Before publishing to GitHub, please run the command line in
+  terminal: `git rm -r --cached src/main/resources/application.properties` and
+  put `src/main/resources/application.properties` in `.gitignore` --> otherwise, people would know Phuong's Amazon key
+  and can take advantage of it
+- After pulling, copy the content of APPLICATION.MD in your `application.properties` (replace with local PSQL config)
 
 ## Changelogs
+
+### 17/12/2021 (Trang)
+
+- All endpoints for Rental and Payment work (get all, get one, get and upsert by rentalId, add, delete, update, sort &
+  pagination)
+- **Weird POSTMAN issue:** after posting a new payment, getting all payments will show an ID and not the new Payment
+  object; querying the new payment by ID and Rental still work as expected
+
 ### 16/12/2021 (Trang)
+
 - All endpoints for AppUser work (get all, get one, add, delete, update, search, sort & pagination)
 - All dates must use "yyyy-MM-dd" and all times must use "HH:mm"
 - Some endpoints in UserController have been deleted, please check them out
 
 ### 16/12/2021 (Phuong)
+
 - Added upload images using S3 bucket
 - Change type of attribute `description` in class House
 - when you need to run along with S3 bucket, please ask me about the secret key and access key
