@@ -7,13 +7,12 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 
 @Configuration
 public class AmazonConfig {
 
-    private final String awsAccessKey = "abc";
-    private final String awsSecretKey = "xyz";
+    private final String awsAccessKey = "xyz";
+    private final String awsSecretKey = "abc";
     private final String awsRegion = "ap-southeast-1";
 
     @Bean
