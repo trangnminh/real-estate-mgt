@@ -7,10 +7,9 @@ import eeet2582.realestatemgt.repository.HouseRepository;
 import org.apache.http.entity.ContentType;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -71,7 +70,7 @@ public class HouseService {
         return key;
     }
 
-    public String addNewHouse(@NotNull House house, @NotNull MultipartFile[] files) {
+    public List<String> addImages(@NotNull MultipartFile[] files,String imageFolder){
         //check if the file is empty
         Arrays.stream(files).forEach(file -> {
             if (file.isEmpty()){
@@ -83,14 +82,17 @@ public class HouseService {
         Arrays.stream(files).forEach(file ->{
             if(!Arrays.asList(IMAGE_PNG.getMimeType(),
                     IMAGE_JPEG.getMimeType()).contains(file.getContentType())){
-                throw new IllegalStateException("FIle uploaded is not an image");
+                throw new IllegalStateException("File uploaded is not an image");
             }
         });
 
         // get file metadata
         // Save Image in S3 and then save House in the database
-        UUID uuid =  UUID.randomUUID();
-        String path = String.format("%s/%s", BucketName.HOUSE_IMAGE.getBucketName(), "dataset/"+uuid);
+        if (imageFolder == null){
+            imageFolder = UUID.randomUUID().toString();
+        }
+        String path = String.format("%s/%s", BucketName.HOUSE_IMAGE.getBucketName(), "dataset/"+imageFolder);
+        final String imageFolderCopy = imageFolder;
 
         List<String> imageList = new ArrayList<>();
         List<Optional<Map<String,String>>> metadataList = new ArrayList<>();
@@ -103,12 +105,16 @@ public class HouseService {
                 metadata.put("Content-Length", String.valueOf(file.getSize()));
                 metadataList.add(Optional.of(metadata));
                 fileStore.upload(path, fileName, metadataList, file.getInputStream());
-                imageList.add("https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/"+uuid+"/"+fileName);
+                imageList.add("https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/"+imageFolderCopy+"/"+fileName);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         });
+        return imageList;
+    }
 
+    public String addNewHouse(@NotNull House house, @NotNull MultipartFile[] files) {
+        List<String> imageList = addImages(files,null);
         House houseObj = House.builder()
                 .name(house.getName())
                 .price(house.getPrice())
@@ -125,15 +131,103 @@ public class HouseService {
         return "added successfully";
     }
 
-    public List<House> sortAndPagination(int currPage,String category){
-        Pageable page = PageRequest.of(currPage, 10,Sort.by(category).descending()); // 10 houses per page
-        return houseRepository.findAll(page).getContent();
+
+    // update house by description, address, price, status
+    //TODO: change longitude or latitude --> change address (google map api)
+    @Transactional
+    public String updateHouse(Long houseId, @NotNull House house) {
+        House oldHouse = houseRepository.findById(houseId)
+                .orElseThrow(()-> new IllegalStateException("house with id "+houseId+" does not exist"));
+
+        if (house.getDescription() != null && house.getDescription().length() > 0 && !Objects.equals(oldHouse.getDescription(),house.getDescription())){
+            oldHouse.setDescription(house.getDescription());
+        }
+
+        if (house.getAddress() != null && house.getAddress().length() > 0 && !Objects.equals(oldHouse.getAddress(),house.getAddress())){
+            oldHouse.setAddress(house.getAddress());
+        }
+
+        if (house.getPrice() != null && !Objects.equals(oldHouse.getPrice(),house.getPrice())){
+            oldHouse.setPrice(house.getPrice());
+        }
+
+        if (house.getStatus() != null && !Objects.equals(oldHouse.getStatus(),house.getStatus())){
+            oldHouse.setStatus(house.getStatus());
+        }
+
+        // delete one or two in a folder
+        if(house.getImage().size() != 0){
+            List<String> imagePath = new ArrayList<>();
+            List<String> newImageURL = house.getImage();
+            List<String> oldImageURL = oldHouse.getImage();
+
+            if(oldImageURL.size() == 0){
+                return "Image list is empty";
+            }
+
+            for (String path: house.getImage()) {
+                imagePath.add(path.substring(path.indexOf("com/")+4));
+            }
+            oldImageURL.removeAll(newImageURL);
+
+            fileStore.deletePicturesInFolder(imagePath);
+            oldHouse.setImage(oldImageURL);
+        }
+        houseRepository.save(oldHouse);
+        return "updated house";
     }
 
-    public List<House> findHouseByName(int currPage,String name){
-        Pageable pageable = PageRequest.of(currPage,10,Sort.by("name").descending());
-        return houseRepository.findHousesByName(name,pageable);
+    @Transactional
+    public String addMoreImage(Long houseId,MultipartFile @NotNull [] files ){
+        House oldHouse = houseRepository.findById(houseId)
+                .orElseThrow(()-> new IllegalStateException("house with id "+houseId+" does not exist"));
+
+        // upload more images in a folder
+        if(files.length != 0) {
+            String imageFolder = "";
+            if(oldHouse.getImage().size() == 0){
+                imageFolder = UUID.randomUUID().toString();
+            }
+            else{
+                imageFolder = oldHouse.getImage().get(0).substring(oldHouse.getImage().get(0).indexOf("t/")+2,oldHouse.getImage().get(0).lastIndexOf("/"));
+            }
+            List<String> imageList = oldHouse.getImage();
+            imageList.addAll(addImages(files,imageFolder));
+            oldHouse.setImage(imageList);
+            houseRepository.save(oldHouse);
+            return "Update images";
+        }
+        return "Please insert image files";
     }
 
+    // Find houses matching by name and type
+    public Page<House> getFilteredHouses(String query, int pageNo, int pageSize, String sortBy, @NotNull String orderBy) {
+        House house = new House();
+        house.setName(query);
+        house.setType(query);
+
+        ExampleMatcher matcher = ExampleMatcher.matchingAny()
+                .withMatcher("name", ExampleMatcher.GenericPropertyMatchers.contains().ignoreCase())
+                .withMatcher("type", ExampleMatcher.GenericPropertyMatchers.contains().ignoreCase());
+        Example<House> example= Example.of(house, matcher);
+
+        Pageable pageable;
+        if (orderBy.equals("asc")) {
+            pageable = PageRequest.of(pageNo, pageSize, Sort.by(sortBy).ascending());
+        } else {
+            pageable = PageRequest.of(pageNo, pageSize, Sort.by(sortBy).descending());
+        }
+        return houseRepository.findAll(example, pageable);
+    }
+
+    public List<House> getFilteredPrice(Double low, Double high, int pageNo, int pageSize, String sortBy, @NotNull String orderBy){
+        Pageable pageable;
+        if (orderBy.equals("asc")) {
+            pageable = PageRequest.of(pageNo, pageSize, Sort.by(sortBy).ascending());
+        } else {
+            pageable = PageRequest.of(pageNo, pageSize, Sort.by(sortBy).descending());
+        }
+        return houseRepository.findHousesByPriceBetween(low,high,pageable);
+    }
 
 }

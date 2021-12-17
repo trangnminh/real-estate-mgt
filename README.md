@@ -10,6 +10,11 @@
 
 ## Changelogs
 
+### 17/12/2021 (Phuong)
+
+- Can update image in s3 by delete and upload more into the same folder
+- Search/sort/pagination with name, type and price
+
 ### 17/12/2021 (Trang)
 
 - All endpoints for Rental and Payment work (get all, get one, get and upsert by rentalId, add, delete, update, sort &
