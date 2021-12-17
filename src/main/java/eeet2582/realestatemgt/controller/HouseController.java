@@ -84,4 +84,5 @@ public class HouseController {
         return houseService.getFilteredPrice(low,high, pageNo, pageSize, sortBy, orderBy);
     }
 
+
 }
