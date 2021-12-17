@@ -1,17 +1,30 @@
 # real-estate-mgt
 
+## Note
+
+- Before publishing to GitHub, please run the command line in
+  terminal: `git rm -r --cached src/main/resources/application.properties` and
+  put `src/main/resources/application.properties` in `.gitignore` --> otherwise, people would know Phuong's Amazon key
+  and can take advantage of it
+- After pulling, copy the content of APPLICATION.MD in your `application.properties` (replace with local PSQL config)
+
 ## Changelogs
-### 4/12/2021 (Trang)
-- Changed folder structure from class-based to function-based
-> It is not necessary to create a Service for each Entity. A Service can wire multiple Repositories. This reduces the number of Services and makes cascading (for example delete all dependent Rentals when a User is deleted) easier. "Important" entities (User, House, Rental) have their own Service classes.
-- Added 5 rows of mock data for all classes, relationships included
-- Wrote parsers to parse date and time from strings
-- Wrote a parser to deserialize field "rental" (actually an ID string) in `payment.json` into nested Rental objects
-- Fixed infinite recursion when using GET requests for Rental and Payment due to them referencing each other
-- Added manual cascading when deleting User and House: all dependent Deposits, Meetings, and Rentals will be deleted
-- Added orphan removal when deleting Rental: all dependent Payments will be deleted
+
+### 17/12/2021 (Trang)
+
+- All endpoints for Rental and Payment work (get all, get one, get and upsert by rentalId, add, delete, update, sort &
+  pagination)
+- **Weird POSTMAN issue:** after posting a new payment, getting all payments will show an ID and not the new Payment
+  object; querying the new payment by ID and Rental still work as expected
+
+### 16/12/2021 (Trang)
+
+- All endpoints for AppUser work (get all, get one, add, delete, update, search, sort & pagination)
+- All dates must use "yyyy-MM-dd" and all times must use "HH:mm"
+- Some endpoints in UserController have been deleted, please check them out
 
 ### 16/12/2021 (Phuong)
+
 - Added upload images using S3 bucket
 - Change type of attribute `description` in class House
 - when you need to run along with S3 bucket, please ask me about the secret key and access key
@@ -25,8 +38,15 @@
 > where 1 is the row id
 - Pagination and sort with house and users, search by name with `house` and search by name/phone/email with `user`
 
-## Important note:
-- Before publishing to GitHub, please run the command line in terminal: `git rm -r --cached src/main/resources/application.properties` and put `src/main/resources/application.properties` in `.gitignore` --> otherwise, people would know my Amazon key and can take advantage of it
+### 4/12/2021 (Trang)
+- Changed folder structure from class-based to function-based
+> It is not necessary to create a Service for each Entity. A Service can wire multiple Repositories. This reduces the number of Services and makes cascading (for example delete all dependent Rentals when a User is deleted) easier. "Important" entities (User, House, Rental) have their own Service classes.
+- Added 5 rows of mock data for all classes, relationships included
+- Wrote parsers to parse date and time from strings
+- Wrote a parser to deserialize field "rental" (actually an ID string) in `payment.json` into nested Rental objects
+- Fixed infinite recursion when using GET requests for Rental and Payment due to them referencing each other
+- Added manual cascading when deleting User and House: all dependent Deposits, Meetings, and Rentals will be deleted
+- Added orphan removal when deleting Rental: all dependent Payments will be deleted
 
 ## Resources
 ### Lucid Chart

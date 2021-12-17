@@ -9,7 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.util.Date;
+import java.time.LocalDate;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -26,14 +26,14 @@ public class AppUser {
     private String email;
     private String password;
     private String phoneNumber;
-    private Date dob;
+    private LocalDate dob;
     private String gender;
 
     public AppUser(String fullName,
                    String email,
                    String password,
                    String phoneNumber,
-                   Date dob,
+                   LocalDate dob,
                    String gender) {
         this.fullName = fullName;
         this.email = email;
