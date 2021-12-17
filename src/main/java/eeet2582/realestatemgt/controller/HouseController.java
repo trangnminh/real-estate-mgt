@@ -73,4 +73,15 @@ public class HouseController {
         return houseService.getFilteredHouses(query, pageNo, pageSize, sortBy, orderBy);
     }
 
+    // Return house matching query with sort, order and pagination
+    @GetMapping("/price")
+    public List<House> getFilteredPrice(@RequestParam(value="low", defaultValue="") Double low,
+                                        @RequestParam(value="high", defaultValue="") Double high,
+                                         @RequestParam(value="pageNo", defaultValue="0") int pageNo,
+                                         @RequestParam(value="pageSize", defaultValue="5") int pageSize,
+                                         @RequestParam(value="sortBy", defaultValue="name") String sortBy,
+                                         @RequestParam(value="orderBy", defaultValue="asc") String orderBy) {
+        return houseService.getFilteredPrice(low,high, pageNo, pageSize, sortBy, orderBy);
+    }
+
 }
