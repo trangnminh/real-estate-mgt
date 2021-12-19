@@ -10,6 +10,11 @@
 
 ## Changelogs
 
+### 19/12/2021 (Trang)
+
+- All endpoints for Deposit and Meeting work (get all, get one, get by userId or houseId, upsert, delete)
+- Add more endpoints for Rental to be searched by userId or houseId
+
 ### 17/12/2021 (Phuong)
 
 - Can update image in s3 by delete and upload more into the same folder
