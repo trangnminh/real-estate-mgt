@@ -38,14 +38,22 @@ public class RentalService {
     }
 
     // Return paginated rentals
-    public Page<Rental> getFilteredRentals(int pageNo, int pageSize, String sortBy, String orderBy) {
+    public Page<Rental> getFilteredRentalsAllOrByUserIdOrByHouseId(Long userId, Long houseId, int pageNo, int pageSize, String sortBy, String orderBy) {
         Pageable pageable;
+
         if (orderBy.equals("asc")) {
             pageable = PageRequest.of(pageNo, pageSize, Sort.by(sortBy).ascending());
         } else {
             pageable = PageRequest.of(pageNo, pageSize, Sort.by(sortBy).descending());
         }
-        return rentalRepository.findAll(pageable);
+
+        if (userId != null) {
+            return rentalRepository.findByUserHouse_UserId(userId, pageable);
+        } else if (houseId != null) {
+            return rentalRepository.findByUserHouse_HouseId(houseId, pageable);
+        } else {
+            return rentalRepository.findAll(pageable);
+        }
     }
 
     // Get one by ID, try to reuse the exception
@@ -80,11 +88,13 @@ public class RentalService {
     }
 
     // Delete all rentals having the same userId
+    @Transactional
     public void deleteRentalsByUserId(Long userId) {
         rentalRepository.deleteByUserHouse_UserId(userId);
     }
 
     // Delete all rentals having the same houseId
+    @Transactional
     public void deleteRentalsByHouseId(Long houseId) {
         rentalRepository.deleteByUserHouse_HouseId(houseId);
     }
@@ -94,15 +104,20 @@ public class RentalService {
         return paymentRepository.findAll();
     }
 
-    // Return paginated payments of the provided rental
-    public Page<Payment> getFilteredPaymentsByRentalId(Long rentalId, int pageNo, int pageSize, String sortBy, String orderBy) {
+    // Return paginated payments of the provided rental or just all payments
+    public Page<Payment> getFilteredPaymentsAllOrByRentalId(Long rentalId, int pageNo, int pageSize, String sortBy, String orderBy) {
         Pageable pageable;
         if (orderBy.equals("asc")) {
             pageable = PageRequest.of(pageNo, pageSize, Sort.by(sortBy).ascending());
         } else {
             pageable = PageRequest.of(pageNo, pageSize, Sort.by(sortBy).descending());
         }
-        return paymentRepository.findByRental_RentalId(rentalId, pageable);
+
+        if (rentalId != null) {
+            return paymentRepository.findByRental_RentalId(rentalId, pageable);
+        } else {
+            return paymentRepository.findAll(pageable);
+        }
     }
 
     // Get one by ID, try to reuse the exception
