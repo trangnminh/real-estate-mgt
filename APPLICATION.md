@@ -1,3 +1,4 @@
+```
 spring.datasource.url=jdbc:postgresql://localhost:5432/db
 spring.datasource.username=minesk
 spring.datasource.password=admin
@@ -12,3 +13,4 @@ server.error.include-message=always
 
 spring.servlet.multipart.max-file-size=100MB
 spring.servlet.multipart.max-request-size=100MB
+```
