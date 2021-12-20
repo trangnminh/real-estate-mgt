@@ -20,69 +20,73 @@ public class HouseController {
     private final HouseService houseService;
 
     @Autowired
-    public HouseController(HouseService houseService){
+    public HouseController(HouseService houseService) {
         this.houseService = houseService;
     }
 
+    // Just get all users (for debug)
     @GetMapping("")
     public List<House> getAllHouses() {
         return houseService.getAllHouses();
     }
 
+    // Return items matching query with sort, order and pagination
+    // Params aren't mandatory, if not provided will use defaults
+    @GetMapping("/search")
+    public Page<House> getFilteredHouses(@RequestParam(value = "query", defaultValue = "") String query,
+                                         @RequestParam(value = "pageNo", defaultValue = "0") int pageNo,
+                                         @RequestParam(value = "pageSize", defaultValue = "5") int pageSize,
+                                         @RequestParam(value = "sortBy", defaultValue = "name") String sortBy,
+                                         @RequestParam(value = "orderBy", defaultValue = "asc") String orderBy) {
+        return houseService.getFilteredHouses(query, pageNo, pageSize, sortBy, orderBy);
+    }
+
+    // Return houses within a price range
+    @GetMapping("/search/byPriceBetween")
+    public Page<House> getFilteredHousesByPriceBetween(@RequestParam(value = "low", defaultValue = "0") Double low,
+                                                       @RequestParam(value = "high", defaultValue = "900000") Double high,
+                                                       @RequestParam(value = "pageNo", defaultValue = "0") int pageNo,
+                                                       @RequestParam(value = "pageSize", defaultValue = "5") int pageSize,
+                                                       @RequestParam(value = "sortBy", defaultValue = "price") String sortBy,
+                                                       @RequestParam(value = "orderBy", defaultValue = "asc") String orderBy) {
+        return houseService.getFilteredHousesByPriceBetween(low, high, pageNo, pageSize, sortBy, orderBy);
+    }
+
+    // Get one by ID
     @GetMapping("/{houseId}")
     public House getHouseById(@PathVariable("houseId") Long houseId) {
         return houseService.getHouseById(houseId);
     }
 
-    @DeleteMapping("house/{houseId}")
-    public ResponseEntity<String> deleteHouseById(@PathVariable("houseId") Long houseId) {
-        return new ResponseEntity<>(houseService.deleteHouseById(houseId),HttpStatus.OK);
-    }
-
+    // Add new one
     @PostMapping(
             path = "",
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     public ResponseEntity<String> addNewHouse(@ModelAttribute House house, @RequestParam("files") MultipartFile[] file) {
-        return new ResponseEntity<>(houseService.addNewHouse(house,file),HttpStatus.OK);
+        return new ResponseEntity<>(houseService.addNewHouse(house, file), HttpStatus.OK);
     }
 
-    @PutMapping(path = "/{houseId}")
-    public ResponseEntity<String> updateHouse(@PathVariable("houseId") Long houseId,@RequestBody House house) {
-        return new ResponseEntity<>(houseService.updateHouse(houseId,house),HttpStatus.OK);
+    // Update one by ID
+    @PutMapping("/{houseId}")
+    public ResponseEntity<String> updateHouseById(@PathVariable("houseId") Long houseId, @RequestBody House house) {
+        return new ResponseEntity<>(houseService.updateHouseById(houseId, house), HttpStatus.OK);
     }
 
+    // Add more images to a house by ID
     @PutMapping(
-            path = "/uploadMoreImages",
+            path = "/addHouseImage",
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public ResponseEntity<String> addMoreImage(@RequestParam("houseId") Long houseId,@RequestParam("files") MultipartFile[] file){
-        return new ResponseEntity<>(houseService.addMoreImage(houseId,file),HttpStatus.OK);
+    public ResponseEntity<String> addHouseImage(@RequestParam("houseId") Long houseId, @RequestParam("files") MultipartFile[] file) {
+        return new ResponseEntity<>(houseService.addHouseImage(houseId, file), HttpStatus.OK);
     }
 
-    // Return house matching query with sort, order and pagination
-    // Params aren't mandatory, if not provided will use defaults
-    @GetMapping("/search")
-    public Page<House> getFilteredHouses(@RequestParam(value="query", defaultValue="") String query,
-                                        @RequestParam(value="pageNo", defaultValue="0") int pageNo,
-                                        @RequestParam(value="pageSize", defaultValue="5") int pageSize,
-                                        @RequestParam(value="sortBy", defaultValue="name") String sortBy,
-                                        @RequestParam(value="orderBy", defaultValue="asc") String orderBy) {
-        return houseService.getFilteredHouses(query, pageNo, pageSize, sortBy, orderBy);
+    // Delete one by ID
+    @DeleteMapping("/{houseId}")
+    public ResponseEntity<String> deleteHouseById(@PathVariable("houseId") Long houseId) {
+        return new ResponseEntity<>(houseService.deleteHouseById(houseId), HttpStatus.OK);
     }
-
-    // Return house matching query with sort, order and pagination
-    @GetMapping("/price")
-    public List<House> getFilteredPrice(@RequestParam(value="low", defaultValue="") Double low,
-                                        @RequestParam(value="high", defaultValue="") Double high,
-                                         @RequestParam(value="pageNo", defaultValue="0") int pageNo,
-                                         @RequestParam(value="pageSize", defaultValue="5") int pageSize,
-                                         @RequestParam(value="sortBy", defaultValue="name") String sortBy,
-                                         @RequestParam(value="orderBy", defaultValue="asc") String orderBy) {
-        return houseService.getFilteredPrice(low,high, pageNo, pageSize, sortBy, orderBy);
-    }
-
-
 }

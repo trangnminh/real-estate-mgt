@@ -3,7 +3,6 @@ package eeet2582.realestatemgt.model;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -29,8 +28,6 @@ public class House {
     private String address;
     private Double longitude;
     private Double latitude;
-
-//    private String image;
 
     @ElementCollection
     private List<String> image;
