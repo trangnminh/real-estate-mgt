@@ -16,11 +16,9 @@ const PaginationBar = () => {
     <Pagination>
         <Pagination.First />
         <Pagination.Prev />
-        {/* <Pagination.Item>{1}</Pagination.Item> */}
-        {/* <Pagination.Ellipsis /> */}
+        <Pagination.Ellipsis />
         {houses}    
-        {/* <Pagination.Ellipsis /> */}
-        {/* <Pagination.Item>{20}</Pagination.Item> */}
+        <Pagination.Ellipsis />
         <Pagination.Next />
         <Pagination.Last />
     </Pagination>

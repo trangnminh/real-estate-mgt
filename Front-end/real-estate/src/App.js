@@ -8,7 +8,7 @@ import MyPage from './pages/MyPage';
 import Register from './pages/Register';
 import Rental from './pages/Rental';
 import ViewDetail from './pages/ViewDetail';
-
+import BookMeeting from './pages/BookMeeting';
 function App() {
   return (
     <div className="App">
@@ -18,6 +18,7 @@ function App() {
         <Route path="/rental" exact={true} element={<Rental />} />
         <Route path="/help" exact={true} element={<Help />} />
         <Route path="/myPage" exact={true} element={<MyPage />} />
+        <Route path="/BookMeeting/:id" exact={true} element={<BookMeeting />} />
         <Route path="/viewDeatil/:id" exact={true} element={<ViewDetail />} />
         <Route path="/auth/register" exact={true} element={<Register />} />
         <Route path="/auth/calendar" exact={true} element={<Calendar />} />
