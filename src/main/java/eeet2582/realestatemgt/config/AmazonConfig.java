@@ -11,14 +11,14 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AmazonConfig {
 
-    private final String awsAccessKey = "xyz";
-    private final String awsSecretKey = "abc";
+    private final String awsAccessKey = "abc";
+    private final String awsSecretKey = "xyz";
     private final String awsRegion = "ap-southeast-1";
 
     @Bean
-    public AmazonS3 s3(){
+    public AmazonS3 s3() {
         AWSCredentials awsCredentials = new BasicAWSCredentials(
-                awsAccessKey,awsSecretKey
+                awsAccessKey, awsSecretKey
         );
         return AmazonS3ClientBuilder
                 .standard()
