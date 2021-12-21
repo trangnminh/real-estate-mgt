@@ -1,20 +1,18 @@
 package eeet2582.realestatemgt.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
+import java.util.Objects;
+
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @Entity
+@Builder
 public class House {
 
     @Id
@@ -23,11 +21,17 @@ public class House {
 
     private String name;
     private Double price;
+
+    @Column(length = 1024)
     private String description;
+
     private String address;
     private Double longitude;
     private Double latitude;
-    private String image;
+
+    @ElementCollection
+    private List<String> image;
+
     private String type;
     private Integer numberOfBeds;
     private Integer squareFeet;
@@ -39,7 +43,7 @@ public class House {
                  String address,
                  Double longitude,
                  Double latitude,
-                 String image,
+                 List<String> image,
                  String type,
                  Integer numberOfBeds,
                  Integer squareFeet,
@@ -55,5 +59,18 @@ public class House {
         this.numberOfBeds = numberOfBeds;
         this.squareFeet = squareFeet;
         this.status = status;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof House)) return false;
+        House house = (House) o;
+        return Objects.equals(houseId, house.houseId) && Objects.equals(name, house.name) && Objects.equals(price, house.price) && Objects.equals(description, house.description) && Objects.equals(address, house.address) && Objects.equals(longitude, house.longitude) && Objects.equals(latitude, house.latitude) && Objects.equals(image, house.image) && Objects.equals(type, house.type) && Objects.equals(numberOfBeds, house.numberOfBeds) && Objects.equals(squareFeet, house.squareFeet) && Objects.equals(status, house.status);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(houseId, name, price, description, address, longitude, latitude, image, type, numberOfBeds, squareFeet, status);
     }
 }
