@@ -106,11 +106,18 @@ public class HouseService {
         return "House added successfully!";
     }
 
-    // Update house by description, address, price, status
-    // TODO: change longitude or latitude --> change address (Google Map API)
+    // Update house by multiple attributes
     @Transactional
     public String updateHouseById(Long houseId, @NotNull House house) {
         House oldHouse = getHouseById(houseId);
+
+        if (house.getName() != null && !Objects.equals(oldHouse.getName(), house.getName())) {
+            oldHouse.setName(house.getName());
+        }
+
+        if (house.getPrice() != null && !Objects.equals(oldHouse.getPrice(), house.getPrice())) {
+            oldHouse.setPrice(house.getPrice());
+        }
 
         if (house.getDescription() != null && house.getDescription().length() > 0 && !Objects.equals(oldHouse.getDescription(), house.getDescription())) {
             oldHouse.setDescription(house.getDescription());
@@ -120,15 +127,15 @@ public class HouseService {
             oldHouse.setAddress(house.getAddress());
         }
 
-        if (house.getPrice() != null && !Objects.equals(oldHouse.getPrice(), house.getPrice())) {
-            oldHouse.setPrice(house.getPrice());
+        if (house.getLongitude() != null) {
+            oldHouse.setLongitude(house.getLongitude());
         }
 
-        if (house.getStatus() != null && !Objects.equals(oldHouse.getStatus(), house.getStatus())) {
-            oldHouse.setStatus(house.getStatus());
+        if (house.getLatitude() != null) {
+            oldHouse.setLatitude(house.getLatitude());
         }
 
-        // delete one or two in a folder
+        // delete one or multiple images in a folder
         if (house.getImage().size() != 0) {
             List<String> imagePath = new ArrayList<>();
             List<String> newImageURL = house.getImage();
@@ -141,12 +148,26 @@ public class HouseService {
             for (String path : house.getImage()) {
                 imagePath.add(path.substring(path.indexOf("com/") + 4));
             }
-            oldImageURL.removeAll(newImageURL);
-
             fileStore.deletePicturesInFolder(imagePath);
+            oldImageURL.removeAll(newImageURL);
             oldHouse.setImage(oldImageURL);
         }
-        houseRepository.save(oldHouse);
+
+        if (house.getType() != null && house.getType().length() > 0 && !Objects.equals(oldHouse.getType(), house.getType())) {
+            oldHouse.setType(house.getType());
+        }
+
+        if (house.getNumberOfBeds() != null) {
+            oldHouse.setNumberOfBeds(house.getNumberOfBeds());
+        }
+
+        if (house.getSquareFeet() != null) {
+            oldHouse.setSquareFeet(house.getSquareFeet());
+        }
+
+        if (house.getStatus() != null && !Objects.equals(oldHouse.getStatus(), house.getStatus())) {
+            oldHouse.setStatus(house.getStatus());
+        }
         return "updated house";
     }
 
@@ -208,7 +229,6 @@ public class HouseService {
             List<String> imageList = oldHouse.getImage();
             imageList.addAll(addImages(files, imageFolder));
             oldHouse.setImage(imageList);
-            houseRepository.save(oldHouse);
             return "Update images";
         }
         return "Please insert image files";
