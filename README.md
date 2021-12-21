@@ -4,11 +4,16 @@
 
 - Before publishing to GitHub, please run the command line in
   terminal: `git rm -r --cached src/main/resources/application.properties` and
-  put `src/main/resources/application.properties` in `.gitignore` --> otherwise, people would know Phuong's Amazon key
-  and can take advantage of it
+  put `src/main/resources/application.properties` in `.gitignore`
 - After pulling, copy the content of APPLICATION.MD in your `application.properties` (replace with local PSQL config)
 
 ## Changelogs
+
+### 21/12/2021 (Phuong)
+
+- House update and tested
+- How to use Postman for House
+  API: https://docs.google.com/document/d/1xA9813h3P2GNO4l_WNfn-KGI0xK8Q-DQnUJFLb_P2gs/edit?usp=sharing
 
 ### 19/12/2021 (Trang)
 
@@ -37,13 +42,6 @@
 
 - Added upload images using S3 bucket
 - Change type of attribute `description` in class House
-- when you need to run along with S3 bucket, please ask me about the secret key and access key
-- When you need front end for fetching image API for posting houses, drop me text, and I will send you 
-- put this line in `application.properties`:
-`spring.servlet.multipart.max-file-size=100MB`
-`spring.servlet.multipart.max-request-size=100MB`
-> In `Postman` for POST request: choose `form-data`:
-`key` for uploading image is `files`, then select type `file` in the same field. It would automatically change the value to `select files` (you can select one or multiple file, but the type is always image). Then put another field like `name`, the default type of `key` would be `text`.
 - Link to image url: https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/1/1_bathroom.jpg
 > where 1 is the row id
 - Pagination and sort with house and users, search by name with `house` and search by name/phone/email with `user`
