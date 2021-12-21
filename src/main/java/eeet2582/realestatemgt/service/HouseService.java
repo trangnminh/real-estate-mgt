@@ -142,7 +142,7 @@ public class HouseService {
             List<String> oldImageURL = oldHouse.getImage();
 
             if (oldImageURL.size() == 0) {
-                return "Image list is empty";
+                return "Image list is empty!";
             }
 
             for (String path : house.getImage()) {
@@ -168,14 +168,14 @@ public class HouseService {
         if (house.getStatus() != null && !Objects.equals(oldHouse.getStatus(), house.getStatus())) {
             oldHouse.setStatus(house.getStatus());
         }
-        return "updated house";
+        return "House updated successfully!";
     }
 
     public List<String> addImages(@NotNull MultipartFile[] files, String imageFolder) {
         //check if the file is empty
         Arrays.stream(files).forEach(file -> {
             if (file.isEmpty()) {
-                throw new IllegalStateException("Cannot upload empty file");
+                throw new IllegalStateException("Cannot upload empty file!");
             }
         });
 
@@ -183,7 +183,7 @@ public class HouseService {
         Arrays.stream(files).forEach(file -> {
             if (!Arrays.asList(IMAGE_PNG.getMimeType(),
                     IMAGE_JPEG.getMimeType()).contains(file.getContentType())) {
-                throw new IllegalStateException("File uploaded is not an image");
+                throw new IllegalStateException("File uploaded is not an image!");
             }
         });
 
@@ -229,21 +229,18 @@ public class HouseService {
             List<String> imageList = oldHouse.getImage();
             imageList.addAll(addImages(files, imageFolder));
             oldHouse.setImage(imageList);
-            return "Update images";
+            return "House images updated!";
         }
-        return "Please insert image files";
+        return "Please insert image files!";
     }
 
     public String deleteHouseById(Long houseId) {
-        if (!houseRepository.existsById(houseId))
-            throw new IllegalStateException("House with houseId=" + houseId + " does not exist!");
+        House houseObj = getHouseById(houseId);
 
         // Delete all classes that depend on current house
         adminService.deleteDepositsByHouseId(houseId);
         adminService.deleteMeetingsByHouseId(houseId);
         rentalService.deleteRentalsByHouseId(houseId);
-
-        House houseObj = houseRepository.findById(houseId).orElseThrow(() -> new IllegalStateException("House with houseId=" + houseId + " does not exist!"));
 
         String path = houseObj.getImage().get(0).substring(houseObj.getImage().get(0).indexOf("t/") + 2, houseObj.getImage().get(0).lastIndexOf("/"));
         String key = fileStore.delete(path);
