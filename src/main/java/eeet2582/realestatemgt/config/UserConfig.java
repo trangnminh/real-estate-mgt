@@ -24,18 +24,21 @@ public class UserConfig {
     CommandLineRunner userRunner(UserRepository userRepository) {
         return args -> {
             try {
-                StringToDateParser stringToDateParser = new StringToDateParser();
+                if (userRepository.count() == 0) {
+                    StringToDateParser stringToDateParser = new StringToDateParser();
 
-                Reader reader = Files.newBufferedReader(Paths.get("src/main/java/eeet2582/realestatemgt/data/user.json"));
-                Type type = new TypeToken<List<AppUser>>() {}.getType();
-                GsonBuilder builder = new GsonBuilder();
+                    Reader reader = Files.newBufferedReader(Paths.get("src/main/java/eeet2582/realestatemgt/data/user.json"));
+                    Type type = new TypeToken<List<AppUser>>() {
+                    }.getType();
+                    GsonBuilder builder = new GsonBuilder();
 
-                builder.registerTypeAdapter(LocalDate.class, stringToDateParser);
+                    builder.registerTypeAdapter(LocalDate.class, stringToDateParser);
 
-                Gson gson = builder.create();
-                List<AppUser> users = gson.fromJson(reader, type);
+                    Gson gson = builder.create();
+                    List<AppUser> users = gson.fromJson(reader, type);
 
-                userRepository.saveAll(users);
+                    userRepository.saveAll(users);
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
