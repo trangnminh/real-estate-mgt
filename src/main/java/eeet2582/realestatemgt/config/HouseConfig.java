@@ -20,15 +20,22 @@ public class HouseConfig {
     CommandLineRunner houseRunner(HouseRepository houseRepository) {
         return args -> {
             try {
-                Gson gson = new Gson();
+                if (houseRepository.count() == 0) {
+                    Gson gson = new Gson();
 
-                Reader reader = Files.newBufferedReader(Paths.get("src/main/java/eeet2582/realestatemgt/data/house.json"));
-                List<House> houses =
-                        gson.fromJson(reader,
-                                new TypeToken<List<House>>() {}.getType());
+                    int limit = 1; // 20
 
-                houseRepository.saveAll(houses);
+                    // Set limit to 20 to get all 1M rows (current is 50K for testing)
+                    for (int i = 1; i <= limit; i++) {
+                        Reader reader = Files.newBufferedReader(Paths.get("src/main/java/eeet2582/realestatemgt/data/house/house_" + i + ".json"));
+                        List<House> houses =
+                                gson.fromJson(reader,
+                                        new TypeToken<List<House>>() {
+                                        }.getType());
 
+                        houseRepository.saveAll(houses);
+                    }
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }

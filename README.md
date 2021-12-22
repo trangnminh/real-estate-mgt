@@ -9,6 +9,16 @@
 
 ## Changelogs
 
+### 23/12/2021 (Trang)
+
+- Generate 1M rows for House (50K rows x 20 files)
+- Basic cache for House (getOne, upsert, delete)
+- House objects live 20 minutes after the first time queried
+- Add house data to your local machine by:
+  * Download the zip file:
+    * https://drive.google.com/file/d/1zK0-4ja-Lt4fnUjIQiWPpOWpa6Zz4qfy/view?usp=sharing
+  * Extract `/house` folder and put the folder inside `/src/data`
+
 ### 21/12/2021 (Phuong)
 
 - House update and tested

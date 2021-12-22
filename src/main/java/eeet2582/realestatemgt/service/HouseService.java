@@ -135,7 +135,7 @@ public class HouseService {
             oldHouse.setLatitude(house.getLatitude());
         }
 
-        // delete one or multiple images in a folder
+        // Delete one or multiple images in a folder
         if (house.getImage().size() != 0) {
             List<String> imagePath = new ArrayList<>();
             List<String> newImageURL = house.getImage();
@@ -172,14 +172,14 @@ public class HouseService {
     }
 
     public List<String> addImages(@NotNull MultipartFile[] files, String imageFolder) {
-        //check if the file is empty
+        // Check if the file is empty
         Arrays.stream(files).forEach(file -> {
             if (file.isEmpty()) {
                 throw new IllegalStateException("Cannot upload empty file!");
             }
         });
 
-        //Check if the file is an image
+        // Check if the file is an image
         Arrays.stream(files).forEach(file -> {
             if (!Arrays.asList(IMAGE_PNG.getMimeType(),
                     IMAGE_JPEG.getMimeType()).contains(file.getContentType())) {
@@ -187,7 +187,7 @@ public class HouseService {
             }
         });
 
-        // get file metadata
+        // Get file metadata
         // Save Image in S3 and then save House in the database
         if (imageFolder == null) {
             imageFolder = UUID.randomUUID().toString();
@@ -218,7 +218,7 @@ public class HouseService {
     public String addHouseImage(Long houseId, MultipartFile @NotNull [] files) {
         House oldHouse = getHouseById(houseId);
 
-        // upload more images in a folder
+        // Upload more images in a folder
         if (files.length != 0) {
             String imageFolder = "";
             if (oldHouse.getImage().size() == 0) {

@@ -3,17 +3,18 @@ package eeet2582.realestatemgt.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
-
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @Entity
+@ToString
 @Builder
-public class House {
+public class House implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,14 +23,14 @@ public class House {
     private String name;
     private Double price;
 
-    @Column(length = 1024)
+    @Column(columnDefinition = "TEXT")
     private String description;
 
     private String address;
     private Double longitude;
     private Double latitude;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     private List<String> image;
 
     private String type;

@@ -6,9 +6,6 @@ import eeet2582.realestatemgt.model.Rental;
 import eeet2582.realestatemgt.repository.PaymentRepository;
 import eeet2582.realestatemgt.repository.RentalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.CachePut;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -60,14 +57,12 @@ public class RentalService {
     }
 
     // Get one by ID, try to reuse the exception
-    @Cacheable(value = "rentalCache", key = "#rentalId")
     public Rental getRentalById(Long rentalId) {
         return rentalRepository.findById(rentalId).orElseThrow(() -> new IllegalStateException("Rental with rentalId=" + rentalId + " does not exist!"));
     }
 
     // Transactional means "all or nothing", if the transaction fails midway nothing is saved
     @Transactional
-    @CachePut(value = "rentalCache", key = "#rentalId")
     public void saveRentalById(Long rentalId, Long userId, Long houseId, String startDate, String endDate, Double depositAmount, Double monthlyFee, Double payableFee) {
         // If ID is provided, try to find the current item, else make new one
         Rental rental = (rentalId != null) ? getRentalById(rentalId) : new Rental();
@@ -85,7 +80,6 @@ public class RentalService {
     }
 
     @Transactional
-    @CacheEvict(value = "rentalCache", key = "#rentalId")
     public void deleteRentalById(Long rentalId) {
         Rental rental = getRentalById(rentalId);
 

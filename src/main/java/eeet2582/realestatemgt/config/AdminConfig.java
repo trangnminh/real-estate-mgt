@@ -32,31 +32,37 @@ public class AdminConfig {
                 StringToDateParser stringToDateParser = new StringToDateParser();
                 StringToTimeParser stringToTimeParser = new StringToTimeParser();
 
-                // Deposit
-                Reader depositReader = Files.newBufferedReader(Paths.get("src/main/java/eeet2582/realestatemgt/data/deposit.json"));
-                Type depositType = new TypeToken<List<Deposit>>() {}.getType();
-                GsonBuilder depositBuilder = new GsonBuilder();
+                if (depositRepository.count() == 0) {
+                    // Deposit
+                    Reader depositReader = Files.newBufferedReader(Paths.get("src/main/java/eeet2582/realestatemgt/data/deposit.json"));
+                    Type depositType = new TypeToken<List<Deposit>>() {
+                    }.getType();
+                    GsonBuilder depositBuilder = new GsonBuilder();
 
-                depositBuilder.registerTypeAdapter(LocalDate.class, stringToDateParser);
-                depositBuilder.registerTypeAdapter(LocalTime.class, stringToTimeParser);
+                    depositBuilder.registerTypeAdapter(LocalDate.class, stringToDateParser);
+                    depositBuilder.registerTypeAdapter(LocalTime.class, stringToTimeParser);
 
-                Gson depositGson = depositBuilder.create();
-                List<Deposit> deposits = depositGson.fromJson(depositReader, depositType);
+                    Gson depositGson = depositBuilder.create();
+                    List<Deposit> deposits = depositGson.fromJson(depositReader, depositType);
 
-                depositRepository.saveAll(deposits);
+                    depositRepository.saveAll(deposits);
+                }
 
-                // Meeting
-                Reader meetingReader = Files.newBufferedReader(Paths.get("src/main/java/eeet2582/realestatemgt/data/meeting.json"));
-                Type meetingType = new TypeToken<List<Meeting>>() {}.getType();
-                GsonBuilder meetingBuilder = new GsonBuilder();
+                if (meetingRepository.count() == 0) {
+                    // Meeting
+                    Reader meetingReader = Files.newBufferedReader(Paths.get("src/main/java/eeet2582/realestatemgt/data/meeting.json"));
+                    Type meetingType = new TypeToken<List<Meeting>>() {
+                    }.getType();
+                    GsonBuilder meetingBuilder = new GsonBuilder();
 
-                meetingBuilder.registerTypeAdapter(LocalDate.class, stringToDateParser);
-                meetingBuilder.registerTypeAdapter(LocalTime.class, stringToTimeParser);
+                    meetingBuilder.registerTypeAdapter(LocalDate.class, stringToDateParser);
+                    meetingBuilder.registerTypeAdapter(LocalTime.class, stringToTimeParser);
 
-                Gson meetingGson = meetingBuilder.create();
-                List<Meeting> meetings = meetingGson.fromJson(meetingReader, meetingType);
+                    Gson meetingGson = meetingBuilder.create();
+                    List<Meeting> meetings = meetingGson.fromJson(meetingReader, meetingType);
 
-                meetingRepository.saveAll(meetings);
+                    meetingRepository.saveAll(meetings);
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
