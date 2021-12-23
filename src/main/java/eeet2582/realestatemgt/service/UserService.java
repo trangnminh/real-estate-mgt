@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 // UserService only wires UserRepository, everything else is handled by child services
@@ -36,6 +38,7 @@ public class UserService {
                 .findById(userId)
                 .orElseThrow(() -> new IllegalStateException("User with userId=" + userId + " does not exist!"));
     }
+
 
     @Transactional
     public void deleteUserById(Long userId) {

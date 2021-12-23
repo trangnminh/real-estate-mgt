@@ -1,8 +1,33 @@
 import React, { useState } from 'react';
 import { Card, Col, Container, Row, Button, Form, FormGroup } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import Google from "../img/google.png";
+import { GoogleLogin, GoogleLogout } from 'react-google-login';
+import FacebookLogin from 'react-facebook-login';
 
 const LoginForm = ({ Login }) => {
+
+    // Google log in
+    const onLoginSuccess = (res) => {
+        console.log('Login Success:', res.profileObj);
+    };
+
+    const onLoginFailure = (res) => {
+        console.log('Login Failed:', res);
+    };
+
+    // Facebook log in
+    const [login, setLogin] = useState(false);
+    const [data, setData] = useState({});
+
+    const responseFacebook = (response) => {
+        console.log(response);
+        if (response.accessToken) {
+            setLogin(true);
+        } else {
+            setLogin(false);
+        }
+    }
 
     const [details, setDeatils] = useState({ email: "", password: "" });
     const submitHandler = (e) => {
@@ -22,34 +47,31 @@ const LoginForm = ({ Login }) => {
                                 <small>Sign in with</small>
                             </div>
                             <div className="btn-wrapper text-center">
-                                <Button
-                                    className="btn-neutral btn-icon"
-                                    color="default"
-                                    href="#pablo"
-                                    onClick={e => e.preventDefault()}
-                                >
-                                    <span className="btn-inner--icon">
-                                        <img
-                                            alt="..."
-                                        // src={require("../assets/img/icons/common/github.svg")}
-                                        />
-                                    </span>
-                                    <span className="btn-inner--text">Facebook</span>
-                                </Button>
-                                <Button
-                                    className="btn-neutral btn-icon"
-                                    color="default"
-                                    href="#pablo"
-                                    onClick={e => e.preventDefault()}
-                                >
-                                    <span className="btn-inner--icon">
-                                        <img
-                                            alt="..."
-                                        // src={require("../assets/img/icons/common/google.svg")}
-                                        />
-                                    </span>
-                                    <span className="btn-inner--text">Google</span>
-                                </Button>
+
+                                <GoogleLogin
+                                    clientId="190457121879-ohfi3m97svbbrnact4koi1qealjguac6.apps.googleusercontent.com"
+                                    onSuccess={onLoginSuccess}
+                                    onFailure={onLoginFailure}
+                                    cookiePolicy={'single_host_origin'}
+                                    isSignedIn={true}
+                                    render={renderProps => (
+                                        <Button onClick={renderProps.onClick}
+                                            style={{ backgroundColor: "red", height: "51px", width: "160px", fontSize: "18px", fontWeight: "bold" }}>
+                                            <img src={Google} alt="" className="icon" style={{ marginRight: "20px" }} />
+                                            GOOGLE
+                                        </Button>
+                                    )}
+                                />
+
+                                <FacebookLogin
+                                    appId="692597081751666"
+                                    fields="name,email"
+                                    size="small"
+                                    callback={responseFacebook}
+                                    icon="fa-facebook-square"
+                                    textButton="FaceBook"
+                                />
+
                             </div>
                         </Card.Header>
                         <Card.Body className="px-lg-5 py-lg-5">
@@ -95,7 +117,7 @@ const LoginForm = ({ Login }) => {
                             </Link>
                         </Col>
                         <Col className="text-center mr-4">
-                            <Link to="/auth/register" className="text-light">
+                            <Link to="/register" className="text-light">
                                 <small style={{ color: "black" }}>Create new account</small>
                             </Link>
                         </Col>

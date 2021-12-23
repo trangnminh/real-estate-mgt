@@ -34,19 +34,19 @@ const Register = () => {
                     dob: details.dob
 
                 })
-                // fetch("http://localhost:8080/api/v1/users", {
-                //     method: `POST`,
-                //     headers: {
-                //         "Content-Type": "application/json; charset=utf-8"
-                //     },
-                //     body: JSON.stringify(user),
-                // })
-                //     .then((res) => {
-                //         res.json();
-                //     })
-                //     .then((res) => {
-                //         Navigate("/")
-                //     })
+                fetch("http://localhost:8080/api/v1/users", {
+                    method: `POST`,
+                    headers: {
+                        "Content-Type": "application/json; charset=utf-8"
+                    },
+                    body: JSON.stringify(user),
+                })
+                    .then((res) => {
+                        res.json();
+                    })
+                    .then((res) => {
+                        Navigate("/myPage")
+                    })
             }
         })
     }

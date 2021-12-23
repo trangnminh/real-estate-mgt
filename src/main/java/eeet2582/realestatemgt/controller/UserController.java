@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/v1")
+@CrossOrigin
 public class UserController {
 
     private final UserService userService;
@@ -27,6 +28,7 @@ public class UserController {
     public AppUser getUserById(@PathVariable("userId") Long userId) {
         return userService.getUserById(userId);
     }
+
 
     @DeleteMapping("/user/{userId}")
     public void deleteUserById(@PathVariable("userId") Long userId) { userService.deleteUserById(userId); }

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
+import AdminSidebarNav from '../components/AdminSidebarNav';
 import { ScheduleComponent, Week, Month, ViewsDirective, ViewDirective, Inject } from '@syncfusion/ej2-react-schedule'
-import UserSidebarNav from '../components/UserSidebarNav';
 
-const Calendar = () => {
+const AdminCalendar = () => {
 
     const [data, setData] = useState([{
         Id: 1,
@@ -26,9 +26,10 @@ const Calendar = () => {
         EndTime: new Date(2021, 11, 20, 11, 0)
     }])
 
+
     return (
         <div className="col-lg-12 mrb30">
-            <UserSidebarNav />
+            <AdminSidebarNav />
             <br />
             <ScheduleComponent
                 currentView='Month' selectedDate={new Date()} height='850px' style={{ marginLeft: "250px" }} readonly={true}
@@ -53,4 +54,4 @@ const Calendar = () => {
     );
 };
 
-export default Calendar;
+export default AdminCalendar;

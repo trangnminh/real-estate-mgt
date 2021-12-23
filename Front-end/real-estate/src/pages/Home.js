@@ -10,12 +10,22 @@ import axios from 'axios'
 const Home = () => {
 
     const [houses, setHouses] = useState([]);
+    const [error, setError] = useState(null);
+
+    const fetchHouses = async () => {
+        try {
+            setError(null);
+            const response = await axios.get(
+                'http://localhost:8080/api/v1/houses'
+            );
+            setHouses(response.data);
+        } catch (e) {
+            setError(e);
+        }
+    };
 
     useEffect(() => {
-        axios.get("http://localhost:8080/api/v1/houses")
-            .then((res) => {
-                setHouses(res);
-            });
+        fetchHouses();
     }, []);
 
     // New listing Carousel
@@ -43,7 +53,7 @@ const Home = () => {
 
                 <Carousel breakPoints={breakPoints}>
                     {houses.map((house) => (
-                        <HouseItemCard key={house.houseId} houses={house} />
+                        <HouseItemCard houses={house} />
                     ))}
                 </Carousel>
             </div>

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import SidebarNav from '../components/SidebarNav';
+import UserSidebarNav from '../components/UserSidebarNav';
 import ProfileForm from '../components/ProfileForm';
 
 const Profile = () => {
 
     return (
         <>
-            <SidebarNav />
+            <UserSidebarNav />
             <ProfileForm />
         </>
     );
