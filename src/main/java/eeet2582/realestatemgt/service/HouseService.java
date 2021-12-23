@@ -7,6 +7,7 @@ import eeet2582.realestatemgt.repository.HouseRepository;
 import org.apache.http.entity.ContentType;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +20,7 @@ import java.util.*;
 @Service
 public class HouseService {
 
+    public static final int HOUSE_BATCH_SIZE = 1000;
     private static final ContentType IMAGE_PNG = ContentType.IMAGE_PNG;
     private static final ContentType IMAGE_JPEG = ContentType.IMAGE_JPEG;
 
@@ -34,7 +36,8 @@ public class HouseService {
     @Autowired
     private final RentalService rentalService;
 
-    public HouseService(FileStore fileStore, HouseRepository houseRepository,
+    public HouseService(FileStore fileStore,
+                        HouseRepository houseRepository,
                         AdminService adminService,
                         RentalService rentalService) {
         this.fileStore = fileStore;
@@ -43,12 +46,9 @@ public class HouseService {
         this.rentalService = rentalService;
     }
 
-    public List<House> getAllHouses() {
-        return houseRepository.findAll();
-    }
-
     // Find houses matching by name, description or address
-    public Page<House> getFilteredHouses(String query, int pageNo, int pageSize, String sortBy, @NotNull String orderBy) {
+    @Cacheable(value = "FilteredHouses")
+    public List<House> getFilteredHousesCache(String query, String sortBy, String orderBy, int batchNo) {
         House house = new House();
         house.setName(query);
         house.setDescription(query);
@@ -60,24 +60,19 @@ public class HouseService {
                 .withMatcher("address", ExampleMatcher.GenericPropertyMatchers.contains().ignoreCase());
         Example<House> example = Example.of(house, matcher);
 
-        Pageable pageable;
-        if (orderBy.equals("asc")) {
-            pageable = PageRequest.of(pageNo, pageSize, Sort.by(sortBy).ascending());
-        } else {
-            pageable = PageRequest.of(pageNo, pageSize, Sort.by(sortBy).descending());
-        }
-        return houseRepository.findAll(example, pageable);
+        Pageable limit = (orderBy.equals("asc")) ? PageRequest.of(batchNo, HOUSE_BATCH_SIZE, Sort.by(sortBy).ascending()) :
+                PageRequest.of(batchNo, HOUSE_BATCH_SIZE, Sort.by(sortBy).descending());
+
+        return houseRepository.findAll(example, limit).getContent();
     }
 
     // Find houses within a price range
-    public Page<House> getFilteredHousesByPriceBetween(Double low, Double high, int pageNo, int pageSize, String sortBy, @NotNull String orderBy) {
-        Pageable pageable;
-        if (orderBy.equals("asc")) {
-            pageable = PageRequest.of(pageNo, pageSize, Sort.by(sortBy).ascending());
-        } else {
-            pageable = PageRequest.of(pageNo, pageSize, Sort.by(sortBy).descending());
-        }
-        return houseRepository.findByPriceBetween(low, high, pageable);
+    @Cacheable(value = "FilteredHousesByPriceBetween")
+    public List<House> getFilteredHousesByPriceBetweenCache(Double low, Double high, String sortBy, String orderBy, int batchNo) {
+        Pageable limit = (orderBy.equals("asc")) ? PageRequest.of(batchNo, HOUSE_BATCH_SIZE, Sort.by(sortBy).ascending()) :
+                PageRequest.of(batchNo, HOUSE_BATCH_SIZE, Sort.by(sortBy).descending());
+
+        return houseRepository.findByPriceBetween(low, high, limit).getContent();
     }
 
     // Get one by ID, try to reuse the exception
