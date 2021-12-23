@@ -2,12 +2,14 @@
 
 ## Note
 
-- Before publishing to GitHub, please run the command line in
-  terminal: `git rm -r --cached src/main/resources/application.properties` and
-  put `src/main/resources/application.properties` in `.gitignore`
-- After pulling, copy the content of APPLICATION.MD in your `application.properties` (replace with local PSQL config)
+- Refer to the two `.yaml` files in /src/main/resources for config options
+- Install Redis to test the cache: https://redis.io/topics/quickstart
 
 ## Changelogs
+
+### 23/12/2021 (Trang)
+
+- Finish Redis cache for House (get + pagination)
 
 ### 23/12/2021 (Trang)
 
