@@ -10,13 +10,14 @@ const ProfileForm = () => {
     const navigate = useNavigate();
     const [user, setUser] = useState([]);
 
-    useEffect(() => {
-        fetch("http://localhost:8080/api/v1/users" + id)
-            .then((res) => res.json())
-            .then((res) => {
-                setUser(res);
-            }); // asynchronous function
-    }, []);
+    // useEffect(() => {
+    //     fetch("http://localhost:8080/api/v1/users" + id)
+    //         .then((res) => res.json())
+    //         .then((res) => {
+    //             setUser(res);
+    //         }); // asynchronous function
+    // }, []);
+
     return (
         <Container>
             <br />
