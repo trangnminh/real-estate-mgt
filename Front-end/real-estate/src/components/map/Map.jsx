@@ -4,7 +4,6 @@ import { Icon } from '@iconify/react'
 import locationIcon from '@iconify/icons-mdi/map-marker'
 import './map.css'
 
-const myAPIKey = 'AIzaSyAqd5FRCebYxrF9L0jFJ3w4Wi6MjwttPiM'
 const LocationPin = ({ text }) => (
   <div className="pin">
     <Icon icon={locationIcon} className="pin-icon" style={{ width: '5rem' }} />
@@ -17,7 +16,7 @@ const Map = ({ location, zoomLevel }) => (
 
     <div className="google-map">
       <GoogleMapReact
-        bootstrapURLKeys={{ key: myAPIKey }}
+        bootstrapURLKeys={{ key: 'AIzaSyAOkixHf1CCv4BLYx0tVZD4pJ3CgkKSWaE' }}
         center={location}
         defaultZoom={zoomLevel}
         options={{ scrollwheel: false}}

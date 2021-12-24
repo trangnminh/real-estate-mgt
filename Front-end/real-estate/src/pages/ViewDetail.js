@@ -45,24 +45,24 @@ const ViewDetail = () => {
                         </Row>
                         <br/>
                         <Row>
-                            <Col xs={6} md={4} lg={4}>
+                            <Col xs={6} md={4} lg={5}>
                                 <img src={house.image} style={{ width: '30rem' }} ></img>
                             </Col>
 
-                            <Col xs={6} md={5} lg={8}>
+                            <Col xs={6} md={5} lg={5}>
                                 <Row>
                                     <h5>House Price: {house.price}</h5>
                                 </Row>
                                 <Row>
                                     <h5>Address: {house.address}</h5>
                                 </Row>
-                                <div style={{ paddingLeft: '10rem', width: '35rem' }}>
+                                <div style={{ paddingLeft: '5rem', width: '30rem' }}>
                                     <Row>
-                                        <Button variant="primary" onClick={bookMeeting}>Book A Meeting</Button>{' '}
+                                        <Button variant="primary" onClick={bookMeeting} style={{ height: '3rem' }}>Book A Meeting</Button>{' '}
                                     </Row>
                                     <br/>
                                     <Row>
-                                        <Button variant="success">Deposit Money</Button>{' '}
+                                        <Button variant="success" style={{ height: '3rem' }}>Deposit Money</Button>{' '}
                                     </Row>
                                 </div>
                             </Col>
@@ -73,19 +73,26 @@ const ViewDetail = () => {
                         </Row>
                         <br/>
                         <Row>
-                            <Col xs={6} md={4} lg={6}>
+                            <Col xs={6} md={4} lg={5}>
                                 <h3>General Information</h3>
                                 <Row>
-                                    <h5>Number of Beds: {house.numberOfBeds}</h5>
+                                    <Col><h5>Number of Beds: </h5></Col>
+                                    <Col><h5>{house.numberOfBeds}</h5></Col>
                                 </Row>
                                 <Row>
-                                    <h5>Square Feets: {house.squareFeet}</h5>
+                                    <Col><h5>Square Feets:</h5></Col>
+                                    <Col><h5>{house.squareFeet}</h5></Col>
                                 </Row>
                                 <Row>
-                                    <h5>Type: {house.type}</h5>
+                                    <Col><h5>Type:</h5></Col>
+                                    <Col><h5>{house.type}</h5></Col>
                                 </Row>
                                 <Row>
-                                    <h5>Description:</h5>
+                                    <Col><h5>Status:</h5></Col>
+                                    <Col><h5>{house.status}</h5></Col>
+                                </Row>
+                                <Row>
+                                    <Col><h5>Description:</h5></Col>
                                     <h5>{house.description}</h5>
                                 </Row>
                             </Col>

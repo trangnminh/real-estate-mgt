@@ -1,5 +1,6 @@
 import React from 'react';
 import { Carousel } from 'react-bootstrap';
+import banner from './../img/banner.jpg'
 
 const HomeBanner = () => {
     return (
@@ -7,7 +8,7 @@ const HomeBanner = () => {
             <Carousel.Item style={{ height: "300px" }}>
                 <img
                     className="d-inline-block w-100 h-100"
-                    src="https://hips.hearstapps.com/hmg-prod/images/home-alone-airbnb-01-exterior-credit-sarah-crowley-1638370433.jpg"
+                    src={banner}
                     alt="carousel"
                 />
                 <Carousel.Caption>
