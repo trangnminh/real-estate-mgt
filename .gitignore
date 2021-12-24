@@ -4,8 +4,8 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
-### Database Config ###
-src/main/resources/application.properties
+/src/main/resources/application.properties
+/src/main/java/eeet2582/realestatemgt/data/house/
 
 ### STS ###
 .apt_generated
