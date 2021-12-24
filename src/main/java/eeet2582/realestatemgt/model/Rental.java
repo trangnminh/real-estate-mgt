@@ -1,7 +1,6 @@
 package eeet2582.realestatemgt.model;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import eeet2582.realestatemgt.helper.UserHouse;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -17,11 +17,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@JsonIdentityInfo(
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "rentalId"
-)
-public class Rental {
+public class Rental implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,6 +32,7 @@ public class Rental {
     private Double monthlyFee;
     private Double payableFee;
 
-    @OneToMany(orphanRemoval = true, mappedBy = "rental")
+    @OneToMany(orphanRemoval = true, mappedBy = "rental", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Payment> paymentList;
 }

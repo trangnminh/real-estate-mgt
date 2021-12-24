@@ -7,6 +7,7 @@ import eeet2582.realestatemgt.repository.HouseRepository;
 import org.apache.http.entity.ContentType;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +20,7 @@ import java.util.*;
 @Service
 public class HouseService {
 
+    public static final int HOUSE_BATCH_SIZE = 1000;
     private static final ContentType IMAGE_PNG = ContentType.IMAGE_PNG;
     private static final ContentType IMAGE_JPEG = ContentType.IMAGE_JPEG;
 
@@ -34,7 +36,8 @@ public class HouseService {
     @Autowired
     private final RentalService rentalService;
 
-    public HouseService(FileStore fileStore, HouseRepository houseRepository,
+    public HouseService(FileStore fileStore,
+                        HouseRepository houseRepository,
                         AdminService adminService,
                         RentalService rentalService) {
         this.fileStore = fileStore;
@@ -43,12 +46,9 @@ public class HouseService {
         this.rentalService = rentalService;
     }
 
-    public List<House> getAllHouses() {
-        return houseRepository.findAll();
-    }
-
     // Find houses matching by name, description or address
-    public Page<House> getFilteredHouses(String query, int pageNo, int pageSize, String sortBy, @NotNull String orderBy) {
+    @Cacheable(value = "FilteredHouses")
+    public List<House> getFilteredHousesCache(String query, String sortBy, String orderBy, int batchNo) {
         House house = new House();
         house.setName(query);
         house.setDescription(query);
@@ -60,24 +60,19 @@ public class HouseService {
                 .withMatcher("address", ExampleMatcher.GenericPropertyMatchers.contains().ignoreCase());
         Example<House> example = Example.of(house, matcher);
 
-        Pageable pageable;
-        if (orderBy.equals("asc")) {
-            pageable = PageRequest.of(pageNo, pageSize, Sort.by(sortBy).ascending());
-        } else {
-            pageable = PageRequest.of(pageNo, pageSize, Sort.by(sortBy).descending());
-        }
-        return houseRepository.findAll(example, pageable);
+        Pageable limit = (orderBy.equals("asc")) ? PageRequest.of(batchNo, HOUSE_BATCH_SIZE, Sort.by(sortBy).ascending()) :
+                PageRequest.of(batchNo, HOUSE_BATCH_SIZE, Sort.by(sortBy).descending());
+
+        return houseRepository.findAll(example, limit).getContent();
     }
 
     // Find houses within a price range
-    public Page<House> getFilteredHousesByPriceBetween(Double low, Double high, int pageNo, int pageSize, String sortBy, @NotNull String orderBy) {
-        Pageable pageable;
-        if (orderBy.equals("asc")) {
-            pageable = PageRequest.of(pageNo, pageSize, Sort.by(sortBy).ascending());
-        } else {
-            pageable = PageRequest.of(pageNo, pageSize, Sort.by(sortBy).descending());
-        }
-        return houseRepository.findByPriceBetween(low, high, pageable);
+    @Cacheable(value = "FilteredHousesByPriceBetween")
+    public List<House> getFilteredHousesByPriceBetweenCache(Double low, Double high, String sortBy, String orderBy, int batchNo) {
+        Pageable limit = (orderBy.equals("asc")) ? PageRequest.of(batchNo, HOUSE_BATCH_SIZE, Sort.by(sortBy).ascending()) :
+                PageRequest.of(batchNo, HOUSE_BATCH_SIZE, Sort.by(sortBy).descending());
+
+        return houseRepository.findByPriceBetween(low, high, limit).getContent();
     }
 
     // Get one by ID, try to reuse the exception
@@ -135,14 +130,14 @@ public class HouseService {
             oldHouse.setLatitude(house.getLatitude());
         }
 
-        // delete one or multiple images in a folder
+        // Delete one or multiple images in a folder
         if (house.getImage().size() != 0) {
             List<String> imagePath = new ArrayList<>();
             List<String> newImageURL = house.getImage();
             List<String> oldImageURL = oldHouse.getImage();
 
             if (oldImageURL.size() == 0) {
-                return "Image list is empty";
+                return "Image list is empty!";
             }
 
             for (String path : house.getImage()) {
@@ -168,26 +163,26 @@ public class HouseService {
         if (house.getStatus() != null && !Objects.equals(oldHouse.getStatus(), house.getStatus())) {
             oldHouse.setStatus(house.getStatus());
         }
-        return "updated house";
+        return "House updated successfully!";
     }
 
     public List<String> addImages(@NotNull MultipartFile[] files, String imageFolder) {
-        //check if the file is empty
+        // Check if the file is empty
         Arrays.stream(files).forEach(file -> {
             if (file.isEmpty()) {
-                throw new IllegalStateException("Cannot upload empty file");
+                throw new IllegalStateException("Cannot upload empty file!");
             }
         });
 
-        //Check if the file is an image
+        // Check if the file is an image
         Arrays.stream(files).forEach(file -> {
             if (!Arrays.asList(IMAGE_PNG.getMimeType(),
                     IMAGE_JPEG.getMimeType()).contains(file.getContentType())) {
-                throw new IllegalStateException("File uploaded is not an image");
+                throw new IllegalStateException("File uploaded is not an image!");
             }
         });
 
-        // get file metadata
+        // Get file metadata
         // Save Image in S3 and then save House in the database
         if (imageFolder == null) {
             imageFolder = UUID.randomUUID().toString();
@@ -218,7 +213,7 @@ public class HouseService {
     public String addHouseImage(Long houseId, MultipartFile @NotNull [] files) {
         House oldHouse = getHouseById(houseId);
 
-        // upload more images in a folder
+        // Upload more images in a folder
         if (files.length != 0) {
             String imageFolder = "";
             if (oldHouse.getImage().size() == 0) {
@@ -229,21 +224,18 @@ public class HouseService {
             List<String> imageList = oldHouse.getImage();
             imageList.addAll(addImages(files, imageFolder));
             oldHouse.setImage(imageList);
-            return "Update images";
+            return "House images updated!";
         }
-        return "Please insert image files";
+        return "Please insert image files!";
     }
 
     public String deleteHouseById(Long houseId) {
-        if (!houseRepository.existsById(houseId))
-            throw new IllegalStateException("House with houseId=" + houseId + " does not exist!");
+        House houseObj = getHouseById(houseId);
 
         // Delete all classes that depend on current house
         adminService.deleteDepositsByHouseId(houseId);
         adminService.deleteMeetingsByHouseId(houseId);
         rentalService.deleteRentalsByHouseId(houseId);
-
-        House houseObj = houseRepository.findById(houseId).orElseThrow(() -> new IllegalStateException("House with houseId=" + houseId + " does not exist!"));
 
         String path = houseObj.getImage().get(0).substring(houseObj.getImage().get(0).indexOf("t/") + 2, houseObj.getImage().get(0).lastIndexOf("/"));
         String key = fileStore.delete(path);
