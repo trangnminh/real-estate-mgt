@@ -5,6 +5,7 @@ import eeet2582.realestatemgt.model.Meeting;
 import eeet2582.realestatemgt.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,6 +17,11 @@ import java.util.List;
 public class AdminController {
 
     private final AdminService adminService;
+
+    private static final String TOPIC = "meeting";
+
+    @Autowired
+    private KafkaTemplate<String, Meeting> kafkaTemplate;
 
     @Autowired
     public AdminController(AdminService adminService) {
@@ -137,7 +143,9 @@ public class AdminController {
                                 @RequestParam String date,
                                 @RequestParam String time,
                                 @RequestParam String note) {
-        adminService.saveMeetingById(meetingId, userId, houseId, date, time, note);
+//        adminService.saveMeetingById(meetingId, userId, houseId, date, time, note);
+
+        kafkaTemplate.send(TOPIC, adminService.meetingTopic(userId, houseId, date, time, note));
     }
 
     // Delete one by ID

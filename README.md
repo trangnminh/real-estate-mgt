@@ -7,6 +7,11 @@
 
 ## Changelogs
 
+### 25/12/2021 (Phuong)
+
+- Finish KafKa for booking a meeting
+- `Note`: Turn off any anti-virus for sending email
+
 ### 23/12/2021 (Trang)
 
 - Finish Redis cache for House (get + pagination)
