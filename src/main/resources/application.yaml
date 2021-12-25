@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 9000
 
 spring:
   jpa:
@@ -15,12 +15,11 @@ spring:
         redisson:
           fallback: true
           config: /redisson.yaml
-
   datasource:
     platform: postgres
-    url: jdbc:postgresql://localhost:5432/db
-    username: minesk
-    password: admin
+    url: jdbc:postgresql://localhost:5432/realestatemgt
+    username: postgres
+    password: helloadmin
     driverClassName: org.postgresql.Driver
 
   error:
