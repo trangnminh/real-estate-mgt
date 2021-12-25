@@ -4,15 +4,22 @@ import eeet2582.realestatemgt.helper.UserHouse;
 import eeet2582.realestatemgt.model.Deposit;
 import eeet2582.realestatemgt.model.Meeting;
 import eeet2582.realestatemgt.repository.DepositRepository;
+import eeet2582.realestatemgt.repository.HouseRepository;
 import eeet2582.realestatemgt.repository.MeetingRepository;
+import eeet2582.realestatemgt.repository.UserRepository;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -28,9 +35,20 @@ public class AdminService {
     @Autowired
     private final MeetingRepository meetingRepository;
 
-    public AdminService(DepositRepository depositRepository, MeetingRepository meetingRepository) {
+    @Autowired
+    private final UserRepository userRepository;
+
+    @Autowired
+    private final HouseRepository houseRepository;
+
+    @Autowired
+    private JavaMailSender mailSender;
+
+    public AdminService(DepositRepository depositRepository, MeetingRepository meetingRepository, UserRepository userRepository, HouseRepository houseRepository) {
         this.depositRepository = depositRepository;
         this.meetingRepository = meetingRepository;
+        this.userRepository = userRepository;
+        this.houseRepository = houseRepository;
     }
 
     // --- DEPOSIT --- //
@@ -140,11 +158,10 @@ public class AdminService {
         return meetingRepository.getById(meetingId);
     }
 
-    // Transactional means "all or nothing", if the transaction fails midway nothing is saved
-    @Transactional
-    public void saveMeetingById(Long meetingId, Long userId, Long houseId, String date, String time, String note) {
+    public Meeting meetingTopic(Long userId, Long houseId, String date, String time, String note) {
         // If ID is provided, try to find the current item, else make new one
-        Meeting meeting = (meetingId != null) ? getMeetingById(meetingId) : new Meeting();
+//        Meeting meeting = (meetingId != null) ? getMeetingById(meetingId) : new Meeting();
+        Meeting meeting = new Meeting();
 
         // Do input checking here
 
@@ -153,8 +170,46 @@ public class AdminService {
         meeting.setDate(LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         meeting.setTime(LocalTime.parse(time, DateTimeFormatter.ofPattern("HH:mm")));
         meeting.setNote(note);
+        return meeting;
+    }
 
+    // Transactional means "all or nothing", if the transaction fails midway nothing is saved
+    @Transactional
+    @KafkaListener(topics = "meeting", groupId = "group_id")
+    public void saveMeetingById(@NotNull Meeting meeting) {
+        System.out.println(meeting.getNote());
         meetingRepository.save(meeting);
+    }
+
+    public String emailBody(@NotNull LocalTime time, @NotNull LocalDate date, @NotNull UserHouse userHouse) {
+        String address = houseRepository.findById(userHouse.getHouseId()).orElseThrow(
+                () -> new IllegalStateException("this house id does not exist!")
+        ).getAddress();
+        String name = houseRepository.findById(userHouse.getHouseId()).orElseThrow(
+                () -> new IllegalStateException("this house id does not exist!")
+        ).getName();
+
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String dateString = date.format(dateFormat);
+        DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH:mm");
+        String timeString = time.format(timeFormat);
+
+        return "Meeting to rent House " + name + " at " + address + " will be on " + dateString + " at " + timeString;
+    }
+
+    @KafkaListener(topics = "meeting", groupId = "group_two")
+    public void sendSimpleEmail(@NotNull Meeting meeting) throws IOException {
+        SimpleMailMessage sendMessage = new SimpleMailMessage();
+        sendMessage.setFrom("pnha1303@gmail.com");
+        sendMessage.setTo(userRepository
+                .findById(meeting.getUserHouse()
+                        .getUserId())
+                .orElseThrow(() -> new IllegalStateException("this user id does not exist!")).getEmail());
+        sendMessage.setText(emailBody(meeting.getTime(), meeting.getDate(), meeting.getUserHouse()));
+        sendMessage.setSubject("Showing house " + houseRepository.findById(meeting.getUserHouse().getHouseId()).orElseThrow(
+                () -> new IllegalStateException("this house id does not exist!")
+        ).getName());
+        mailSender.send(sendMessage);
     }
 
     public void deleteMeetingById(Long meetingId) {

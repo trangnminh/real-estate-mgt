@@ -27,4 +27,11 @@ public class Meeting {
     private LocalDate date;
     private LocalTime time;
     private String note;
+
+    public Meeting(UserHouse userHouse, LocalDate date, LocalTime time, String note) {
+        this.userHouse = userHouse;
+        this.date = date;
+        this.time = time;
+        this.note = note;
+    }
 }
