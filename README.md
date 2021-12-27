@@ -2,8 +2,12 @@
 
 ## Note
 
-- Refer to the two `.yaml` files in /src/main/resources for config options
+- You must start both Kafka and Redis servers to run the application
 - Install Redis to test the cache: https://redis.io/topics/quickstart
+- Install Kafka to test the message queue and email: https://kafka.apache.org/quickstart
+- Get the `application.yaml` and `redisson.yaml` files from backend team and put them in `src/resources`
+- Get the zip file from https://drive.google.com/file/d/1zK0-4ja-Lt4fnUjIQiWPpOWpa6Zz4qfy/view?usp=sharing and put
+  the `house` folder inside `data` folder
 
 ## Changelogs
 
@@ -11,7 +15,6 @@
 
 - All emails are now sent from *eeet2582.realestatemgt@gmail.com*
 - Configuration (YAML) files are moved to .gitignore, ask backend team
-- You must start both Kafka and Redis servers to run the application
 
 ### 25/12/2021 (Phuong)
 
