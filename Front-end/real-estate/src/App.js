@@ -11,6 +11,8 @@ import ViewDetail from './pages/ViewDetail';
 import BookMeeting from './pages/BookMeeting';
 import AdminCalendar from './pages/AdminCalendar';
 import AddHouse from './pages/AddHouse';
+import ViewRentalHouses from './pages/ViewRentalHouses';
+import ViewAllUsers from './pages/ViewAllUsers';
 
 function App() {
   return (
@@ -34,8 +36,8 @@ function App() {
         {/* admin routes */}
         <Route path="/auth/admin/calendar" exact={true} element={<AdminCalendar />} />
         <Route path="/auth/admin/addHouse" exact={true} element={<AddHouse />} />
-        <Route path="/auth/admin/viewRentalHouses" exact={true} element={<Calendar />} />
-        <Route path="/auth/admin/viewUsers" exact={true} element={<Calendar />} />
+        <Route path="/auth/admin/viewRentalHouses" exact={true} element={<ViewRentalHouses />} />
+        <Route path="/auth/admin/viewUsers" exact={true} element={<ViewAllUsers />} />
 
       </Routes>
     </div>

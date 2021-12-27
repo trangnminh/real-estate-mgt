@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import AdminSidebarNav from '../components/AdminSidebarNav'
 
 export default function AddHouse() {
     const [name, setName] = useState("")
@@ -45,6 +46,7 @@ export default function AddHouse() {
 
     return (
         <>
+            <AdminSidebarNav />
             <br />
             <br />
             <input type="file" multiple onChange={handleChange} />
