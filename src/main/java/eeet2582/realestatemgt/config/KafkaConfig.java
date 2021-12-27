@@ -27,6 +27,4 @@ public class KafkaConfig {
                 .replicas(2)
                 .build();
     }
-
-
 }

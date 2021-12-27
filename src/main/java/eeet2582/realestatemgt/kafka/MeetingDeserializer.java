@@ -16,18 +16,17 @@ import java.util.Map;
 
 public class MeetingDeserializer implements Deserializer<Meeting> {
 
-    private static final Logger logger = LoggerFactory.getLogger(MeetingDeserializer.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(MeetingDeserializer.class);
 
     @Override
     public void configure(Map<String, ?> configs, boolean isKey) {
-        //Nothing to configure
     }
 
     @Override
     public Meeting deserialize(String s, byte[] data) {
         try {
             if (data == null) {
-                System.out.println("Null received at deserialize");
+                LOGGER.error("deserialize: Meeting data is null!");
                 return null;
             }
             ByteBuffer buffer = ByteBuffer.wrap(data);
@@ -75,6 +74,5 @@ public class MeetingDeserializer implements Deserializer<Meeting> {
 
     @Override
     public void close() {
-        // nothing to do
     }
 }

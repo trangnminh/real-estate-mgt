@@ -1,5 +1,47 @@
-[{"userId":1,"fullName":"Nerte Rulten","email":"nrulten0@blog.com","password":"tEF6XXxb8h","phoneNumber":"5068383906","dob":"2015-03-12","gender":"Agender"},
-{"userId":2,"fullName":"Bucky Stearnes","email":"bstearnes1@ifeng.com","password":"5JNf5r8tY","phoneNumber":"7513750881","dob":"2008-05-21","gender":"Genderqueer"},
-{"userId":3,"fullName":"Harrison Drewe","email":"hdrewe2@google.ca","password":"AMBM3b0MCg3","phoneNumber":"7079283849","dob":"2004-11-11","gender":"Genderfluid"},
-{"userId":4,"fullName":"Bartolomeo Bransgrove","email":"bbransgrove3@weather.com","password":"jfe7IcoT","phoneNumber":"2258308879","dob":"2010-07-22","gender":"Genderfluid"},
-{"userId":5,"fullName":"Beitris Butters","email":"bbutters4@cnet.com","password":"J3JtCjKb3y","phoneNumber":"2345567535","dob":"2019-04-12","gender":"Agender"}]
+[
+  {
+    "userId": 1,
+    "fullName": "Nguyen Minh Trang",
+    "email": "mineskgrayce@gmail.com",
+    "password": "admin",
+    "phoneNumber": "0857957655",
+    "dob": "1998-12-18",
+    "gender": "Female"
+  },
+  {
+    "userId": 2,
+    "fullName": "Bucky Stearnes",
+    "email": "bstearnes1@ifeng.com",
+    "password": "5JNf5r8tY",
+    "phoneNumber": "7513750881",
+    "dob": "2008-05-21",
+    "gender": "Genderqueer"
+  },
+  {
+    "userId": 3,
+    "fullName": "Harrison Drewe",
+    "email": "hdrewe2@google.ca",
+    "password": "AMBM3b0MCg3",
+    "phoneNumber": "7079283849",
+    "dob": "2004-11-11",
+    "gender": "Genderfluid"
+  },
+  {
+    "userId": 4,
+    "fullName": "Bartolomeo Bransgrove",
+    "email": "bbransgrove3@weather.com",
+    "password": "jfe7IcoT",
+    "phoneNumber": "2258308879",
+    "dob": "2010-07-22",
+    "gender": "Genderfluid"
+  },
+  {
+    "userId": 5,
+    "fullName": "Beitris Butters",
+    "email": "bbutters4@cnet.com",
+    "password": "J3JtCjKb3y",
+    "phoneNumber": "2345567535",
+    "dob": "2019-04-12",
+    "gender": "Agender"
+  }
+]

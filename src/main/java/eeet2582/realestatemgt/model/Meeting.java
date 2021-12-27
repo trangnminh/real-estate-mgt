@@ -1,10 +1,7 @@
 package eeet2582.realestatemgt.model;
 
 import eeet2582.realestatemgt.helper.UserHouse;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -14,6 +11,7 @@ import java.time.LocalTime;
 @AllArgsConstructor
 @Getter
 @Setter
+@ToString
 @Entity
 public class Meeting {
 

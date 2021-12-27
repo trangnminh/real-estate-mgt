@@ -4,7 +4,8 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
-/src/main/resources/application.properties
+/src/main/resources/application.yaml
+/src/main/resources/redisson.yaml
 /src/main/java/eeet2582/realestatemgt/data/house/
 
 ### STS ###

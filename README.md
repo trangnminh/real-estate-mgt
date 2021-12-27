@@ -7,6 +7,12 @@
 
 ## Changelogs
 
+### 27/12/2021 (Trang)
+
+- All emails are now sent from *eeet2582.realestatemgt@gmail.com*
+- Configuration (YAML) files are moved to .gitignore, ask backend team
+- You must start both Kafka and Redis servers to run the application
+
 ### 25/12/2021 (Phuong)
 
 - Finish KafKa for booking a meeting
