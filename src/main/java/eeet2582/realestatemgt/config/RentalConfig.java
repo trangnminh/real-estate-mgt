@@ -41,6 +41,7 @@ public class RentalConfig {
                     GsonBuilder rentalBuilder = new GsonBuilder();
 
                     rentalBuilder.registerTypeAdapter(LocalDate.class, stringToDateParser);
+                    rentalBuilder.registerTypeAdapter(LocalTime.class, stringToTimeParser);
 
                     Gson rentalGson = rentalBuilder.create();
                     List<Rental> rentals = rentalGson.fromJson(rentalReader, rentalType);
