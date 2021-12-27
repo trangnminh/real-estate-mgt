@@ -20,7 +20,7 @@ import java.util.*;
 @Service
 public class HouseService {
 
-    public static final int HOUSE_BATCH_SIZE = 1000;
+    public static final int HOUSE_BATCH_SIZE = 200;
     private static final ContentType IMAGE_PNG = ContentType.IMAGE_PNG;
     private static final ContentType IMAGE_JPEG = ContentType.IMAGE_JPEG;
 

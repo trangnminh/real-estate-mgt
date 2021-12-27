@@ -41,12 +41,12 @@ public class RealEstateMgtApplication {
 
         // Queried House list caches max 1000 entries (dump by LRU)
         CacheConfig filteredHousesConfig = new CacheConfig(10 * 60 * 1000, 5 * 60 * 1000);
-        filteredHousesConfig.setMaxSize(1);
+        filteredHousesConfig.setMaxSize(5);
         config.put("FilteredHouses", filteredHousesConfig);
 
         // House by price caches max 1000 entries (dump by LRU)
         CacheConfig filteredHousesByPriceBetweenConfig = new CacheConfig(10 * 60 * 1000, 5 * 60 * 1000);
-        filteredHousesByPriceBetweenConfig.setMaxSize(1);
+        filteredHousesByPriceBetweenConfig.setMaxSize(5);
         config.put("FilteredHousesByPriceBetween", filteredHousesByPriceBetweenConfig);
 
         return new RedissonSpringCacheManager(redissonClient, config);

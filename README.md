@@ -15,6 +15,7 @@
 
 - All emails are now sent from *eeet2582.realestatemgt@gmail.com*
 - Configuration (YAML) files are moved to .gitignore, ask backend team
+- Reduce HOUSE_BATCH_SIZE to 200, queries feel faster now (cache limit is still 1000)
 
 ### 25/12/2021 (Phuong)
 
