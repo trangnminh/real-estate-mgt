@@ -6,6 +6,7 @@ target/
 
 ### Database Config ###
 src/main/resources/application.properties
+Front-end/real-estate/.env
 
 ### STS ###
 .apt_generated

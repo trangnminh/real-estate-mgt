@@ -4,8 +4,11 @@ import { Link } from 'react-router-dom';
 import Google from "../img/google.png";
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import FacebookLogin from 'react-facebook-login';
+require('dotenv').config()
 
 const LoginForm = ({ Login }) => {
+    const client_id = process.env.OAUTH2_CLIENT_ID
+    const facebook_app_id = process.env.FACEBOOK_APP_ID
 
     // Google log in
     const onLoginSuccess = (res) => {
@@ -49,7 +52,7 @@ const LoginForm = ({ Login }) => {
                             <div className="btn-wrapper text-center">
 
                                 <GoogleLogin
-                                    clientId="190457121879-ohfi3m97svbbrnact4koi1qealjguac6.apps.googleusercontent.com"
+                                    clientId={client_id}
                                     onSuccess={onLoginSuccess}
                                     onFailure={onLoginFailure}
                                     cookiePolicy={'single_host_origin'}
@@ -64,7 +67,7 @@ const LoginForm = ({ Login }) => {
                                 />
 
                                 <FacebookLogin
-                                    appId="692597081751666"
+                                    appId={facebook_app_id}
                                     fields="name,email"
                                     size="small"
                                     callback={responseFacebook}
