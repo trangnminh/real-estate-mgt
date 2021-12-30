@@ -55,7 +55,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   }
 
   private JwtDecoder makeJwtDecoder() {
-    final var issuer = resourceServerProps.getJwt().getIssuerUri();
+//    final var issuer = resourceServerProps.getJwt().getIssuerUri();
+    final var issuer = "https://dev-wccgbt6l.us.auth0.com/";
     final var decoder = JwtDecoders.<NimbusJwtDecoder>fromIssuerLocation(issuer);
     final var withIssuer = JwtValidators.createDefaultWithIssuer(issuer);
     final var tokenValidator = new DelegatingOAuth2TokenValidator<>(withIssuer, this::withAudience);
@@ -80,9 +81,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     final var jwtAuthoritiesConverter = new JwtGrantedAuthoritiesConverter();
     jwtAuthoritiesConverter.setAuthoritiesClaimName("permissions");
     jwtAuthoritiesConverter.setAuthorityPrefix("");
+//    System.out.println("Test1");
+//    System.out.println(jwtAuthoritiesConverter);
 
     final var jwtAuthConverter = new JwtAuthenticationConverter();
     jwtAuthConverter.setJwtGrantedAuthoritiesConverter(jwtAuthoritiesConverter);
+//    System.out.println("Test2");
+//    System.out.println(jwtAuthoritiesConverter);
 
     return jwtAuthConverter;
   }

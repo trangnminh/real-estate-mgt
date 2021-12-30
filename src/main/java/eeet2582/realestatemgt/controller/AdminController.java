@@ -6,6 +6,7 @@ import eeet2582.realestatemgt.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,6 +32,7 @@ public class AdminController {
     // --- DEPOSIT --- //
 
     // Just get all (for debug)
+    @PreAuthorize("hasAuthority('read:admin-messages')")
     @GetMapping("/deposits")
     public List<Deposit> getAllDeposits() {
         return adminService.getAllDeposits();
@@ -38,6 +40,7 @@ public class AdminController {
 
     // Return deposits with sort, order and pagination (no query)
     // Params aren't mandatory, if not provided will use defaults
+    @PreAuthorize("hasAuthority('read:admin-messages')")
     @GetMapping("/deposits/search")
     public Page<Deposit> getFilteredDeposits(@RequestParam(value = "pageNo", defaultValue = "0") int pageNo,
                                              @RequestParam(value = "pageSize", defaultValue = "5") int pageSize,
@@ -48,6 +51,7 @@ public class AdminController {
 
     // Return deposits with sort, order and pagination (by userId)
     // Params aren't mandatory, if not provided will use defaults
+    @PreAuthorize("hasAuthority('read:admin-messages')")
     @GetMapping("/deposits/search/byUser/{userId}")
     public Page<Deposit> getFilteredDepositsByUserId(@PathVariable("userId") Long userId,
                                                      @RequestParam(value = "pageNo", defaultValue = "0") int pageNo,
@@ -59,6 +63,7 @@ public class AdminController {
 
     // Return deposits with sort, order and pagination (by houseId)
     // Params aren't mandatory, if not provided will use defaults
+    @PreAuthorize("hasAuthority('read:admin-messages')")
     @GetMapping("/deposits/search/byHouse/{houseId}")
     public Page<Deposit> getFilteredDepositsByHouseId(@PathVariable("houseId") Long houseId,
                                                       @RequestParam(value = "pageNo", defaultValue = "0") int pageNo,
@@ -95,6 +100,7 @@ public class AdminController {
     // --- MEETING --- //
 
     // Just get all (for debug)
+    @PreAuthorize("hasAuthority('read:admin-messages')")
     @GetMapping("/meetings")
     public List<Meeting> getAllMeetings() {
         return adminService.getAllMeetings();
@@ -102,6 +108,7 @@ public class AdminController {
 
     // Return meetings with sort, order and pagination (no query, no sortBy)
     // Params aren't mandatory, if not provided will use defaults
+    @PreAuthorize("hasAuthority('read:admin-messages')")
     @GetMapping("/meetings/search")
     public Page<Meeting> getFilteredMeetings(@RequestParam(value = "pageNo", defaultValue = "0") int pageNo,
                                              @RequestParam(value = "pageSize", defaultValue = "5") int pageSize,
@@ -149,6 +156,7 @@ public class AdminController {
     }
 
     // Delete one by ID
+    @PreAuthorize("hasAuthority('read:admin-messages')")
     @DeleteMapping("/meetings/{meetingId}")
     public void deleteMeetingById(@PathVariable("meetingId") Long meetingId) {
         adminService.deleteMeetingById(meetingId);

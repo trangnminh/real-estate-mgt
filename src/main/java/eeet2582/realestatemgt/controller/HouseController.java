@@ -13,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -99,6 +100,7 @@ public class HouseController {
     }
 
     // Add more images to a house by ID
+    @PreAuthorize("hasAuthority('read:admin-messages')")
     @PutMapping(
             path = "/addHouseImage",
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
@@ -110,6 +112,7 @@ public class HouseController {
     }
 
     // Delete one by ID
+    @PreAuthorize("hasAuthority('read:admin-messages')")
     @DeleteMapping("/{houseId}")
     @CacheEvict(key = "#houseId", value = "House")
     public ResponseEntity<String> deleteHouseById(@PathVariable("houseId") Long houseId) {

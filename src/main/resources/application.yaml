@@ -1,7 +1,29 @@
+application:
+  #audience: ${env.AUTH0_AUDIENCE:}
+  audience: https://hello-world.example.com
+  # client-origin-url: ${env.CLIENT_ORIGIN_URL:}
+  client-origin-url: http://localhost:4040
+
 server:
-  port: 9000
+  port: 8080
+  error:
+    whitelabel:
+      enabled: false
+  # port: ${env.PORT:0}
 
 spring:
+  mvc:
+    throw-exception-if-no-handler-found: true
+    security:
+      oauth2:
+        resourceserver:
+          jwt:
+            issuer-uri: https://dev-wccgbt6l.us.auth0.com/
+
+  web:
+    resources:
+      add-mappings: false
+
   jpa:
     database: POSTGRESQL
     show-sql: true

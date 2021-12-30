@@ -4,17 +4,19 @@ import eeet2582.realestatemgt.model.AppUser;
 import eeet2582.realestatemgt.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
-
+import eeet2582.realestatemgt.service.MessageService;
 // Implemented: Get all, get one, add, update, delete
 @RestController
 @RequestMapping("api/v1/users")
 public class UserController {
 
     private final UserService userService;
+
 
     @Autowired
     public UserController(UserService userService) {
@@ -23,6 +25,7 @@ public class UserController {
 
     // Just get all users (for debug)
     @GetMapping("")
+    @PreAuthorize("hasAuthority('read:admin-messages')")
     public List<AppUser> getAllUsers() {
         return userService.getAllUsers();
     }

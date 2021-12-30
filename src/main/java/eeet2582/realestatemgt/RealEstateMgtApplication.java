@@ -28,7 +28,7 @@ import java.util.Objects;
 public class RealEstateMgtApplication {
 
     public static void main(String[] args) {
-        //SpringApplication.run(RealEstateMgtApplication.class, args);
+        // SpringApplication.run(RealEstateMgtApplication.class, args);
         final var context = SpringApplication.run(RealEstateMgtApplication.class, args);
         final var serverProps = context.getBean(ServerProperties.class);
         final var applicationProps = context.getBean(ApplicationProperties.class);
