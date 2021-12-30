@@ -210,6 +210,7 @@ public class AdminService {
                 () -> new IllegalStateException("this house id does not exist!")
         ).getName());
         mailSender.send(sendMessage);
+        System.out.print("Test");
     }
 
     public void deleteMeetingById(Long meetingId) {
