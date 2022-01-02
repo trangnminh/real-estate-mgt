@@ -22,13 +22,13 @@
             <groupId>org.redisson</groupId>
             <!-- for Hibernate v5.3.3+ - v5.5.x -->
             <artifactId>redisson-hibernate-53</artifactId>
-            <version>3.16.4</version>
+            <version>3.16.7</version>
         </dependency>
 
         <dependency>
             <groupId>org.redisson</groupId>
             <artifactId>redisson-spring-boot-starter</artifactId>
-            <version>3.16.6</version>
+            <version>3.16.7</version>
         </dependency>
 
         <dependency>

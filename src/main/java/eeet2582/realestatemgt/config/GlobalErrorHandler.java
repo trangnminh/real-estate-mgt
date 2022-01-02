@@ -16,7 +16,7 @@ public class GlobalErrorHandler {
   @ResponseStatus(HttpStatus.NOT_FOUND)
   @ExceptionHandler(NoHandlerFoundException.class)
   public ErrorMessage handleNotFound(final HttpServletRequest request, final Exception error) {
-    return ErrorMessage.from("Not found");
+    return ErrorMessage.from("Request not found!");
   }
 
   @ResponseStatus(HttpStatus.FORBIDDEN)
