@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class AmazonConfig {
-
     private final String awsAccessKey = "abc";
     private final String awsSecretKey = "xyz";
     private final String awsRegion = "ap-southeast-1";

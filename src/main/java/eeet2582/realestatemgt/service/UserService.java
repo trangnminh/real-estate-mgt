@@ -2,14 +2,14 @@ package eeet2582.realestatemgt.service;
 
 import eeet2582.realestatemgt.model.AppUser;
 import eeet2582.realestatemgt.repository.UserRepository;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Objects;
 
 // UserService only wires UserRepository, everything else is handled by child services
 @Service
@@ -45,7 +45,7 @@ public class UserService {
                 .withMatcher("fullName", ExampleMatcher.GenericPropertyMatchers.contains().ignoreCase())
                 .withMatcher("email", ExampleMatcher.GenericPropertyMatchers.contains().ignoreCase())
                 .withMatcher("phoneNumber", ExampleMatcher.GenericPropertyMatchers.contains().ignoreCase());
-        Example<AppUser> example= Example.of(user, matcher);
+        Example<AppUser> example = Example.of(user, matcher);
 
         Pageable pageable;
         if (orderBy.equals("asc")) {
@@ -65,20 +65,26 @@ public class UserService {
 
     // Transactional means "all or nothing", if the transaction fails midway nothing is saved
     @Transactional
-    public void saveUserById(Long userId, String fullName, String email, String password, String phoneNumber, String dob, String gender) {
-        // If ID is provided, try to find the current user, else make new one
-        AppUser user = (userId != null)? getUserById(userId) : new AppUser();
-
+    public void saveUserById(AppUser newUser) {
         // Do input checking here
 
         // Save the cleaned user
-        user.setFullName(fullName);
-        user.setEmail(email);
-        user.setPassword(password);
-        user.setPhoneNumber(phoneNumber);
-        user.setDob(LocalDate.parse(dob, DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-        user.setGender(gender);
-        userRepository.save(user);
+        userRepository.save(newUser);
+    }
+
+    @Transactional
+    public void updateUserById(Long userId, @NotNull AppUser newUser) {
+        AppUser oldUser = getUserById(userId);
+
+        if (newUser.getPhoneNumber() != null && newUser.getPhoneNumber().length() > 0 && !Objects.equals(newUser.getPhoneNumber(), oldUser.getPhoneNumber())) {
+            oldUser.setPhoneNumber(newUser.getPhoneNumber());
+        }
+        if (newUser.getDob() != null && oldUser.getDob().compareTo(newUser.getDob()) != 0) {
+            oldUser.setDob(newUser.getDob());
+        }
+        if (newUser.getGender() != null && newUser.getGender().length() > 0 && !Objects.equals(newUser.getGender(), oldUser.getGender())) {
+            oldUser.setGender(newUser.getGender());
+        }
     }
 
     @Transactional
@@ -93,4 +99,5 @@ public class UserService {
         // Finally, delete the user
         userRepository.delete(user);
     }
+
 }
