@@ -21,6 +21,21 @@ import java.util.List;
 
 import static eeet2582.realestatemgt.service.HouseService.HOUSE_BATCH_SIZE;
 
+/*
+NON-AUTHORIZED AND AUTHORIZED USER CAN:
+- getFilteredHouses : search for houses in pagination and filters
+- getFilteredHousesByPriceBetween : search for houses with price
+- getHouseById : see each house in details
+*/
+
+/*
+ADMIN CAN:
+- addNewHouse : add new house into database
+- updateHouseById : update an existing house by id
+- addHouseImage : add more images into an existing house
+- deleteHouseById : delete house by id
+ */
+
 @RestController
 @RequestMapping("api/v1/houses")
 @CrossOrigin(origins = "*")

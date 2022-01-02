@@ -13,6 +13,29 @@ import java.util.List;
 // Handle Rental and Payment operations
 // Implemented: (Rental) get all, get one, get by userHouse, add, update, delete
 // Implemented: (Payment) get all, get one, get all by rentalId, add update by rentalId, delete
+/*
+AUTHORIZED USER CAN:
+- getFilteredRentalsByUserId : TODO: front-end need to check if current user id is the same id in the request params or not
+- getRentalById : users can get rentals by id
+- saveRental : users can make a rental
+- getFilteredPaymentsByRentalId : TODO: front-end need to check if current user id is the same id in the request params or not
+- getPaymentById : users can get payment by id
+- savePayment : users can make a payment
+*/
+
+/*
+ADMIN CAN:
+- getAllRentals : admin can get all rentals
+- getFilteredRentals : admin can get all rentals by pagination and filters without any user id or house id
+- getFilteredRentalsByHouseId : admin can get rentals by house id
+- deleteRentalById : admin can delete rental by id
+- getAllPayments : admin can get all payments
+- getFilteredPayments : admin can get all payments by pagination and filters without any user id or house id
+- deletePaymentById : admin can delete payment by id
+- updateRentalById : admin can update rental by id
+- updatePaymentById : admin can update payment by id
+ */
+
 @RestController
 @RequestMapping("api/v1")
 public class RentalController {
@@ -71,17 +94,17 @@ public class RentalController {
         return rentalService.getRentalById(rentalId);
     }
 
-    // Update one by ID or add new one
+    // add rentals
     @PostMapping("/rentals")
-    public void saveRentalById(@RequestParam(value = "rentalId", required = false) Long rentalId,
-                               @RequestParam Long userId,
-                               @RequestParam Long houseId,
-                               @RequestParam String startDate,
-                               @RequestParam String endDate,
-                               @RequestParam Double depositAmount,
-                               @RequestParam Double monthlyFee,
-                               @RequestParam Double payableFee) {
-        rentalService.saveRentalById(rentalId, userId, houseId, startDate, endDate, depositAmount, monthlyFee, payableFee);
+    public void saveRental(@RequestBody Rental rental) {
+        rentalService.saveRental(rental);
+    }
+
+    // Update one by ID
+    @PutMapping("/rentals/{rentalId}")
+    @PreAuthorize("hasAuthority('read:admin-messages')")
+    public void updateRentalById(@PathVariable(value = "rentalId") Long rentalId, @RequestBody Rental rental) {
+        rentalService.updateRentalById(rentalId, rental);
     }
 
     // Delete one by ID
@@ -128,15 +151,17 @@ public class RentalController {
         return rentalService.getPaymentById(paymentId);
     }
 
-    // Update one by ID or add new one (MUST HAVE rentalId)
+    // Add new Payment by Rental (MUST HAVE rentalId)
     @PostMapping("/payments/byRental/{rentalId}")
-    public void savePaymentById(@PathVariable Long rentalId,
-                                @RequestParam(value = "paymentId", required = false) Long paymentId,
-                                @RequestParam Double amount,
-                                @RequestParam String date,
-                                @RequestParam String time,
-                                @RequestParam String note) {
-        rentalService.savePaymentById(rentalId, paymentId, amount, date, time, note);
+    public void savePaymentById(@PathVariable(value = "rentalId") Long rentalId, @RequestBody Payment payment) {
+        rentalService.savePaymentById(rentalId, payment);
+    }
+
+    // Update one by ID (MUST HAVE rentalId)
+    @PutMapping("/payments/byRental/{rentalId}/{paymentId}")
+    @PreAuthorize("hasAuthority('read:admin-messages')")
+    public void updatePaymentById(@PathVariable(value = "rentalId") Long rentalId, @PathVariable(value = "paymentId") Long paymentId, @RequestBody Payment payment) {
+        rentalService.updatePaymentById(rentalId, paymentId, payment);
     }
 
     // Delete one by ID

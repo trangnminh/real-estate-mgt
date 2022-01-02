@@ -65,7 +65,7 @@ public class UserService {
 
     // Transactional means "all or nothing", if the transaction fails midway nothing is saved
     @Transactional
-    public void saveUserById(AppUser newUser) {
+    public void saveUser(AppUser newUser) {
         // Do input checking here
 
         // Save the cleaned user

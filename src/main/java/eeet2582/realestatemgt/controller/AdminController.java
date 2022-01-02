@@ -13,20 +13,29 @@ import java.util.List;
 
 // Handle "admin" classes Deposit and Meeting (that depend on User and House)
 // Implemented: (both) get all, get one, get all by userId/houseId, add update by userHouse, delete
-
 /*
-USER CAN:
--
--
--
- */
+AUTHORIZED USER CAN:
+- getFilteredDepositsByUserId : TODO: front-end need to check if current user id is the same id in the request params or not
+- getDepositById : users can get deposit by id
+- saveDeposit : users can make a deposit
+- getFilteredMeetingsByUserId : TODO: front-end need to check if current user id is the same id in the request params or not
+- getMeetingById : users can get meeting by id
+- saveMeeting : users can add/update a meeting
+*/
 
 /*
 ADMIN CAN:
--
--
--
+- getAllDeposits : admin can get all deposits
+- getFilteredDeposits : admin can get all deposits by pagination and filters without any user id or house id
+- getFilteredDepositsByHouseId : admin can get deposits by house id
+- deleteDepositById : admin can delete deposit by id
+- getAllMeetings : admin can get all meetings
+- getFilteredMeetings : admin can get all meetings by pagination and filters without any user id or house id
+- getFilteredMeetingsByHouseId : admin can get all meetings by house id
+- deleteMeetingById : admin can delete meeting by id
+- updateDepositById : admin can update deposit by id
  */
+
 @RestController
 @RequestMapping("api/v1")
 public class AdminController {
@@ -86,21 +95,21 @@ public class AdminController {
 
     // Get one by ID
     @GetMapping("/deposits/{depositId}")
-    @PreAuthorize("hasAuthority('read:admin-messages')")
     public Deposit getDepositById(@PathVariable("depositId") Long depositId) {
         return adminService.getDepositById(depositId);
     }
 
-    // Update one by ID or add new one
+    // Add new deposit
     @PostMapping("/deposits")
-    public void saveDepositById(@RequestParam(value = "depositId", required = false) Long depositId,
-                                @RequestParam Long userId,
-                                @RequestParam Long houseId,
-                                @RequestParam Double amount,
-                                @RequestParam String date,
-                                @RequestParam String time,
-                                @RequestParam String note) {
-        adminService.saveDepositById(depositId, userId, houseId, amount, date, time, note);
+    public void saveDeposit(@RequestBody Deposit deposit) {
+        adminService.saveDeposit(deposit);
+    }
+
+    // Update deposit by id
+    @PutMapping("/deposits/{depositId}")
+    @PreAuthorize("hasAuthority('read:admin-messages')")
+    public void updateUserById(@PathVariable(value = "depositId") Long depositId, @RequestBody Deposit deposit) {
+        adminService.updateDepositById(depositId, deposit);
     }
 
     // Delete one by ID
@@ -132,7 +141,6 @@ public class AdminController {
     // Return meetings with sort, order and pagination (no query, no sortBy) by userId
     // Params aren't mandatory, if not provided will use defaults
     @GetMapping("/meetings/search/byUser/{userId}")
-    @PreAuthorize("hasAuthority('read:admin-messages')")
     public Page<Meeting> getFilteredMeetingsByUserId(@PathVariable("userId") Long userId,
                                                      @RequestParam(value = "pageNo", defaultValue = "0") int pageNo,
                                                      @RequestParam(value = "pageSize", defaultValue = "5") int pageSize,

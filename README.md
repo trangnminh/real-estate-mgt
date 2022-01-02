@@ -12,9 +12,10 @@
 ## Changelogs
 
 ### 02/01/2022 (Phuong)
-- Finish Oauth2 using Auth0
+- Finished Oauth2 using Auth0 and comment out all controllers endpoint
 - Go to front-end repository to get access token key
-
+- `Bugs`: Post Users endpoint --> don't test this
+- Add separate `POST` and `PUT` requests using `requestBody` except for class `Meeting`
 ### 27/12/2021 (Trang)
 
 - All emails are now sent from *eeet2582.realestatemgt@gmail.com*

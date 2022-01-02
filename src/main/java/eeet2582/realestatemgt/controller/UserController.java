@@ -10,6 +10,21 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 // Implemented: Get all, get one, add, update, delete
+/*
+AUTHORIZED USER CAN:
+- getUserById : TODO: front-end need to check current user id with user id in params
+- updateUserById : update user by id
+*/
+
+/*
+ADMIN CAN:
+- getAllUsers : get all users info
+- getFilteredUsers : get all users info with pagination and filters
+- deleteUserById : delete users by id
+ */
+
+// Bugs: saveUserById
+
 @RestController
 @RequestMapping("api/v1/users")
 public class UserController {
@@ -48,8 +63,8 @@ public class UserController {
 
     // Add new user
     @PostMapping("")
-    public void saveUserById(@RequestBody AppUser user) {
-        userService.saveUserById(user);
+    public void saveUser(@RequestBody AppUser user) {
+        userService.saveUser(user);
     }
 
     // Update user by id

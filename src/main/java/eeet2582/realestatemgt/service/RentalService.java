@@ -5,6 +5,7 @@ import eeet2582.realestatemgt.model.Payment;
 import eeet2582.realestatemgt.model.Rental;
 import eeet2582.realestatemgt.repository.PaymentRepository;
 import eeet2582.realestatemgt.repository.RentalRepository;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -13,10 +14,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Objects;
 
 // Handle Rental and Payment operations
 @Service
@@ -61,22 +60,40 @@ public class RentalService {
         return rentalRepository.findById(rentalId).orElseThrow(() -> new IllegalStateException("Rental with rentalId=" + rentalId + " does not exist!"));
     }
 
+    @Transactional
+    public void saveRental(Rental rental) {
+        rentalRepository.save(rental);
+    }
+
     // Transactional means "all or nothing", if the transaction fails midway nothing is saved
     @Transactional
-    public void saveRentalById(Long rentalId, Long userId, Long houseId, String startDate, String endDate, Double depositAmount, Double monthlyFee, Double payableFee) {
-        // If ID is provided, try to find the current item, else make new one
-        Rental rental = (rentalId != null) ? getRentalById(rentalId) : new Rental();
+    public void updateRentalById(Long rentalId, @NotNull Rental newRental) {
+        Rental oldRental = getRentalById(rentalId);
 
-        // Do input checking here
+        if (newRental.getUserHouse().getHouseId() != null && newRental.getUserHouse().getUserId() != null) {
+            oldRental.setUserHouse(new UserHouse(newRental.getUserHouse().getUserId(), newRental.getUserHouse().getHouseId()));
+        }
 
-        // Save the cleaned item
-        rental.setUserHouse(new UserHouse(userId, houseId));
-        rental.setStartDate(LocalDate.parse(startDate, DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-        rental.setEndDate(LocalDate.parse(endDate, DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-        rental.setDepositAmount(depositAmount);
-        rental.setMonthlyFee(monthlyFee);
-        rental.setPayableFee(payableFee);
-        rentalRepository.save(rental);
+        if (newRental.getStartDate() != null && oldRental.getStartDate().compareTo(newRental.getStartDate()) != 0) {
+            oldRental.setStartDate(newRental.getStartDate());
+        }
+
+        if (newRental.getEndDate() != null && oldRental.getEndDate().compareTo(newRental.getEndDate()) != 0) {
+            oldRental.setEndDate(newRental.getEndDate());
+        }
+
+        if (newRental.getDepositAmount() != null && !Objects.equals(newRental.getDepositAmount(), oldRental.getDepositAmount())) {
+            oldRental.setDepositAmount(newRental.getDepositAmount());
+        }
+
+        if (newRental.getMonthlyFee() != null && !Objects.equals(newRental.getMonthlyFee(), oldRental.getMonthlyFee())) {
+            oldRental.setMonthlyFee(newRental.getMonthlyFee());
+        }
+
+        if (newRental.getPayableFee() != null && !Objects.equals(newRental.getPayableFee(), oldRental.getPayableFee())) {
+            oldRental.setPayableFee(newRental.getPayableFee());
+        }
+
     }
 
     @Transactional
@@ -105,7 +122,7 @@ public class RentalService {
     }
 
     // Return paginated payments of the provided rental or just all payments
-    public Page<Payment> getFilteredPaymentsAllOrByRentalId(Long rentalId, int pageNo, int pageSize, String sortBy, String orderBy) {
+    public Page<Payment> getFilteredPaymentsAllOrByRentalId(Long rentalId, int pageNo, int pageSize, String sortBy, @NotNull String orderBy) {
         Pageable pageable;
         if (orderBy.equals("asc")) {
             pageable = PageRequest.of(pageNo, pageSize, Sort.by(sortBy).ascending());
@@ -128,25 +145,39 @@ public class RentalService {
         return paymentRepository.getById(paymentId);
     }
 
+    @Transactional
+    public void savePaymentById(Long rentalId, @NotNull Payment payment) {
+        // Find the associated rental
+        Rental rental = getRentalById(rentalId);
+        payment.setRental(rental);
+        paymentRepository.save(payment);
+    }
+
     // Transactional means "all or nothing", if the transaction fails midway nothing is saved
     @Transactional
-    public void savePaymentById(Long rentalId, Long paymentId, Double amount, String date, String time, String note) {
+    public void updatePaymentById(Long rentalId, Long paymentId, Payment newPayment) {
         // Find the associated rental
         Rental rental = getRentalById(rentalId);
 
-        // If ID is provided, try to find the current item, else make new one
-        Payment payment = (paymentId != null) ? getPaymentById(paymentId) : new Payment();
+        // find old payment object by id
+        Payment oldPayment = getPaymentById(paymentId);
 
         // Do input checking here
+        if (oldPayment.getAmount() != null && !Objects.equals(newPayment.getAmount(), oldPayment.getAmount())) {
+            oldPayment.setAmount(newPayment.getAmount());
+        }
 
-        // Save the cleaned item
-        payment.setAmount(amount);
-        payment.setDate(LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-        payment.setTime(LocalTime.parse(time, DateTimeFormatter.ofPattern("HH:mm")));
-        payment.setNote(note);
+        if (newPayment.getDate() != null && oldPayment.getDate().compareTo(newPayment.getDate()) != 0) {
+            oldPayment.setDate(newPayment.getDate());
+        }
 
-        payment.setRental(rental);
-        paymentRepository.save(payment);
+        if (newPayment.getTime() != null && oldPayment.getTime().compareTo(newPayment.getTime()) != 0) {
+            oldPayment.setTime(newPayment.getTime());
+        }
+
+        if (newPayment.getNote() != null && newPayment.getNote().length() > 0 && !Objects.equals(newPayment.getNote(), oldPayment.getNote())) {
+            oldPayment.setNote(newPayment.getNote());
+        }
     }
 
     public void deletePaymentById(Long paymentId) {
