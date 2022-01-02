@@ -24,20 +24,17 @@ public class AppUser {
 
     private String fullName;
     private String email;
-    private String password;
     private String phoneNumber;
     private LocalDate dob;
     private String gender;
 
     public AppUser(String fullName,
                    String email,
-                   String password,
                    String phoneNumber,
                    LocalDate dob,
                    String gender) {
         this.fullName = fullName;
         this.email = email;
-        this.password = password;
         this.phoneNumber = phoneNumber;
         this.dob = dob;
         this.gender = gender;

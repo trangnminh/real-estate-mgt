@@ -5,9 +5,9 @@ import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.OAuth2ResourceServerProperties;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.oauth2.core.DelegatingOAuth2TokenValidator;
 import org.springframework.security.oauth2.core.OAuth2Error;
@@ -29,23 +29,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   private final ApplicationProperties applicationProps;
 
   @Override
-  public void configure(final @NotNull WebSecurity web) throws Exception {
-    final var exclusionRegex = "^(?!%s|%s).*$".formatted(
-            "/api/messages/protected",
-            "/api/messages/admin"
-    );
-
-    web.ignoring()
-            .regexMatchers(exclusionRegex);
-  }
-
-  @Override
   protected void configure(final @NotNull HttpSecurity http) throws Exception {
     http.authorizeRequests()
-            .antMatchers("/api/messages/protected", "/api/messages/admin")
-            .authenticated()
-            .anyRequest()
-            .permitAll()
+            .antMatchers(HttpMethod.GET, "/api/v1/users/**").authenticated()
+            .antMatchers(HttpMethod.PUT, "/api/v1/users").authenticated()
+            .antMatchers(HttpMethod.DELETE, "/api/v1/users/**").authenticated()
+            .antMatchers(HttpMethod.POST, "/api/v1/houses").authenticated()
+            .antMatchers(HttpMethod.PUT, "/api/v1/houses/**").authenticated()
+            .antMatchers(HttpMethod.DELETE, "/api/v1/houses").authenticated()
+            .antMatchers("/api/v1/deposits/**").authenticated()
+            .antMatchers("/api/v1/meetings/**").authenticated()
+            .antMatchers("/api/v1/rentals/**").authenticated()
+            .antMatchers("/api/v1/payments/**").authenticated()
             .and()
             .cors()
             .and()
@@ -61,10 +56,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     final var decoder = JwtDecoders.<NimbusJwtDecoder>fromIssuerLocation(issuer);
     final var withIssuer = JwtValidators.createDefaultWithIssuer(issuer);
     final var tokenValidator = new DelegatingOAuth2TokenValidator<>(withIssuer, this::withAudience);
-    System.out.println("issuer " + issuer);
-    System.out.println("decoder " + decoder);
-    System.out.println("withIssuer " + withIssuer);
-    System.out.println("tokenValidator " + tokenValidator);
     decoder.setJwtValidator(tokenValidator);
     return decoder;
   }

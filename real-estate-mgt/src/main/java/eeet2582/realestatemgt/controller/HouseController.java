@@ -13,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -86,6 +87,7 @@ public class HouseController {
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
+    @PreAuthorize("hasAuthority('read:admin-messages')")
     public ResponseEntity<String> addNewHouse(@ModelAttribute House house, @RequestParam("files") MultipartFile[] file) {
         return new ResponseEntity<>(houseService.addNewHouse(house, file), HttpStatus.OK);
     }
@@ -93,6 +95,7 @@ public class HouseController {
     // Update one by ID
     @PutMapping("/{houseId}")
     @CachePut(key = "#houseId", value = "House")
+    @PreAuthorize("hasAuthority('read:admin-messages')")
     public ResponseEntity<String> updateHouseById(@PathVariable("houseId") Long houseId, @RequestBody House house) {
         return new ResponseEntity<>(houseService.updateHouseById(houseId, house), HttpStatus.OK);
     }
@@ -104,6 +107,7 @@ public class HouseController {
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     @CachePut(key = "#houseId", value = "House")
+    @PreAuthorize("hasAuthority('read:admin-messages')")
     public ResponseEntity<String> addHouseImage(@RequestParam("houseId") Long houseId, @RequestParam("files") MultipartFile[] file) {
         return new ResponseEntity<>(houseService.addHouseImage(houseId, file), HttpStatus.OK);
     }
@@ -111,6 +115,7 @@ public class HouseController {
     // Delete one by ID
     @DeleteMapping("/{houseId}")
     @CacheEvict(key = "#houseId", value = "House")
+    @PreAuthorize("hasAuthority('read:admin-messages')")
     public ResponseEntity<String> deleteHouseById(@PathVariable("houseId") Long houseId) {
         return new ResponseEntity<>(houseService.deleteHouseById(houseId), HttpStatus.OK);
     }

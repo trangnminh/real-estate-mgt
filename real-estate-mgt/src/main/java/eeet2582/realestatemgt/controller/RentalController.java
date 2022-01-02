@@ -5,6 +5,7 @@ import eeet2582.realestatemgt.model.Rental;
 import eeet2582.realestatemgt.service.RentalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,6 +26,7 @@ public class RentalController {
 
     // Just get all (for debug)
     @GetMapping("/rentals")
+    @PreAuthorize("hasAuthority('read:admin-messages')")
     public List<Rental> getAllRentals() {
         return rentalService.getAllRentals();
     }
@@ -32,6 +34,7 @@ public class RentalController {
     // Return rentals with sort, order and pagination (no query)
     // Params aren't mandatory, if not provided will use defaults
     @GetMapping("/rentals/search")
+    @PreAuthorize("hasAuthority('read:admin-messages')")
     public Page<Rental> getFilteredRentals(@RequestParam(value = "pageNo", defaultValue = "0") int pageNo,
                                            @RequestParam(value = "pageSize", defaultValue = "5") int pageSize,
                                            @RequestParam(value = "sortBy", defaultValue = "startDate") String sortBy,
@@ -53,6 +56,7 @@ public class RentalController {
     // Return rentals with sort, order and pagination (no query) by houseId
     // Params aren't mandatory, if not provided will use defaults
     @GetMapping("/rentals/search/byHouse/{houseId}")
+    @PreAuthorize("hasAuthority('read:admin-messages')")
     public Page<Rental> getFilteredRentalsByHouseId(@PathVariable("houseId") Long houseId,
                                                     @RequestParam(value = "pageNo", defaultValue = "0") int pageNo,
                                                     @RequestParam(value = "pageSize", defaultValue = "5") int pageSize,
@@ -82,6 +86,7 @@ public class RentalController {
 
     // Delete one by ID
     @DeleteMapping("/rentals/{rentalId}")
+    @PreAuthorize("hasAuthority('read:admin-messages')")
     public void deleteRentalById(@PathVariable("rentalId") Long rentalId) {
         rentalService.deleteRentalById(rentalId);
     }
@@ -90,6 +95,7 @@ public class RentalController {
 
     // Just get all (for debug)
     @GetMapping("/payments")
+    @PreAuthorize("hasAuthority('read:admin-messages')")
     public List<Payment> getAllPayments() {
         return rentalService.getAllPayments();
     }
@@ -97,6 +103,7 @@ public class RentalController {
     // Return payments with sort, order and pagination (NO rentalId)
     // Params aren't mandatory, if not provided will use defaults
     @GetMapping("/payments/search")
+    @PreAuthorize("hasAuthority('read:admin-messages')")
     public Page<Payment> getFilteredPayments(@RequestParam(value = "pageNo", defaultValue = "0") int pageNo,
                                              @RequestParam(value = "pageSize", defaultValue = "5") int pageSize,
                                              @RequestParam(value = "sortBy", defaultValue = "date") String sortBy,
@@ -134,6 +141,7 @@ public class RentalController {
 
     // Delete one by ID
     @DeleteMapping("/payments/{paymentId}")
+    @PreAuthorize("hasAuthority('read:admin-messages')")
     public void deletePaymentById(@PathVariable("paymentId") Long paymentId) {
         rentalService.deletePaymentById(paymentId);
     }
