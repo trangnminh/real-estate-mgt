@@ -11,6 +11,10 @@
 
 ## Changelogs
 
+### 02/01/2022 (Phuong)
+- Finish Oauth2 using Auth0
+- Go to front-end repository to get access token key
+
 ### 27/12/2021 (Trang)
 
 - All emails are now sent from *eeet2582.realestatemgt@gmail.com*
