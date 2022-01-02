@@ -21,7 +21,7 @@ AUTHORIZED USER CAN:
 - getFilteredMeetingsByUserId : TODO: front-end need to check if current user id is the same id in the request params or not
 - getMeetingById : users can get meeting by id
 - saveMeeting : users can add/update a meeting
-*/
+ */
 
 /*
 ADMIN CAN:
