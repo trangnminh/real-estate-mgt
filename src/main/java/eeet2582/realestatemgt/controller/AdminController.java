@@ -13,6 +13,20 @@ import java.util.List;
 
 // Handle "admin" classes Deposit and Meeting (that depend on User and House)
 // Implemented: (both) get all, get one, get all by userId/houseId, add update by userHouse, delete
+
+/*
+USER CAN:
+-
+-
+-
+ */
+
+/*
+ADMIN CAN:
+-
+-
+-
+ */
 @RestController
 @RequestMapping("api/v1")
 public class AdminController {
