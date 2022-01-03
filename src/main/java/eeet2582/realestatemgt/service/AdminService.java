@@ -21,11 +21,11 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Objects;
 
 // Handle Deposit and Meeting operations
 @Service
@@ -110,20 +110,34 @@ public class AdminService {
 
     // Transactional means "all or nothing", if the transaction fails midway nothing is saved
     @Transactional
-    public void saveDepositById(Long depositId, Long userId, Long houseId, Double amount, String date, String time, String note) {
-        // If ID is provided, try to find the current item, else make new one
-        Deposit deposit = (depositId != null) ? getDepositById(depositId) : new Deposit();
-
-        // Do input checking here
-
-        // Save the cleaned item
-        deposit.setUserHouse(new UserHouse(userId, houseId));
-        deposit.setAmount(amount);
-        deposit.setDate(LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-        deposit.setTime(LocalTime.parse(time, DateTimeFormatter.ofPattern("HH:mm")));
-        deposit.setNote(note);
-
+    public void saveDeposit(Deposit deposit) {
         depositRepository.save(deposit);
+    }
+
+    @Transactional
+    public void updateDepositById(Long depositId, @NotNull Deposit newDeposit) {
+        Deposit oldDeposit = getDepositById(depositId);
+
+        if (newDeposit.getUserHouse().getHouseId() != null && newDeposit.getUserHouse().getUserId() != null) {
+            oldDeposit.setUserHouse(new UserHouse(newDeposit.getUserHouse().getUserId(), newDeposit.getUserHouse().getHouseId()));
+        }
+
+        if (newDeposit.getAmount() != null && !Objects.equals(newDeposit.getAmount(), oldDeposit.getAmount())) {
+            oldDeposit.setAmount(newDeposit.getAmount());
+        }
+
+        if (newDeposit.getDate() != null && oldDeposit.getDate().compareTo(newDeposit.getDate()) != 0) {
+            oldDeposit.setDate(newDeposit.getDate());
+        }
+
+        if (newDeposit.getTime() != null && oldDeposit.getTime().compareTo(newDeposit.getTime()) != 0) {
+            oldDeposit.setTime(newDeposit.getTime());
+        }
+
+        if (newDeposit.getNote() != null && newDeposit.getNote().length() > 0 && !Objects.equals(newDeposit.getNote(), oldDeposit.getNote())) {
+            oldDeposit.setNote(newDeposit.getNote());
+        }
+
     }
 
     public void deleteDepositById(Long depositId) {
@@ -148,7 +162,7 @@ public class AdminService {
     }
 
     // Return paginated meetings of the provided user or house or just all meetings
-    public Page<Meeting> getFilteredMeetingsAllOrByUserIdOrByHouseId(Long userId, Long houseId, int pageNo, int pageSize, String orderBy) {
+    public Page<Meeting> getFilteredMeetingsAllOrByUserIdOrByHouseId(Long userId, Long houseId, int pageNo, int pageSize, @NotNull String orderBy) {
         Pageable pageable;
 
         if (orderBy.equals("asc")) {
@@ -218,7 +232,7 @@ public class AdminService {
     }
 
     @KafkaListener(topics = "meeting", groupId = "email_group")
-    public void sendSimpleEmail(@NotNull Meeting meeting) throws IOException {
+    public void sendSimpleEmail(@NotNull Meeting meeting) {
         AppUser user = userService.getUserById(meeting.getUserHouse().getUserId());
         House house = houseService.getHouseById(meeting.getUserHouse().getHouseId());
 
