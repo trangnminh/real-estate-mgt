@@ -17,10 +17,10 @@ import java.util.List;
 AUTHORIZED USER CAN:
 - getFilteredRentalsByUserId : TODO: front-end need to check if current user id is the same id in the request params or not
 - getRentalById : users can get rentals by id
-- saveRental : users can make a rental
+- addNewRental : users can make a rental
 - getFilteredPaymentsByRentalId : TODO: front-end need to check if current user id is the same id in the request params or not
 - getPaymentById : users can get payment by id
-- savePayment : users can make a payment
+- addNewPaymentByRentalId : users can make a payment for a rental
 */
 
 /*

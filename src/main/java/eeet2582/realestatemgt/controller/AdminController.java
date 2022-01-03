@@ -17,10 +17,10 @@ import java.util.List;
 AUTHORIZED USER CAN:
 - getFilteredDepositsByUserId : TODO: front-end need to check if current user id is the same id in the request params or not
 - getDepositById : users can get deposit by id
-- saveDeposit : users can make a deposit
+- addNewDeposit : users can make a deposit
 - getFilteredMeetingsByUserId : TODO: front-end need to check if current user id is the same id in the request params or not
 - getMeetingById : users can get meeting by id
-- saveMeeting : users can add/update a meeting
+- saveMeetingById : users can add/update a meeting
 */
 
 /*
