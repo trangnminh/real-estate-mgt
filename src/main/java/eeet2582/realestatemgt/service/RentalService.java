@@ -60,8 +60,7 @@ public class RentalService {
         return rentalRepository.findById(rentalId).orElseThrow(() -> new IllegalStateException("Rental with rentalId=" + rentalId + " does not exist!"));
     }
 
-    @Transactional
-    public void saveRental(Rental rental) {
+    public void addNewRental(Rental rental) {
         rentalRepository.save(rental);
     }
 
@@ -93,7 +92,6 @@ public class RentalService {
         if (newRental.getPayableFee() != null && !Objects.equals(newRental.getPayableFee(), oldRental.getPayableFee())) {
             oldRental.setPayableFee(newRental.getPayableFee());
         }
-
     }
 
     @Transactional
@@ -146,7 +144,7 @@ public class RentalService {
     }
 
     @Transactional
-    public void savePaymentById(Long rentalId, @NotNull Payment payment) {
+    public void addNewPaymentByRentalId(Long rentalId, @NotNull Payment payment) {
         // Find the associated rental
         Rental rental = getRentalById(rentalId);
         payment.setRental(rental);
@@ -155,11 +153,7 @@ public class RentalService {
 
     // Transactional means "all or nothing", if the transaction fails midway nothing is saved
     @Transactional
-    public void updatePaymentById(Long rentalId, Long paymentId, Payment newPayment) {
-        // Find the associated rental
-        Rental rental = getRentalById(rentalId);
-
-        // find old payment object by id
+    public void updatePaymentById(Long paymentId, Payment newPayment) {
         Payment oldPayment = getPaymentById(paymentId);
 
         // Do input checking here

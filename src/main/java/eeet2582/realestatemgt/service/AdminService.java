@@ -33,13 +33,16 @@ public class AdminService {
 
     public static final String SENDER_MAIL = "eeet2582.realestatemgt@gmail.com";
     private static final Logger LOGGER = LoggerFactory.getLogger(AdminService.class);
+
     @Autowired
     private final MeetingRepository meetingRepository;
+
     @Autowired
     private final JavaMailSender mailSender;
 
     @Autowired
     private final DepositRepository depositRepository;
+
     private UserService userService;
     private HouseService houseService;
 
@@ -108,12 +111,11 @@ public class AdminService {
         return depositRepository.getById(depositId);
     }
 
-    // Transactional means "all or nothing", if the transaction fails midway nothing is saved
-    @Transactional
-    public void saveDeposit(Deposit deposit) {
+    public void addNewDeposit(Deposit deposit) {
         depositRepository.save(deposit);
     }
 
+    // Transactional means "all or nothing", if the transaction fails midway nothing is saved
     @Transactional
     public void updateDepositById(Long depositId, @NotNull Deposit newDeposit) {
         Deposit oldDeposit = getDepositById(depositId);
@@ -137,7 +139,6 @@ public class AdminService {
         if (newDeposit.getNote() != null && newDeposit.getNote().length() > 0 && !Objects.equals(newDeposit.getNote(), oldDeposit.getNote())) {
             oldDeposit.setNote(newDeposit.getNote());
         }
-
     }
 
     public void deleteDepositById(Long depositId) {

@@ -101,8 +101,8 @@ public class AdminController {
 
     // Add new deposit
     @PostMapping("/deposits")
-    public void saveDeposit(@RequestBody Deposit deposit) {
-        adminService.saveDeposit(deposit);
+    public void addNewDeposit(@RequestBody Deposit deposit) {
+        adminService.addNewDeposit(deposit);
     }
 
     // Update deposit by id
