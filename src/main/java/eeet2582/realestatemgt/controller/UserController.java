@@ -13,7 +13,7 @@ import java.util.List;
 /*
 AUTHORIZED USER CAN:
 - getUserById : TODO: front-end need to check current user id with user id in params
-- updateUserById : update user by id
+- updateUserById : update user by id TODO: front-end need to check current user id with user id in params
 */
 
 /*
@@ -63,8 +63,8 @@ public class UserController {
 
     // Add new user
     @PostMapping("")
-    public void saveUser(@RequestBody AppUser user) {
-        userService.saveUser(user);
+    public void addNewUser(@RequestBody AppUser user) {
+        userService.addNewUser(user);
     }
 
     // Update user by id
