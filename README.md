@@ -8,6 +8,7 @@
 - Get the `application.yaml` and `redisson.yaml` files from backend team and put them in `src/resources`
 - Get the zip file from https://drive.google.com/file/d/1zK0-4ja-Lt4fnUjIQiWPpOWpa6Zz4qfy/view?usp=sharing and put
   the `house` folder inside `data` folder
+- `Front-end` repository: https://github.com/phu0n9/real-estate
 
 ## Changelogs
 
