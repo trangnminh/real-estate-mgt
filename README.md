@@ -11,8 +11,35 @@ https://github.com/phu0n9/real-estate
 - Get the `application.yaml` and `redisson.yaml` files and put them in `src/resources`
 - Get the `.env` file and put it in the root folder (same level as `README.md`)
 - Get the zip file and put the `house` folder inside `data` folder
-  
+
+### **HOUSE QUERY FORMAT (POSTMAN)**
+- All variables are not required (use defaults if null)
+- Sort and order by any House property (name, address etc.)
+- Page request starts at 1, change with `pageNo`
+- Default page size is 20, change with `pageSize`
+- House price is generated within 100K - 300K
+- House "type" and "status" properties are generated from below lists
+```
+const typeList = ["apartment", "serviced", "street"];
+const statusList = ["available", "reserved", "rented"];
+```
+- Cache size is 1000 houses a batch
+- Cache lives for 10 minutes (6 minutes if no request)
+- When you debug, try flushing the cache first by running `redis-cli flushdb` in Terminal
+#### By Price Range
+- Search by params `low` and `high` (if not provided, default to 100K and 300K)
+- Default sort and order is "price" descending (most expensive first)
+> localhost:8080/api/v1/houses/search/byPriceBetween?pageNo=1&pageSize=20&low=199000&high=200000&sortBy=price&orderBy=desc
+
+#### By Query
+- Search by params `query` (match name, address and description), default is empty (match all)
+- Default sort and order is "name" ascending (alphabetical order)
+> localhost:8080/api/v1/houses/search?pageNo=1&query=Sunt ullamco labore&sortBy=name&orderBy=asc
+
 ## Changelogs
+
+### 05/01/2022 (Trang)
+- Fix out of bound errors for House pagination
 
 ### 02/01/2022 (Phuong)
 - Finished Oauth2 using Auth0 and comment out all controllers endpoint

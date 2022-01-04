@@ -2,6 +2,7 @@ package eeet2582.realestatemgt.controller;
 
 import eeet2582.realestatemgt.model.House;
 import eeet2582.realestatemgt.service.HouseService;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
@@ -17,6 +18,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Collections;
 import java.util.List;
 
 import static eeet2582.realestatemgt.service.HouseService.HOUSE_BATCH_SIZE;
@@ -58,35 +60,59 @@ public class HouseController {
                                          @RequestParam(value = "orderBy", defaultValue = "asc") String orderBy) {
         int visitedEntries = Math.max(0, (pageNo - 1) * pageSize);
         int batchNo = visitedEntries / HOUSE_BATCH_SIZE;
-        List<House> currentBatch = houseService.getFilteredHousesCache(query, sortBy, orderBy, batchNo);
+        List<House> currentBatch = houseService.getFilteredHousesCache(query.trim(), sortBy, orderBy, batchNo);
 
-        int start = visitedEntries - (HOUSE_BATCH_SIZE * batchNo);
-        int end = start + pageSize;
-
-        int subPageNo = pageNo - (HOUSE_BATCH_SIZE / pageSize) * batchNo;
-        Pageable pageable = PageRequest.of(subPageNo - 1, pageSize);
-        return new PageImpl<>(currentBatch.subList(start, end), pageable, currentBatch.size());
+        return getSubPageFromHouseBatch(pageNo, pageSize, visitedEntries, batchNo, currentBatch);
     }
 
     // Return houses within a price range
     @GetMapping("/search/byPriceBetween")
-    public Page<House> getFilteredHousesByPriceBetween(@RequestParam(value = "low", defaultValue = "0") Double low,
-                                                       @RequestParam(value = "high", defaultValue = "900000") Double high,
+    public Page<House> getFilteredHousesByPriceBetween(@RequestParam(value = "low", defaultValue = "100000") Double low,
+                                                       @RequestParam(value = "high", defaultValue = "300000") Double high,
                                                        @RequestParam(value = "pageNo", defaultValue = "1") int pageNo,
                                                        @RequestParam(value = "pageSize", defaultValue = "20") int pageSize,
                                                        @RequestParam(value = "sortBy", defaultValue = "price") String sortBy,
-                                                       @RequestParam(value = "orderBy", defaultValue = "asc") String orderBy) {
+                                                       @RequestParam(value = "orderBy", defaultValue = "desc") String orderBy) {
+
+        // If variables out of range
+        if (low >= high || low > 300000 || high < 100000) {
+            return new PageImpl<>(Collections.emptyList(), PageRequest.of(0, pageSize), 0);
+        }
 
         int visitedEntries = Math.max(0, (pageNo - 1) * pageSize);
         int batchNo = visitedEntries / HOUSE_BATCH_SIZE;
         List<House> currentBatch = houseService.getFilteredHousesByPriceBetweenCache(low, high, sortBy, orderBy, batchNo);
 
+        return getSubPageFromHouseBatch(pageNo, pageSize, visitedEntries, batchNo, currentBatch);
+    }
+
+    @NotNull
+    private Page<House> getSubPageFromHouseBatch(@RequestParam(value = "pageNo", defaultValue = "1") int pageNo,
+                                                 @RequestParam(value = "pageSize", defaultValue = "20") int pageSize,
+                                                 int visitedEntries,
+                                                 int batchNo,
+                                                 List<House> currentBatch) {
+        // "Reset" start after each batch
         int start = visitedEntries - (HOUSE_BATCH_SIZE * batchNo);
         int end = start + pageSize;
 
+        // "Reset" sub-page request (of current batch)
         int subPageNo = pageNo - (HOUSE_BATCH_SIZE / pageSize) * batchNo;
         Pageable pageable = PageRequest.of(subPageNo - 1, pageSize);
-        return new PageImpl<>(currentBatch.subList(start, end), pageable, currentBatch.size());
+
+        try {
+            return new PageImpl<>(currentBatch.subList(start, end), pageable, currentBatch.size());
+        } catch (Exception e) {
+            // If not enough results to have a full page, shift end
+            end = currentBatch.size();
+
+            // If invalid request, return empty page
+            if (start > end) {
+                return new PageImpl<>(Collections.emptyList(), pageable, currentBatch.size());
+            }
+            // Else return all is left
+            return new PageImpl<>(currentBatch.subList(start, end), pageable, currentBatch.size());
+        }
     }
 
     // Get one by ID
