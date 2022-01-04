@@ -1,4 +1,4 @@
-# real-estate-mgt# real-estate-mgt
+# real-estate-mgt
 
 ## Note
 ### **FRONTEND REPOSITORY**
