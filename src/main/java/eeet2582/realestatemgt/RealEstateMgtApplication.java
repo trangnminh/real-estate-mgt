@@ -28,58 +28,59 @@ import java.util.Objects;
 @ConfigurationPropertiesScan
 public class RealEstateMgtApplication {
 
-    public static void main(String[] args) {
+	public static void main(String[] args) {
 //        SpringApplication.run(RealEstateMgtApplication.class, args);
-        final var context = SpringApplication.run(RealEstateMgtApplication.class, args);
-        final var serverProps = context.getBean(ServerProperties.class);
-        final var applicationProps = context.getBean(ApplicationProperties.class);
-        final var port = serverProps.getPort();
-        final var clientOriginUrl = applicationProps.getClientOriginUrl();
-        final var audience = applicationProps.getAudience();
 
-        if (port == null || port == 0) {
-            exitWithMissingEnv(context, "PORT");
-        }
+		final var context = SpringApplication.run(RealEstateMgtApplication.class, args);
+		final var serverProps = context.getBean(ServerProperties.class);
+		final var applicationProps = context.getBean(ApplicationProperties.class);
+		final var port = serverProps.getPort();
+		final var clientOriginUrl = applicationProps.getClientOriginUrl();
+		final var audience = applicationProps.getAudience();
 
-        if (Objects.isNull(clientOriginUrl) || clientOriginUrl.isBlank()) {
-            exitWithMissingEnv(context, "CLIENT_ORIGIN_URL");
-        }
+		if (port == null || port == 0) {
+			exitWithMissingEnv(context, "PORT");
+		}
 
-        if (Objects.isNull(audience) || audience.isEmpty()) {
-            exitWithMissingEnv(context, "AUTH0_AUDIENCE");
-        }
-    }
+		if (Objects.isNull(clientOriginUrl) || clientOriginUrl.isBlank()) {
+			exitWithMissingEnv(context, "CLIENT_ORIGIN_URL");
+		}
 
-    private static void exitWithMissingEnv(final ConfigurableApplicationContext context, final String env) {
-        final var exitCode = SpringApplication.exit(context, () -> 1);
+		if (Objects.isNull(audience) || audience.isEmpty()) {
+			exitWithMissingEnv(context, "AUTH0_AUDIENCE");
+		}
+	}
 
-        log.error("[Fatal] Missing or empty environment variable: {}", env);
-        System.exit(exitCode);
-    }
+	private static void exitWithMissingEnv(final ConfigurableApplicationContext context, final String env) {
+		final var exitCode = SpringApplication.exit(context, () -> 1);
 
-    @Bean(destroyMethod = "shutdown")
-    RedissonClient redisson() throws IOException {
-        Config config = Config.fromYAML(new File("src/main/resources/redisson.yaml"));
-        return Redisson.create(config);
-    }
+		log.error("[Fatal] Missing or empty environment variable: {}", env);
+		System.exit(exitCode);
+	}
 
-    @Bean
-    CacheManager cacheManager(RedissonClient redissonClient) {
-        Map<String, CacheConfig> config = new HashMap<>();
+	@Bean(destroyMethod = "shutdown")
+	RedissonClient redisson() throws IOException {
+		Config config = Config.fromYAML(new File("src/main/resources/redisson.yaml"));
+		return Redisson.create(config);
+	}
 
-        // Create custom cache with ttl = 10 minutes and maxIdleTime = 6 minutes
-        config.put("House", new CacheConfig(10 * 60 * 1000, 5 * 60 * 1000));
+	@Bean
+	CacheManager cacheManager(RedissonClient redissonClient) {
+		Map<String, CacheConfig> config = new HashMap<>();
 
-        // Queried House list caches max 1000 entries (dump by LRU)
-        CacheConfig filteredHousesConfig = new CacheConfig(10 * 60 * 1000, 5 * 60 * 1000);
-        filteredHousesConfig.setMaxSize(5);
-        config.put("FilteredHouses", filteredHousesConfig);
+		// Create custom cache with ttl = 10 minutes and maxIdleTime = 6 minutes
+		config.put("House", new CacheConfig(10 * 60 * 1000, 5 * 60 * 1000));
 
-        // House by price caches max 1000 entries (dump by LRU)
-        CacheConfig filteredHousesByPriceBetweenConfig = new CacheConfig(10 * 60 * 1000, 5 * 60 * 1000);
-        filteredHousesByPriceBetweenConfig.setMaxSize(5);
-        config.put("FilteredHousesByPriceBetween", filteredHousesByPriceBetweenConfig);
+		// Queried House list caches max 1000 entries (dump by LRU)
+		CacheConfig filteredHousesConfig = new CacheConfig(10 * 60 * 1000, 5 * 60 * 1000);
+		filteredHousesConfig.setMaxSize(5);
+		config.put("FilteredHouses", filteredHousesConfig);
 
-        return new RedissonSpringCacheManager(redissonClient, config);
-    }
+		// House by price caches max 1000 entries (dump by LRU)
+		CacheConfig filteredHousesByPriceBetweenConfig = new CacheConfig(10 * 60 * 1000, 5 * 60 * 1000);
+		filteredHousesByPriceBetweenConfig.setMaxSize(5);
+		config.put("FilteredHousesByPriceBetween", filteredHousesByPriceBetweenConfig);
+
+		return new RedissonSpringCacheManager(redissonClient, config);
+	}
 }

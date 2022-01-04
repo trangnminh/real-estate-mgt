@@ -25,9 +25,6 @@ public class HouseService {
     private static final ContentType IMAGE_JPEG = ContentType.IMAGE_JPEG;
 
     @Autowired
-    private final FileStore fileStore;
-
-    @Autowired
     private final HouseRepository houseRepository;
 
     @Autowired
@@ -36,14 +33,14 @@ public class HouseService {
     @Autowired
     private final RentalService rentalService;
 
-    public HouseService(FileStore fileStore,
-                        HouseRepository houseRepository,
-                        AdminService adminService,
-                        RentalService rentalService) {
-        this.fileStore = fileStore;
+    @Autowired
+    private final FileStore fileStore;
+
+    public HouseService(HouseRepository houseRepository, AdminService adminService, RentalService rentalService, FileStore fileStore) {
         this.houseRepository = houseRepository;
         this.adminService = adminService;
         this.rentalService = rentalService;
+        this.fileStore = fileStore;
     }
 
     // Find houses matching by name, description or address
@@ -215,7 +212,7 @@ public class HouseService {
 
         // Upload more images in a folder
         if (files.length != 0) {
-            String imageFolder = "";
+            String imageFolder;
             if (oldHouse.getImage().size() == 0) {
                 imageFolder = UUID.randomUUID().toString();
             } else {

@@ -6,7 +6,9 @@ import eeet2582.realestatemgt.model.Deposit;
 import eeet2582.realestatemgt.model.House;
 import eeet2582.realestatemgt.model.Meeting;
 import eeet2582.realestatemgt.repository.DepositRepository;
+import eeet2582.realestatemgt.repository.HouseRepository;
 import eeet2582.realestatemgt.repository.MeetingRepository;
+import eeet2582.realestatemgt.repository.UserRepository;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,36 +40,27 @@ public class AdminService {
     private final MeetingRepository meetingRepository;
 
     @Autowired
-    private final JavaMailSender mailSender;
-
-    @Autowired
     private final DepositRepository depositRepository;
 
-    private UserService userService;
-    private HouseService houseService;
+    @Autowired
+    private final UserRepository userRepository;
 
-    public AdminService(DepositRepository depositRepository, MeetingRepository meetingRepository, JavaMailSender mailSender) {
-        this.depositRepository = depositRepository;
+    @Autowired
+    private final HouseRepository houseRepository;
+
+    @Autowired
+    private final JavaMailSender mailSender;
+
+    public AdminService(MeetingRepository meetingRepository,
+                        DepositRepository depositRepository,
+                        UserRepository userRepository,
+                        HouseRepository houseRepository,
+                        JavaMailSender mailSender) {
         this.meetingRepository = meetingRepository;
+        this.depositRepository = depositRepository;
+        this.userRepository = userRepository;
+        this.houseRepository = houseRepository;
         this.mailSender = mailSender;
-    }
-
-    public UserService getUserService() {
-        return userService;
-    }
-
-    @Autowired
-    public void setUserService(UserService userService) {
-        this.userService = userService;
-    }
-
-    public HouseService getHouseService() {
-        return houseService;
-    }
-
-    @Autowired
-    public void setHouseService(HouseService houseService) {
-        this.houseService = houseService;
     }
 
     // --- DEPOSIT --- //
@@ -214,33 +207,35 @@ public class AdminService {
     }
 
     // Create the email body for meeting reminder
-    public String createEmailBody(@NotNull LocalTime time, @NotNull LocalDate date, @NotNull UserHouse userHouse) {
-        AppUser user = userService.getUserById(userHouse.getUserId());
-        House house = houseService.getHouseById(userHouse.getHouseId());
-
+    public String createEmailBody(@NotNull LocalDate date,
+                                  @NotNull LocalTime time,
+                                  @NotNull String userFullName,
+                                  @NotNull String houseName,
+                                  @NotNull String houseAddress) {
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String dateString = date.format(dateFormat);
         DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH:mm");
         String timeString = time.format(timeFormat);
 
-        return "Dear " + user.getFullName() + ",\n\n" +
+        return "Dear " + userFullName + ",\n\n" +
                 "We are writing to confirm your meeting for House " +
-                "[" + house.getName() + "]" +
+                "[" + houseName + "]" +
                 " on " + dateString + " at " + timeString + ".\n" +
-                "Please be present at address [" + house.getAddress() + "] 10 minutes prior to the meeting time.\n" +
+                "Please be present at address [" + houseAddress + "] 10 minutes prior to the meeting time.\n" +
                 "Let us know if you wish to make any changes.\n\n" +
                 "Kind regards,\n" + "Real Estate Agency";
     }
 
     @KafkaListener(topics = "meeting", groupId = "email_group")
     public void sendSimpleEmail(@NotNull Meeting meeting) {
-        AppUser user = userService.getUserById(meeting.getUserHouse().getUserId());
-        House house = houseService.getHouseById(meeting.getUserHouse().getHouseId());
+        AppUser user = userRepository.getById(meeting.getUserHouse().getUserId());
+        House house = houseRepository.getById(meeting.getUserHouse().getHouseId());
 
         SimpleMailMessage sendMessage = new SimpleMailMessage();
         sendMessage.setFrom(SENDER_MAIL);
         sendMessage.setTo(user.getEmail());
-        sendMessage.setText(createEmailBody(meeting.getTime(), meeting.getDate(), meeting.getUserHouse()));
+        sendMessage.setText(createEmailBody(meeting.getDate(), meeting.getTime(),
+                user.getFullName(), house.getName(), house.getAddress()));
         sendMessage.setSubject("[HOUSE MEETING] " + meeting.getDate() + " " + meeting.getTime());
         mailSender.send(sendMessage);
     }
