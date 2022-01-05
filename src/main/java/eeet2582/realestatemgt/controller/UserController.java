@@ -27,6 +27,7 @@ ADMIN CAN:
 
 @RestController
 @RequestMapping("api/v1/users")
+@CrossOrigin(origins = "*")
 public class UserController {
 
     private final UserService userService;

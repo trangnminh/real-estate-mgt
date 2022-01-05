@@ -5,23 +5,30 @@ import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+import lombok.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.ConstructorBinding;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
-@Configuration
+@ConstructorBinding
+@ConfigurationProperties(prefix = "aws")
+@Value
 public class AmazonConfig {
-    private final String awsAccessKey = "abc";
-    private final String awsSecretKey = "xyz";
-    private final String awsRegion = "ap-southeast-1";
+
+    String accessKey;
+
+    String secretKey;
+
+    String region;
 
     @Bean
     public AmazonS3 s3() {
         AWSCredentials awsCredentials = new BasicAWSCredentials(
-                awsAccessKey, awsSecretKey
+                accessKey, secretKey
         );
         return AmazonS3ClientBuilder
                 .standard()
-                .withRegion(awsRegion)
+                .withRegion(region)
                 .withCredentials(new AWSStaticCredentialsProvider(awsCredentials))
                 .build();
     }

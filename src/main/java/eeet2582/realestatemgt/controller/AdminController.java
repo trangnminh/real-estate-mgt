@@ -38,6 +38,7 @@ ADMIN CAN:
 
 @RestController
 @RequestMapping("api/v1")
+@CrossOrigin(origins = "*")
 public class AdminController {
 
     private static final String TOPIC = "meeting";

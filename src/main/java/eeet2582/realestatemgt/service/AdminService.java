@@ -230,7 +230,6 @@ public class AdminService {
     public void sendSimpleEmail(@NotNull Meeting meeting) {
         AppUser user = userRepository.getById(meeting.getUserHouse().getUserId());
         House house = houseRepository.getById(meeting.getUserHouse().getHouseId());
-
         SimpleMailMessage sendMessage = new SimpleMailMessage();
         sendMessage.setFrom(SENDER_MAIL);
         sendMessage.setTo(user.getEmail());
