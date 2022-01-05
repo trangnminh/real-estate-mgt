@@ -29,23 +29,34 @@ const statusList = ["available", "reserved", "rented"];
 #### By Price Range
 - Search by params `low` and `high` (if not provided, default to 100K and 300K)
 - Default sort and order is "price" descending (most expensive first)
+
 > localhost:8080/api/v1/houses/search/byPriceBetween?pageNo=1&pageSize=20&low=199000&high=200000&sortBy=price&orderBy=desc
 
 #### By Query
+
 - Search by params `query` (match name, address and description), default is empty (match all)
 - Default sort and order is "name" ascending (alphabetical order)
+
 > localhost:8080/api/v1/houses/search?pageNo=1&query=Sunt ullamco labore&sortBy=name&orderBy=asc
 
 ## Changelogs
 
+### 05/01/2022 (Phuong)
+
+- Fix admin authentication, change .env file
+- Added CORS in each controller
+
 ### 05/01/2022 (Trang)
+
 - Fix out of bound errors for House pagination
 
 ### 02/01/2022 (Phuong)
+
 - Finished Oauth2 using Auth0 and comment out all controllers endpoint
 - Go to front-end repository to get access token key
 - `Bugs`: Post Users endpoint --> don't test this
 - Add separate `POST` and `PUT` requests using `requestBody` except for class `Meeting`
+
 ### 27/12/2021 (Trang)
 
 - All emails are now sent from *eeet2582.realestatemgt@gmail.com*
