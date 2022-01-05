@@ -75,7 +75,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   private @NotNull JwtAuthenticationConverter makePermissionsConverter() {
     final var jwtAuthoritiesConverter = new JwtGrantedAuthoritiesConverter();
     jwtAuthoritiesConverter.setAuthoritiesClaimName("permissions");
-    jwtAuthoritiesConverter.setAuthorityPrefix("ROLE_");
+    jwtAuthoritiesConverter.setAuthorityPrefix("");
 
     final var jwtAuthConverter = new JwtAuthenticationConverter();
     jwtAuthConverter.setJwtGrantedAuthoritiesConverter(jwtAuthoritiesConverter);
