@@ -45,7 +45,7 @@ const statusList = ["available", "reserved", "rented"];
 
 - Implement new cleaner Kafka version for serializer
 - Add AWS key configuration
-- application.yaml is changed, get it through
+- application.yaml and back-end.env are changed, get it through
   here: https://docs.google.com/document/d/1LAGecNNdEr2tOjjm9eEe6AdkPSyLVQckuLSNnFtcTkQ/edit?usp=sharing
 
 ### 05/01/2022 (Phuong)
