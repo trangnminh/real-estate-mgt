@@ -4,6 +4,7 @@ import eeet2582.realestatemgt.config.ApplicationProperties;
 import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.OAuth2ResourceServerProperties;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -16,6 +17,11 @@ import org.springframework.security.oauth2.core.OAuth2TokenValidatorResult;
 import org.springframework.security.oauth2.jwt.*;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
 import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.List;
 
 @Configuration
 @RequiredArgsConstructor
@@ -28,10 +34,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   private final ApplicationProperties applicationProps;
 
+
+
   @Override
   protected void configure(final @NotNull HttpSecurity http) throws Exception {
     http.authorizeRequests()
-            .antMatchers(HttpMethod.GET, "/api/v1/users/**").authenticated()
+            .antMatchers(HttpMethod.GET,"/api/v1/users/**").authenticated()
             .antMatchers(HttpMethod.PUT, "/api/v1/users").authenticated()
             .antMatchers(HttpMethod.DELETE, "/api/v1/users/**").authenticated()
             .antMatchers(HttpMethod.POST, "/api/v1/houses").authenticated()
@@ -44,11 +52,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .and()
             .cors()
             .and()
+            .csrf().disable()
             .oauth2ResourceServer()
             .authenticationEntryPoint(authenticationErrorHandler)
             .jwt()
             .decoder(makeJwtDecoder())
             .jwtAuthenticationConverter(makePermissionsConverter());
+  }
+
+  @Bean
+  CorsConfigurationSource corsConfigurationSource() {
+    CorsConfiguration configuration = new CorsConfiguration();
+    configuration.setAllowedMethods(List.of(
+            HttpMethod.GET.name(),
+            HttpMethod.PUT.name(),
+            HttpMethod.POST.name(),
+            HttpMethod.DELETE.name()
+    ));
+
+    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    source.registerCorsConfiguration("/**", configuration.applyPermitDefaultValues());
+    return source;
   }
 
   private @NotNull JwtDecoder makeJwtDecoder() {
