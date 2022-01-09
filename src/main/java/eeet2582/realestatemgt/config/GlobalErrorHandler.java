@@ -13,21 +13,21 @@ import javax.servlet.http.HttpServletRequest;
 @RestControllerAdvice
 public class GlobalErrorHandler {
 
-  @ResponseStatus(HttpStatus.NOT_FOUND)
-  @ExceptionHandler(NoHandlerFoundException.class)
-  public ErrorMessage handleNotFound(final HttpServletRequest request, final Exception error) {
-    return ErrorMessage.from("Request not found!");
-  }
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(NoHandlerFoundException.class)
+    public ErrorMessage handleNotFound(final HttpServletRequest request, final Exception error) {
+        return ErrorMessage.from("Request not found!");
+    }
 
-  @ResponseStatus(HttpStatus.FORBIDDEN)
-  @ExceptionHandler(AccessDeniedException.class)
-  public ErrorMessage handleAccessDenied(final HttpServletRequest request, final Exception error) {
-    return ErrorMessage.from("Forbidden. %s".formatted(error.getMessage()));
-  }
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    @ExceptionHandler(AccessDeniedException.class)
+    public ErrorMessage handleAccessDenied(final HttpServletRequest request, final Exception error) {
+        return ErrorMessage.from("Forbidden. %s".formatted(error.getMessage()));
+    }
 
-  @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-  @ExceptionHandler(Throwable.class)
-  public ErrorMessage handleInternalError(final HttpServletRequest request, final Exception error) {
-    return ErrorMessage.from(error.getMessage());
-  }
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(Throwable.class)
+    public ErrorMessage handleInternalError(final HttpServletRequest request, final Exception error) {
+        return ErrorMessage.from(error.getMessage());
+    }
 }

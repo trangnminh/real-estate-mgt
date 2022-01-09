@@ -65,7 +65,7 @@ public class UserService {
 
     public void addNewUser(AppUser user) {
         // Do input checking here
-        if (userRepository.findById(user.getUserId()).isEmpty()){
+        if (userRepository.findById(user.getUserId()).isEmpty()) {
             // Save the cleaned user
             userRepository.save(user);
         }
@@ -99,5 +99,4 @@ public class UserService {
         // Finally, delete the user
         userRepository.delete(user);
     }
-
 }

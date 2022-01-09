@@ -28,83 +28,81 @@ import java.util.List;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-  private final AuthenticationErrorHandler authenticationErrorHandler;
+    private final AuthenticationErrorHandler authenticationErrorHandler;
 
-  private final OAuth2ResourceServerProperties resourceServerProps;
+    private final OAuth2ResourceServerProperties resourceServerProps;
 
-  private final ApplicationProperties applicationProps;
+    private final ApplicationProperties applicationProps;
 
+    @Override
+    protected void configure(final @NotNull HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+                .antMatchers(HttpMethod.GET, "/api/v1/users/**").authenticated()
+                .antMatchers(HttpMethod.POST, "/api/v1/users").authenticated()
+                .antMatchers(HttpMethod.PUT, "/api/v1/users").authenticated()
+                .antMatchers(HttpMethod.DELETE, "/api/v1/users/**").authenticated()
+                .antMatchers(HttpMethod.POST, "/api/v1/houses").authenticated()
+                .antMatchers(HttpMethod.PUT, "/api/v1/houses/**").authenticated()
+                .antMatchers(HttpMethod.DELETE, "/api/v1/houses").authenticated()
+                .antMatchers("/api/v1/deposits/**").authenticated()
+                .antMatchers("/api/v1/meetings/**").authenticated()
+                .antMatchers("/api/v1/rentals/**").authenticated()
+                .antMatchers("/api/v1/payments/**").authenticated()
+                .and()
+                .cors()
+                .and()
+                .csrf().disable()
+                .oauth2ResourceServer()
+                .authenticationEntryPoint(authenticationErrorHandler)
+                .jwt()
+                .decoder(makeJwtDecoder())
+                .jwtAuthenticationConverter(makePermissionsConverter());
+    }
 
+    @Bean
+    CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedMethods(List.of(
+                HttpMethod.GET.name(),
+                HttpMethod.PUT.name(),
+                HttpMethod.POST.name(),
+                HttpMethod.DELETE.name()
+        ));
 
-  @Override
-  protected void configure(final @NotNull HttpSecurity http) throws Exception {
-    http.authorizeRequests()
-            .antMatchers(HttpMethod.GET,"/api/v1/users/**").authenticated()
-            .antMatchers(HttpMethod.POST,"/api/v1/users").authenticated()
-            .antMatchers(HttpMethod.PUT, "/api/v1/users").authenticated()
-            .antMatchers(HttpMethod.DELETE, "/api/v1/users/**").authenticated()
-            .antMatchers(HttpMethod.POST, "/api/v1/houses").authenticated()
-            .antMatchers(HttpMethod.PUT, "/api/v1/houses/**").authenticated()
-            .antMatchers(HttpMethod.DELETE, "/api/v1/houses").authenticated()
-            .antMatchers("/api/v1/deposits/**").authenticated()
-            .antMatchers("/api/v1/meetings/**").authenticated()
-            .antMatchers("/api/v1/rentals/**").authenticated()
-            .antMatchers("/api/v1/payments/**").authenticated()
-            .and()
-            .cors()
-            .and()
-            .csrf().disable()
-            .oauth2ResourceServer()
-            .authenticationEntryPoint(authenticationErrorHandler)
-            .jwt()
-            .decoder(makeJwtDecoder())
-            .jwtAuthenticationConverter(makePermissionsConverter());
-  }
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration.applyPermitDefaultValues());
+        return source;
+    }
 
-  @Bean
-  CorsConfigurationSource corsConfigurationSource() {
-    CorsConfiguration configuration = new CorsConfiguration();
-    configuration.setAllowedMethods(List.of(
-            HttpMethod.GET.name(),
-            HttpMethod.PUT.name(),
-            HttpMethod.POST.name(),
-            HttpMethod.DELETE.name()
-    ));
+    private @NotNull JwtDecoder makeJwtDecoder() {
+        final var issuer = resourceServerProps.getJwt().getIssuerUri();
+        final var decoder = JwtDecoders.<NimbusJwtDecoder>fromIssuerLocation(issuer);
+        final var withIssuer = JwtValidators.createDefaultWithIssuer(issuer);
+        final var tokenValidator = new DelegatingOAuth2TokenValidator<>(withIssuer, this::withAudience);
+        decoder.setJwtValidator(tokenValidator);
+        return decoder;
+    }
 
-    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-    source.registerCorsConfiguration("/**", configuration.applyPermitDefaultValues());
-    return source;
-  }
+    private OAuth2TokenValidatorResult withAudience(final @NotNull Jwt token) {
+        final var audienceError = new OAuth2Error(
+                OAuth2ErrorCodes.INVALID_TOKEN,
+                "The token was not issued for the given audience",
+                "https://datatracker.ietf.org/doc/html/rfc6750#section-3.1"
+        );
 
-  private @NotNull JwtDecoder makeJwtDecoder() {
-    final var issuer = resourceServerProps.getJwt().getIssuerUri();
-    final var decoder = JwtDecoders.<NimbusJwtDecoder>fromIssuerLocation(issuer);
-    final var withIssuer = JwtValidators.createDefaultWithIssuer(issuer);
-    final var tokenValidator = new DelegatingOAuth2TokenValidator<>(withIssuer, this::withAudience);
-    decoder.setJwtValidator(tokenValidator);
-    return decoder;
-  }
+        return token.getAudience().contains(applicationProps.getAudience())
+                ? OAuth2TokenValidatorResult.success()
+                : OAuth2TokenValidatorResult.failure(audienceError);
+    }
 
-  private OAuth2TokenValidatorResult withAudience(final @NotNull Jwt token) {
-    final var audienceError = new OAuth2Error(
-            OAuth2ErrorCodes.INVALID_TOKEN,
-            "The token was not issued for the given audience",
-            "https://datatracker.ietf.org/doc/html/rfc6750#section-3.1"
-    );
+    private @NotNull JwtAuthenticationConverter makePermissionsConverter() {
+        final var jwtAuthoritiesConverter = new JwtGrantedAuthoritiesConverter();
+        jwtAuthoritiesConverter.setAuthoritiesClaimName("permissions");
+        jwtAuthoritiesConverter.setAuthorityPrefix("");
 
-    return token.getAudience().contains(applicationProps.getAudience())
-            ? OAuth2TokenValidatorResult.success()
-            : OAuth2TokenValidatorResult.failure(audienceError);
-  }
+        final var jwtAuthConverter = new JwtAuthenticationConverter();
+        jwtAuthConverter.setJwtGrantedAuthoritiesConverter(jwtAuthoritiesConverter);
 
-  private @NotNull JwtAuthenticationConverter makePermissionsConverter() {
-    final var jwtAuthoritiesConverter = new JwtGrantedAuthoritiesConverter();
-    jwtAuthoritiesConverter.setAuthoritiesClaimName("permissions");
-    jwtAuthoritiesConverter.setAuthorityPrefix("");
-
-    final var jwtAuthConverter = new JwtAuthenticationConverter();
-    jwtAuthConverter.setJwtGrantedAuthoritiesConverter(jwtAuthoritiesConverter);
-
-    return jwtAuthConverter;
-  }
+        return jwtAuthConverter;
+    }
 }

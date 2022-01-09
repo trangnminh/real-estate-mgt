@@ -8,7 +8,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -25,7 +25,23 @@ public class Deposit {
     private UserHouse userHouse;
 
     private Double amount;
-    private LocalDate date;
-    private LocalTime time;
+    private String date;
+    private String time;
     private String note;
+
+    public Deposit(Long userId, Long houseId, Double amount) {
+        this.userHouse = new UserHouse(userId, houseId);
+        this.amount = amount;
+        this.date = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        this.time = LocalDate.now().format(DateTimeFormatter.ofPattern("HH:mm"));
+        this.note = "";
+    }
+
+    public Deposit(Long userId, Long houseId, Double amount, String date, String time, String note) {
+        this.userHouse = new UserHouse(userId, houseId);
+        this.amount = amount;
+        this.date = date;
+        this.time = time;
+        this.note = note;
+    }
 }

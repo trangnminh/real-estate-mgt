@@ -23,9 +23,6 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Objects;
 
@@ -121,15 +118,15 @@ public class AdminService {
             oldDeposit.setAmount(newDeposit.getAmount());
         }
 
-        if (newDeposit.getDate() != null && oldDeposit.getDate().compareTo(newDeposit.getDate()) != 0) {
+        if (newDeposit.getDate() != null && !oldDeposit.getDate().equals(newDeposit.getDate())) {
             oldDeposit.setDate(newDeposit.getDate());
         }
 
-        if (newDeposit.getTime() != null && oldDeposit.getTime().compareTo(newDeposit.getTime()) != 0) {
+        if (newDeposit.getTime() != null && !oldDeposit.getTime().equals(newDeposit.getTime())) {
             oldDeposit.setTime(newDeposit.getTime());
         }
 
-        if (newDeposit.getNote() != null && newDeposit.getNote().length() > 0 && !Objects.equals(newDeposit.getNote(), oldDeposit.getNote())) {
+        if (!newDeposit.getNote().isEmpty() && !oldDeposit.getNote().equals(newDeposit.getNote())) {
             oldDeposit.setNote(newDeposit.getNote());
         }
     }
@@ -191,8 +188,8 @@ public class AdminService {
 
         // Save the cleaned item
         meeting.setUserHouse(new UserHouse(userId, houseId));
-        meeting.setDate(LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-        meeting.setTime(LocalTime.parse(time, DateTimeFormatter.ofPattern("HH:mm")));
+        meeting.setDate(date);
+        meeting.setTime(time);
         meeting.setNote(note);
         return meeting;
     }
@@ -207,20 +204,15 @@ public class AdminService {
     }
 
     // Create the email body for meeting reminder
-    public String createEmailBody(@NotNull LocalDate date,
-                                  @NotNull LocalTime time,
+    public String createEmailBody(@NotNull String date,
+                                  @NotNull String time,
                                   @NotNull String userFullName,
                                   @NotNull String houseName,
                                   @NotNull String houseAddress) {
-        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        String dateString = date.format(dateFormat);
-        DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH:mm");
-        String timeString = time.format(timeFormat);
-
         return "Dear " + userFullName + ",\n\n" +
                 "We are writing to confirm your meeting for House " +
                 "[" + houseName + "]" +
-                " on " + dateString + " at " + timeString + ".\n" +
+                " on " + date + " at " + time + ".\n" +
                 "Please be present at address [" + houseAddress + "] 10 minutes prior to the meeting time.\n" +
                 "Let us know if you wish to make any changes.\n\n" +
                 "Kind regards,\n" + "Real Estate Agency";

@@ -11,14 +11,14 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @RequiredArgsConstructor
 public class ApplicationConfig implements WebMvcConfigurer {
 
-  private final ApplicationProperties applicationProps;
+    private final ApplicationProperties applicationProps;
 
-  @Override
-  public void addCorsMappings(final CorsRegistry registry) {
-    registry.addMapping("/**")
-            .allowedOrigins(applicationProps.getClientOriginUrl())
-            .allowedHeaders(HttpHeaders.AUTHORIZATION, HttpHeaders.CONTENT_TYPE)
-            .allowedMethods(HttpMethod.GET.name())
-            .maxAge(86400);
-  }
+    @Override
+    public void addCorsMappings(final CorsRegistry registry) {
+        registry.addMapping("/**")
+                .allowedOrigins(applicationProps.getClientOriginUrl())
+                .allowedHeaders(HttpHeaders.AUTHORIZATION, HttpHeaders.CONTENT_TYPE)
+                .allowedMethods(HttpMethod.GET.name())
+                .maxAge(86400);
+    }
 }
