@@ -10,8 +10,8 @@ import java.util.Optional;
 @Repository
 public interface UserRepository extends JpaRepository<AppUser, Long> {
 
-    @Query("select case when (user.userId=?1) then true else false end from AppUser user")
-    boolean checkIfIdMatch(Long userId);
+    @Query("select sum(case when (user.userId=?1) then 1 else 0 end) from AppUser user")
+    int checkIfIdMatch(Long userId);
 
     @Query("select user.userId from AppUser user where user.auth0Id=?1")
     Long checkAuthUserFound(Long auth0Id);
