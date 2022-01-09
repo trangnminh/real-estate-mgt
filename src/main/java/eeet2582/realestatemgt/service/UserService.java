@@ -65,9 +65,10 @@ public class UserService {
 
     public void addNewUser(AppUser user) {
         // Do input checking here
-
-        // Save the cleaned user
-        userRepository.save(user);
+        if (userRepository.findById(user.getUserId()).isEmpty()){
+            // Save the cleaned user
+            userRepository.save(user);
+        }
     }
 
     // Transactional means "all or nothing", if the transaction fails midway nothing is saved
