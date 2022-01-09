@@ -4,6 +4,8 @@ import eeet2582.realestatemgt.helper.UserHouse;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -20,11 +22,12 @@ public class Meeting {
     @Embedded
     private UserHouse userHouse;
 
-    private String date;
-    private String time;
+    private LocalDate date;
+    private LocalTime time;
     private String note;
 
-    public Meeting(UserHouse userHouse, String date, String time, String note) {
+    // For reading from JSON file
+    public Meeting(UserHouse userHouse, LocalDate date, LocalTime time, String note) {
         this.userHouse = userHouse;
         this.date = date;
         this.time = time;

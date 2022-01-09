@@ -23,6 +23,9 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Objects;
 
@@ -118,7 +121,7 @@ public class AdminService {
             oldDeposit.setAmount(newDeposit.getAmount());
         }
 
-        if (newDeposit.getDate() != null && !oldDeposit.getDate().equals(newDeposit.getDate())) {
+        if (newDeposit.getDate() != null && !oldDeposit.getDate().isEqual(newDeposit.getDate())) {
             oldDeposit.setDate(newDeposit.getDate());
         }
 
@@ -126,7 +129,7 @@ public class AdminService {
             oldDeposit.setTime(newDeposit.getTime());
         }
 
-        if (!newDeposit.getNote().isEmpty() && !oldDeposit.getNote().equals(newDeposit.getNote())) {
+        if (newDeposit.getNote() != null && !newDeposit.getNote().isBlank() && !oldDeposit.getNote().equals(newDeposit.getNote())) {
             oldDeposit.setNote(newDeposit.getNote());
         }
     }
@@ -188,8 +191,8 @@ public class AdminService {
 
         // Save the cleaned item
         meeting.setUserHouse(new UserHouse(userId, houseId));
-        meeting.setDate(date);
-        meeting.setTime(time);
+        meeting.setDate(LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+        meeting.setTime(LocalTime.parse(time, DateTimeFormatter.ofPattern("HH:mm")));
         meeting.setNote(note);
         return meeting;
     }
@@ -222,12 +225,16 @@ public class AdminService {
     public void sendSimpleEmail(@NotNull Meeting meeting) {
         AppUser user = userRepository.getById(meeting.getUserHouse().getUserId());
         House house = houseRepository.getById(meeting.getUserHouse().getHouseId());
+
         SimpleMailMessage sendMessage = new SimpleMailMessage();
         sendMessage.setFrom(SENDER_MAIL);
         sendMessage.setTo(user.getEmail());
-        sendMessage.setText(createEmailBody(meeting.getDate(), meeting.getTime(),
-                user.getFullName(), house.getName(), house.getAddress()));
-        sendMessage.setSubject("[HOUSE MEETING] " + meeting.getDate() + " " + meeting.getTime());
+
+        String dateString = meeting.getDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        String timeString = meeting.getTime().format(DateTimeFormatter.ofPattern("HH:mm"));
+
+        sendMessage.setText(createEmailBody(dateString, timeString, user.getFullName(), house.getName(), house.getAddress()));
+        sendMessage.setSubject("[HOUSE MEETING] " + dateString + " " + timeString);
         mailSender.send(sendMessage);
     }
 

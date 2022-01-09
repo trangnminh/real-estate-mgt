@@ -65,8 +65,7 @@ public class House implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof House)) return false;
-        House house = (House) o;
+        if (!(o instanceof House house)) return false;
         return Objects.equals(houseId, house.houseId) && Objects.equals(name, house.name) && Objects.equals(price, house.price) && Objects.equals(description, house.description) && Objects.equals(address, house.address) && Objects.equals(longitude, house.longitude) && Objects.equals(latitude, house.latitude) && Objects.equals(image, house.image) && Objects.equals(type, house.type) && Objects.equals(numberOfBeds, house.numberOfBeds) && Objects.equals(squareFeet, house.squareFeet) && Objects.equals(status, house.status);
     }
 
