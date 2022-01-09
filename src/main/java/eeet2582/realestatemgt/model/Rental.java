@@ -9,7 +9,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.List;
 
 @NoArgsConstructor
@@ -26,8 +25,8 @@ public class Rental implements Serializable {
     @Embedded
     private UserHouse userHouse;
 
-    private LocalDate startDate;
-    private LocalDate endDate;
+    private String startDate;
+    private String endDate;
     private Double depositAmount;
     private Double monthlyFee;
     private Double payableFee;
@@ -35,4 +34,13 @@ public class Rental implements Serializable {
     @OneToMany(orphanRemoval = true, mappedBy = "rental", fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Payment> paymentList;
+
+    public Rental(Long userId, Long houseId, String startDate, String endDate, Double depositAmount, Double monthlyFee, Double payableFee) {
+        this.userHouse = new UserHouse(userId, houseId);
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.depositAmount = depositAmount;
+        this.monthlyFee = monthlyFee;
+        this.payableFee = payableFee;
+    }
 }

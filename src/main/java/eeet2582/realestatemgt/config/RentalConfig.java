@@ -4,8 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import eeet2582.realestatemgt.helper.IdToRentalParser;
-import eeet2582.realestatemgt.helper.StringToDateParser;
-import eeet2582.realestatemgt.helper.StringToTimeParser;
 import eeet2582.realestatemgt.model.Payment;
 import eeet2582.realestatemgt.model.Rental;
 import eeet2582.realestatemgt.repository.PaymentRepository;
@@ -18,8 +16,6 @@ import java.io.Reader;
 import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 
 // Add Rental and Payment objects from file
@@ -31,18 +27,11 @@ public class RentalConfig {
         return args -> {
             try {
                 if (rentalRepository.count() == 0 | paymentRepository.count() == 0) {
-                    StringToDateParser stringToDateParser = new StringToDateParser();
-                    StringToTimeParser stringToTimeParser = new StringToTimeParser();
-
                     // First read rentals
                     Reader rentalReader = Files.newBufferedReader(Paths.get("src/main/java/eeet2582/realestatemgt/data/rental.json"));
                     Type rentalType = new TypeToken<List<Rental>>() {
                     }.getType();
                     GsonBuilder rentalBuilder = new GsonBuilder();
-
-                    rentalBuilder.registerTypeAdapter(LocalDate.class, stringToDateParser);
-                    rentalBuilder.registerTypeAdapter(LocalTime.class, stringToTimeParser);
-
                     Gson rentalGson = rentalBuilder.create();
                     List<Rental> rentals = rentalGson.fromJson(rentalReader, rentalType);
 
@@ -53,11 +42,7 @@ public class RentalConfig {
                     Type paymentType = new TypeToken<List<Payment>>() {
                     }.getType();
                     GsonBuilder paymentBuilder = new GsonBuilder();
-
-                    paymentBuilder.registerTypeAdapter(LocalDate.class, stringToDateParser);
-                    paymentBuilder.registerTypeAdapter(LocalTime.class, stringToTimeParser);
                     paymentBuilder.registerTypeAdapter(Rental.class, new IdToRentalParser(rentalRepository));
-
                     Gson paymentGson = paymentBuilder.create();
                     List<Payment> payments = paymentGson.fromJson(paymentReader, paymentType);
 
