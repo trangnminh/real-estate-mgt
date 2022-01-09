@@ -58,17 +58,25 @@ public class UserService {
 
     // Get one by ID, try to reuse the exception
     public AppUser getUserById(Long userId) {
+        if(!userRepository.checkIfIdMatch(userId)) { // if user logged in with Google or Facebook
+            return userRepository.findAppUserByAuth0Id(userId).orElseThrow(() -> new IllegalStateException("User with userId=" + userId + " does not exist!"));
+        }
         return userRepository
-                .findById(userId)
-                .orElseThrow(() -> new IllegalStateException("User with userId=" + userId + " does not exist!"));
+            .findById(userId)
+            .orElseThrow(() -> new IllegalStateException("User with userId=" + userId + " does not exist!"));
     }
 
     public void addNewUser(AppUser user) {
         // Do input checking here
-        if (userRepository.findById(user.getUserId()).isEmpty()) {
+        if(user.getAuth0Id() != null && userRepository.checkAuthUserFound(user.getAuth0Id()) == null){
             // Save the cleaned user
             userRepository.save(user);
         }
+
+        else if (user.getAuth0Id() == null){
+            userRepository.save(user);
+        }
+
     }
 
     // Transactional means "all or nothing", if the transaction fails midway nothing is saved
@@ -99,4 +107,5 @@ public class UserService {
         // Finally, delete the user
         userRepository.delete(user);
     }
+
 }
