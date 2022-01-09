@@ -44,6 +44,7 @@ const statusList = ["available", "reserved", "rented"];
 ### 09/01/2022 (Phuong)
 - Fixed Post request in default HTTP security
 - Change query params in update and post in class `UserController`
+- remove `Generated.IDENTITY` in `USER` class
 
 ### 06/01/2022 (Phuong)
 

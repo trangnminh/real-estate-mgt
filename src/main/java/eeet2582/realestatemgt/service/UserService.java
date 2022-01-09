@@ -63,11 +63,11 @@ public class UserService {
                 .orElseThrow(() -> new IllegalStateException("User with userId=" + userId + " does not exist!"));
     }
 
-    public void addNewUser(AppUser newUser) {
+    public void addNewUser(AppUser user) {
         // Do input checking here
 
         // Save the cleaned user
-        userRepository.save(newUser);
+        userRepository.save(user);
     }
 
     // Transactional means "all or nothing", if the transaction fails midway nothing is saved

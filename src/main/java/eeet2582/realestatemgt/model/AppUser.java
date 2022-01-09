@@ -19,7 +19,7 @@ import java.time.LocalDate;
 public class AppUser {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
 
     private String fullName;
@@ -27,16 +27,19 @@ public class AppUser {
     private String phoneNumber;
     private LocalDate dob;
     private String gender;
+    private String password;
 
     public AppUser(String fullName,
                    String email,
                    String phoneNumber,
                    LocalDate dob,
-                   String gender) {
+                   String gender,
+                   String password) {
         this.fullName = fullName;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.dob = dob;
         this.gender = gender;
+        this.password = password;
     }
 }
