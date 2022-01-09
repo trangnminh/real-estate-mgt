@@ -100,65 +100,65 @@ public class HouseService {
 
     // Update house by multiple attributes
     @Transactional
-    public String updateHouseById(Long houseId, @NotNull House house) {
+    public String updateHouseById(Long houseId, @NotNull House newHouse) {
         House oldHouse = getHouseById(houseId);
 
-        if (house.getName() != null && !Objects.equals(oldHouse.getName(), house.getName())) {
-            oldHouse.setName(house.getName());
+        if (newHouse.getName() != null && !newHouse.getName().isBlank() && !oldHouse.getName().equals(newHouse.getName())) {
+            oldHouse.setName(newHouse.getName());
         }
 
-        if (house.getPrice() != null && !Objects.equals(oldHouse.getPrice(), house.getPrice())) {
-            oldHouse.setPrice(house.getPrice());
+        if (newHouse.getPrice() != null && !Objects.equals(oldHouse.getPrice(), newHouse.getPrice())) {
+            oldHouse.setPrice(newHouse.getPrice());
         }
 
-        if (house.getDescription() != null && house.getDescription().length() > 0 && !Objects.equals(oldHouse.getDescription(), house.getDescription())) {
-            oldHouse.setDescription(house.getDescription());
+        if (newHouse.getDescription() != null && !newHouse.getDescription().isBlank() && !oldHouse.getDescription().equals(newHouse.getDescription())) {
+            oldHouse.setDescription(newHouse.getDescription());
         }
 
-        if (house.getAddress() != null && house.getAddress().length() > 0 && !Objects.equals(oldHouse.getAddress(), house.getAddress())) {
-            oldHouse.setAddress(house.getAddress());
+        if (newHouse.getAddress() != null && !newHouse.getAddress().isBlank() && !oldHouse.getAddress().equals(newHouse.getAddress())) {
+            oldHouse.setAddress(newHouse.getAddress());
         }
 
-        if (house.getLongitude() != null) {
-            oldHouse.setLongitude(house.getLongitude());
+        if (newHouse.getLongitude() != null && !Objects.equals(oldHouse.getLongitude(), newHouse.getLongitude())) {
+            oldHouse.setLongitude(newHouse.getLongitude());
         }
 
-        if (house.getLatitude() != null) {
-            oldHouse.setLatitude(house.getLatitude());
+        if (newHouse.getLatitude() != null && !Objects.equals(oldHouse.getLatitude(), newHouse.getLatitude())) {
+            oldHouse.setLatitude(newHouse.getLatitude());
+        }
+
+        if (newHouse.getType() != null && !newHouse.getType().isBlank() && !oldHouse.getType().equals(newHouse.getType())) {
+            oldHouse.setType(newHouse.getType());
+        }
+
+        if (newHouse.getNumberOfBeds() != null && !Objects.equals(oldHouse.getNumberOfBeds(), newHouse.getNumberOfBeds())) {
+            oldHouse.setNumberOfBeds(newHouse.getNumberOfBeds());
+        }
+
+        if (newHouse.getSquareFeet() != null && !Objects.equals(oldHouse.getSquareFeet(), newHouse.getSquareFeet())) {
+            oldHouse.setSquareFeet(newHouse.getSquareFeet());
+        }
+
+        if (newHouse.getStatus() != null && !newHouse.getStatus().isBlank() && !oldHouse.getStatus().equals(newHouse.getStatus())) {
+            oldHouse.setStatus(newHouse.getStatus());
         }
 
         // Delete one or multiple images in a folder
-        if (house.getImage().size() != 0) {
+        if (newHouse.getImage().size() != 0) {
             List<String> imagePath = new ArrayList<>();
-            List<String> newImageURL = house.getImage();
+            List<String> newImageURL = newHouse.getImage();
             List<String> oldImageURL = oldHouse.getImage();
 
             if (oldImageURL.size() == 0) {
                 return "Image list is empty!";
             }
 
-            for (String path : house.getImage()) {
+            for (String path : newHouse.getImage()) {
                 imagePath.add(path.substring(path.indexOf("com/") + 4));
             }
             fileStore.deletePicturesInFolder(imagePath);
             oldImageURL.removeAll(newImageURL);
             oldHouse.setImage(oldImageURL);
-        }
-
-        if (house.getType() != null && house.getType().length() > 0 && !Objects.equals(oldHouse.getType(), house.getType())) {
-            oldHouse.setType(house.getType());
-        }
-
-        if (house.getNumberOfBeds() != null) {
-            oldHouse.setNumberOfBeds(house.getNumberOfBeds());
-        }
-
-        if (house.getSquareFeet() != null) {
-            oldHouse.setSquareFeet(house.getSquareFeet());
-        }
-
-        if (house.getStatus() != null && !Objects.equals(oldHouse.getStatus(), house.getStatus())) {
-            oldHouse.setStatus(house.getStatus());
         }
         return "House updated successfully!";
     }

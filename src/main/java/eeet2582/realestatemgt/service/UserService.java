@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Objects;
 
 // UserService only wires UserRepository, everything else is handled by child services
 @Service
@@ -58,22 +57,20 @@ public class UserService {
 
     // Get one by ID, try to reuse the exception
     public AppUser getUserById(Long userId) {
-        if(userRepository.checkIfIdMatch(userId) != 1) { // if user logged in with Google or Facebook
+        if (userRepository.checkIfIdMatch(userId) != 1) { // if user logged in with Google or Facebook
             return userRepository.findAppUserByAuth0Id(userId).orElseThrow(() -> new IllegalStateException("User with userId=" + userId + " does not exist!"));
         }
         return userRepository
-            .findById(userId)
-            .orElseThrow(() -> new IllegalStateException("User with userId=" + userId + " does not exist!"));
+                .findById(userId)
+                .orElseThrow(() -> new IllegalStateException("User with userId=" + userId + " does not exist!"));
     }
 
     public void addNewUser(AppUser user) {
         // Do input checking here
-        if(user.getAuth0Id() != null && userRepository.checkAuthUserFound(user.getAuth0Id()) == null){
+        if (user.getAuth0Id() != null && userRepository.checkAuthUserFound(user.getAuth0Id()) == null) {
             // Save the cleaned user
             userRepository.save(user);
-        }
-
-        else if (user.getAuth0Id() == null){
+        } else if (user.getAuth0Id() == null) {
             userRepository.save(user);
         }
 
@@ -84,13 +81,13 @@ public class UserService {
     public void updateUserById(Long userId, @NotNull AppUser newUser) {
         AppUser oldUser = getUserById(userId);
 
-        if (newUser.getPhoneNumber() != null && newUser.getPhoneNumber().length() > 0 && !Objects.equals(newUser.getPhoneNumber(), oldUser.getPhoneNumber())) {
+        if (newUser.getPhoneNumber() != null && !newUser.getPhoneNumber().isBlank() && !oldUser.getPhoneNumber().equals(newUser.getPhoneNumber())) {
             oldUser.setPhoneNumber(newUser.getPhoneNumber());
         }
-        if (newUser.getDob() != null && oldUser.getDob().compareTo(newUser.getDob()) != 0) {
+        if (newUser.getDob() != null && !oldUser.getDob().isEqual(newUser.getDob())) {
             oldUser.setDob(newUser.getDob());
         }
-        if (newUser.getGender() != null && newUser.getGender().length() > 0 && !Objects.equals(newUser.getGender(), oldUser.getGender())) {
+        if (newUser.getGender() != null && !newUser.getGender().isBlank() && !oldUser.getGender().equals(newUser.getGender())) {
             oldUser.setGender(newUser.getGender());
         }
     }
@@ -107,5 +104,4 @@ public class UserService {
         // Finally, delete the user
         userRepository.delete(user);
     }
-
 }
