@@ -104,13 +104,15 @@ public class AdminService {
         return depositRepository.getById(depositId);
     }
 
-    public void addNewDeposit(Deposit deposit) {
-        depositRepository.save(deposit);
+    // Add new one
+    public Deposit addNewDeposit(Deposit deposit) {
+        LOGGER.info("addNewDeposit: " + deposit.toString());
+        return depositRepository.save(deposit);
     }
 
     // Transactional means "all or nothing", if the transaction fails midway nothing is saved
     @Transactional
-    public void updateDepositById(Long depositId, @NotNull Deposit newDeposit) {
+    public Deposit updateDepositById(Long depositId, @NotNull Deposit newDeposit) {
         Deposit oldDeposit = getDepositById(depositId);
 
         if (newDeposit.getUserHouse().getHouseId() != null && newDeposit.getUserHouse().getUserId() != null) {
@@ -132,6 +134,8 @@ public class AdminService {
         if (newDeposit.getNote() != null && !newDeposit.getNote().isBlank() && !oldDeposit.getNote().equals(newDeposit.getNote())) {
             oldDeposit.setNote(newDeposit.getNote());
         }
+
+        return oldDeposit;
     }
 
     public void deleteDepositById(Long depositId) {

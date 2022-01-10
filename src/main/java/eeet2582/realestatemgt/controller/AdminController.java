@@ -42,7 +42,9 @@ ADMIN CAN:
 public class AdminController {
 
     private static final String TOPIC = "meeting";
+
     private final AdminService adminService;
+
     @Autowired
     private KafkaTemplate<String, Meeting> kafkaTemplate;
 
@@ -102,15 +104,15 @@ public class AdminController {
 
     // Add new deposit
     @PostMapping("/deposits")
-    public void addNewDeposit(@RequestBody Deposit deposit) {
-        adminService.addNewDeposit(deposit);
+    public Deposit addNewDeposit(@RequestBody Deposit deposit) {
+        return adminService.addNewDeposit(deposit);
     }
 
     // Update deposit by ID
     @PutMapping("/deposits/{depositId}")
     @PreAuthorize("hasAuthority('read:admin-messages')")
-    public void updateDepositById(@PathVariable(value = "depositId") Long depositId, @RequestBody Deposit deposit) {
-        adminService.updateDepositById(depositId, deposit);
+    public Deposit updateDepositById(@PathVariable(value = "depositId") Long depositId, @RequestBody Deposit deposit) {
+        return adminService.updateDepositById(depositId, deposit);
     }
 
     // Delete one by ID

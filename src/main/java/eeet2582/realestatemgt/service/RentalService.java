@@ -60,13 +60,13 @@ public class RentalService {
         return rentalRepository.findById(rentalId).orElseThrow(() -> new IllegalStateException("Rental with rentalId=" + rentalId + " does not exist!"));
     }
 
-    public void addNewRental(Rental rental) {
-        rentalRepository.save(rental);
+    public Rental addNewRental(Rental rental) {
+        return rentalRepository.save(rental);
     }
 
     // Transactional means "all or nothing", if the transaction fails midway nothing is saved
     @Transactional
-    public void updateRentalById(Long rentalId, @NotNull Rental newRental) {
+    public Rental updateRentalById(Long rentalId, @NotNull Rental newRental) {
         Rental oldRental = getRentalById(rentalId);
 
         if (newRental.getUserHouse().getHouseId() != null && newRental.getUserHouse().getUserId() != null) {
@@ -92,6 +92,8 @@ public class RentalService {
         if (newRental.getPayableFee() != null && !Objects.equals(newRental.getPayableFee(), oldRental.getPayableFee())) {
             oldRental.setPayableFee(newRental.getPayableFee());
         }
+
+        return oldRental;
     }
 
     @Transactional
@@ -144,16 +146,16 @@ public class RentalService {
     }
 
     @Transactional
-    public void addNewPaymentByRentalId(Long rentalId, @NotNull Payment payment) {
+    public Payment addNewPaymentByRentalId(Long rentalId, @NotNull Payment payment) {
         // Find the associated rental
         Rental rental = getRentalById(rentalId);
         payment.setRental(rental);
-        paymentRepository.save(payment);
+        return paymentRepository.save(payment);
     }
 
     // Transactional means "all or nothing", if the transaction fails midway nothing is saved
     @Transactional
-    public void updatePaymentById(Long paymentId, Payment newPayment) {
+    public Payment updatePaymentById(Long paymentId, Payment newPayment) {
         Payment oldPayment = getPaymentById(paymentId);
 
         // Do input checking here
@@ -172,6 +174,8 @@ public class RentalService {
         if (newPayment.getNote() != null && !newPayment.getNote().isBlank() && !oldPayment.getNote().equals(newPayment.getNote())) {
             oldPayment.setNote(newPayment.getNote());
         }
+
+        return oldPayment;
     }
 
     public void deletePaymentById(Long paymentId) {

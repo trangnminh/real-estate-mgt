@@ -97,15 +97,15 @@ public class RentalController {
 
     // Add one
     @PostMapping("/rentals")
-    public void addNewRental(@RequestBody Rental rental) {
-        rentalService.addNewRental(rental);
+    public Rental addNewRental(@RequestBody Rental rental) {
+        return rentalService.addNewRental(rental);
     }
 
     // Update one by ID
     @PutMapping("/rentals/{rentalId}")
     @PreAuthorize("hasAuthority('read:admin-messages')")
-    public void updateRentalById(@PathVariable(value = "rentalId") Long rentalId, @RequestBody Rental rental) {
-        rentalService.updateRentalById(rentalId, rental);
+    public Rental updateRentalById(@PathVariable(value = "rentalId") Long rentalId, @RequestBody Rental rental) {
+        return rentalService.updateRentalById(rentalId, rental);
     }
 
     // Delete one by ID
@@ -154,15 +154,15 @@ public class RentalController {
 
     // Add new Payment by Rental (MUST HAVE rentalId)
     @PostMapping("/payments/byRental/{rentalId}")
-    public void addNewPaymentByRentalId(@PathVariable(value = "rentalId") Long rentalId, @RequestBody Payment payment) {
-        rentalService.addNewPaymentByRentalId(rentalId, payment);
+    public Payment addNewPaymentByRentalId(@PathVariable(value = "rentalId") Long rentalId, @RequestBody Payment payment) {
+        return rentalService.addNewPaymentByRentalId(rentalId, payment);
     }
 
-    // Update one by ID (MUST HAVE rentalId)
-    @PutMapping("/payments/byRental/{rentalId}/{paymentId}")
+    // Update one by ID
+    @PutMapping("/payments/{paymentId}")
     @PreAuthorize("hasAuthority('read:admin-messages')")
-    public void updatePaymentById(@PathVariable(value = "paymentId") Long paymentId, @RequestBody Payment payment) {
-        rentalService.updatePaymentById(paymentId, payment);
+    public Payment updatePaymentById(@PathVariable(value = "paymentId") Long paymentId, @RequestBody Payment payment) {
+        return rentalService.updatePaymentById(paymentId, payment);
     }
 
     // Delete one by ID
