@@ -1,20 +1,17 @@
 package eeet2582.realestatemgt.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
+@ToString
 @Entity
 public class Payment implements Serializable {
 
@@ -31,20 +28,11 @@ public class Payment implements Serializable {
     private LocalTime time;
     private String note;
 
-    // For reading from JSON file
     public Payment(Rental rental, Double amount, LocalDate date, LocalTime time, String note) {
         this.rental = rental;
         this.amount = amount;
         this.date = date;
         this.time = time;
-        this.note = note;
-    }
-
-    // Using only primitives
-    public Payment(Double amount, String date, String time, String note) {
-        this.amount = amount;
-        this.date = LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        this.time = LocalTime.parse(time, DateTimeFormatter.ofPattern("HH:mm"));
         this.note = note;
     }
 }

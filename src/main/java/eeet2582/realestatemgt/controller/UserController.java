@@ -64,14 +64,14 @@ public class UserController {
 
     // Add new user
     @PostMapping("")
-    public void addNewUser(@RequestBody AppUser user) {
-        userService.addNewUser(user);
+    public AppUser addNewUser(@RequestBody AppUser user) {
+        return userService.addNewUser(user);
     }
 
     // Update user by id
     @PutMapping("/{userId}")
-    public void updateUserById(@PathVariable(value = "userId") Long userId, @RequestBody AppUser user) {
-        userService.updateUserById(userId, user);
+    public AppUser updateUserById(@PathVariable(value = "userId") Long userId, @RequestBody AppUser user) {
+        return userService.updateUserById(userId, user);
     }
 
     // Delete user by ID

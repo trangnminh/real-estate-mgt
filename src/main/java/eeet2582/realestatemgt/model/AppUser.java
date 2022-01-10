@@ -1,9 +1,6 @@
 package eeet2582.realestatemgt.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,6 +12,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Getter
 @Setter
+@ToString
 @Entity
 public class AppUser {
 
@@ -22,27 +20,22 @@ public class AppUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
 
+    private Long auth0Id;
+
     private String fullName;
     private String email;
     private String phoneNumber;
     private LocalDate dob;
     private String gender;
     private String password;
-    private Long auth0Id;
 
-    public AppUser(String fullName,
-                   String email,
-                   String phoneNumber,
-                   LocalDate dob,
-                   String gender,
-                   String password,
-                   Long auth0Id) {
+    public AppUser(Long auth0Id, String fullName, String email, String phoneNumber, LocalDate dob, String gender, String password) {
+        this.auth0Id = auth0Id;
         this.fullName = fullName;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.dob = dob;
         this.gender = gender;
         this.password = password;
-        this.auth0Id = auth0Id;
     }
 }
