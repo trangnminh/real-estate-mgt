@@ -9,6 +9,6 @@ import org.springframework.boot.context.properties.ConstructorBinding;
 @ConfigurationProperties(prefix = "application")
 public class ApplicationProperties {
 
-  String clientOriginUrl;
-  String audience;
+    String clientOriginUrl;
+    String audience;
 }

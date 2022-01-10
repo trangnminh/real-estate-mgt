@@ -73,11 +73,11 @@ public class RentalService {
             oldRental.setUserHouse(new UserHouse(newRental.getUserHouse().getUserId(), newRental.getUserHouse().getHouseId()));
         }
 
-        if (newRental.getStartDate() != null && oldRental.getStartDate().compareTo(newRental.getStartDate()) != 0) {
+        if (newRental.getStartDate() != null && !oldRental.getStartDate().isEqual(newRental.getStartDate())) {
             oldRental.setStartDate(newRental.getStartDate());
         }
 
-        if (newRental.getEndDate() != null && oldRental.getEndDate().compareTo(newRental.getEndDate()) != 0) {
+        if (newRental.getEndDate() != null && !oldRental.getEndDate().isEqual(newRental.getEndDate())) {
             oldRental.setEndDate(newRental.getEndDate());
         }
 
@@ -161,15 +161,15 @@ public class RentalService {
             oldPayment.setAmount(newPayment.getAmount());
         }
 
-        if (newPayment.getDate() != null && oldPayment.getDate().compareTo(newPayment.getDate()) != 0) {
+        if (newPayment.getDate() != null && !oldPayment.getDate().isEqual(newPayment.getDate())) {
             oldPayment.setDate(newPayment.getDate());
         }
 
-        if (newPayment.getTime() != null && oldPayment.getTime().compareTo(newPayment.getTime()) != 0) {
+        if (newPayment.getTime() != null && !oldPayment.getTime().equals(newPayment.getTime())) {
             oldPayment.setTime(newPayment.getTime());
         }
 
-        if (newPayment.getNote() != null && newPayment.getNote().length() > 0 && !Objects.equals(newPayment.getNote(), oldPayment.getNote())) {
+        if (newPayment.getNote() != null && !newPayment.getNote().isBlank() && !oldPayment.getNote().equals(newPayment.getNote())) {
             oldPayment.setNote(newPayment.getNote());
         }
     }

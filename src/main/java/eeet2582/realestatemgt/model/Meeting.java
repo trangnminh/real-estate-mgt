@@ -26,6 +26,7 @@ public class Meeting {
     private LocalTime time;
     private String note;
 
+    // For reading from JSON file
     public Meeting(UserHouse userHouse, LocalDate date, LocalTime time, String note) {
         this.userHouse = userHouse;
         this.date = date;

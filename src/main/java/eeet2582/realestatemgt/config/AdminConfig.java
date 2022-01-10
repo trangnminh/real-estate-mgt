@@ -37,8 +37,8 @@ public class AdminConfig {
                     Reader depositReader = Files.newBufferedReader(Paths.get("src/main/java/eeet2582/realestatemgt/data/deposit.json"));
                     Type depositType = new TypeToken<List<Deposit>>() {
                     }.getType();
-                    GsonBuilder depositBuilder = new GsonBuilder();
 
+                    GsonBuilder depositBuilder = new GsonBuilder();
                     depositBuilder.registerTypeAdapter(LocalDate.class, stringToDateParser);
                     depositBuilder.registerTypeAdapter(LocalTime.class, stringToTimeParser);
 
@@ -53,8 +53,8 @@ public class AdminConfig {
                     Reader meetingReader = Files.newBufferedReader(Paths.get("src/main/java/eeet2582/realestatemgt/data/meeting.json"));
                     Type meetingType = new TypeToken<List<Meeting>>() {
                     }.getType();
-                    GsonBuilder meetingBuilder = new GsonBuilder();
 
+                    GsonBuilder meetingBuilder = new GsonBuilder();
                     meetingBuilder.registerTypeAdapter(LocalDate.class, stringToDateParser);
                     meetingBuilder.registerTypeAdapter(LocalTime.class, stringToTimeParser);
 

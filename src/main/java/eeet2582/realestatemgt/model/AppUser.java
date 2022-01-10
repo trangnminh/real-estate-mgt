@@ -27,16 +27,22 @@ public class AppUser {
     private String phoneNumber;
     private LocalDate dob;
     private String gender;
+    private String password;
+    private Long auth0Id;
 
     public AppUser(String fullName,
                    String email,
                    String phoneNumber,
                    LocalDate dob,
-                   String gender) {
+                   String gender,
+                   String password,
+                   Long auth0Id) {
         this.fullName = fullName;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.dob = dob;
         this.gender = gender;
+        this.password = password;
+        this.auth0Id = auth0Id;
     }
 }

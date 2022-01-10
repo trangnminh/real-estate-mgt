@@ -30,16 +30,16 @@ public class RentalConfig {
     CommandLineRunner rentalRunner(RentalRepository rentalRepository, PaymentRepository paymentRepository) {
         return args -> {
             try {
-                if (rentalRepository.count() == 0 | paymentRepository.count() == 0) {
-                    StringToDateParser stringToDateParser = new StringToDateParser();
-                    StringToTimeParser stringToTimeParser = new StringToTimeParser();
+                StringToDateParser stringToDateParser = new StringToDateParser();
+                StringToTimeParser stringToTimeParser = new StringToTimeParser();
 
+                if (rentalRepository.count() == 0 | paymentRepository.count() == 0) {
                     // First read rentals
                     Reader rentalReader = Files.newBufferedReader(Paths.get("src/main/java/eeet2582/realestatemgt/data/rental.json"));
                     Type rentalType = new TypeToken<List<Rental>>() {
                     }.getType();
-                    GsonBuilder rentalBuilder = new GsonBuilder();
 
+                    GsonBuilder rentalBuilder = new GsonBuilder();
                     rentalBuilder.registerTypeAdapter(LocalDate.class, stringToDateParser);
                     rentalBuilder.registerTypeAdapter(LocalTime.class, stringToTimeParser);
 
@@ -52,8 +52,8 @@ public class RentalConfig {
                     Reader paymentReader = Files.newBufferedReader(Paths.get("src/main/java/eeet2582/realestatemgt/data/payment.json"));
                     Type paymentType = new TypeToken<List<Payment>>() {
                     }.getType();
-                    GsonBuilder paymentBuilder = new GsonBuilder();
 
+                    GsonBuilder paymentBuilder = new GsonBuilder();
                     paymentBuilder.registerTypeAdapter(LocalDate.class, stringToDateParser);
                     paymentBuilder.registerTypeAdapter(LocalTime.class, stringToTimeParser);
                     paymentBuilder.registerTypeAdapter(Rental.class, new IdToRentalParser(rentalRepository));

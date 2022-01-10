@@ -106,10 +106,10 @@ public class AdminController {
         adminService.addNewDeposit(deposit);
     }
 
-    // Update deposit by id
+    // Update deposit by ID
     @PutMapping("/deposits/{depositId}")
     @PreAuthorize("hasAuthority('read:admin-messages')")
-    public void updateUserById(@PathVariable(value = "depositId") Long depositId, @RequestBody Deposit deposit) {
+    public void updateDepositById(@PathVariable(value = "depositId") Long depositId, @RequestBody Deposit deposit) {
         adminService.updateDepositById(depositId, deposit);
     }
 

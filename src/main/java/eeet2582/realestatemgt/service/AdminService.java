@@ -121,15 +121,15 @@ public class AdminService {
             oldDeposit.setAmount(newDeposit.getAmount());
         }
 
-        if (newDeposit.getDate() != null && oldDeposit.getDate().compareTo(newDeposit.getDate()) != 0) {
+        if (newDeposit.getDate() != null && !oldDeposit.getDate().isEqual(newDeposit.getDate())) {
             oldDeposit.setDate(newDeposit.getDate());
         }
 
-        if (newDeposit.getTime() != null && oldDeposit.getTime().compareTo(newDeposit.getTime()) != 0) {
+        if (newDeposit.getTime() != null && !oldDeposit.getTime().equals(newDeposit.getTime())) {
             oldDeposit.setTime(newDeposit.getTime());
         }
 
-        if (newDeposit.getNote() != null && newDeposit.getNote().length() > 0 && !Objects.equals(newDeposit.getNote(), oldDeposit.getNote())) {
+        if (newDeposit.getNote() != null && !newDeposit.getNote().isBlank() && !oldDeposit.getNote().equals(newDeposit.getNote())) {
             oldDeposit.setNote(newDeposit.getNote());
         }
     }
@@ -207,20 +207,15 @@ public class AdminService {
     }
 
     // Create the email body for meeting reminder
-    public String createEmailBody(@NotNull LocalDate date,
-                                  @NotNull LocalTime time,
+    public String createEmailBody(@NotNull String date,
+                                  @NotNull String time,
                                   @NotNull String userFullName,
                                   @NotNull String houseName,
                                   @NotNull String houseAddress) {
-        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        String dateString = date.format(dateFormat);
-        DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH:mm");
-        String timeString = time.format(timeFormat);
-
         return "Dear " + userFullName + ",\n\n" +
                 "We are writing to confirm your meeting for House " +
                 "[" + houseName + "]" +
-                " on " + dateString + " at " + timeString + ".\n" +
+                " on " + date + " at " + time + ".\n" +
                 "Please be present at address [" + houseAddress + "] 10 minutes prior to the meeting time.\n" +
                 "Let us know if you wish to make any changes.\n\n" +
                 "Kind regards,\n" + "Real Estate Agency";
@@ -230,12 +225,16 @@ public class AdminService {
     public void sendSimpleEmail(@NotNull Meeting meeting) {
         AppUser user = userRepository.getById(meeting.getUserHouse().getUserId());
         House house = houseRepository.getById(meeting.getUserHouse().getHouseId());
+
         SimpleMailMessage sendMessage = new SimpleMailMessage();
         sendMessage.setFrom(SENDER_MAIL);
         sendMessage.setTo(user.getEmail());
-        sendMessage.setText(createEmailBody(meeting.getDate(), meeting.getTime(),
-                user.getFullName(), house.getName(), house.getAddress()));
-        sendMessage.setSubject("[HOUSE MEETING] " + meeting.getDate() + " " + meeting.getTime());
+
+        String dateString = meeting.getDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        String timeString = meeting.getTime().format(DateTimeFormatter.ofPattern("HH:mm"));
+
+        sendMessage.setText(createEmailBody(dateString, timeString, user.getFullName(), house.getName(), house.getAddress()));
+        sendMessage.setSubject("[HOUSE MEETING] " + dateString + " " + timeString);
         mailSender.send(sendMessage);
     }
 
