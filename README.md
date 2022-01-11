@@ -41,6 +41,11 @@ const statusList = ["available", "reserved", "rented"];
 
 ## Changelogs
 
+### 11/01/2022 (Phuong)
+- Change auth0Id method to find respective userId in the database
+- Change `delete House` and `addHouseImage`
+- Bugs: Update House
+
 ### 09/01/2022 (Phuong)
 - Fixed Post request in default HTTP security
 - Change query params in update and post in class `UserController`

@@ -15,6 +15,4 @@ public interface UserRepository extends JpaRepository<AppUser, Long> {
 
     @Query("select user.userId from AppUser user where user.auth0Id=?1")
     Long checkAuthUserFound(Long auth0Id);
-
-    Optional<AppUser> findAppUserByAuth0Id(Long userId);
 }

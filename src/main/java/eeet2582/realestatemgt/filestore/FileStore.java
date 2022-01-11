@@ -2,9 +2,7 @@ package eeet2582.realestatemgt.filestore;
 
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.model.DeleteObjectRequest;
-import com.amazonaws.services.s3.model.ObjectMetadata;
-import com.amazonaws.services.s3.model.S3ObjectSummary;
+import com.amazonaws.services.s3.model.*;
 import eeet2582.realestatemgt.bucket.BucketName;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,41 +26,41 @@ public class FileStore {
                        @NotNull List<Optional<Map<String, String>>> optionalMetaDataList,
                        InputStream inputStream) {
         ObjectMetadata objectMetadata = new ObjectMetadata();
-        optionalMetaDataList.forEach(optionalMetaData -> {
-            optionalMetaData.ifPresent(stringStringMap ->
-            {
-                if (!stringStringMap.isEmpty()) {
-                    stringStringMap.forEach(objectMetadata::addUserMetadata);
-                    objectMetadata.setContentLength(Long.parseLong(stringStringMap.get("Content-Length")));
-                }
-            });
-        });
+        optionalMetaDataList.forEach(optionalMetaData -> optionalMetaData.ifPresent(stringStringMap ->
+        {
+            if (!stringStringMap.isEmpty()) {
+                stringStringMap.forEach(objectMetadata::addUserMetadata);
+                objectMetadata.setContentLength(Long.parseLong(stringStringMap.get("Content-Length")));
+            }
+        }));
 
         try {
             s3.putObject(path, fileName, inputStream, objectMetadata);
         } catch (AmazonServiceException e) {
-            throw new IllegalStateException("Failed to store file to s3", e);
+            throw new IllegalStateException("Failed to store file to s3, Error: "+ e.getMessage());
         }
     }
 
     public String delete(String path) {
         try {
-            for (S3ObjectSummary file : s3.listObjects(BucketName.HOUSE_IMAGE.getBucketName(), "dataset/" + path + "/").getObjectSummaries()) {
+            for (S3ObjectSummary file : s3.listObjects(BucketName.HOUSE_IMAGE.getBucketName(), path).getObjectSummaries()) {
                 s3.deleteObject(new DeleteObjectRequest(BucketName.HOUSE_IMAGE.getBucketName(), file.getKey()));
             }
             return "successfully deleted";
         } catch (AmazonServiceException e) {
-            throw new IllegalStateException("Error: " + e.getErrorMessage());
+            throw new IllegalStateException("Error: " + e.getMessage());
         }
     }
 
-    public void deletePicturesInFolder(List<String> image) {
+    public void deletePicturesInFolder(List<String> imagePath) {
         try {
-            for (String imageFile : image) {
-                s3.deleteObject(new DeleteObjectRequest(BucketName.HOUSE_IMAGE.getBucketName(), imageFile));
+            System.out.println(imagePath.get(0).substring(imagePath.get(0).indexOf("et/")+3));
+            System.out.println(imagePath.get(0));
+            for (String imageFile: imagePath){
+                s3.deleteObject(new DeleteObjectRequest(BucketName.HOUSE_IMAGE.getBucketName(), "/"+imageFile));
             }
         } catch (AmazonServiceException e) {
-            throw new IllegalStateException("Error: " + e.getErrorMessage());
+            throw new IllegalStateException("Error: " + e.getMessage());
         }
     }
 }

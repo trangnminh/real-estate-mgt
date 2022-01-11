@@ -58,7 +58,9 @@ public class UserService {
     // Get one by ID, try to reuse the exception
     public AppUser getUserById(Long userId) {
         if (userRepository.checkIfIdMatch(userId) != 1) { // if user logged in with Google or Facebook
-            return userRepository.findAppUserByAuth0Id(userId).orElseThrow(() -> new IllegalStateException("User with userId=" + userId + " does not exist!"));
+            // convert auth0Id user to simpler userId in database
+            Long userIdByAuth0Id = userRepository.checkAuthUserFound(userId);
+            return userRepository.findById(userIdByAuth0Id).orElseThrow(() -> new IllegalStateException("User with userId=" + userIdByAuth0Id + " does not exist!"));
         }
         return userRepository
                 .findById(userId)
