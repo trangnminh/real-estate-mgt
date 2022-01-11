@@ -1,6 +1,7 @@
 package eeet2582.realestatemgt.filestore;
 
 import com.amazonaws.AmazonServiceException;
+import com.amazonaws.services.clouddirectory.model.DeleteObjectResult;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.*;
 import eeet2582.realestatemgt.bucket.BucketName;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -43,8 +45,8 @@ public class FileStore {
 
     public String delete(String path) {
         try {
-            for (S3ObjectSummary file : s3.listObjects(BucketName.HOUSE_IMAGE.getBucketName(), path).getObjectSummaries()) {
-                s3.deleteObject(new DeleteObjectRequest(BucketName.HOUSE_IMAGE.getBucketName(), file.getKey()));
+            for (S3ObjectSummary file : s3.listObjects(BucketName.HOUSE_IMAGE.getBucketName(), "/dataset/"+path).getObjectSummaries()){
+                s3.deleteObject(new DeleteObjectRequest(BucketName.HOUSE_IMAGE.getBucketName(),file.getKey()));
             }
             return "successfully deleted";
         } catch (AmazonServiceException e) {
@@ -54,13 +56,11 @@ public class FileStore {
 
     public void deletePicturesInFolder(List<String> imagePath) {
         try {
-            System.out.println(imagePath.get(0).substring(imagePath.get(0).indexOf("et/")+3));
-            System.out.println(imagePath.get(0));
             for (String imageFile: imagePath){
-                s3.deleteObject(new DeleteObjectRequest(BucketName.HOUSE_IMAGE.getBucketName(), "/"+imageFile));
+                s3.deleteObject(new DeleteObjectRequest(BucketName.HOUSE_IMAGE.getBucketName(), imageFile));
             }
         } catch (AmazonServiceException e) {
-            throw new IllegalStateException("Error: " + e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
 }

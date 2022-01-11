@@ -146,6 +146,7 @@ public class HouseService {
         // Delete one or multiple images in a folder
         if (newHouse.getImage().size() != 0) {
             List<String> imagePath = new ArrayList<>();
+
             List<String> newImageURL = newHouse.getImage();
             List<String> oldImageURL = oldHouse.getImage();
 
@@ -153,13 +154,13 @@ public class HouseService {
                 throw new IllegalStateException("Image list is empty!");
             }
 
-            for (String path : newHouse.getImage()) {
+            oldImageURL.removeAll(newImageURL);
+            for (String path : oldImageURL) {
                 imagePath.add(path.substring(path.indexOf("com/") + 4));
             }
 
             fileStore.deletePicturesInFolder(imagePath);
-            oldImageURL.removeAll(newImageURL);
-            oldHouse.setImage(oldImageURL);
+            oldHouse.setImage(newImageURL);
         }
     }
 
@@ -233,8 +234,6 @@ public class HouseService {
         rentalService.deleteRentalsByHouseId(houseId);
         String path = houseObj.getImage().get(0).substring(houseObj.getImage().get(0).indexOf("t/") + 2, houseObj.getImage().get(0).lastIndexOf("/"));
 
-        System.out.println(houseObj.getName());
-        System.out.println(path);
         String key = fileStore.delete(path);
         houseRepository.deleteById(houseId);
         return key;

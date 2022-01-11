@@ -40,6 +40,9 @@ const statusList = ["available", "reserved", "rented"];
 > localhost:8080/api/v1/houses/search?pageNo=1&query=Sunt ullamco labore&sortBy=name&orderBy=asc
 
 ## Changelogs
+### 12/01/2022 (Phuong)
+- S3 delete does not work, only posting image to s3 works, error exception handled
+- Change update house a little
 
 ### 11/01/2022 (Phuong)
 - Change auth0Id method to find respective userId in the database
