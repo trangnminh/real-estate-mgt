@@ -73,7 +73,7 @@ public class AdminService {
     public Page<Deposit> getFilteredDepositsAllOrByUserIdOrByHouseId(Long userId, Long houseId, int pageNo, int pageSize, String sortBy, String orderBy) {
         // convert auth0Id user to simpler userId in database
         Long auth0Id = userRepository.checkAuthUserFound(userId);
-        userId = auth0Id != null ? userId : auth0Id;
+        userId = auth0Id != null ? auth0Id : userId;
         Pageable pageable;
 
         if (orderBy.equals("asc")) {
@@ -146,7 +146,7 @@ public class AdminService {
     public void deleteDepositsByUserId(Long userId) {
         // convert auth0Id user to simpler userId in database
         Long auth0Id = userRepository.checkAuthUserFound(userId);
-        userId = auth0Id != null ? userId : auth0Id;
+        userId = auth0Id != null ? auth0Id : userId;
         depositRepository.deleteByUserHouse_UserId(userId);
     }
 
@@ -165,7 +165,7 @@ public class AdminService {
     public Page<Meeting> getFilteredMeetingsAllOrByUserIdOrByHouseId(Long userId, Long houseId, int pageNo, int pageSize, @NotNull String orderBy) {
         // convert auth0Id user to simpler userId in database
         Long auth0Id = userRepository.checkAuthUserFound(userId);
-        userId = auth0Id != null ? userId : auth0Id;
+        userId = auth0Id != null ? auth0Id : userId;
 
         Pageable pageable;
 
@@ -196,7 +196,7 @@ public class AdminService {
     public Meeting createMeetingTopic(Long meetingId, Long userId, Long houseId, String date, String time, String note) {
         // convert auth0Id user to simpler userId in database
         Long auth0Id = userRepository.checkAuthUserFound(userId);
-        userId = auth0Id != null ? userId : auth0Id;
+        userId = auth0Id != null ? auth0Id : userId;
 
         // If ID is provided, try to find the current item, else make new one
         Meeting meeting = (meetingId != null) ? getMeetingById(meetingId) : new Meeting();
@@ -261,7 +261,7 @@ public class AdminService {
     public void deleteMeetingsByUserId(Long userId) {
         // convert auth0Id user to simpler userId in database
         Long auth0Id = userRepository.checkAuthUserFound(userId);
-        userId = auth0Id != null ? userId : auth0Id;
+        userId = auth0Id != null ? auth0Id : userId;
         meetingRepository.deleteByUserHouse_UserId(userId);
     }
 

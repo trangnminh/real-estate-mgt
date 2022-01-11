@@ -45,7 +45,7 @@ public class RentalService {
     public Page<Rental> getFilteredRentalsAllOrByUserIdOrByHouseId(Long userId, Long houseId, int pageNo, int pageSize, String sortBy, String orderBy) {
         // convert auth0Id user to simpler userId in database
         Long auth0Id = userRepository.checkAuthUserFound(userId);
-        userId = auth0Id != null ? userId : auth0Id;
+        userId = auth0Id != null ? auth0Id : userId;
 
         Pageable pageable;
 
@@ -116,7 +116,7 @@ public class RentalService {
     public void deleteRentalsByUserId(Long userId) {
         // convert auth0Id user to simpler userId in database
         Long auth0Id = userRepository.checkAuthUserFound(userId);
-        userId = auth0Id != null ? userId : auth0Id;
+        userId = auth0Id != null ? auth0Id : userId;
         rentalRepository.deleteByUserHouse_UserId(userId);
     }
 
