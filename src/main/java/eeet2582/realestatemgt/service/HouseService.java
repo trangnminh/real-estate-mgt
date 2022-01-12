@@ -100,7 +100,7 @@ public class HouseService {
 
     // Update house by multiple attributes
     @Transactional
-    public String updateHouseById(Long houseId, @NotNull House newHouse) {
+    public void updateHouseById(Long houseId, @NotNull House newHouse) {
         House oldHouse = getHouseById(houseId);
 
         if (newHouse.getName() != null && !newHouse.getName().isBlank() && !oldHouse.getName().equals(newHouse.getName())) {
@@ -146,21 +146,22 @@ public class HouseService {
         // Delete one or multiple images in a folder
         if (newHouse.getImage().size() != 0) {
             List<String> imagePath = new ArrayList<>();
+
             List<String> newImageURL = newHouse.getImage();
             List<String> oldImageURL = oldHouse.getImage();
 
             if (oldImageURL.size() == 0) {
-                return "Image list is empty!";
+                throw new IllegalStateException("Image list is empty!");
             }
 
-            for (String path : newHouse.getImage()) {
+            oldImageURL.removeAll(newImageURL);
+            for (String path : oldImageURL) {
                 imagePath.add(path.substring(path.indexOf("com/") + 4));
             }
+
             fileStore.deletePicturesInFolder(imagePath);
-            oldImageURL.removeAll(newImageURL);
-            oldHouse.setImage(oldImageURL);
+            oldHouse.setImage(newImageURL);
         }
-        return "House updated successfully!";
     }
 
     public List<String> addImages(@NotNull MultipartFile[] files, String imageFolder) {
@@ -200,14 +201,14 @@ public class HouseService {
                 fileStore.upload(path, fileName, metadataList, file.getInputStream());
                 imageList.add("https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/" + imageFolderCopy + "/" + fileName);
             } catch (IOException e) {
-                e.printStackTrace();
+                throw new IllegalStateException("Error " + e.getMessage());
             }
         });
         return imageList;
     }
 
     @Transactional
-    public String addHouseImage(Long houseId, MultipartFile @NotNull [] files) {
+    public void addHouseImage(Long houseId, MultipartFile @NotNull [] files) {
         House oldHouse = getHouseById(houseId);
 
         // Upload more images in a folder
@@ -221,9 +222,7 @@ public class HouseService {
             List<String> imageList = oldHouse.getImage();
             imageList.addAll(addImages(files, imageFolder));
             oldHouse.setImage(imageList);
-            return "House images updated!";
         }
-        return "Please insert image files!";
     }
 
     public String deleteHouseById(Long houseId) {
@@ -233,8 +232,8 @@ public class HouseService {
         adminService.deleteDepositsByHouseId(houseId);
         adminService.deleteMeetingsByHouseId(houseId);
         rentalService.deleteRentalsByHouseId(houseId);
-
         String path = houseObj.getImage().get(0).substring(houseObj.getImage().get(0).indexOf("t/") + 2, houseObj.getImage().get(0).lastIndexOf("/"));
+
         String key = fileStore.delete(path);
         houseRepository.deleteById(houseId);
         return key;

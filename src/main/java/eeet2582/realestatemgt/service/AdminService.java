@@ -71,6 +71,9 @@ public class AdminService {
 
     // Return paginated payments of the provided user or house or just all payments
     public Page<Deposit> getFilteredDepositsAllOrByUserIdOrByHouseId(Long userId, Long houseId, int pageNo, int pageSize, String sortBy, String orderBy) {
+        // convert auth0Id user to simpler userId in database
+        Long auth0Id = userRepository.checkAuthUserFound(userId);
+        userId = auth0Id != null ? auth0Id : userId;
         Pageable pageable;
 
         if (orderBy.equals("asc")) {
@@ -145,6 +148,9 @@ public class AdminService {
 
     @Transactional
     public void deleteDepositsByUserId(Long userId) {
+        // convert auth0Id user to simpler userId in database
+        Long auth0Id = userRepository.checkAuthUserFound(userId);
+        userId = auth0Id != null ? auth0Id : userId;
         depositRepository.deleteByUserHouse_UserId(userId);
     }
 
@@ -161,6 +167,10 @@ public class AdminService {
 
     // Return paginated meetings of the provided user or house or just all meetings
     public Page<Meeting> getFilteredMeetingsAllOrByUserIdOrByHouseId(Long userId, Long houseId, int pageNo, int pageSize, @NotNull String orderBy) {
+        // convert auth0Id user to simpler userId in database
+        Long auth0Id = userRepository.checkAuthUserFound(userId);
+        userId = auth0Id != null ? auth0Id : userId;
+
         Pageable pageable;
 
         if (orderBy.equals("asc")) {
@@ -188,6 +198,10 @@ public class AdminService {
 
     // Create a new meeting or update one from params
     public Meeting createMeetingTopic(Long meetingId, Long userId, Long houseId, String date, String time, String note) {
+        // convert auth0Id user to simpler userId in database
+        Long auth0Id = userRepository.checkAuthUserFound(userId);
+        userId = auth0Id != null ? auth0Id : userId;
+
         // If ID is provided, try to find the current item, else make new one
         Meeting meeting = (meetingId != null) ? getMeetingById(meetingId) : new Meeting();
 
@@ -249,6 +263,9 @@ public class AdminService {
 
     @Transactional
     public void deleteMeetingsByUserId(Long userId) {
+        // convert auth0Id user to simpler userId in database
+        Long auth0Id = userRepository.checkAuthUserFound(userId);
+        userId = auth0Id != null ? auth0Id : userId;
         meetingRepository.deleteByUserHouse_UserId(userId);
     }
 

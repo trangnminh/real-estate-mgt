@@ -5,6 +5,7 @@ import eeet2582.realestatemgt.model.Payment;
 import eeet2582.realestatemgt.model.Rental;
 import eeet2582.realestatemgt.repository.PaymentRepository;
 import eeet2582.realestatemgt.repository.RentalRepository;
+import eeet2582.realestatemgt.repository.UserRepository;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -27,9 +28,13 @@ public class RentalService {
     @Autowired
     private final PaymentRepository paymentRepository;
 
-    public RentalService(RentalRepository rentalRepository, PaymentRepository paymentRepository) {
+    @Autowired
+    private final UserRepository userRepository;
+
+    public RentalService(RentalRepository rentalRepository, PaymentRepository paymentRepository, UserRepository userRepository) {
         this.rentalRepository = rentalRepository;
         this.paymentRepository = paymentRepository;
+        this.userRepository = userRepository;
     }
 
     public List<Rental> getAllRentals() {
@@ -38,6 +43,10 @@ public class RentalService {
 
     // Return paginated rentals
     public Page<Rental> getFilteredRentalsAllOrByUserIdOrByHouseId(Long userId, Long houseId, int pageNo, int pageSize, String sortBy, String orderBy) {
+        // convert auth0Id user to simpler userId in database
+        Long auth0Id = userRepository.checkAuthUserFound(userId);
+        userId = auth0Id != null ? auth0Id : userId;
+
         Pageable pageable;
 
         if (orderBy.equals("asc")) {
@@ -107,6 +116,9 @@ public class RentalService {
     // Delete all rentals having the same userId
     @Transactional
     public void deleteRentalsByUserId(Long userId) {
+        // convert auth0Id user to simpler userId in database
+        Long auth0Id = userRepository.checkAuthUserFound(userId);
+        userId = auth0Id != null ? auth0Id : userId;
         rentalRepository.deleteByUserHouse_UserId(userId);
     }
 

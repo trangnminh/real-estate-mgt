@@ -5,7 +5,6 @@ import eeet2582.realestatemgt.service.HouseService;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -135,10 +134,10 @@ public class HouseController {
 
     // Update one by ID
     @PutMapping("/{houseId}")
-    @CachePut(key = "#houseId", value = "House")
+    @CacheEvict(key = "#houseId", value = "House")
     @PreAuthorize("hasAuthority('read:admin-messages')")
-    public ResponseEntity<String> updateHouseById(@PathVariable("houseId") Long houseId, @RequestBody House house) {
-        return new ResponseEntity<>(houseService.updateHouseById(houseId, house), HttpStatus.OK);
+    public void updateHouseById(@PathVariable("houseId") Long houseId, @RequestBody House house) {
+        houseService.updateHouseById(houseId, house);
     }
 
     // Add more images to a house by ID
@@ -147,10 +146,10 @@ public class HouseController {
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    @CachePut(key = "#houseId", value = "House")
+    @CacheEvict(key = "#houseId", value = "House")
     @PreAuthorize("hasAuthority('read:admin-messages')")
-    public ResponseEntity<String> addHouseImage(@RequestParam("houseId") Long houseId, @RequestParam("files") MultipartFile[] file) {
-        return new ResponseEntity<>(houseService.addHouseImage(houseId, file), HttpStatus.OK);
+    public void addHouseImage(@RequestParam("houseId") Long houseId, @RequestParam("files") MultipartFile[] file) {
+        houseService.addHouseImage(houseId, file);
     }
 
     // Delete one by ID
