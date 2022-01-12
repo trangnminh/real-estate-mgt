@@ -67,20 +67,20 @@ public class UserService {
                 .orElseThrow(() -> new IllegalStateException("User with userId=" + userId + " does not exist!"));
     }
 
-    public void addNewUser(AppUser user) {
+    public AppUser addNewUser(AppUser user) {
         // Do input checking here
         if (user.getAuth0Id() != null && userRepository.checkAuthUserFound(user.getAuth0Id()) == null) {
             // Save the cleaned user
-            userRepository.save(user);
+            return userRepository.save(user);
         } else if (user.getAuth0Id() == null) {
-            userRepository.save(user);
+            return userRepository.save(user);
         }
-
+        return null;
     }
 
     // Transactional means "all or nothing", if the transaction fails midway nothing is saved
     @Transactional
-    public void updateUserById(Long userId, @NotNull AppUser newUser) {
+    public AppUser updateUserById(Long userId, @NotNull AppUser newUser) {
         AppUser oldUser = getUserById(userId);
 
         if (newUser.getPhoneNumber() != null && !newUser.getPhoneNumber().isBlank() && !oldUser.getPhoneNumber().equals(newUser.getPhoneNumber())) {
@@ -92,6 +92,8 @@ public class UserService {
         if (newUser.getGender() != null && !newUser.getGender().isBlank() && !oldUser.getGender().equals(newUser.getGender())) {
             oldUser.setGender(newUser.getGender());
         }
+
+        return oldUser;
     }
 
     @Transactional

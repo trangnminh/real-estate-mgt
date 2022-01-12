@@ -11,9 +11,9 @@ import java.util.Objects;
 @AllArgsConstructor
 @Getter
 @Setter
-@Entity
 @ToString
 @Builder
+@Entity
 public class House implements Serializable {
 
     @Id
