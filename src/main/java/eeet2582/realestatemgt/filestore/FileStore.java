@@ -1,16 +1,16 @@
 package eeet2582.realestatemgt.filestore;
 
 import com.amazonaws.AmazonServiceException;
-import com.amazonaws.services.clouddirectory.model.DeleteObjectResult;
 import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.model.*;
+import com.amazonaws.services.s3.model.DeleteObjectRequest;
+import com.amazonaws.services.s3.model.ObjectMetadata;
+import com.amazonaws.services.s3.model.S3ObjectSummary;
 import eeet2582.realestatemgt.bucket.BucketName;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -39,14 +39,14 @@ public class FileStore {
         try {
             s3.putObject(path, fileName, inputStream, objectMetadata);
         } catch (AmazonServiceException e) {
-            throw new IllegalStateException("Failed to store file to s3, Error: "+ e.getMessage());
+            throw new IllegalStateException("Failed to store file to s3, Error: " + e.getMessage());
         }
     }
 
     public String delete(String path) {
         try {
-            for (S3ObjectSummary file : s3.listObjects(BucketName.HOUSE_IMAGE.getBucketName(), "/dataset/"+path).getObjectSummaries()){
-                s3.deleteObject(new DeleteObjectRequest(BucketName.HOUSE_IMAGE.getBucketName(),file.getKey()));
+            for (S3ObjectSummary file : s3.listObjects(BucketName.HOUSE_IMAGE.getBucketName(), "/dataset/" + path).getObjectSummaries()) {
+                s3.deleteObject(new DeleteObjectRequest(BucketName.HOUSE_IMAGE.getBucketName(), file.getKey()));
             }
             return "successfully deleted";
         } catch (AmazonServiceException e) {
@@ -56,7 +56,7 @@ public class FileStore {
 
     public void deletePicturesInFolder(List<String> imagePath) {
         try {
-            for (String imageFile: imagePath){
+            for (String imageFile : imagePath) {
                 s3.deleteObject(new DeleteObjectRequest(BucketName.HOUSE_IMAGE.getBucketName(), imageFile));
             }
         } catch (AmazonServiceException e) {

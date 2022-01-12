@@ -43,17 +43,21 @@ const statusList = ["available", "reserved", "rented"];
 ### 13/01/2022 (Phuong)
 - Change `getFilteredPayments` to `get payments by userId`
 
+
 ### 12/01/2022 (Phuong)
+
 - S3 delete does not work, only posting image to s3 works, error exception handled
 - Change update house a little
 - Change kafka server value
 
 ### 11/01/2022 (Phuong)
+
 - Change auth0Id method to find respective userId in the database
 - Change `delete House` and `addHouseImage`
 - Bugs: Update House
 
 ### 09/01/2022 (Phuong)
+
 - Fixed Post request in default HTTP security
 - Change query params in update and post in class `UserController`
 - remove `Generated.IDENTITY` in `USER` class
