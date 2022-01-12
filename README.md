@@ -43,6 +43,7 @@ const statusList = ["available", "reserved", "rented"];
 ### 12/01/2022 (Phuong)
 - S3 delete does not work, only posting image to s3 works, error exception handled
 - Change update house a little
+- Change kafka server value
 
 ### 11/01/2022 (Phuong)
 - Change auth0Id method to find respective userId in the database
