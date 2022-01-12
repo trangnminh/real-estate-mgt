@@ -201,7 +201,7 @@ public class HouseService {
                 fileStore.upload(path, fileName, metadataList, file.getInputStream());
                 imageList.add("https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/" + imageFolderCopy + "/" + fileName);
             } catch (IOException e) {
-                throw new IllegalStateException("Error "+e.getMessage());
+                throw new IllegalStateException("Error " + e.getMessage());
             }
         });
         return imageList;
