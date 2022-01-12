@@ -40,6 +40,9 @@ const statusList = ["available", "reserved", "rented"];
 > localhost:8080/api/v1/houses/search?pageNo=1&query=Sunt ullamco labore&sortBy=name&orderBy=asc
 
 ## Changelogs
+### 13/01/2022 (Phuong)
+- Change `getFilteredPayments` to `get payments by userId`
+
 
 ### 12/01/2022 (Phuong)
 

@@ -149,6 +149,23 @@ public class RentalService {
         }
     }
 
+    // Return paginated payments by userId
+    public Page<Payment> getFilteredPaymentsByUserId(Long userId, int pageNo, int pageSize, String sortBy, @NotNull String orderBy) {
+        Pageable pageable;
+        if (orderBy.equals("asc")) {
+            pageable = PageRequest.of(pageNo, pageSize, Sort.by(sortBy).ascending());
+        } else {
+            pageable = PageRequest.of(pageNo, pageSize, Sort.by(sortBy).descending());
+        }
+
+        if (userId != null) {
+            return paymentRepository.findPaymentByUserId(userId, pageable);
+        } else {
+            return paymentRepository.findAll(pageable);
+        }
+    }
+
+
     // Get one by ID, try to reuse the exception
     public Payment getPaymentById(Long paymentId) {
         if (!paymentRepository.existsById(paymentId))

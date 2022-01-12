@@ -118,21 +118,21 @@ public class RentalController {
     // --- PAYMENT --- //
 
     // Just get all (for debug)
-    @GetMapping("/payments")
-    @PreAuthorize("hasAuthority('read:admin-messages')")
-    public List<Payment> getAllPayments() {
-        return rentalService.getAllPayments();
-    }
+//    @GetMapping("/payments")
+//    @PreAuthorize("hasAuthority('read:admin-messages')")
+//    public List<Payment> getAllPayments() {
+//        return rentalService.getAllPayments();
+//    }
 
     // Return payments with sort, order and pagination (NO rentalId)
     // Params aren't mandatory, if not provided will use defaults
-    @GetMapping("/payments/search")
-    @PreAuthorize("hasAuthority('read:admin-messages')")
-    public Page<Payment> getFilteredPayments(@RequestParam(value = "pageNo", defaultValue = "0") int pageNo,
+    @GetMapping("/payments/byUser")
+    public Page<Payment> getFilteredPayments(@RequestParam(value="userId",required = false) Long userId,
+                                            @RequestParam(value = "pageNo", defaultValue = "0") int pageNo,
                                              @RequestParam(value = "pageSize", defaultValue = "5") int pageSize,
                                              @RequestParam(value = "sortBy", defaultValue = "date") String sortBy,
                                              @RequestParam(value = "orderBy", defaultValue = "desc") String orderBy) {
-        return rentalService.getFilteredPaymentsAllOrByRentalId(null, pageNo, pageSize, sortBy, orderBy);
+        return rentalService.getFilteredPaymentsByUserId(userId, pageNo, pageSize, sortBy, orderBy);
     }
 
     // Return payments with sort, order and pagination (MUST HAVE rentalId)
