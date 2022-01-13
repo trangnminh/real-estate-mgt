@@ -154,6 +154,7 @@ public class RentalService {
         // convert auth0Id user to simpler userId in database
         Long auth0Id = userRepository.checkAuthUserFound(userId);
         userId = auth0Id != null ? auth0Id : userId;
+
         Pageable pageable;
         if (orderBy.equals("asc")) {
             pageable = PageRequest.of(pageNo, pageSize, Sort.by(sortBy).ascending());
