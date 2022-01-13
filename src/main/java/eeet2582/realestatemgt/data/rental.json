@@ -2,61 +2,1201 @@
   {
     "rentalId": 1,
     "userHouse": {
-      "userId": 1,
-      "houseId": 1
+      "userId": 7,
+      "houseId": 43254
     },
-    "startDate": "2021-04-28",
-    "endDate": "2022-04-28",
-    "depositAmount": 461.55,
-    "monthlyFee": 369,
-    "payableFee": 378.27
+    "startDate": "2022-09-01",
+    "endDate": "2024-09-01",
+    "depositAmount": 106.82,
+    "monthlyFee": 289,
+    "payableFee": 235.25
   },
   {
     "rentalId": 2,
     "userHouse": {
-      "userId": 2,
-      "houseId": 2
+      "userId": 23,
+      "houseId": 47147
     },
-    "startDate": "2021-08-15",
-    "endDate": "2022-08-15",
-    "depositAmount": 114.29,
-    "monthlyFee": 494,
-    "payableFee": 405.44
+    "startDate": "2022-11-14",
+    "endDate": "2023-11-14",
+    "depositAmount": 161.85,
+    "monthlyFee": 414,
+    "payableFee": 379.82
   },
   {
     "rentalId": 3,
     "userHouse": {
-      "userId": 3,
-      "houseId": 3
+      "userId": 27,
+      "houseId": 18901
     },
-    "startDate": "2021-04-27",
-    "endDate": "2022-04-27",
-    "depositAmount": 452.9,
-    "monthlyFee": 138,
-    "payableFee": 264.43
+    "startDate": "2022-04-24",
+    "endDate": "2024-04-24",
+    "depositAmount": 235.82,
+    "monthlyFee": 116,
+    "payableFee": 265.9
   },
   {
     "rentalId": 4,
     "userHouse": {
-      "userId": 4,
-      "houseId": 4
+      "userId": 47,
+      "houseId": 41644
     },
-    "startDate": "2021-11-06",
-    "endDate": "2023-11-06",
-    "depositAmount": 181.49,
-    "monthlyFee": 213,
-    "payableFee": 359.43
+    "startDate": "2022-11-15",
+    "endDate": "2024-11-15",
+    "depositAmount": 256.88,
+    "monthlyFee": 207,
+    "payableFee": 126.1
   },
   {
     "rentalId": 5,
     "userHouse": {
-      "userId": 5,
-      "houseId": 5
+      "userId": 68,
+      "houseId": 6025
     },
-    "startDate": "2021-08-28",
-    "endDate": "2022-08-28",
-    "depositAmount": 127.01,
-    "monthlyFee": 480,
-    "payableFee": 443.47
+    "startDate": "2022-02-14",
+    "endDate": "2024-02-14",
+    "depositAmount": 343.27,
+    "monthlyFee": 196,
+    "payableFee": 363.63
+  },
+  {
+    "rentalId": 6,
+    "userHouse": {
+      "userId": 80,
+      "houseId": 36807
+    },
+    "startDate": "2022-11-21",
+    "endDate": "2024-11-21",
+    "depositAmount": 358.57,
+    "monthlyFee": 371,
+    "payableFee": 302.49
+  },
+  {
+    "rentalId": 7,
+    "userHouse": {
+      "userId": 19,
+      "houseId": 24489
+    },
+    "startDate": "2022-01-24",
+    "endDate": "2023-01-24",
+    "depositAmount": 124.62,
+    "monthlyFee": 100,
+    "payableFee": 175.58
+  },
+  {
+    "rentalId": 8,
+    "userHouse": {
+      "userId": 10,
+      "houseId": 30133
+    },
+    "startDate": "2022-08-25",
+    "endDate": "2024-08-25",
+    "depositAmount": 244.23,
+    "monthlyFee": 181,
+    "payableFee": 159.88
+  },
+  {
+    "rentalId": 9,
+    "userHouse": {
+      "userId": 68,
+      "houseId": 24373
+    },
+    "startDate": "2022-01-01",
+    "endDate": "2024-01-01",
+    "depositAmount": 361.18,
+    "monthlyFee": 485,
+    "payableFee": 464.46
+  },
+  {
+    "rentalId": 10,
+    "userHouse": {
+      "userId": 26,
+      "houseId": 44423
+    },
+    "startDate": "2022-01-15",
+    "endDate": "2024-01-15",
+    "depositAmount": 258.83,
+    "monthlyFee": 332,
+    "payableFee": 298.12
+  },
+  {
+    "rentalId": 11,
+    "userHouse": {
+      "userId": 45,
+      "houseId": 747
+    },
+    "startDate": "2022-06-28",
+    "endDate": "2024-06-28",
+    "depositAmount": 372.3,
+    "monthlyFee": 492,
+    "payableFee": 193.33
+  },
+  {
+    "rentalId": 12,
+    "userHouse": {
+      "userId": 8,
+      "houseId": 40650
+    },
+    "startDate": "2022-08-23",
+    "endDate": "2024-08-23",
+    "depositAmount": 439.86,
+    "monthlyFee": 173,
+    "payableFee": 144.13
+  },
+  {
+    "rentalId": 13,
+    "userHouse": {
+      "userId": 86,
+      "houseId": 30986
+    },
+    "startDate": "2022-11-09",
+    "endDate": "2024-11-09",
+    "depositAmount": 168.0,
+    "monthlyFee": 229,
+    "payableFee": 295.81
+  },
+  {
+    "rentalId": 14,
+    "userHouse": {
+      "userId": 5,
+      "houseId": 13413
+    },
+    "startDate": "2022-08-21",
+    "endDate": "2024-08-21",
+    "depositAmount": 359.77,
+    "monthlyFee": 146,
+    "payableFee": 171.68
+  },
+  {
+    "rentalId": 15,
+    "userHouse": {
+      "userId": 61,
+      "houseId": 29380
+    },
+    "startDate": "2022-06-10",
+    "endDate": "2023-06-10",
+    "depositAmount": 155.15,
+    "monthlyFee": 432,
+    "payableFee": 456.03
+  },
+  {
+    "rentalId": 16,
+    "userHouse": {
+      "userId": 94,
+      "houseId": 10494
+    },
+    "startDate": "2022-08-03",
+    "endDate": "2023-08-03",
+    "depositAmount": 241.8,
+    "monthlyFee": 199,
+    "payableFee": 341.56
+  },
+  {
+    "rentalId": 17,
+    "userHouse": {
+      "userId": 60,
+      "houseId": 10793
+    },
+    "startDate": "2022-06-19",
+    "endDate": "2024-06-19",
+    "depositAmount": 350.0,
+    "monthlyFee": 436,
+    "payableFee": 214.16
+  },
+  {
+    "rentalId": 18,
+    "userHouse": {
+      "userId": 67,
+      "houseId": 47226
+    },
+    "startDate": "2022-06-09",
+    "endDate": "2024-06-09",
+    "depositAmount": 385.32,
+    "monthlyFee": 254,
+    "payableFee": 308.23
+  },
+  {
+    "rentalId": 19,
+    "userHouse": {
+      "userId": 78,
+      "houseId": 39319
+    },
+    "startDate": "2022-07-21",
+    "endDate": "2024-07-21",
+    "depositAmount": 499.43,
+    "monthlyFee": 399,
+    "payableFee": 274.9
+  },
+  {
+    "rentalId": 20,
+    "userHouse": {
+      "userId": 12,
+      "houseId": 4086
+    },
+    "startDate": "2022-08-08",
+    "endDate": "2024-08-08",
+    "depositAmount": 380.69,
+    "monthlyFee": 195,
+    "payableFee": 471.61
+  },
+  {
+    "rentalId": 21,
+    "userHouse": {
+      "userId": 29,
+      "houseId": 20783
+    },
+    "startDate": "2022-04-11",
+    "endDate": "2024-04-11",
+    "depositAmount": 276.68,
+    "monthlyFee": 227,
+    "payableFee": 243.43
+  },
+  {
+    "rentalId": 22,
+    "userHouse": {
+      "userId": 2,
+      "houseId": 39964
+    },
+    "startDate": "2022-05-21",
+    "endDate": "2024-05-21",
+    "depositAmount": 258.15,
+    "monthlyFee": 223,
+    "payableFee": 306.22
+  },
+  {
+    "rentalId": 23,
+    "userHouse": {
+      "userId": 56,
+      "houseId": 23071
+    },
+    "startDate": "2022-10-16",
+    "endDate": "2023-10-16",
+    "depositAmount": 103.25,
+    "monthlyFee": 126,
+    "payableFee": 190.7
+  },
+  {
+    "rentalId": 24,
+    "userHouse": {
+      "userId": 58,
+      "houseId": 6126
+    },
+    "startDate": "2022-05-23",
+    "endDate": "2023-05-23",
+    "depositAmount": 180.47,
+    "monthlyFee": 382,
+    "payableFee": 247.73
+  },
+  {
+    "rentalId": 25,
+    "userHouse": {
+      "userId": 7,
+      "houseId": 16916
+    },
+    "startDate": "2022-09-04",
+    "endDate": "2024-09-04",
+    "depositAmount": 144.26,
+    "monthlyFee": 217,
+    "payableFee": 255.87
+  },
+  {
+    "rentalId": 26,
+    "userHouse": {
+      "userId": 9,
+      "houseId": 24736
+    },
+    "startDate": "2022-06-17",
+    "endDate": "2024-06-17",
+    "depositAmount": 476.56,
+    "monthlyFee": 200,
+    "payableFee": 101.34
+  },
+  {
+    "rentalId": 27,
+    "userHouse": {
+      "userId": 53,
+      "houseId": 20935
+    },
+    "startDate": "2022-06-16",
+    "endDate": "2024-06-16",
+    "depositAmount": 446.7,
+    "monthlyFee": 481,
+    "payableFee": 174.01
+  },
+  {
+    "rentalId": 28,
+    "userHouse": {
+      "userId": 40,
+      "houseId": 29845
+    },
+    "startDate": "2022-11-20",
+    "endDate": "2024-11-20",
+    "depositAmount": 314.09,
+    "monthlyFee": 427,
+    "payableFee": 205.86
+  },
+  {
+    "rentalId": 29,
+    "userHouse": {
+      "userId": 100,
+      "houseId": 45419
+    },
+    "startDate": "2022-08-22",
+    "endDate": "2024-08-22",
+    "depositAmount": 388.95,
+    "monthlyFee": 460,
+    "payableFee": 277.47
+  },
+  {
+    "rentalId": 30,
+    "userHouse": {
+      "userId": 20,
+      "houseId": 44958
+    },
+    "startDate": "2022-08-09",
+    "endDate": "2023-08-09",
+    "depositAmount": 396.16,
+    "monthlyFee": 167,
+    "payableFee": 351.58
+  },
+  {
+    "rentalId": 31,
+    "userHouse": {
+      "userId": 64,
+      "houseId": 41127
+    },
+    "startDate": "2022-06-02",
+    "endDate": "2024-06-02",
+    "depositAmount": 410.37,
+    "monthlyFee": 308,
+    "payableFee": 279.51
+  },
+  {
+    "rentalId": 32,
+    "userHouse": {
+      "userId": 73,
+      "houseId": 12886
+    },
+    "startDate": "2022-08-05",
+    "endDate": "2024-08-05",
+    "depositAmount": 164.86,
+    "monthlyFee": 355,
+    "payableFee": 414.48
+  },
+  {
+    "rentalId": 33,
+    "userHouse": {
+      "userId": 48,
+      "houseId": 25828
+    },
+    "startDate": "2022-08-25",
+    "endDate": "2023-08-25",
+    "depositAmount": 201.87,
+    "monthlyFee": 291,
+    "payableFee": 288.77
+  },
+  {
+    "rentalId": 34,
+    "userHouse": {
+      "userId": 69,
+      "houseId": 45245
+    },
+    "startDate": "2022-02-20",
+    "endDate": "2023-02-20",
+    "depositAmount": 157.22,
+    "monthlyFee": 463,
+    "payableFee": 491.86
+  },
+  {
+    "rentalId": 35,
+    "userHouse": {
+      "userId": 8,
+      "houseId": 35355
+    },
+    "startDate": "2022-07-15",
+    "endDate": "2023-07-15",
+    "depositAmount": 180.16,
+    "monthlyFee": 477,
+    "payableFee": 242.74
+  },
+  {
+    "rentalId": 36,
+    "userHouse": {
+      "userId": 53,
+      "houseId": 5346
+    },
+    "startDate": "2022-11-03",
+    "endDate": "2023-11-03",
+    "depositAmount": 128.88,
+    "monthlyFee": 445,
+    "payableFee": 343.28
+  },
+  {
+    "rentalId": 37,
+    "userHouse": {
+      "userId": 19,
+      "houseId": 25392
+    },
+    "startDate": "2022-10-21",
+    "endDate": "2023-10-21",
+    "depositAmount": 487.33,
+    "monthlyFee": 168,
+    "payableFee": 213.92
+  },
+  {
+    "rentalId": 38,
+    "userHouse": {
+      "userId": 12,
+      "houseId": 29100
+    },
+    "startDate": "2022-04-19",
+    "endDate": "2024-04-19",
+    "depositAmount": 233.29,
+    "monthlyFee": 250,
+    "payableFee": 350.69
+  },
+  {
+    "rentalId": 39,
+    "userHouse": {
+      "userId": 7,
+      "houseId": 37264
+    },
+    "startDate": "2022-11-19",
+    "endDate": "2024-11-19",
+    "depositAmount": 115.92,
+    "monthlyFee": 383,
+    "payableFee": 369.19
+  },
+  {
+    "rentalId": 40,
+    "userHouse": {
+      "userId": 49,
+      "houseId": 5555
+    },
+    "startDate": "2022-10-11",
+    "endDate": "2024-10-11",
+    "depositAmount": 157.92,
+    "monthlyFee": 248,
+    "payableFee": 335.45
+  },
+  {
+    "rentalId": 41,
+    "userHouse": {
+      "userId": 81,
+      "houseId": 47651
+    },
+    "startDate": "2022-03-27",
+    "endDate": "2023-03-27",
+    "depositAmount": 104.71,
+    "monthlyFee": 410,
+    "payableFee": 311.7
+  },
+  {
+    "rentalId": 42,
+    "userHouse": {
+      "userId": 41,
+      "houseId": 35070
+    },
+    "startDate": "2022-11-08",
+    "endDate": "2023-11-08",
+    "depositAmount": 390.52,
+    "monthlyFee": 148,
+    "payableFee": 378.16
+  },
+  {
+    "rentalId": 43,
+    "userHouse": {
+      "userId": 72,
+      "houseId": 26278
+    },
+    "startDate": "2022-11-05",
+    "endDate": "2023-11-05",
+    "depositAmount": 270.66,
+    "monthlyFee": 446,
+    "payableFee": 491.91
+  },
+  {
+    "rentalId": 44,
+    "userHouse": {
+      "userId": 57,
+      "houseId": 39410
+    },
+    "startDate": "2022-07-02",
+    "endDate": "2023-07-02",
+    "depositAmount": 190.23,
+    "monthlyFee": 237,
+    "payableFee": 453.88
+  },
+  {
+    "rentalId": 45,
+    "userHouse": {
+      "userId": 2,
+      "houseId": 565
+    },
+    "startDate": "2022-07-15",
+    "endDate": "2023-07-15",
+    "depositAmount": 336.4,
+    "monthlyFee": 248,
+    "payableFee": 461.33
+  },
+  {
+    "rentalId": 46,
+    "userHouse": {
+      "userId": 27,
+      "houseId": 13616
+    },
+    "startDate": "2022-11-01",
+    "endDate": "2023-11-01",
+    "depositAmount": 197.78,
+    "monthlyFee": 214,
+    "payableFee": 496.47
+  },
+  {
+    "rentalId": 47,
+    "userHouse": {
+      "userId": 1,
+      "houseId": 47704
+    },
+    "startDate": "2022-07-27",
+    "endDate": "2024-07-27",
+    "depositAmount": 321.49,
+    "monthlyFee": 191,
+    "payableFee": 384.86
+  },
+  {
+    "rentalId": 48,
+    "userHouse": {
+      "userId": 53,
+      "houseId": 13877
+    },
+    "startDate": "2022-05-02",
+    "endDate": "2024-05-02",
+    "depositAmount": 136.75,
+    "monthlyFee": 216,
+    "payableFee": 193.97
+  },
+  {
+    "rentalId": 49,
+    "userHouse": {
+      "userId": 62,
+      "houseId": 10242
+    },
+    "startDate": "2022-02-14",
+    "endDate": "2024-02-14",
+    "depositAmount": 293.09,
+    "monthlyFee": 351,
+    "payableFee": 318.15
+  },
+  {
+    "rentalId": 50,
+    "userHouse": {
+      "userId": 84,
+      "houseId": 37385
+    },
+    "startDate": "2022-05-21",
+    "endDate": "2023-05-21",
+    "depositAmount": 347.4,
+    "monthlyFee": 493,
+    "payableFee": 465.3
+  },
+  {
+    "rentalId": 51,
+    "userHouse": {
+      "userId": 84,
+      "houseId": 30864
+    },
+    "startDate": "2022-05-12",
+    "endDate": "2023-05-12",
+    "depositAmount": 296.73,
+    "monthlyFee": 405,
+    "payableFee": 266.48
+  },
+  {
+    "rentalId": 52,
+    "userHouse": {
+      "userId": 33,
+      "houseId": 32913
+    },
+    "startDate": "2022-02-02",
+    "endDate": "2024-02-02",
+    "depositAmount": 174.78,
+    "monthlyFee": 354,
+    "payableFee": 364.67
+  },
+  {
+    "rentalId": 53,
+    "userHouse": {
+      "userId": 92,
+      "houseId": 45266
+    },
+    "startDate": "2022-02-19",
+    "endDate": "2023-02-19",
+    "depositAmount": 255.8,
+    "monthlyFee": 276,
+    "payableFee": 413.43
+  },
+  {
+    "rentalId": 54,
+    "userHouse": {
+      "userId": 72,
+      "houseId": 38415
+    },
+    "startDate": "2022-09-18",
+    "endDate": "2024-09-18",
+    "depositAmount": 318.54,
+    "monthlyFee": 117,
+    "payableFee": 444.99
+  },
+  {
+    "rentalId": 55,
+    "userHouse": {
+      "userId": 27,
+      "houseId": 33959
+    },
+    "startDate": "2022-01-14",
+    "endDate": "2024-01-14",
+    "depositAmount": 447.99,
+    "monthlyFee": 433,
+    "payableFee": 169.02
+  },
+  {
+    "rentalId": 56,
+    "userHouse": {
+      "userId": 39,
+      "houseId": 29290
+    },
+    "startDate": "2022-01-11",
+    "endDate": "2023-01-11",
+    "depositAmount": 322.8,
+    "monthlyFee": 307,
+    "payableFee": 221.71
+  },
+  {
+    "rentalId": 57,
+    "userHouse": {
+      "userId": 15,
+      "houseId": 2464
+    },
+    "startDate": "2022-11-25",
+    "endDate": "2024-11-25",
+    "depositAmount": 311.07,
+    "monthlyFee": 373,
+    "payableFee": 399.5
+  },
+  {
+    "rentalId": 58,
+    "userHouse": {
+      "userId": 11,
+      "houseId": 21125
+    },
+    "startDate": "2022-10-06",
+    "endDate": "2024-10-06",
+    "depositAmount": 353.19,
+    "monthlyFee": 114,
+    "payableFee": 243.67
+  },
+  {
+    "rentalId": 59,
+    "userHouse": {
+      "userId": 52,
+      "houseId": 12605
+    },
+    "startDate": "2022-08-20",
+    "endDate": "2023-08-20",
+    "depositAmount": 453.31,
+    "monthlyFee": 388,
+    "payableFee": 471.69
+  },
+  {
+    "rentalId": 60,
+    "userHouse": {
+      "userId": 80,
+      "houseId": 15515
+    },
+    "startDate": "2022-03-29",
+    "endDate": "2024-03-29",
+    "depositAmount": 431.07,
+    "monthlyFee": 475,
+    "payableFee": 458.61
+  },
+  {
+    "rentalId": 61,
+    "userHouse": {
+      "userId": 23,
+      "houseId": 9133
+    },
+    "startDate": "2022-02-24",
+    "endDate": "2023-02-24",
+    "depositAmount": 226.86,
+    "monthlyFee": 388,
+    "payableFee": 380.3
+  },
+  {
+    "rentalId": 62,
+    "userHouse": {
+      "userId": 75,
+      "houseId": 42409
+    },
+    "startDate": "2022-11-17",
+    "endDate": "2023-11-17",
+    "depositAmount": 392.85,
+    "monthlyFee": 362,
+    "payableFee": 423.29
+  },
+  {
+    "rentalId": 63,
+    "userHouse": {
+      "userId": 51,
+      "houseId": 37850
+    },
+    "startDate": "2022-04-09",
+    "endDate": "2023-04-09",
+    "depositAmount": 225.23,
+    "monthlyFee": 164,
+    "payableFee": 273.01
+  },
+  {
+    "rentalId": 64,
+    "userHouse": {
+      "userId": 11,
+      "houseId": 31690
+    },
+    "startDate": "2022-03-04",
+    "endDate": "2023-03-04",
+    "depositAmount": 261.86,
+    "monthlyFee": 240,
+    "payableFee": 334.76
+  },
+  {
+    "rentalId": 65,
+    "userHouse": {
+      "userId": 60,
+      "houseId": 8765
+    },
+    "startDate": "2022-10-04",
+    "endDate": "2024-10-04",
+    "depositAmount": 127.55,
+    "monthlyFee": 166,
+    "payableFee": 241.95
+  },
+  {
+    "rentalId": 66,
+    "userHouse": {
+      "userId": 77,
+      "houseId": 35535
+    },
+    "startDate": "2022-07-09",
+    "endDate": "2024-07-09",
+    "depositAmount": 460.13,
+    "monthlyFee": 203,
+    "payableFee": 470.64
+  },
+  {
+    "rentalId": 67,
+    "userHouse": {
+      "userId": 48,
+      "houseId": 14328
+    },
+    "startDate": "2022-06-22",
+    "endDate": "2023-06-22",
+    "depositAmount": 157.36,
+    "monthlyFee": 427,
+    "payableFee": 241.84
+  },
+  {
+    "rentalId": 68,
+    "userHouse": {
+      "userId": 67,
+      "houseId": 12454
+    },
+    "startDate": "2022-09-02",
+    "endDate": "2024-09-02",
+    "depositAmount": 331.18,
+    "monthlyFee": 312,
+    "payableFee": 166.92
+  },
+  {
+    "rentalId": 69,
+    "userHouse": {
+      "userId": 84,
+      "houseId": 15338
+    },
+    "startDate": "2022-03-24",
+    "endDate": "2024-03-24",
+    "depositAmount": 189.96,
+    "monthlyFee": 406,
+    "payableFee": 271.43
+  },
+  {
+    "rentalId": 70,
+    "userHouse": {
+      "userId": 65,
+      "houseId": 5168
+    },
+    "startDate": "2022-08-26",
+    "endDate": "2024-08-26",
+    "depositAmount": 182.14,
+    "monthlyFee": 445,
+    "payableFee": 357.52
+  },
+  {
+    "rentalId": 71,
+    "userHouse": {
+      "userId": 47,
+      "houseId": 47563
+    },
+    "startDate": "2022-04-19",
+    "endDate": "2023-04-19",
+    "depositAmount": 433.45,
+    "monthlyFee": 113,
+    "payableFee": 250.94
+  },
+  {
+    "rentalId": 72,
+    "userHouse": {
+      "userId": 82,
+      "houseId": 23859
+    },
+    "startDate": "2022-01-28",
+    "endDate": "2023-01-28",
+    "depositAmount": 206.37,
+    "monthlyFee": 463,
+    "payableFee": 149.99
+  },
+  {
+    "rentalId": 73,
+    "userHouse": {
+      "userId": 85,
+      "houseId": 41287
+    },
+    "startDate": "2022-05-29",
+    "endDate": "2023-05-29",
+    "depositAmount": 233.65,
+    "monthlyFee": 252,
+    "payableFee": 393.18
+  },
+  {
+    "rentalId": 74,
+    "userHouse": {
+      "userId": 47,
+      "houseId": 48880
+    },
+    "startDate": "2022-02-10",
+    "endDate": "2023-02-10",
+    "depositAmount": 208.69,
+    "monthlyFee": 150,
+    "payableFee": 291.57
+  },
+  {
+    "rentalId": 75,
+    "userHouse": {
+      "userId": 50,
+      "houseId": 42771
+    },
+    "startDate": "2022-11-24",
+    "endDate": "2023-11-24",
+    "depositAmount": 243.08,
+    "monthlyFee": 488,
+    "payableFee": 275.69
+  },
+  {
+    "rentalId": 76,
+    "userHouse": {
+      "userId": 78,
+      "houseId": 33244
+    },
+    "startDate": "2022-05-08",
+    "endDate": "2024-05-08",
+    "depositAmount": 285.65,
+    "monthlyFee": 128,
+    "payableFee": 126.79
+  },
+  {
+    "rentalId": 77,
+    "userHouse": {
+      "userId": 43,
+      "houseId": 31616
+    },
+    "startDate": "2022-03-29",
+    "endDate": "2024-03-29",
+    "depositAmount": 400.69,
+    "monthlyFee": 126,
+    "payableFee": 394.11
+  },
+  {
+    "rentalId": 78,
+    "userHouse": {
+      "userId": 38,
+      "houseId": 45293
+    },
+    "startDate": "2022-08-01",
+    "endDate": "2024-08-01",
+    "depositAmount": 153.39,
+    "monthlyFee": 365,
+    "payableFee": 250.3
+  },
+  {
+    "rentalId": 79,
+    "userHouse": {
+      "userId": 65,
+      "houseId": 49062
+    },
+    "startDate": "2022-10-15",
+    "endDate": "2024-10-15",
+    "depositAmount": 396.93,
+    "monthlyFee": 380,
+    "payableFee": 486.57
+  },
+  {
+    "rentalId": 80,
+    "userHouse": {
+      "userId": 47,
+      "houseId": 49879
+    },
+    "startDate": "2022-07-04",
+    "endDate": "2024-07-04",
+    "depositAmount": 270.08,
+    "monthlyFee": 232,
+    "payableFee": 117.13
+  },
+  {
+    "rentalId": 81,
+    "userHouse": {
+      "userId": 29,
+      "houseId": 7440
+    },
+    "startDate": "2022-08-08",
+    "endDate": "2024-08-08",
+    "depositAmount": 359.13,
+    "monthlyFee": 225,
+    "payableFee": 468.2
+  },
+  {
+    "rentalId": 82,
+    "userHouse": {
+      "userId": 51,
+      "houseId": 16420
+    },
+    "startDate": "2022-06-03",
+    "endDate": "2023-06-03",
+    "depositAmount": 116.66,
+    "monthlyFee": 240,
+    "payableFee": 372.75
+  },
+  {
+    "rentalId": 83,
+    "userHouse": {
+      "userId": 83,
+      "houseId": 38287
+    },
+    "startDate": "2022-09-22",
+    "endDate": "2024-09-22",
+    "depositAmount": 491.94,
+    "monthlyFee": 274,
+    "payableFee": 372.42
+  },
+  {
+    "rentalId": 84,
+    "userHouse": {
+      "userId": 98,
+      "houseId": 45663
+    },
+    "startDate": "2022-02-26",
+    "endDate": "2023-02-26",
+    "depositAmount": 383.45,
+    "monthlyFee": 259,
+    "payableFee": 243.1
+  },
+  {
+    "rentalId": 85,
+    "userHouse": {
+      "userId": 57,
+      "houseId": 43342
+    },
+    "startDate": "2022-03-06",
+    "endDate": "2023-03-06",
+    "depositAmount": 471.38,
+    "monthlyFee": 437,
+    "payableFee": 488.99
+  },
+  {
+    "rentalId": 86,
+    "userHouse": {
+      "userId": 3,
+      "houseId": 21911
+    },
+    "startDate": "2022-08-11",
+    "endDate": "2023-08-11",
+    "depositAmount": 236.28,
+    "monthlyFee": 290,
+    "payableFee": 356.33
+  },
+  {
+    "rentalId": 87,
+    "userHouse": {
+      "userId": 79,
+      "houseId": 23875
+    },
+    "startDate": "2022-01-27",
+    "endDate": "2024-01-27",
+    "depositAmount": 469.65,
+    "monthlyFee": 475,
+    "payableFee": 106.14
+  },
+  {
+    "rentalId": 88,
+    "userHouse": {
+      "userId": 39,
+      "houseId": 27611
+    },
+    "startDate": "2022-02-12",
+    "endDate": "2023-02-12",
+    "depositAmount": 172.02,
+    "monthlyFee": 428,
+    "payableFee": 378.67
+  },
+  {
+    "rentalId": 89,
+    "userHouse": {
+      "userId": 53,
+      "houseId": 44341
+    },
+    "startDate": "2022-03-22",
+    "endDate": "2024-03-22",
+    "depositAmount": 216.36,
+    "monthlyFee": 493,
+    "payableFee": 122.96
+  },
+  {
+    "rentalId": 90,
+    "userHouse": {
+      "userId": 88,
+      "houseId": 15080
+    },
+    "startDate": "2022-01-30",
+    "endDate": "2023-01-30",
+    "depositAmount": 135.21,
+    "monthlyFee": 331,
+    "payableFee": 102.18
+  },
+  {
+    "rentalId": 91,
+    "userHouse": {
+      "userId": 14,
+      "houseId": 5516
+    },
+    "startDate": "2022-11-30",
+    "endDate": "2024-11-30",
+    "depositAmount": 438.06,
+    "monthlyFee": 464,
+    "payableFee": 471.75
+  },
+  {
+    "rentalId": 92,
+    "userHouse": {
+      "userId": 15,
+      "houseId": 11374
+    },
+    "startDate": "2022-01-26",
+    "endDate": "2023-01-26",
+    "depositAmount": 305.97,
+    "monthlyFee": 178,
+    "payableFee": 443.02
+  },
+  {
+    "rentalId": 93,
+    "userHouse": {
+      "userId": 12,
+      "houseId": 3244
+    },
+    "startDate": "2022-10-01",
+    "endDate": "2024-10-01",
+    "depositAmount": 111.9,
+    "monthlyFee": 238,
+    "payableFee": 381.83
+  },
+  {
+    "rentalId": 94,
+    "userHouse": {
+      "userId": 44,
+      "houseId": 122
+    },
+    "startDate": "2022-10-28",
+    "endDate": "2023-10-28",
+    "depositAmount": 352.03,
+    "monthlyFee": 411,
+    "payableFee": 386.1
+  },
+  {
+    "rentalId": 95,
+    "userHouse": {
+      "userId": 11,
+      "houseId": 31867
+    },
+    "startDate": "2022-05-13",
+    "endDate": "2024-05-13",
+    "depositAmount": 271.63,
+    "monthlyFee": 228,
+    "payableFee": 138.33
+  },
+  {
+    "rentalId": 96,
+    "userHouse": {
+      "userId": 68,
+      "houseId": 44950
+    },
+    "startDate": "2022-09-03",
+    "endDate": "2023-09-03",
+    "depositAmount": 379.45,
+    "monthlyFee": 430,
+    "payableFee": 293.78
+  },
+  {
+    "rentalId": 97,
+    "userHouse": {
+      "userId": 74,
+      "houseId": 26103
+    },
+    "startDate": "2022-08-31",
+    "endDate": "2024-08-31",
+    "depositAmount": 381.7,
+    "monthlyFee": 326,
+    "payableFee": 242.03
+  },
+  {
+    "rentalId": 98,
+    "userHouse": {
+      "userId": 7,
+      "houseId": 5452
+    },
+    "startDate": "2022-09-17",
+    "endDate": "2024-09-17",
+    "depositAmount": 365.76,
+    "monthlyFee": 331,
+    "payableFee": 265.55
+  },
+  {
+    "rentalId": 99,
+    "userHouse": {
+      "userId": 81,
+      "houseId": 15302
+    },
+    "startDate": "2022-08-03",
+    "endDate": "2023-08-03",
+    "depositAmount": 314.57,
+    "monthlyFee": 481,
+    "payableFee": 320.09
+  },
+  {
+    "rentalId": 100,
+    "userHouse": {
+      "userId": 28,
+      "houseId": 30836
+    },
+    "startDate": "2022-05-20",
+    "endDate": "2023-05-20",
+    "depositAmount": 487.41,
+    "monthlyFee": 257,
+    "payableFee": 306.1
   }
 ]

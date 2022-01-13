@@ -80,4 +80,12 @@ public class UserController {
     public void deleteUserById(@PathVariable("userId") Long userId) {
         userService.deleteUserById(userId);
     }
+
+
+    @GetMapping("/byName")
+    @PreAuthorize("hasAuthority('read:admin-messages')")
+    public List<AppUser> findUserByName(@RequestParam(value = "name") String name,
+                                        @RequestParam(value = "pageNo", defaultValue = "0") int pageNo) {
+        return userService.findUsersByName(name, pageNo);
+    }
 }
