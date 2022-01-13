@@ -124,14 +124,14 @@ public class RentalController {
 //        return rentalService.getAllPayments();
 //    }
 
-    // Return payments with sort, order and pagination (NO rentalId)
+    // Return payments with sort, order and pagination (by userId)
     // Params aren't mandatory, if not provided will use defaults
-    @GetMapping("/payments/byUser")
-    public Page<Payment> getFilteredPayments(@RequestParam(value="userId",required = false) Long userId,
-                                            @RequestParam(value = "pageNo", defaultValue = "0") int pageNo,
-                                             @RequestParam(value = "pageSize", defaultValue = "5") int pageSize,
-                                             @RequestParam(value = "sortBy", defaultValue = "date") String sortBy,
-                                             @RequestParam(value = "orderBy", defaultValue = "desc") String orderBy) {
+    @GetMapping("/payments/byUser/{userId}")
+    public Page<Payment> getFilteredPaymentsByUserId(@PathVariable(value = "userId") Long userId,
+                                                     @RequestParam(value = "pageNo", defaultValue = "0") int pageNo,
+                                                     @RequestParam(value = "pageSize", defaultValue = "5") int pageSize,
+                                                     @RequestParam(value = "sortBy", defaultValue = "date") String sortBy,
+                                                     @RequestParam(value = "orderBy", defaultValue = "desc") String orderBy) {
         return rentalService.getFilteredPaymentsByUserId(userId, pageNo, pageSize, sortBy, orderBy);
     }
 

@@ -121,7 +121,7 @@ public class HouseController {
         return houseService.getHouseById(houseId);
     }
 
-    // Add new one
+    // Add new one (manually put in cache)
     @PostMapping(
             path = "",
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE,

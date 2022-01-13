@@ -6,6 +6,8 @@ import eeet2582.realestatemgt.model.House;
 import eeet2582.realestatemgt.repository.HouseRepository;
 import org.apache.http.entity.ContentType;
 import org.jetbrains.annotations.NotNull;
+import org.redisson.api.RMap;
+import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.*;
@@ -36,11 +38,15 @@ public class HouseService {
     @Autowired
     private final FileStore fileStore;
 
-    public HouseService(HouseRepository houseRepository, AdminService adminService, RentalService rentalService, FileStore fileStore) {
+    @Autowired
+    private final RedissonClient redissonClient;
+
+    public HouseService(HouseRepository houseRepository, AdminService adminService, RentalService rentalService, FileStore fileStore, RedissonClient redissonClient) {
         this.houseRepository = houseRepository;
         this.adminService = adminService;
         this.rentalService = rentalService;
         this.fileStore = fileStore;
+        this.redissonClient = redissonClient;
     }
 
     // Find houses matching by name, description or address
@@ -94,7 +100,11 @@ public class HouseService {
                 .numberOfBeds(house.getNumberOfBeds())
                 .squareFeet(house.getSquareFeet())
                 .status(house.getStatus()).build();
-        houseRepository.save(houseObj);
+
+        // Manually put new House into cache using houseId
+        House savedHouse = houseRepository.save(houseObj);
+        RMap<Long, House> map = redissonClient.getMap("House");
+        map.putIfAbsent(savedHouse.getHouseId(), savedHouse);
         return "House added successfully!";
     }
 
