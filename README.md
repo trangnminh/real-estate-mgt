@@ -42,7 +42,7 @@ const statusList = ["available", "reserved", "rented"];
 ## Changelogs
 ### 13/01/2022 (Phuong)
 - Change `getFilteredPayments` to `get payments by userId`
-
+- Updated check auth0Id in Payments
 
 ### 12/01/2022 (Phuong)
 

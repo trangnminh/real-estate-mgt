@@ -151,6 +151,9 @@ public class RentalService {
 
     // Return paginated payments by userId
     public Page<Payment> getFilteredPaymentsByUserId(Long userId, int pageNo, int pageSize, String sortBy, @NotNull String orderBy) {
+        // convert auth0Id user to simpler userId in database
+        Long auth0Id = userRepository.checkAuthUserFound(userId);
+        userId = auth0Id != null ? auth0Id : userId;
         Pageable pageable;
         if (orderBy.equals("asc")) {
             pageable = PageRequest.of(pageNo, pageSize, Sort.by(sortBy).ascending());
