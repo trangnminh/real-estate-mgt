@@ -2,11 +2,14 @@ package eeet2582.realestatemgt.config;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import eeet2582.realestatemgt.model.House;
+import eeet2582.realestatemgt.model.house.House;
+import eeet2582.realestatemgt.model.house.HouseLocation;
 import eeet2582.realestatemgt.repository.HouseRepository;
+import eeet2582.realestatemgt.repository.LocationRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.dao.DataIntegrityViolationException;
 
 import java.io.Reader;
 import java.nio.file.Files;
@@ -17,23 +20,36 @@ import java.util.List;
 public class HouseConfig {
 
     @Bean
-    CommandLineRunner houseRunner(HouseRepository houseRepository) {
+    CommandLineRunner houseRunner(HouseRepository houseRepository, LocationRepository locationRepository) {
         return args -> {
             try {
                 if (houseRepository.count() == 0) {
                     Gson gson = new Gson();
 
-                    int limit = 1; // 20
+                    int limit = 1; // Number of files to read
 
-                    // Set limit to 20 to get all 1M rows (current is 50K for testing)
+                    // Increase limit to get more rows
                     for (int i = 1; i <= limit; i++) {
-                        Reader reader = Files.newBufferedReader(Paths.get("src/main/java/eeet2582/realestatemgt/data/house/house_" + i + ".json"));
+//                        Reader reader = Files.newBufferedReader(Paths.get("src/main/java/eeet2582/realestatemgt/data/house/house_" + i + ".json"));
+                        Reader reader = Files.newBufferedReader(Paths.get("src/main/java/eeet2582/realestatemgt/data/house.json"));
+
                         List<House> houses =
                                 gson.fromJson(reader,
                                         new TypeToken<List<House>>() {
                                         }.getType());
 
-                        houseRepository.saveAll(houses);
+                        for (House house : houses) {
+                            try {
+                                houseRepository.save(house);
+                            } catch (DataIntegrityViolationException e) {
+                                HouseLocation location =
+                                        locationRepository.findByCityAndDistrict(
+                                                        house.getLocation().getCity(), house.getLocation().getDistrict())
+                                                .orElseThrow(() -> new IllegalStateException("Location not found!"));
+                                house.setLocation(location);
+                                houseRepository.save(house);
+                            }
+                        }
                     }
                 }
             } catch (Exception e) {
