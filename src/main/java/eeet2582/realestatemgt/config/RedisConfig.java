@@ -27,8 +27,9 @@ public class RedisConfig {
     CacheManager cacheManager(RedissonClient redissonClient) {
         Map<String, CacheConfig> config = new HashMap<>();
 
-        // Create custom cache with ttl = 10 minutes and maxIdleTime = 6 minutes
+        // Create custom cache with ttl = 10 minutes and maxIdleTime = 5 minutes
         config.put("House", new CacheConfig(10 * 60 * 1000, 5 * 60 * 1000));
+        config.put("HouseSearch", new CacheConfig(10 * 60 * 1000, 5 * 60 * 1000));
 
         // Queried House list caches max 1000 entries (dump by LRU)
         CacheConfig filteredHousesConfig = new CacheConfig(10 * 60 * 1000, 5 * 60 * 1000);

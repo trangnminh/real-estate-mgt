@@ -1,11 +1,13 @@
 package eeet2582.realestatemgt.controller;
 
-import eeet2582.realestatemgt.model.House;
+import eeet2582.realestatemgt.model.house.House;
+import eeet2582.realestatemgt.model.house.HouseSearchForm;
 import eeet2582.realestatemgt.service.HouseService;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
@@ -24,8 +26,7 @@ import static eeet2582.realestatemgt.service.HouseService.HOUSE_BATCH_SIZE;
 
 /*
 NON-AUTHORIZED AND AUTHORIZED USER CAN:
-- getFilteredHouses : search for houses in pagination and filters
-- getFilteredHousesByPriceBetween : search for houses with price
+- getHousesBySearchForm : get houses filtered by a comprehensive search form
 - getHouseById : see each house in details
 */
 
@@ -47,6 +48,49 @@ public class HouseController {
     @Autowired
     public HouseController(HouseService houseService) {
         this.houseService = houseService;
+    }
+
+    @PostMapping("/search/form")
+    @Cacheable(value = "HouseSearch")
+    public Page<House> getHousesBySearchForm(@RequestBody HouseSearchForm form,
+                                             @RequestParam(value = "pageNo", defaultValue = "1") int pageNo,
+                                             @RequestParam(value = "pageSize", defaultValue = "20") int pageSize,
+                                             @RequestParam(value = "orderBy", defaultValue = "asc") String orderBy) {
+        int visitedEntries = Math.max(0, (pageNo - 1) * pageSize);
+        int batchNo = visitedEntries / HOUSE_BATCH_SIZE;
+        List<House> batch = houseService.getHousesBySearchFormSortByPrice(form, orderBy);
+
+        return getPageFromBatch(pageNo, pageSize, visitedEntries, batchNo, HOUSE_BATCH_SIZE, batch);
+    }
+
+    public Page<House> getPageFromBatch(int pageNo,
+                                        int pageSize,
+                                        int visitedEntries,
+                                        int batchNo,
+                                        int batchSize,
+                                        List<House> batch) {
+        // "Reset" start after each batch
+        int start = visitedEntries - (batchSize * batchNo);
+        int end = start + pageSize;
+
+        // "Reset" sub-page request (of current batch)
+        int subPageNo = pageNo - (batchSize / pageSize) * batchNo;
+        Pageable pageable = PageRequest.of(subPageNo - 1, pageSize);
+
+        try {
+            return new PageImpl<>(batch.subList(start, end), pageable, batch.size());
+        } catch (Exception e) {
+            // If not enough results to have a full page, shift end
+            end = batch.size();
+
+            // If invalid request, return empty page
+            if (start > end) {
+                return new PageImpl<>(Collections.emptyList(), pageable, batch.size());
+            }
+            // Else return all is left
+            return new PageImpl<>(batch.subList(start, end), pageable, batch.size());
+        }
+
     }
 
     // Return items matching query with sort, order and pagination
@@ -127,6 +171,7 @@ public class HouseController {
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
+    @CacheEvict(value = "HouseSearch", allEntries = true)
     @PreAuthorize("hasAuthority('read:admin-messages')")
     public ResponseEntity<String> addNewHouse(@ModelAttribute House house, @RequestParam("files") MultipartFile[] file) {
         return new ResponseEntity<>(houseService.addNewHouse(house, file), HttpStatus.OK);
@@ -134,7 +179,10 @@ public class HouseController {
 
     // Update one by ID
     @PutMapping("/{houseId}")
-    @CacheEvict(key = "#houseId", value = "House")
+    @Caching(evict = {
+            @CacheEvict(value = "HouseSearch", allEntries = true),
+            @CacheEvict(value = "House", key = "#houseId")
+    })
     @PreAuthorize("hasAuthority('read:admin-messages')")
     public void updateHouseById(@PathVariable("houseId") Long houseId, @RequestBody House house) {
         houseService.updateHouseById(houseId, house);
@@ -146,7 +194,10 @@ public class HouseController {
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    @CacheEvict(key = "#houseId", value = "House")
+    @Caching(evict = {
+            @CacheEvict(value = "HouseSearch", allEntries = true),
+            @CacheEvict(value = "House", key = "#houseId")
+    })
     @PreAuthorize("hasAuthority('read:admin-messages')")
     public void addHouseImage(@RequestParam("houseId") Long houseId, @RequestParam("files") MultipartFile[] file) {
         houseService.addHouseImage(houseId, file);
@@ -154,7 +205,10 @@ public class HouseController {
 
     // Delete one by ID
     @DeleteMapping("/{houseId}")
-    @CacheEvict(key = "#houseId", value = "House")
+    @Caching(evict = {
+            @CacheEvict(value = "HouseSearch", allEntries = true),
+            @CacheEvict(value = "House", key = "#houseId")
+    })
     @PreAuthorize("hasAuthority('read:admin-messages')")
     public ResponseEntity<String> deleteHouseById(@PathVariable("houseId") Long houseId) {
         return new ResponseEntity<>(houseService.deleteHouseById(houseId), HttpStatus.OK);

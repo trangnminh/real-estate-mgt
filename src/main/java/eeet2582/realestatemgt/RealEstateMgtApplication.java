@@ -1,13 +1,17 @@
 package eeet2582.realestatemgt;
 
 import eeet2582.realestatemgt.config.ApplicationProperties;
+import eeet2582.realestatemgt.model.house.HouseLocation;
+import eeet2582.realestatemgt.repository.LocationRepository;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.Bean;
 
 import java.util.Objects;
 
@@ -45,5 +49,13 @@ public class RealEstateMgtApplication {
 
         log.error("[Fatal] Missing or empty environment variable: {}", env);
         System.exit(exitCode);
+    }
+
+    @Bean
+    CommandLineRunner populateLocations(LocationRepository locationRepository) {
+        return args -> {
+            HouseLocation location = new HouseLocation("Saigon", "7");
+            locationRepository.save(location);
+        };
     }
 }

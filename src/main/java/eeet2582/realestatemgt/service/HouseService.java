@@ -2,8 +2,12 @@ package eeet2582.realestatemgt.service;
 
 import eeet2582.realestatemgt.bucket.BucketName;
 import eeet2582.realestatemgt.filestore.FileStore;
-import eeet2582.realestatemgt.model.House;
+import eeet2582.realestatemgt.model.house.House;
+import eeet2582.realestatemgt.model.house.HouseLocation;
+import eeet2582.realestatemgt.model.house.HouseSearchForm;
 import eeet2582.realestatemgt.repository.HouseRepository;
+import eeet2582.realestatemgt.repository.LocationRepository;
+import lombok.RequiredArgsConstructor;
 import org.apache.http.entity.ContentType;
 import org.jetbrains.annotations.NotNull;
 import org.redisson.api.RMap;
@@ -20,14 +24,32 @@ import java.util.*;
 
 // HouseService only wires HouseRepository, everything else is handled by child services
 @Service
+@RequiredArgsConstructor
 public class HouseService {
 
     public static final int HOUSE_BATCH_SIZE = 200;
     private static final ContentType IMAGE_PNG = ContentType.IMAGE_PNG;
     private static final ContentType IMAGE_JPEG = ContentType.IMAGE_JPEG;
+    private static final List<String> STATUS_LIST = new ArrayList<>() {
+        {
+            add("available");
+            add("reserved");
+            add("rented");
+        }
+    };
+    private static final List<String> TYPE_LIST = new ArrayList<>() {
+        {
+            add("apartment");
+            add("serviced");
+            add("street");
+        }
+    };
 
     @Autowired
     private final HouseRepository houseRepository;
+
+    @Autowired
+    private final LocationRepository locationRepository;
 
     @Autowired
     private final AdminService adminService;
@@ -41,12 +63,53 @@ public class HouseService {
     @Autowired
     private final RedissonClient redissonClient;
 
-    public HouseService(HouseRepository houseRepository, AdminService adminService, RentalService rentalService, FileStore fileStore, RedissonClient redissonClient) {
-        this.houseRepository = houseRepository;
-        this.adminService = adminService;
-        this.rentalService = rentalService;
-        this.fileStore = fileStore;
-        this.redissonClient = redissonClient;
+    // Find houses by search form
+    public List<House> getHousesBySearchFormSortByPrice(HouseSearchForm form, String orderBy) {
+        // Find by location, if null default to Saigon 7
+        String city = (form.getCity() != null && !form.getCity().trim().isEmpty()) ? form.getCity() : "Saigon";
+        String district = (form.getDistrict() != null && !form.getDistrict().trim().isEmpty()) ? form.getDistrict() : "7";
+        HouseLocation location = locationRepository.findByCityAndDistrict(city, district)
+                .orElseThrow(() -> new IllegalStateException("Location not found!"));
+        List<House> matchLocation = houseRepository.findByLocation(location);
+
+        // Find by price range, if null default to 100K - 300K
+        double priceFrom = (form.getPriceFrom() != null && form.getPriceFrom() >= 0) ? form.getPriceFrom() : 100000;
+        double priceTo = (form.getPriceTo() != null && form.getPriceTo() >= 0) ? form.getPriceTo() : 300000;
+        priceTo = Math.max(priceFrom, priceTo);
+        List<House> matchPrice = houseRepository.findByPriceBetween(priceFrom, priceTo);
+
+        // Find by status, if null takes all types
+        List<String> statusList = (form.getStatusList() != null && form.getStatusList().isEmpty()) ?
+                form.getStatusList() : STATUS_LIST;
+        List<House> matchStatus = houseRepository.findByStatusIn(statusList);
+
+        // Find by type, if null takes all types
+        List<String> typeList = (form.getTypeList() != null && form.getTypeList().isEmpty()) ?
+                form.getTypeList() : TYPE_LIST;
+        List<House> matchType = houseRepository.findByTypeIn(typeList);
+
+        // Find by query (match name or address)
+        String query = (form.getQuery() != null) ? form.getQuery() : "";
+        House house = new House();
+        house.setName(query);
+        house.setAddress(query);
+        ExampleMatcher matcher = ExampleMatcher.matchingAny()
+                .withMatcher("name", ExampleMatcher.GenericPropertyMatchers.contains().ignoreCase())
+                .withMatcher("address", ExampleMatcher.GenericPropertyMatchers.contains().ignoreCase());
+        Example<House> example = Example.of(house, matcher);
+        List<House> matchQuery = houseRepository.findAll(example);
+
+        // Find intersection between all lists
+        matchQuery.retainAll(matchLocation);
+        matchQuery.retainAll(matchPrice);
+        matchQuery.retainAll(matchStatus);
+        matchQuery.retainAll(matchType);
+
+        if (orderBy.equals("asc"))
+            matchQuery.sort(Comparator.comparing(House::getPrice));
+        else
+            matchQuery.sort(Comparator.comparing(House::getPrice).reversed());
+        return matchQuery;
     }
 
     // Find houses matching by name, description or address

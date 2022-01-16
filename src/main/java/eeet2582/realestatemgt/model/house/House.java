@@ -1,4 +1,4 @@
-package eeet2582.realestatemgt.model;
+package eeet2582.realestatemgt.model.house;
 
 import lombok.*;
 
@@ -38,6 +38,10 @@ public class House implements Serializable {
     private Integer squareFeet;
     private String status;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "location_id")
+    private HouseLocation location;
+
     public House(String name,
                  Double price,
                  String description,
@@ -48,7 +52,8 @@ public class House implements Serializable {
                  String type,
                  Integer numberOfBeds,
                  Integer squareFeet,
-                 String status) {
+                 String status,
+                 HouseLocation location) {
         this.name = name;
         this.price = price;
         this.description = description;
@@ -60,17 +65,21 @@ public class House implements Serializable {
         this.numberOfBeds = numberOfBeds;
         this.squareFeet = squareFeet;
         this.status = status;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof House house)) return false;
-        return Objects.equals(houseId, house.houseId) && Objects.equals(name, house.name) && Objects.equals(price, house.price) && Objects.equals(description, house.description) && Objects.equals(address, house.address) && Objects.equals(longitude, house.longitude) && Objects.equals(latitude, house.latitude) && Objects.equals(image, house.image) && Objects.equals(type, house.type) && Objects.equals(numberOfBeds, house.numberOfBeds) && Objects.equals(squareFeet, house.squareFeet) && Objects.equals(status, house.status);
+        this.location = location;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(houseId, name, price, description, address, longitude, latitude, image, type, numberOfBeds, squareFeet, status);
+        return Objects.hash(houseId);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof House other))
+            return false;
+        return (this.houseId == null && other.houseId == null)
+                || (this.houseId != null && this.houseId.equals(other.houseId));
     }
 }
