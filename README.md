@@ -48,6 +48,11 @@ const statusList = ["available", "reserved", "rented"];
 
 ## Changelogs
 
+### 17/01/2022 (Phuong)
+
+- Added get user by name with pagination
+- edit kafka meeting
+
 ### 17/01/2022 (Trang)
 
 - Add (HouseLocation) `location` variable to House

@@ -176,7 +176,11 @@ public class AdminController {
                                 @RequestParam String date,
                                 @RequestParam String time,
                                 @RequestParam String note) {
-        kafkaTemplate.send(TOPIC, adminService.createMeetingTopic(meetingId, userId, houseId, date, time, note));
+        if (meetingId != null) {
+            adminService.deleteMeetingById(meetingId);
+        }
+        kafkaTemplate.send(TOPIC, adminService.createMeetingTopic(userId, houseId, date, time, note));
+
     }
 
     // Delete one by ID

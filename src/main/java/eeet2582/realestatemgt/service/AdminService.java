@@ -197,14 +197,13 @@ public class AdminService {
     }
 
     // Create a new meeting or update one from params
-    public Meeting createMeetingTopic(Long meetingId, Long userId, Long houseId, String date, String time, String note) {
+    public Meeting createMeetingTopic(Long userId, Long houseId, String date, String time, String note) {
         // convert auth0Id user to simpler userId in database
         Long auth0Id = userRepository.checkAuthUserFound(userId);
         userId = auth0Id != null ? auth0Id : userId;
 
         // If ID is provided, try to find the current item, else make new one
-        Meeting meeting = (meetingId != null) ? getMeetingById(meetingId) : new Meeting();
-
+        Meeting meeting = new Meeting();
         // Do input checking here
 
         // Save the cleaned item

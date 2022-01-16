@@ -108,4 +108,9 @@ public class UserService {
         // Finally, delete the user
         userRepository.delete(user);
     }
+
+    public List<AppUser> findUsersByName(String name, int pageNo) {
+        Pageable limit = PageRequest.of(pageNo, 10);
+        return userRepository.findAppUserByFullName(name, limit);
+    }
 }

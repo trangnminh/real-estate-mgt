@@ -1,9 +1,12 @@
 package eeet2582.realestatemgt.repository;
 
 import eeet2582.realestatemgt.model.AppUser;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public interface UserRepository extends JpaRepository<AppUser, Long> {
@@ -13,4 +16,7 @@ public interface UserRepository extends JpaRepository<AppUser, Long> {
 
     @Query("select user.userId from AppUser user where user.auth0Id=?1")
     Long checkAuthUserFound(Long auth0Id);
+
+    List<AppUser> findAppUserByFullName(String name, Pageable pageable);
+
 }

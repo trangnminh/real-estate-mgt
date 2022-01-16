@@ -28,7 +28,7 @@ public class KafkaConfig {
     public NewTopic meetingTopic() {
         return TopicBuilder.name("meeting")
                 .partitions(5)
-                .replicas(2)
+                .replicas(3)
                 .build();
     }
 }
