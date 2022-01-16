@@ -2,9 +2,10 @@
 
 ## Note
 ### **FRONTEND REPOSITORY**
-https://github.com/phu0n9/real-estate
+- Get latest config files and Auth0 instructions here: https://github.com/phu0n9/real-estate
 
 ### **INSTRUCTION**
+
 - You must start both Kafka and Redis servers to run the application
 - Install Redis to test the cache: https://redis.io/topics/quickstart
 - Install Kafka to test the message queue and email: https://kafka.apache.org/quickstart
@@ -13,34 +14,48 @@ https://github.com/phu0n9/real-estate
 - Get the zip file and put the `house` folder inside `data` folder
 
 ### **HOUSE QUERY FORMAT (POSTMAN)**
-- All variables are not required (use defaults if null)
-- Sort and order by any House property (name, address etc.)
-- Page request starts at 1, change with `pageNo`
-- Default page size is 20, change with `pageSize`
-- House price is generated within 100K - 300K
-- House "type" and "status" properties are generated from below lists
+
+- Search houses by sending POST request to `api/v1/houses/search/form`
+- Your search form may look like below (refer to model/house/HouseSearchForm)
+- You must pass a list to searched status and house type, if you only want "available" pass a list of one string
+- In addition to the search form, you may include params pageNo (starts at 1), pageSize and orderBy **(sortBy removed)**
+- **New search only sorts by price for now, if you need other variables tell me**
+
+```
+{
+    "city": "Hanoi",
+    "district": "Ba Dinh",
+    "priceFrom": 250000,
+    "priceTo": 300000,
+    "statusList": [
+        "available",
+        "reserved",
+        "rented"
+    ],
+    "typeList": [
+        "apartment",
+        "serviced",
+        "street"
+    ],
+    "query": ""
+}
+```
+
 ```
 const typeList = ["apartment", "serviced", "street"];
 const statusList = ["available", "reserved", "rented"];
 ```
-- Cache size is 1000 houses a batch
-- Cache lives for 10 minutes (6 minutes if no request)
-- When you debug, try flushing the cache first by running `redis-cli flushdb` in Terminal
-#### By Price Range
-- Search by params `low` and `high` (if not provided, default to 100K and 300K)
-- Default sort and order is "price" descending (most expensive first)
-
-> localhost:8080/api/v1/houses/search/byPriceBetween?pageNo=1&pageSize=20&low=199000&high=200000&sortBy=price&orderBy=desc
-
-#### By Query
-
-- Search by params `query` (match name, address and description), default is empty (match all)
-- Default sort and order is "name" ascending (alphabetical order)
-
-> localhost:8080/api/v1/houses/search?pageNo=1&query=Sunt ullamco labore&sortBy=name&orderBy=asc
 
 ## Changelogs
+
+### 17/01/2022 (Trang)
+
+- Add (HouseLocation) `location` variable to House
+- Overhaul House search functions (now takes HouseSearchForm)
+- Old search endpoints are still there, will delete after testing new one
+
 ### 13/01/2022 (Phuong)
+
 - Change `getFilteredPayments` to `get payments by userId`
 - Updated check auth0Id in Payments
 
