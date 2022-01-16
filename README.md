@@ -52,6 +52,7 @@ const statusList = ["available", "reserved", "rented"];
 
 - Added get user by name with pagination
 - edit kafka meeting
+- added more data for front end to test `meeting`, `payment`, `user`, `rental`, `deposit`
 
 ### 17/01/2022 (Trang)
 
