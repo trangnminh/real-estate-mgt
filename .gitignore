@@ -9,6 +9,7 @@ target/
 /src/main/resources/application.yaml
 /src/main/resources/redisson.yaml
 /src/main/java/eeet2582/realestatemgt/data/house/
+dump.rdb
 
 ### STS ###
 .apt_generated
@@ -36,4 +37,4 @@ build/
 !**/src/test/**/build/
 
 ### VS Code ###
-.vscode/
+.vscode/!/dump.rdb
