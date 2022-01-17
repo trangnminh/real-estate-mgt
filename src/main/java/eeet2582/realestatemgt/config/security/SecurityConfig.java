@@ -36,27 +36,41 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(final @NotNull HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/api/v1/users/**").authenticated()
-                .antMatchers(HttpMethod.POST, "/api/v1/users").authenticated()
-                .antMatchers(HttpMethod.PUT, "/api/v1/users").authenticated()
-                .antMatchers(HttpMethod.DELETE, "/api/v1/users/**").authenticated()
-                .antMatchers(HttpMethod.POST, "/api/v1/houses").authenticated()
-                .antMatchers(HttpMethod.PUT, "/api/v1/houses/**").authenticated()
-                .antMatchers(HttpMethod.DELETE, "/api/v1/houses").authenticated()
-                .antMatchers("/api/v1/deposits/**").authenticated()
-                .antMatchers("/api/v1/meetings/**").authenticated()
-                .antMatchers("/api/v1/rentals/**").authenticated()
-                .antMatchers("/api/v1/payments/**").authenticated()
-                .and()
-                .cors()
-                .and()
-                .csrf().disable()
+        http.cors().and().csrf().disable()
                 .oauth2ResourceServer()
                 .authenticationEntryPoint(authenticationErrorHandler)
                 .jwt()
                 .decoder(makeJwtDecoder())
                 .jwtAuthenticationConverter(makePermissionsConverter());
+
+        http.authorizeRequests()
+                // PUBLIC API
+                .antMatchers(HttpMethod.GET, "/api/v1/houses/**").permitAll()
+                .antMatchers("/api/job/**").permitAll()
+                // PRIVATE API
+                .anyRequest().authenticated();
+
+//        http.authorizeRequests()
+//                .antMatchers(HttpMethod.GET, "/api/v1/users/**").authenticated()
+//                .antMatchers(HttpMethod.POST, "/api/v1/users").authenticated()
+//                .antMatchers(HttpMethod.PUT, "/api/v1/users").authenticated()
+//                .antMatchers(HttpMethod.DELETE, "/api/v1/users/**").authenticated()
+//                .antMatchers(HttpMethod.POST, "/api/v1/houses").authenticated()
+//                .antMatchers(HttpMethod.PUT, "/api/v1/houses/**").authenticated()
+//                .antMatchers(HttpMethod.DELETE, "/api/v1/houses").authenticated()
+//                .antMatchers("/api/v1/deposits/**").authenticated()
+//                .antMatchers("/api/v1/meetings/**").authenticated()
+//                .antMatchers("/api/v1/rentals/**").authenticated()
+//                .antMatchers("/api/v1/payments/**").authenticated()
+//                .and()
+//                .cors()
+//                .and()
+//                .csrf().disable()
+//                .oauth2ResourceServer()
+//                .authenticationEntryPoint(authenticationErrorHandler)
+//                .jwt()
+//                .decoder(makeJwtDecoder())
+//                .jwtAuthenticationConverter(makePermissionsConverter());
     }
 
     @Bean
