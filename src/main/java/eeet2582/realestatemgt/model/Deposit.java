@@ -3,6 +3,7 @@ package eeet2582.realestatemgt.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -12,7 +13,7 @@ import java.time.LocalTime;
 @Setter
 @ToString
 @Entity
-public class Deposit {
+public class Deposit implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
