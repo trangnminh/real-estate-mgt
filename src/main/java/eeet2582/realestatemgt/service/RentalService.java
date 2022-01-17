@@ -4,6 +4,7 @@ import eeet2582.realestatemgt.model.AppUser;
 import eeet2582.realestatemgt.model.House;
 import eeet2582.realestatemgt.model.Payment;
 import eeet2582.realestatemgt.model.Rental;
+import eeet2582.realestatemgt.model.form.PaymentForm;
 import eeet2582.realestatemgt.model.form.RentalForm;
 import eeet2582.realestatemgt.repository.PaymentRepository;
 import eeet2582.realestatemgt.repository.RentalRepository;
@@ -21,6 +22,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Objects;
@@ -42,6 +44,7 @@ public class RentalService {
     private final PaymentRepository paymentRepository;
 
     DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH:mm");
 
     @Cacheable(value = RENTALS)
     public List<Rental> getAllRentals() {
@@ -215,10 +218,18 @@ public class RentalService {
             @CacheEvict(value = PAYMENT_SEARCH_BY_RENTAL, allEntries = true),
             @CacheEvict(value = PAYMENT_SEARCH_BY_USER, allEntries = true)
     })
-    public Payment addNewPaymentByRentalId(Long rentalId, @NotNull Payment payment) {
+    public Payment addNewPaymentByRentalId(Long rentalId, @NotNull PaymentForm form) {
         // Find the associated rental
         Rental rental = getRentalById(rentalId);
-        payment.setRental(rental);
+
+        // Build entity from form
+        Payment payment = new Payment(
+                rental,
+                form.getAmount(),
+                LocalDate.parse(form.getDate(), dateFormat),
+                LocalTime.parse(form.getTime(), timeFormat),
+                form.getNote()
+        );
         return paymentRepository.save(payment);
     }
 
@@ -230,27 +241,27 @@ public class RentalService {
             @CacheEvict(value = PAYMENT_SEARCH_BY_RENTAL, allEntries = true),
             @CacheEvict(value = PAYMENT_SEARCH_BY_USER, allEntries = true)
     })
-    public Payment updatePaymentById(Long paymentId, Payment newPayment) {
-        Payment oldPayment = getPaymentById(paymentId);
+    public Payment updatePaymentById(Long paymentId, @NotNull PaymentForm form) {
+        Payment payment = getPaymentById(paymentId);
 
         // Do input checking here
-        if (oldPayment.getAmount() != null && !Objects.equals(newPayment.getAmount(), oldPayment.getAmount())) {
-            oldPayment.setAmount(newPayment.getAmount());
+        if (payment.getAmount() != null && !Objects.equals(form.getAmount(), payment.getAmount())) {
+            payment.setAmount(form.getAmount());
         }
 
-        if (newPayment.getDate() != null && !oldPayment.getDate().isEqual(newPayment.getDate())) {
-            oldPayment.setDate(newPayment.getDate());
+        if (form.getDate() != null && !payment.getDate().isEqual(LocalDate.parse(form.getDate(), dateFormat))) {
+            payment.setDate(LocalDate.parse(form.getDate(), dateFormat));
         }
 
-        if (newPayment.getTime() != null && !oldPayment.getTime().equals(newPayment.getTime())) {
-            oldPayment.setTime(newPayment.getTime());
+        if (form.getTime() != null && !payment.getTime().equals(LocalTime.parse(form.getTime(), timeFormat))) {
+            payment.setTime(LocalTime.parse(form.getTime(), timeFormat));
         }
 
-        if (newPayment.getNote() != null && !newPayment.getNote().isBlank() && !oldPayment.getNote().equals(newPayment.getNote())) {
-            oldPayment.setNote(newPayment.getNote());
+        if (form.getNote() != null && !form.getNote().isBlank() && !payment.getNote().equals(form.getNote())) {
+            payment.setNote(form.getNote());
         }
 
-        return oldPayment;
+        return payment;
     }
 
     // Delete one

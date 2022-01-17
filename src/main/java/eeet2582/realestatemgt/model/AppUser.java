@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.io.Serializable;
 import java.util.List;
 
 @NoArgsConstructor
@@ -13,7 +13,7 @@ import java.util.List;
 @Setter
 @ToString
 @Entity
-public class AppUser {
+public class AppUser implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,7 +24,7 @@ public class AppUser {
     private String fullName;
     private String email;
     private String phoneNumber;
-    private LocalDate dob;
+    private String dob;
     private String gender;
     private String password;
 
@@ -43,7 +43,7 @@ public class AppUser {
     @ToString.Exclude
     private List<Rental> rentalList;
 
-    public AppUser(Long auth0Id, String fullName, String email, String phoneNumber, LocalDate dob, String gender, String password) {
+    public AppUser(Long auth0Id, String fullName, String email, String phoneNumber, String dob, String gender, String password) {
         this.auth0Id = auth0Id;
         this.fullName = fullName;
         this.email = email;

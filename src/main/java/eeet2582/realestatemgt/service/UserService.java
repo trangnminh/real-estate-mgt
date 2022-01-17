@@ -99,7 +99,7 @@ public class UserService {
         if (newUser.getPhoneNumber() != null && !newUser.getPhoneNumber().isBlank() && !oldUser.getPhoneNumber().equals(newUser.getPhoneNumber())) {
             oldUser.setPhoneNumber(newUser.getPhoneNumber());
         }
-        if (newUser.getDob() != null && !oldUser.getDob().isEqual(newUser.getDob())) {
+        if (newUser.getDob() != null && !oldUser.getDob().equals(newUser.getDob())) {
             oldUser.setDob(newUser.getDob());
         }
         if (newUser.getGender() != null && !newUser.getGender().isBlank() && !oldUser.getGender().equals(newUser.getGender())) {
