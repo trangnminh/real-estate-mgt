@@ -106,7 +106,6 @@ public class HouseService {
     }
 
     // Get one by ID, try to reuse the exception
-    @Cacheable(key = HOUSE_ID, value = HOUSE)
     public House getHouseById(Long houseId) {
         return userHouseLocationUtil.getHouseById(houseId);
     }
@@ -190,8 +189,10 @@ public class HouseService {
             @CacheEvict(value = HOUSE_SEARCH, allEntries = true),
             @CacheEvict(value = HOUSE, key = HOUSE_ID)
     })
-    public void updateHouseById(Long houseId, @NotNull HouseForm form) {
+    public House updateHouseById(Long houseId, @NotNull HouseForm form) {
         House house = getHouseById(houseId);
+        HouseLocation location = userHouseLocationUtil.getHouseLocation(form.getCity(), form.getDistrict());
+        house.setLocation(location);
 
         if (form.getName() != null && !form.getName().isBlank() && !house.getName().equals(form.getName())) {
             house.setName(form.getName());
@@ -252,6 +253,7 @@ public class HouseService {
             fileStore.deletePicturesInFolder(imagePath);
             house.setImage(newImageURL);
         }
+        return house;
     }
 
     // Delete house and bucket images

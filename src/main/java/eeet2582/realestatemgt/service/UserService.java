@@ -63,7 +63,6 @@ public class UserService {
     }
 
     // Get one by ID, try to reuse the exception
-    @Cacheable(key = USER_ID, value = USER)
     public AppUser getUserById(Long userId) {
         return userHouseLocationUtil.getUserById(userId);
     }

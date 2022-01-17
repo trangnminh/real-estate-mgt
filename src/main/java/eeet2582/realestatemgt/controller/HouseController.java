@@ -117,8 +117,8 @@ public class HouseController {
     // Update one by ID
     @PutMapping("/{houseId}")
     @PreAuthorize("hasAuthority('read:admin-messages')")
-    public void updateHouseById(@PathVariable("houseId") Long houseId, @RequestBody HouseForm house) {
-        houseService.updateHouseById(houseId, house);
+    public House updateHouseById(@PathVariable("houseId") Long houseId, @RequestBody HouseForm house) {
+        return houseService.updateHouseById(houseId, house);
     }
 
     // Add more images to a house by ID

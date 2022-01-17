@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-import static eeet2582.realestatemgt.config.RedisConfig.LOCATION;
+import static eeet2582.realestatemgt.config.RedisConfig.*;
 
 
 @Service
@@ -27,6 +27,7 @@ public class UserHouseLocationUtil {
     @Autowired
     private final LocationRepository locationRepository;
 
+    @Cacheable(key = USER_ID, value = USER)
     public AppUser getUserById(Long userId) {
         if (userRepository.checkIfIdMatch(userId) != 1) { // if user logged in with Google or Facebook
             // convert auth0Id user to simpler userId in database
@@ -38,6 +39,7 @@ public class UserHouseLocationUtil {
                 .orElseThrow(() -> new IllegalStateException("User with userId=" + userId + " does not exist!"));
     }
 
+    @Cacheable(key = HOUSE_ID, value = HOUSE)
     public House getHouseById(Long houseId) {
         return houseRepository
                 .findById(houseId)

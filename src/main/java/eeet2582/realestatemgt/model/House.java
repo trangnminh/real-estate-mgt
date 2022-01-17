@@ -40,7 +40,7 @@ public class House implements Serializable {
     private Integer squareFeet;
     private String status;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "location_id")
     private HouseLocation location;
 
