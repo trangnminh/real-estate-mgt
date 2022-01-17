@@ -65,6 +65,8 @@ public class HouseService {
 
     // Find houses by search form
     public List<House> getHousesBySearchFormSortByPrice(HouseSearchForm form, String orderBy) {
+        System.out.println("getHousesBySearchFormSortByPrice: " + form.toString());
+
         // Find by location, if null default to Saigon 7
         String city = (form.getCity() != null && !form.getCity().trim().isEmpty()) ? form.getCity() : "Saigon";
         String district = (form.getDistrict() != null && !form.getDistrict().trim().isEmpty()) ? form.getDistrict() : "7";
@@ -79,12 +81,12 @@ public class HouseService {
         List<House> matchPrice = houseRepository.findByPriceBetween(priceFrom, priceTo);
 
         // Find by status, if null takes all types
-        List<String> statusList = (form.getStatusList() != null && form.getStatusList().isEmpty()) ?
+        List<String> statusList = (form.getStatusList() != null && !form.getStatusList().isEmpty()) ?
                 form.getStatusList() : STATUS_LIST;
         List<House> matchStatus = houseRepository.findByStatusIn(statusList);
 
         // Find by type, if null takes all types
-        List<String> typeList = (form.getTypeList() != null && form.getTypeList().isEmpty()) ?
+        List<String> typeList = (form.getTypeList() != null && !form.getTypeList().isEmpty()) ?
                 form.getTypeList() : TYPE_LIST;
         List<House> matchType = houseRepository.findByTypeIn(typeList);
 

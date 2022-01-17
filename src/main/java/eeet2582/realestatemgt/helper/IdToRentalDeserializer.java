@@ -10,12 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.lang.reflect.Type;
 
-public class IdToRentalParser implements JsonDeserializer<Rental> {
+public class IdToRentalDeserializer implements JsonDeserializer<Rental> {
 
     @Autowired
     private final RentalRepository rentalRepository;
 
-    public IdToRentalParser(RentalRepository rentalRepository) {
+    public IdToRentalDeserializer(RentalRepository rentalRepository) {
         this.rentalRepository = rentalRepository;
     }
 
