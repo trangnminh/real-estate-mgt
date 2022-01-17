@@ -10,7 +10,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-public class StringToDateParser implements JsonDeserializer<LocalDate> {
+public class LocalDateDeserializer implements JsonDeserializer<LocalDate> {
 
     @Override
     public LocalDate deserialize(JsonElement jsonElement,

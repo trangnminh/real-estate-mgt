@@ -3,8 +3,8 @@ package eeet2582.realestatemgt.config;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import eeet2582.realestatemgt.helper.StringToDateParser;
-import eeet2582.realestatemgt.helper.StringToTimeParser;
+import eeet2582.realestatemgt.helper.LocalDateDeserializer;
+import eeet2582.realestatemgt.helper.LocalTimeDeserializer;
 import eeet2582.realestatemgt.model.Deposit;
 import eeet2582.realestatemgt.model.Meeting;
 import eeet2582.realestatemgt.repository.DepositRepository;
@@ -29,8 +29,8 @@ public class AdminConfig {
     CommandLineRunner adminRunner(DepositRepository depositRepository, MeetingRepository meetingRepository) {
         return args -> {
             try {
-                StringToDateParser stringToDateParser = new StringToDateParser();
-                StringToTimeParser stringToTimeParser = new StringToTimeParser();
+                LocalDateDeserializer localDateDeserializer = new LocalDateDeserializer();
+                LocalTimeDeserializer localTimeDeserializer = new LocalTimeDeserializer();
 
                 if (depositRepository.count() == 0) {
                     // Deposit
@@ -39,8 +39,8 @@ public class AdminConfig {
                     }.getType();
 
                     GsonBuilder depositBuilder = new GsonBuilder();
-                    depositBuilder.registerTypeAdapter(LocalDate.class, stringToDateParser);
-                    depositBuilder.registerTypeAdapter(LocalTime.class, stringToTimeParser);
+                    depositBuilder.registerTypeAdapter(LocalDate.class, localDateDeserializer);
+                    depositBuilder.registerTypeAdapter(LocalTime.class, localTimeDeserializer);
 
                     Gson depositGson = depositBuilder.create();
                     List<Deposit> deposits = depositGson.fromJson(depositReader, depositType);
@@ -55,8 +55,8 @@ public class AdminConfig {
                     }.getType();
 
                     GsonBuilder meetingBuilder = new GsonBuilder();
-                    meetingBuilder.registerTypeAdapter(LocalDate.class, stringToDateParser);
-                    meetingBuilder.registerTypeAdapter(LocalTime.class, stringToTimeParser);
+                    meetingBuilder.registerTypeAdapter(LocalDate.class, localDateDeserializer);
+                    meetingBuilder.registerTypeAdapter(LocalTime.class, localTimeDeserializer);
 
                     Gson meetingGson = meetingBuilder.create();
                     List<Meeting> meetings = meetingGson.fromJson(meetingReader, meetingType);
