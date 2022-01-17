@@ -1,1002 +1,802 @@
 [
   {
     "meetingId": 1,
-    "userHouse": {
-      "userId": 93,
-      "houseId": 8315
-    },
-    "date": "2022-08-15",
-    "time": "16:18",
-    "note": "praesent blandit lacinia erat vestibulum sed magna at nunc commodo"
+    "user": 72,
+    "house": 35,
+    "date": "2021-02-02",
+    "time": "15:38",
+    "note": "luctus et ultrices posuere cubilia curae mauris viverra"
   },
   {
     "meetingId": 2,
-    "userHouse": {
-      "userId": 82,
-      "houseId": 4436
-    },
-    "date": "2022-04-05",
-    "time": "15:36",
-    "note": "pellentesque quisque porta volutpat erat quisque erat eros viverra eget congue eget semper rutrum nulla"
+    "user": 89,
+    "house": 75,
+    "date": "2021-09-26",
+    "time": "12:03",
+    "note": "tortor risus dapibus augue vel accumsan tellus"
   },
   {
     "meetingId": 3,
-    "userHouse": {
-      "userId": 7,
-      "houseId": 429
-    },
-    "date": "2022-05-18",
-    "time": "10:15",
-    "note": "mauris morbi non lectus aliquam sit amet diam in magna bibendum imperdiet"
+    "user": 8,
+    "house": 17,
+    "date": "2021-02-17",
+    "time": "15:22",
+    "note": "sollicitudin vitae consectetuer eget rutrum at lorem integer"
   },
   {
     "meetingId": 4,
-    "userHouse": {
-      "userId": 38,
-      "houseId": 6644
-    },
-    "date": "2022-01-12",
-    "time": "11:54",
-    "note": "platea dictumst aliquam augue quam sollicitudin vitae consectetuer eget rutrum at lorem integer tincidunt ante vel ipsum praesent blandit"
+    "user": 35,
+    "house": 56,
+    "date": "2021-04-15",
+    "time": "16:14",
+    "note": "ac neque duis bibendum morbi non"
   },
   {
     "meetingId": 5,
-    "userHouse": {
-      "userId": 4,
-      "houseId": 5310
-    },
-    "date": "2022-09-05",
-    "time": "09:55",
-    "note": "magna vestibulum aliquet ultrices erat tortor sollicitudin mi sit amet lobortis sapien sapien non mi integer"
+    "user": 34,
+    "house": 74,
+    "date": "2021-11-06",
+    "time": "14:28",
+    "note": "vulputate justo in blandit ultrices"
   },
   {
     "meetingId": 6,
-    "userHouse": {
-      "userId": 89,
-      "houseId": 3609
-    },
-    "date": "2022-04-28",
-    "time": "11:01",
-    "note": "odio porttitor id consequat in consequat ut nulla sed accumsan felis ut at"
+    "user": 90,
+    "house": 5,
+    "date": "2021-01-27",
+    "time": "16:49",
+    "note": "sem sed sagittis nam congue risus semper"
   },
   {
     "meetingId": 7,
-    "userHouse": {
-      "userId": 86,
-      "houseId": 7462
-    },
-    "date": "2022-06-13",
-    "time": "15:59",
-    "note": "vel sem sed sagittis nam congue risus semper porta volutpat quam pede lobortis ligula"
+    "user": 82,
+    "house": 59,
+    "date": "2021-01-17",
+    "time": "16:42",
+    "note": "in eleifend quam a odio"
   },
   {
     "meetingId": 8,
-    "userHouse": {
-      "userId": 31,
-      "houseId": 2888
-    },
-    "date": "2022-10-20",
-    "time": "14:44",
-    "note": "odio curabitur convallis duis consequat dui nec nisi volutpat eleifend donec ut dolor morbi"
+    "user": 98,
+    "house": 76,
+    "date": "2021-11-08",
+    "time": "09:53",
+    "note": "congue risus semper porta volutpat quam pede lobortis"
   },
   {
     "meetingId": 9,
-    "userHouse": {
-      "userId": 54,
-      "houseId": 466
-    },
-    "date": "2022-10-23",
-    "time": "12:41",
-    "note": "vel accumsan tellus nisi eu orci mauris lacinia sapien quis libero nullam"
+    "user": 2,
+    "house": 64,
+    "date": "2021-02-28",
+    "time": "10:08",
+    "note": "ac est lacinia nisi venenatis tristique fusce"
   },
   {
     "meetingId": 10,
-    "userHouse": {
-      "userId": 37,
-      "houseId": 5192
-    },
-    "date": "2022-01-21",
-    "time": "09:06",
-    "note": "congue etiam justo etiam pretium iaculis justo in hac habitasse platea dictumst etiam faucibus cursus urna ut"
+    "user": 63,
+    "house": 74,
+    "date": "2021-02-13",
+    "time": "14:25",
+    "note": "nam tristique tortor eu pede"
   },
   {
     "meetingId": 11,
-    "userHouse": {
-      "userId": 11,
-      "houseId": 9412
-    },
-    "date": "2022-10-15",
-    "time": "12:13",
-    "note": "nec euismod scelerisque quam turpis adipiscing lorem vitae mattis nibh ligula"
+    "user": 88,
+    "house": 52,
+    "date": "2021-01-30",
+    "time": "10:42",
+    "note": "ut rhoncus aliquet pulvinar sed nisl"
   },
   {
     "meetingId": 12,
-    "userHouse": {
-      "userId": 31,
-      "houseId": 9184
-    },
-    "date": "2022-03-09",
-    "time": "12:03",
-    "note": "nisl venenatis lacinia aenean sit amet justo morbi ut odio cras mi pede malesuada in imperdiet"
+    "user": 77,
+    "house": 60,
+    "date": "2021-03-03",
+    "time": "15:21",
+    "note": "eros elementum pellentesque quisque porta volutpat"
   },
   {
     "meetingId": 13,
-    "userHouse": {
-      "userId": 41,
-      "houseId": 9911
-    },
-    "date": "2022-01-16",
-    "time": "13:12",
-    "note": "luctus nec molestie sed justo pellentesque viverra pede ac diam cras pellentesque volutpat dui maecenas"
+    "user": 64,
+    "house": 59,
+    "date": "2021-07-14",
+    "time": "09:09",
+    "note": "orci luctus et ultrices posuere"
   },
   {
     "meetingId": 14,
-    "userHouse": {
-      "userId": 6,
-      "houseId": 2210
-    },
-    "date": "2022-01-20",
-    "time": "11:07",
-    "note": "nisi volutpat eleifend donec ut dolor morbi vel lectus in quam fringilla rhoncus mauris enim leo rhoncus sed vestibulum sit"
+    "user": 50,
+    "house": 45,
+    "date": "2021-11-26",
+    "time": "09:58",
+    "note": "eu orci mauris lacinia sapien quis"
   },
   {
     "meetingId": 15,
-    "userHouse": {
-      "userId": 72,
-      "houseId": 5234
-    },
-    "date": "2022-04-06",
-    "time": "10:51",
-    "note": "fermentum justo nec condimentum neque sapien placerat ante nulla justo"
+    "user": 38,
+    "house": 65,
+    "date": "2021-02-12",
+    "time": "10:05",
+    "note": "libero quis orci nullam molestie"
   },
   {
     "meetingId": 16,
-    "userHouse": {
-      "userId": 85,
-      "houseId": 7855
-    },
-    "date": "2022-06-23",
-    "time": "12:28",
-    "note": "felis sed interdum venenatis turpis enim blandit mi in porttitor pede justo eu massa donec dapibus duis at velit"
+    "user": 100,
+    "house": 8,
+    "date": "2021-06-30",
+    "time": "15:25",
+    "note": "eget congue eget semper rutrum nulla nunc"
   },
   {
     "meetingId": 17,
-    "userHouse": {
-      "userId": 30,
-      "houseId": 5582
-    },
-    "date": "2022-10-04",
-    "time": "09:03",
-    "note": "nunc proin at turpis a pede posuere nonummy integer non velit donec diam neque vestibulum"
+    "user": 34,
+    "house": 60,
+    "date": "2021-07-02",
+    "time": "15:09",
+    "note": "nibh quisque id justo sit amet"
   },
   {
     "meetingId": 18,
-    "userHouse": {
-      "userId": 25,
-      "houseId": 4587
-    },
-    "date": "2022-09-29",
-    "time": "12:25",
-    "note": "non interdum in ante vestibulum ante ipsum primis in faucibus orci luctus et"
+    "user": 9,
+    "house": 81,
+    "date": "2021-10-08",
+    "time": "14:18",
+    "note": "gravida sem praesent id massa id"
   },
   {
     "meetingId": 19,
-    "userHouse": {
-      "userId": 23,
-      "houseId": 335
-    },
-    "date": "2022-06-06",
-    "time": "16:04",
-    "note": "porttitor id consequat in consequat ut nulla sed accumsan felis"
+    "user": 46,
+    "house": 91,
+    "date": "2021-05-06",
+    "time": "15:15",
+    "note": "tincidunt eu felis fusce posuere felis sed"
   },
   {
     "meetingId": 20,
-    "userHouse": {
-      "userId": 16,
-      "houseId": 846
-    },
-    "date": "2022-09-02",
-    "time": "16:55",
-    "note": "nunc nisl duis bibendum felis sed interdum venenatis turpis enim blandit mi in porttitor"
+    "user": 22,
+    "house": 94,
+    "date": "2021-08-20",
+    "time": "11:26",
+    "note": "sed sagittis nam congue risus semper"
   },
   {
     "meetingId": 21,
-    "userHouse": {
-      "userId": 1,
-      "houseId": 9494
-    },
-    "date": "2022-11-22",
-    "time": "10:16",
-    "note": "sapien dignissim vestibulum vestibulum ante ipsum primis in faucibus orci luctus et ultrices"
+    "user": 53,
+    "house": 80,
+    "date": "2021-11-21",
+    "time": "15:39",
+    "note": "turpis adipiscing lorem vitae mattis nibh ligula nec"
   },
   {
     "meetingId": 22,
-    "userHouse": {
-      "userId": 8,
-      "houseId": 2754
-    },
-    "date": "2022-04-02",
-    "time": "15:44",
-    "note": "dapibus dolor vel est donec odio justo sollicitudin ut suscipit a feugiat et eros vestibulum ac est lacinia nisi"
+    "user": 87,
+    "house": 73,
+    "date": "2021-01-04",
+    "time": "12:13",
+    "note": "sed lacus morbi sem mauris laoreet ut"
   },
   {
     "meetingId": 23,
-    "userHouse": {
-      "userId": 51,
-      "houseId": 8309
-    },
-    "date": "2022-11-05",
-    "time": "14:05",
-    "note": "nisi vulputate nonummy maecenas tincidunt lacus at velit vivamus vel nulla eget eros elementum pellentesque quisque porta volutpat erat"
+    "user": 34,
+    "house": 5,
+    "date": "2021-06-12",
+    "time": "14:27",
+    "note": "tellus semper interdum mauris ullamcorper purus sit amet"
   },
   {
     "meetingId": 24,
-    "userHouse": {
-      "userId": 82,
-      "houseId": 9508
-    },
-    "date": "2022-11-09",
-    "time": "16:56",
-    "note": "ullamcorper augue a suscipit nulla elit ac nulla sed vel enim"
+    "user": 69,
+    "house": 42,
+    "date": "2021-05-27",
+    "time": "14:17",
+    "note": "in quam fringilla rhoncus mauris enim leo rhoncus"
   },
   {
     "meetingId": 25,
-    "userHouse": {
-      "userId": 20,
-      "houseId": 9237
-    },
-    "date": "2022-02-28",
-    "time": "15:17",
-    "note": "quam nec dui luctus rutrum nulla tellus in sagittis dui vel nisl duis ac nibh"
+    "user": 66,
+    "house": 52,
+    "date": "2021-03-28",
+    "time": "14:23",
+    "note": "ipsum aliquam non mauris morbi"
   },
   {
     "meetingId": 26,
-    "userHouse": {
-      "userId": 25,
-      "houseId": 2555
-    },
-    "date": "2022-03-20",
-    "time": "12:11",
-    "note": "sapien a libero nam dui proin leo odio porttitor id consequat in consequat ut"
+    "user": 2,
+    "house": 18,
+    "date": "2021-10-22",
+    "time": "11:59",
+    "note": "nam dui proin leo odio porttitor id consequat"
   },
   {
     "meetingId": 27,
-    "userHouse": {
-      "userId": 9,
-      "houseId": 4382
-    },
-    "date": "2022-05-09",
-    "time": "14:35",
-    "note": "nascetur ridiculus mus vivamus vestibulum sagittis sapien cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus etiam"
+    "user": 44,
+    "house": 82,
+    "date": "2021-11-17",
+    "time": "11:55",
+    "note": "gravida nisi at nibh in"
   },
   {
     "meetingId": 28,
-    "userHouse": {
-      "userId": 35,
-      "houseId": 5597
-    },
-    "date": "2022-05-12",
-    "time": "11:16",
-    "note": "at vulputate vitae nisl aenean lectus pellentesque eget nunc donec quis orci eget orci vehicula"
+    "user": 62,
+    "house": 51,
+    "date": "2021-10-22",
+    "time": "10:16",
+    "note": "diam vitae quam suspendisse potenti nullam porttitor lacus"
   },
   {
     "meetingId": 29,
-    "userHouse": {
-      "userId": 15,
-      "houseId": 7032
-    },
-    "date": "2022-03-08",
-    "time": "15:20",
-    "note": "vivamus vel nulla eget eros elementum pellentesque quisque porta volutpat erat quisque"
+    "user": 100,
+    "house": 47,
+    "date": "2021-05-20",
+    "time": "15:59",
+    "note": "nulla sed vel enim sit amet nunc"
   },
   {
     "meetingId": 30,
-    "userHouse": {
-      "userId": 69,
-      "houseId": 7193
-    },
-    "date": "2022-09-11",
-    "time": "09:20",
-    "note": "felis ut at dolor quis odio consequat varius integer ac leo pellentesque ultrices mattis odio donec"
+    "user": 74,
+    "house": 92,
+    "date": "2021-03-15",
+    "time": "09:14",
+    "note": "augue aliquam erat volutpat in congue etiam justo"
   },
   {
     "meetingId": 31,
-    "userHouse": {
-      "userId": 12,
-      "houseId": 9757
-    },
-    "date": "2022-10-16",
-    "time": "13:06",
-    "note": "viverra dapibus nulla suscipit ligula in lacus curabitur at ipsum ac tellus"
+    "user": 87,
+    "house": 56,
+    "date": "2021-01-23",
+    "time": "16:24",
+    "note": "sem praesent id massa id nisl"
   },
   {
     "meetingId": 32,
-    "userHouse": {
-      "userId": 29,
-      "houseId": 8159
-    },
-    "date": "2022-02-20",
-    "time": "14:35",
-    "note": "augue vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae donec"
+    "user": 7,
+    "house": 35,
+    "date": "2021-07-21",
+    "time": "13:57",
+    "note": "donec ut mauris eget massa tempor"
   },
   {
     "meetingId": 33,
-    "userHouse": {
-      "userId": 43,
-      "houseId": 1282
-    },
-    "date": "2022-04-02",
-    "time": "16:33",
-    "note": "amet lobortis sapien sapien non mi integer ac neque duis bibendum morbi non quam nec dui luctus rutrum nulla tellus"
+    "user": 53,
+    "house": 93,
+    "date": "2021-09-30",
+    "time": "13:53",
+    "note": "tortor risus dapibus augue vel accumsan tellus nisi"
   },
   {
     "meetingId": 34,
-    "userHouse": {
-      "userId": 31,
-      "houseId": 8143
-    },
-    "date": "2022-06-07",
-    "time": "11:45",
-    "note": "etiam pretium iaculis justo in hac habitasse platea dictumst etiam faucibus cursus urna"
+    "user": 85,
+    "house": 51,
+    "date": "2021-08-16",
+    "time": "14:21",
+    "note": "non mattis pulvinar nulla pede"
   },
   {
     "meetingId": 35,
-    "userHouse": {
-      "userId": 27,
-      "houseId": 2801
-    },
-    "date": "2022-08-20",
-    "time": "14:19",
-    "note": "id nisl venenatis lacinia aenean sit amet justo morbi ut odio cras mi pede"
+    "user": 5,
+    "house": 27,
+    "date": "2021-11-24",
+    "time": "13:10",
+    "note": "eget congue eget semper rutrum nulla nunc purus"
   },
   {
     "meetingId": 36,
-    "userHouse": {
-      "userId": 42,
-      "houseId": 7877
-    },
-    "date": "2022-02-08",
-    "time": "13:05",
-    "note": "odio donec vitae nisi nam ultrices libero non mattis pulvinar nulla pede ullamcorper augue a suscipit nulla elit ac nulla"
+    "user": 100,
+    "house": 60,
+    "date": "2021-06-06",
+    "time": "12:30",
+    "note": "volutpat convallis morbi odio odio elementum eu"
   },
   {
     "meetingId": 37,
-    "userHouse": {
-      "userId": 24,
-      "houseId": 4040
-    },
-    "date": "2022-08-03",
-    "time": "14:27",
-    "note": "morbi a ipsum integer a nibh in quis justo maecenas rhoncus"
+    "user": 54,
+    "house": 66,
+    "date": "2021-05-06",
+    "time": "14:17",
+    "note": "sapien quis libero nullam sit amet turpis elementum"
   },
   {
     "meetingId": 38,
-    "userHouse": {
-      "userId": 51,
-      "houseId": 321
-    },
-    "date": "2022-06-21",
-    "time": "15:44",
-    "note": "quis odio consequat varius integer ac leo pellentesque ultrices mattis odio donec vitae nisi nam"
+    "user": 96,
+    "house": 45,
+    "date": "2021-02-26",
+    "time": "09:56",
+    "note": "donec semper sapien a libero nam dui proin"
   },
   {
     "meetingId": 39,
-    "userHouse": {
-      "userId": 62,
-      "houseId": 3149
-    },
-    "date": "2022-08-31",
-    "time": "13:15",
-    "note": "tellus nulla ut erat id mauris vulputate elementum nullam varius nulla facilisi"
+    "user": 78,
+    "house": 26,
+    "date": "2021-09-22",
+    "time": "16:31",
+    "note": "vitae consectetuer eget rutrum at lorem"
   },
   {
     "meetingId": 40,
-    "userHouse": {
-      "userId": 47,
-      "houseId": 5604
-    },
-    "date": "2022-07-24",
-    "time": "09:44",
-    "note": "at velit vivamus vel nulla eget eros elementum pellentesque quisque porta volutpat erat quisque erat eros viverra eget congue eget"
+    "user": 99,
+    "house": 58,
+    "date": "2021-08-22",
+    "time": "12:17",
+    "note": "commodo vulputate justo in blandit ultrices enim"
   },
   {
     "meetingId": 41,
-    "userHouse": {
-      "userId": 62,
-      "houseId": 5224
-    },
-    "date": "2022-05-09",
-    "time": "15:20",
-    "note": "fusce congue diam id ornare imperdiet sapien urna pretium nisl ut volutpat"
+    "user": 75,
+    "house": 75,
+    "date": "2021-05-29",
+    "time": "14:50",
+    "note": "erat tortor sollicitudin mi sit amet"
   },
   {
     "meetingId": 42,
-    "userHouse": {
-      "userId": 27,
-      "houseId": 4891
-    },
-    "date": "2022-02-25",
-    "time": "15:12",
-    "note": "viverra eget congue eget semper rutrum nulla nunc purus phasellus in felis donec semper sapien a libero nam"
+    "user": 31,
+    "house": 68,
+    "date": "2021-10-07",
+    "time": "10:30",
+    "note": "donec posuere metus vitae ipsum"
   },
   {
     "meetingId": 43,
-    "userHouse": {
-      "userId": 55,
-      "houseId": 9896
-    },
-    "date": "2022-11-13",
-    "time": "10:05",
-    "note": "platea dictumst etiam faucibus cursus urna ut tellus nulla ut erat id mauris vulputate elementum nullam varius nulla"
+    "user": 86,
+    "house": 92,
+    "date": "2021-10-23",
+    "time": "10:30",
+    "note": "malesuada in imperdiet et commodo vulputate justo"
   },
   {
     "meetingId": 44,
-    "userHouse": {
-      "userId": 68,
-      "houseId": 102
-    },
-    "date": "2022-01-27",
-    "time": "10:59",
-    "note": "suspendisse ornare consequat lectus in est risus auctor sed tristique in tempus sit amet"
+    "user": 64,
+    "house": 22,
+    "date": "2021-10-06",
+    "time": "14:51",
+    "note": "integer ac leo pellentesque ultrices mattis odio"
   },
   {
     "meetingId": 45,
-    "userHouse": {
-      "userId": 24,
-      "houseId": 7356
-    },
-    "date": "2022-05-19",
-    "time": "11:46",
-    "note": "mauris lacinia sapien quis libero nullam sit amet turpis elementum"
+    "user": 91,
+    "house": 56,
+    "date": "2021-03-02",
+    "time": "12:55",
+    "note": "in tempor turpis nec euismod scelerisque quam"
   },
   {
     "meetingId": 46,
-    "userHouse": {
-      "userId": 32,
-      "houseId": 5145
-    },
-    "date": "2022-01-04",
-    "time": "12:16",
-    "note": "leo odio condimentum id luctus nec molestie sed justo pellentesque"
+    "user": 90,
+    "house": 12,
+    "date": "2021-05-23",
+    "time": "15:21",
+    "note": "tincidunt eget tempus vel pede"
   },
   {
     "meetingId": 47,
-    "userHouse": {
-      "userId": 25,
-      "houseId": 5500
-    },
-    "date": "2022-06-02",
-    "time": "14:57",
-    "note": "ut erat id mauris vulputate elementum nullam varius nulla facilisi cras non velit nec nisi vulputate nonummy maecenas tincidunt lacus"
+    "user": 9,
+    "house": 71,
+    "date": "2021-06-21",
+    "time": "12:01",
+    "note": "felis ut at dolor quis odio consequat"
   },
   {
     "meetingId": 48,
-    "userHouse": {
-      "userId": 100,
-      "houseId": 2715
-    },
-    "date": "2022-05-06",
-    "time": "16:07",
-    "note": "ut nunc vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae mauris viverra diam vitae"
+    "user": 1,
+    "house": 78,
+    "date": "2021-05-09",
+    "time": "14:58",
+    "note": "interdum eu tincidunt in leo"
   },
   {
     "meetingId": 49,
-    "userHouse": {
-      "userId": 72,
-      "houseId": 6381
-    },
-    "date": "2022-09-07",
-    "time": "11:34",
-    "note": "praesent blandit nam nulla integer pede justo lacinia eget tincidunt eget tempus vel pede morbi porttitor lorem id ligula suspendisse"
+    "user": 68,
+    "house": 59,
+    "date": "2021-01-14",
+    "time": "11:32",
+    "note": "dapibus augue vel accumsan tellus"
   },
   {
     "meetingId": 50,
-    "userHouse": {
-      "userId": 99,
-      "houseId": 7108
-    },
-    "date": "2022-10-27",
-    "time": "13:15",
-    "note": "mattis nibh ligula nec sem duis aliquam convallis nunc proin at turpis a pede posuere nonummy integer non velit donec"
+    "user": 2,
+    "house": 93,
+    "date": "2021-01-12",
+    "time": "10:57",
+    "note": "eleifend luctus ultricies eu nibh quisque id"
   },
   {
     "meetingId": 51,
-    "userHouse": {
-      "userId": 2,
-      "houseId": 9016
-    },
-    "date": "2022-07-15",
-    "time": "15:26",
-    "note": "ultrices phasellus id sapien in sapien iaculis congue vivamus metus arcu adipiscing molestie hendrerit at vulputate"
+    "user": 8,
+    "house": 88,
+    "date": "2021-11-12",
+    "time": "10:35",
+    "note": "lorem vitae mattis nibh ligula nec"
   },
   {
     "meetingId": 52,
-    "userHouse": {
-      "userId": 17,
-      "houseId": 113
-    },
-    "date": "2022-06-08",
-    "time": "15:09",
-    "note": "nibh in quis justo maecenas rhoncus aliquam lacus morbi quis tortor id nulla ultrices aliquet maecenas leo"
+    "user": 78,
+    "house": 17,
+    "date": "2021-04-18",
+    "time": "11:35",
+    "note": "blandit ultrices enim lorem ipsum dolor sit"
   },
   {
     "meetingId": 53,
-    "userHouse": {
-      "userId": 29,
-      "houseId": 8486
-    },
-    "date": "2022-04-06",
-    "time": "10:01",
-    "note": "felis sed interdum venenatis turpis enim blandit mi in porttitor pede justo eu massa donec dapibus duis"
+    "user": 11,
+    "house": 98,
+    "date": "2021-06-03",
+    "time": "14:51",
+    "note": "nulla elit ac nulla sed vel"
   },
   {
     "meetingId": 54,
-    "userHouse": {
-      "userId": 10,
-      "houseId": 1250
-    },
-    "date": "2022-07-12",
-    "time": "15:28",
-    "note": "consequat ut nulla sed accumsan felis ut at dolor quis odio consequat varius integer ac leo pellentesque ultrices"
+    "user": 75,
+    "house": 65,
+    "date": "2021-03-31",
+    "time": "10:44",
+    "note": "sit amet nunc viverra dapibus"
   },
   {
     "meetingId": 55,
-    "userHouse": {
-      "userId": 1,
-      "houseId": 1651
-    },
-    "date": "2022-10-01",
-    "time": "15:24",
-    "note": "tempus vel pede morbi porttitor lorem id ligula suspendisse ornare consequat lectus in est risus auctor sed tristique in tempus"
+    "user": 22,
+    "house": 45,
+    "date": "2021-08-13",
+    "time": "15:04",
+    "note": "ut erat id mauris vulputate elementum nullam varius"
   },
   {
     "meetingId": 56,
-    "userHouse": {
-      "userId": 18,
-      "houseId": 952
-    },
-    "date": "2022-02-05",
-    "time": "16:15",
-    "note": "id sapien in sapien iaculis congue vivamus metus arcu adipiscing molestie hendrerit at vulputate vitae nisl aenean lectus"
+    "user": 74,
+    "house": 3,
+    "date": "2021-06-10",
+    "time": "16:55",
+    "note": "sit amet erat nulla tempus vivamus"
   },
   {
     "meetingId": 57,
-    "userHouse": {
-      "userId": 94,
-      "houseId": 7889
-    },
-    "date": "2022-02-03",
-    "time": "12:48",
-    "note": "ac enim in tempor turpis nec euismod scelerisque quam turpis adipiscing lorem vitae mattis nibh ligula nec sem duis"
+    "user": 18,
+    "house": 13,
+    "date": "2021-05-22",
+    "time": "09:19",
+    "note": "velit nec nisi vulputate nonummy"
   },
   {
     "meetingId": 58,
-    "userHouse": {
-      "userId": 78,
-      "houseId": 6809
-    },
-    "date": "2022-03-22",
-    "time": "14:21",
-    "note": "pulvinar nulla pede ullamcorper augue a suscipit nulla elit ac"
+    "user": 17,
+    "house": 55,
+    "date": "2021-04-14",
+    "time": "15:52",
+    "note": "hac habitasse platea dictumst maecenas ut massa quis"
   },
   {
     "meetingId": 59,
-    "userHouse": {
-      "userId": 6,
-      "houseId": 2071
-    },
-    "date": "2022-01-03",
-    "time": "11:18",
-    "note": "sed vestibulum sit amet cursus id turpis integer aliquet massa id lobortis"
+    "user": 67,
+    "house": 11,
+    "date": "2021-10-18",
+    "time": "14:10",
+    "note": "integer ac neque duis bibendum morbi non quam"
   },
   {
     "meetingId": 60,
-    "userHouse": {
-      "userId": 51,
-      "houseId": 2709
-    },
-    "date": "2022-11-15",
-    "time": "11:22",
-    "note": "lectus in quam fringilla rhoncus mauris enim leo rhoncus sed vestibulum sit amet cursus id"
+    "user": 25,
+    "house": 83,
+    "date": "2021-07-18",
+    "time": "12:07",
+    "note": "potenti nullam porttitor lacus at turpis"
   },
   {
     "meetingId": 61,
-    "userHouse": {
-      "userId": 44,
-      "houseId": 9795
-    },
-    "date": "2022-05-13",
-    "time": "14:44",
-    "note": "sem sed sagittis nam congue risus semper porta volutpat quam pede lobortis ligula"
+    "user": 27,
+    "house": 89,
+    "date": "2021-04-26",
+    "time": "14:54",
+    "note": "congue vivamus metus arcu adipiscing molestie"
   },
   {
     "meetingId": 62,
-    "userHouse": {
-      "userId": 48,
-      "houseId": 6150
-    },
-    "date": "2022-07-31",
-    "time": "11:20",
-    "note": "augue a suscipit nulla elit ac nulla sed vel enim sit amet nunc viverra"
+    "user": 16,
+    "house": 95,
+    "date": "2021-06-28",
+    "time": "14:17",
+    "note": "ornare imperdiet sapien urna pretium nisl ut"
   },
   {
     "meetingId": 63,
-    "userHouse": {
-      "userId": 52,
-      "houseId": 4153
-    },
-    "date": "2022-10-08",
-    "time": "14:18",
-    "note": "consectetuer eget rutrum at lorem integer tincidunt ante vel ipsum praesent blandit"
+    "user": 85,
+    "house": 90,
+    "date": "2021-10-26",
+    "time": "12:38",
+    "note": "turpis a pede posuere nonummy integer"
   },
   {
     "meetingId": 64,
-    "userHouse": {
-      "userId": 87,
-      "houseId": 2633
-    },
-    "date": "2022-01-05",
-    "time": "09:54",
-    "note": "sapien ut nunc vestibulum ante ipsum primis in faucibus orci luctus"
+    "user": 10,
+    "house": 84,
+    "date": "2021-02-16",
+    "time": "12:47",
+    "note": "gravida nisi at nibh in hac habitasse"
   },
   {
     "meetingId": 65,
-    "userHouse": {
-      "userId": 32,
-      "houseId": 6497
-    },
-    "date": "2022-04-23",
-    "time": "16:45",
-    "note": "id turpis integer aliquet massa id lobortis convallis tortor risus dapibus augue vel accumsan tellus nisi"
+    "user": 23,
+    "house": 83,
+    "date": "2021-01-08",
+    "time": "11:56",
+    "note": "morbi vel lectus in quam"
   },
   {
     "meetingId": 66,
-    "userHouse": {
-      "userId": 8,
-      "houseId": 9634
-    },
-    "date": "2022-10-12",
-    "time": "13:42",
-    "note": "aliquam erat volutpat in congue etiam justo etiam pretium iaculis justo in hac habitasse platea dictumst"
+    "user": 4,
+    "house": 22,
+    "date": "2021-02-25",
+    "time": "13:50",
+    "note": "pede justo eu massa donec dapibus duis"
   },
   {
     "meetingId": 67,
-    "userHouse": {
-      "userId": 44,
-      "houseId": 896
-    },
-    "date": "2022-11-29",
-    "time": "12:54",
-    "note": "libero non mattis pulvinar nulla pede ullamcorper augue a suscipit nulla elit ac"
+    "user": 69,
+    "house": 21,
+    "date": "2021-07-06",
+    "time": "11:25",
+    "note": "quis tortor id nulla ultrices aliquet maecenas leo"
   },
   {
     "meetingId": 68,
-    "userHouse": {
-      "userId": 83,
-      "houseId": 2907
-    },
-    "date": "2022-03-03",
-    "time": "13:28",
-    "note": "erat tortor sollicitudin mi sit amet lobortis sapien sapien non mi"
+    "user": 100,
+    "house": 69,
+    "date": "2021-11-12",
+    "time": "13:51",
+    "note": "arcu sed augue aliquam erat volutpat"
   },
   {
     "meetingId": 69,
-    "userHouse": {
-      "userId": 4,
-      "houseId": 954
-    },
-    "date": "2022-04-27",
-    "time": "10:40",
-    "note": "amet turpis elementum ligula vehicula consequat morbi a ipsum integer a nibh in"
+    "user": 77,
+    "house": 66,
+    "date": "2021-05-06",
+    "time": "10:38",
+    "note": "quam turpis adipiscing lorem vitae mattis"
   },
   {
     "meetingId": 70,
-    "userHouse": {
-      "userId": 57,
-      "houseId": 2997
-    },
-    "date": "2022-03-10",
-    "time": "11:33",
-    "note": "quis lectus suspendisse potenti in eleifend quam a odio in hac habitasse platea dictumst"
+    "user": 70,
+    "house": 92,
+    "date": "2021-09-15",
+    "time": "14:10",
+    "note": "feugiat non pretium quis lectus suspendisse potenti"
   },
   {
     "meetingId": 71,
-    "userHouse": {
-      "userId": 11,
-      "houseId": 7515
-    },
-    "date": "2022-01-29",
-    "time": "14:49",
-    "note": "lectus in est risus auctor sed tristique in tempus sit amet sem"
+    "user": 37,
+    "house": 32,
+    "date": "2021-01-04",
+    "time": "13:17",
+    "note": "amet consectetuer adipiscing elit proin risus"
   },
   {
     "meetingId": 72,
-    "userHouse": {
-      "userId": 81,
-      "houseId": 8353
-    },
-    "date": "2022-07-15",
-    "time": "15:29",
-    "note": "luctus rutrum nulla tellus in sagittis dui vel nisl duis"
+    "user": 41,
+    "house": 38,
+    "date": "2021-06-28",
+    "time": "10:58",
+    "note": "ultrices posuere cubilia curae nulla dapibus dolor"
   },
   {
     "meetingId": 73,
-    "userHouse": {
-      "userId": 53,
-      "houseId": 8909
-    },
-    "date": "2022-05-02",
-    "time": "14:40",
-    "note": "at velit eu est congue elementum in hac habitasse platea"
+    "user": 20,
+    "house": 70,
+    "date": "2021-08-13",
+    "time": "14:00",
+    "note": "ante ipsum primis in faucibus orci luctus et"
   },
   {
     "meetingId": 74,
-    "userHouse": {
-      "userId": 65,
-      "houseId": 1709
-    },
-    "date": "2022-10-20",
-    "time": "11:47",
-    "note": "arcu libero rutrum ac lobortis vel dapibus at diam nam tristique tortor"
+    "user": 82,
+    "house": 30,
+    "date": "2021-11-06",
+    "time": "13:33",
+    "note": "tortor id nulla ultrices aliquet maecenas leo"
   },
   {
     "meetingId": 75,
-    "userHouse": {
-      "userId": 26,
-      "houseId": 2039
-    },
-    "date": "2022-01-02",
-    "time": "12:45",
-    "note": "nibh in lectus pellentesque at nulla suspendisse potenti cras in purus eu magna vulputate"
+    "user": 72,
+    "house": 59,
+    "date": "2021-03-14",
+    "time": "09:12",
+    "note": "pede venenatis non sodales sed"
   },
   {
     "meetingId": 76,
-    "userHouse": {
-      "userId": 22,
-      "houseId": 5451
-    },
-    "date": "2022-04-25",
-    "time": "14:58",
-    "note": "proin leo odio porttitor id consequat in consequat ut nulla sed accumsan"
+    "user": 83,
+    "house": 43,
+    "date": "2021-05-02",
+    "time": "15:07",
+    "note": "integer ac neque duis bibendum morbi"
   },
   {
     "meetingId": 77,
-    "userHouse": {
-      "userId": 2,
-      "houseId": 9271
-    },
-    "date": "2022-05-01",
-    "time": "13:51",
-    "note": "erat quisque erat eros viverra eget congue eget semper rutrum nulla nunc purus phasellus in felis donec"
+    "user": 8,
+    "house": 84,
+    "date": "2021-11-06",
+    "time": "10:38",
+    "note": "enim blandit mi in porttitor pede justo"
   },
   {
     "meetingId": 78,
-    "userHouse": {
-      "userId": 61,
-      "houseId": 548
-    },
-    "date": "2022-01-06",
-    "time": "15:48",
-    "note": "non pretium quis lectus suspendisse potenti in eleifend quam a odio in hac habitasse platea dictumst maecenas ut massa"
+    "user": 8,
+    "house": 72,
+    "date": "2021-01-04",
+    "time": "09:46",
+    "note": "aenean fermentum donec ut mauris eget massa tempor"
   },
   {
     "meetingId": 79,
-    "userHouse": {
-      "userId": 7,
-      "houseId": 6896
-    },
-    "date": "2022-11-28",
-    "time": "09:55",
-    "note": "mauris laoreet ut rhoncus aliquet pulvinar sed nisl nunc rhoncus dui vel sem sed sagittis nam congue risus semper porta"
+    "user": 86,
+    "house": 2,
+    "date": "2021-08-22",
+    "time": "10:40",
+    "note": "magnis dis parturient montes nascetur"
   },
   {
     "meetingId": 80,
-    "userHouse": {
-      "userId": 35,
-      "houseId": 7449
-    },
-    "date": "2022-09-07",
-    "time": "16:12",
-    "note": "quam nec dui luctus rutrum nulla tellus in sagittis dui vel nisl duis ac nibh fusce lacus purus"
+    "user": 58,
+    "house": 1,
+    "date": "2021-04-29",
+    "time": "09:25",
+    "note": "mattis nibh ligula nec sem duis"
   },
   {
     "meetingId": 81,
-    "userHouse": {
-      "userId": 71,
-      "houseId": 6296
-    },
-    "date": "2022-03-07",
-    "time": "09:53",
-    "note": "in tempus sit amet sem fusce consequat nulla nisl nunc nisl duis bibendum felis sed interdum venenatis turpis enim blandit"
+    "user": 34,
+    "house": 7,
+    "date": "2021-05-23",
+    "time": "16:48",
+    "note": "et magnis dis parturient montes nascetur ridiculus mus"
   },
   {
     "meetingId": 82,
-    "userHouse": {
-      "userId": 26,
-      "houseId": 3727
-    },
-    "date": "2022-08-23",
-    "time": "15:24",
-    "note": "pede justo eu massa donec dapibus duis at velit eu est"
+    "user": 23,
+    "house": 100,
+    "date": "2021-10-10",
+    "time": "13:08",
+    "note": "duis ac nibh fusce lacus purus aliquet"
   },
   {
     "meetingId": 83,
-    "userHouse": {
-      "userId": 2,
-      "houseId": 7726
-    },
-    "date": "2022-03-19",
-    "time": "16:49",
-    "note": "non lectus aliquam sit amet diam in magna bibendum imperdiet nullam orci pede venenatis non sodales sed tincidunt eu felis"
+    "user": 88,
+    "house": 16,
+    "date": "2021-10-01",
+    "time": "13:57",
+    "note": "donec quis orci eget orci"
   },
   {
     "meetingId": 84,
-    "userHouse": {
-      "userId": 11,
-      "houseId": 607
-    },
-    "date": "2022-08-03",
-    "time": "12:41",
-    "note": "nec dui luctus rutrum nulla tellus in sagittis dui vel nisl duis ac nibh fusce lacus purus"
+    "user": 94,
+    "house": 82,
+    "date": "2021-04-05",
+    "time": "09:02",
+    "note": "sit amet justo morbi ut odio cras"
   },
   {
     "meetingId": 85,
-    "userHouse": {
-      "userId": 98,
-      "houseId": 4879
-    },
-    "date": "2022-05-05",
-    "time": "09:38",
-    "note": "nisi eu orci mauris lacinia sapien quis libero nullam sit amet turpis elementum"
+    "user": 7,
+    "house": 66,
+    "date": "2021-10-09",
+    "time": "09:46",
+    "note": "amet turpis elementum ligula vehicula consequat morbi"
   },
   {
     "meetingId": 86,
-    "userHouse": {
-      "userId": 76,
-      "houseId": 328
-    },
-    "date": "2022-08-04",
-    "time": "12:46",
-    "note": "vulputate elementum nullam varius nulla facilisi cras non velit nec nisi vulputate nonummy maecenas tincidunt lacus"
+    "user": 34,
+    "house": 45,
+    "date": "2021-01-09",
+    "time": "12:51",
+    "note": "arcu sed augue aliquam erat"
   },
   {
     "meetingId": 87,
-    "userHouse": {
-      "userId": 9,
-      "houseId": 8933
-    },
-    "date": "2022-01-08",
-    "time": "10:14",
-    "note": "a pede posuere nonummy integer non velit donec diam neque"
+    "user": 75,
+    "house": 46,
+    "date": "2021-02-08",
+    "time": "09:27",
+    "note": "amet eleifend pede libero quis orci nullam"
   },
   {
     "meetingId": 88,
-    "userHouse": {
-      "userId": 44,
-      "houseId": 1157
-    },
-    "date": "2022-08-16",
-    "time": "10:29",
-    "note": "tempus semper est quam pharetra magna ac consequat metus sapien ut nunc vestibulum ante ipsum primis in faucibus"
+    "user": 33,
+    "house": 13,
+    "date": "2021-02-04",
+    "time": "16:48",
+    "note": "nisi volutpat eleifend donec ut dolor morbi"
   },
   {
     "meetingId": 89,
-    "userHouse": {
-      "userId": 53,
-      "houseId": 902
-    },
-    "date": "2022-06-29",
-    "time": "09:39",
-    "note": "posuere cubilia curae nulla dapibus dolor vel est donec odio justo sollicitudin ut suscipit a feugiat et eros"
+    "user": 17,
+    "house": 23,
+    "date": "2021-05-13",
+    "time": "12:44",
+    "note": "massa id lobortis convallis tortor risus"
   },
   {
     "meetingId": 90,
-    "userHouse": {
-      "userId": 29,
-      "houseId": 9384
-    },
-    "date": "2022-05-18",
-    "time": "15:02",
-    "note": "tempus semper est quam pharetra magna ac consequat metus sapien ut nunc"
+    "user": 63,
+    "house": 63,
+    "date": "2021-02-08",
+    "time": "14:34",
+    "note": "adipiscing elit proin risus praesent lectus vestibulum"
   },
   {
     "meetingId": 91,
-    "userHouse": {
-      "userId": 46,
-      "houseId": 9699
-    },
-    "date": "2022-10-23",
-    "time": "11:12",
-    "note": "eleifend pede libero quis orci nullam molestie nibh in lectus pellentesque at nulla suspendisse potenti"
+    "user": 50,
+    "house": 43,
+    "date": "2021-10-23",
+    "time": "11:42",
+    "note": "ante vel ipsum praesent blandit"
   },
   {
     "meetingId": 92,
-    "userHouse": {
-      "userId": 11,
-      "houseId": 9085
-    },
-    "date": "2022-05-24",
-    "time": "11:49",
-    "note": "id ligula suspendisse ornare consequat lectus in est risus auctor sed tristique in tempus sit amet sem fusce consequat"
+    "user": 46,
+    "house": 71,
+    "date": "2021-07-31",
+    "time": "10:33",
+    "note": "in lectus pellentesque at nulla"
   },
   {
     "meetingId": 93,
-    "userHouse": {
-      "userId": 9,
-      "houseId": 9563
-    },
-    "date": "2022-10-04",
-    "time": "10:09",
-    "note": "massa donec dapibus duis at velit eu est congue elementum in hac habitasse platea dictumst morbi"
+    "user": 37,
+    "house": 2,
+    "date": "2021-05-31",
+    "time": "11:41",
+    "note": "ut ultrices vel augue vestibulum ante ipsum primis"
   },
   {
     "meetingId": 94,
-    "userHouse": {
-      "userId": 11,
-      "houseId": 9641
-    },
-    "date": "2022-02-15",
-    "time": "09:14",
-    "note": "mi sit amet lobortis sapien sapien non mi integer ac neque duis bibendum morbi"
+    "user": 99,
+    "house": 36,
+    "date": "2021-11-25",
+    "time": "09:06",
+    "note": "neque duis bibendum morbi non quam nec dui"
   },
   {
     "meetingId": 95,
-    "userHouse": {
-      "userId": 13,
-      "houseId": 4445
-    },
-    "date": "2022-02-14",
-    "time": "12:10",
-    "note": "sit amet erat nulla tempus vivamus in felis eu sapien cursus vestibulum proin eu mi"
+    "user": 86,
+    "house": 58,
+    "date": "2021-06-13",
+    "time": "14:58",
+    "note": "vivamus in felis eu sapien cursus"
   },
   {
     "meetingId": 96,
-    "userHouse": {
-      "userId": 65,
-      "houseId": 904
-    },
-    "date": "2022-05-24",
-    "time": "14:00",
-    "note": "lacus morbi quis tortor id nulla ultrices aliquet maecenas leo odio condimentum id"
+    "user": 5,
+    "house": 79,
+    "date": "2021-09-20",
+    "time": "09:18",
+    "note": "aliquam non mauris morbi non"
   },
   {
     "meetingId": 97,
-    "userHouse": {
-      "userId": 96,
-      "houseId": 327
-    },
-    "date": "2022-01-20",
-    "time": "10:47",
-    "note": "augue a suscipit nulla elit ac nulla sed vel enim sit amet nunc"
+    "user": 84,
+    "house": 61,
+    "date": "2021-07-20",
+    "time": "15:08",
+    "note": "at turpis a pede posuere"
   },
   {
     "meetingId": 98,
-    "userHouse": {
-      "userId": 20,
-      "houseId": 3947
-    },
-    "date": "2022-11-02",
-    "time": "13:57",
-    "note": "ut odio cras mi pede malesuada in imperdiet et commodo vulputate justo in blandit ultrices enim lorem ipsum"
+    "user": 52,
+    "house": 47,
+    "date": "2021-03-07",
+    "time": "12:55",
+    "note": "vel nulla eget eros elementum pellentesque quisque"
   },
   {
     "meetingId": 99,
-    "userHouse": {
-      "userId": 19,
-      "houseId": 2443
-    },
-    "date": "2022-01-22",
-    "time": "13:15",
-    "note": "non velit nec nisi vulputate nonummy maecenas tincidunt lacus at velit vivamus vel"
+    "user": 19,
+    "house": 14,
+    "date": "2021-10-23",
+    "time": "13:17",
+    "note": "fermentum donec ut mauris eget massa tempor"
   },
   {
     "meetingId": 100,
-    "userHouse": {
-      "userId": 49,
-      "houseId": 6379
-    },
-    "date": "2022-10-12",
-    "time": "09:32",
-    "note": "bibendum imperdiet nullam orci pede venenatis non sodales sed tincidunt eu felis"
+    "user": 64,
+    "house": 67,
+    "date": "2021-03-25",
+    "time": "14:05",
+    "note": "ipsum primis in faucibus orci luctus et"
   }
 ]

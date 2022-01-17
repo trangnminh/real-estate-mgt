@@ -1,6 +1,5 @@
 package eeet2582.realestatemgt.model;
 
-import eeet2582.realestatemgt.helper.UserHouse;
 import lombok.*;
 
 import javax.persistence.*;
@@ -24,15 +23,21 @@ public class Meeting implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long meetingId;
 
-    @Embedded
-    private UserHouse userHouse;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private AppUser user;
+
+    @ManyToOne
+    @JoinColumn(name = "house_id", nullable = false)
+    private House house;
 
     private LocalDate date;
     private LocalTime time;
     private String note;
 
-    public Meeting(UserHouse userHouse, LocalDate date, LocalTime time, String note) {
-        this.userHouse = userHouse;
+    public Meeting(AppUser user, House house, LocalDate date, LocalTime time, String note) {
+        this.user = user;
+        this.house = house;
         this.date = date;
         this.time = time;
         this.note = note;

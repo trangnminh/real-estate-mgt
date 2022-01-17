@@ -63,6 +63,14 @@ const statusList = ["available", "reserved", "rented"];
 
 ## Changelogs
 
+### 17/01/2022 (Trang)
+
+- Rewrote Deposit, Meeting, Rental to link with AppUser and House
+- Objects that contain custom classes (HouseLocation, LocalDate etc.) now @RequestBody a form of primitives
+- Add to Meeting API `"/meetings/search/byDate/{range}"` ("today", "week", "month") for current range
+- Add cache to all requests (Service level)
+- Add sample data for all classes via a single file `BootstrapData`
+
 ### 17/01/2022 (Phuong)
 
 - Added get user by name with pagination

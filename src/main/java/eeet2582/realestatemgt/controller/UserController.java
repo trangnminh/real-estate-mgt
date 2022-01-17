@@ -86,6 +86,6 @@ public class UserController {
     @PreAuthorize("hasAuthority('read:admin-messages')")
     public List<AppUser> findUserByName(@RequestParam(value = "name") String name,
                                         @RequestParam(value = "pageNo", defaultValue = "0") int pageNo) {
-        return userService.findUsersByName(name, pageNo);
+        return userService.getUsersByName(name, pageNo);
     }
 }

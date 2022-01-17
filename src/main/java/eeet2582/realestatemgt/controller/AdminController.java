@@ -2,6 +2,7 @@ package eeet2582.realestatemgt.controller;
 
 import eeet2582.realestatemgt.model.Deposit;
 import eeet2582.realestatemgt.model.Meeting;
+import eeet2582.realestatemgt.model.form.DepositForm;
 import eeet2582.realestatemgt.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -68,9 +69,8 @@ public class AdminController {
     @PreAuthorize("hasAuthority('read:admin-messages')")
     public Page<Deposit> getFilteredDeposits(@RequestParam(value = "pageNo", defaultValue = "0") int pageNo,
                                              @RequestParam(value = "pageSize", defaultValue = "5") int pageSize,
-                                             @RequestParam(value = "sortBy", defaultValue = "dateTime") String sortBy,
                                              @RequestParam(value = "orderBy", defaultValue = "desc") String orderBy) {
-        return adminService.getFilteredDepositsAllOrByUserIdOrByHouseId(null, null, pageNo, pageSize, sortBy, orderBy);
+        return adminService.getFilteredDepositsAllOrByUserIdOrByHouseId(null, null, pageNo, pageSize, orderBy);
     }
 
     // Return deposits with sort, order and pagination (by userId)
@@ -79,9 +79,8 @@ public class AdminController {
     public Page<Deposit> getFilteredDepositsByUserId(@PathVariable("userId") Long userId,
                                                      @RequestParam(value = "pageNo", defaultValue = "0") int pageNo,
                                                      @RequestParam(value = "pageSize", defaultValue = "5") int pageSize,
-                                                     @RequestParam(value = "sortBy", defaultValue = "dateTime") String sortBy,
                                                      @RequestParam(value = "orderBy", defaultValue = "desc") String orderBy) {
-        return adminService.getFilteredDepositsAllOrByUserIdOrByHouseId(userId, null, pageNo, pageSize, sortBy, orderBy);
+        return adminService.getFilteredDepositsAllOrByUserIdOrByHouseId(userId, null, pageNo, pageSize, orderBy);
     }
 
     // Return deposits with sort, order and pagination (by houseId)
@@ -91,9 +90,8 @@ public class AdminController {
     public Page<Deposit> getFilteredDepositsByHouseId(@PathVariable("houseId") Long houseId,
                                                       @RequestParam(value = "pageNo", defaultValue = "0") int pageNo,
                                                       @RequestParam(value = "pageSize", defaultValue = "5") int pageSize,
-                                                      @RequestParam(value = "sortBy", defaultValue = "dateTime") String sortBy,
                                                       @RequestParam(value = "orderBy", defaultValue = "desc") String orderBy) {
-        return adminService.getFilteredDepositsAllOrByUserIdOrByHouseId(null, houseId, pageNo, pageSize, sortBy, orderBy);
+        return adminService.getFilteredDepositsAllOrByUserIdOrByHouseId(null, houseId, pageNo, pageSize, orderBy);
     }
 
     // Get one by ID
@@ -104,15 +102,15 @@ public class AdminController {
 
     // Add new deposit
     @PostMapping("/deposits")
-    public Deposit addNewDeposit(@RequestBody Deposit deposit) {
-        return adminService.addNewDeposit(deposit);
+    public Deposit addNewDeposit(@RequestBody DepositForm form) {
+        return adminService.addNewDeposit(form);
     }
 
     // Update deposit by ID
     @PutMapping("/deposits/{depositId}")
     @PreAuthorize("hasAuthority('read:admin-messages')")
-    public Deposit updateDepositById(@PathVariable(value = "depositId") Long depositId, @RequestBody Deposit deposit) {
-        return adminService.updateDepositById(depositId, deposit);
+    public Deposit updateDepositById(@PathVariable(value = "depositId") Long depositId, @RequestBody DepositForm form) {
+        return adminService.updateDepositById(depositId, form);
     }
 
     // Delete one by ID
@@ -129,6 +127,12 @@ public class AdminController {
     @PreAuthorize("hasAuthority('read:admin-messages')")
     public List<Meeting> getAllMeetings() {
         return adminService.getAllMeetings();
+    }
+
+    @GetMapping("/meetings/search/byDate/{range}")
+    @PreAuthorize("hasAuthority('read:admin-messages')")
+    public List<Meeting> getMeetingsByDateRange(@PathVariable String range) {
+        return adminService.getMeetingsByDateRange(range);
     }
 
     // Return meetings with sort, order and pagination (no query, no sortBy)
@@ -180,7 +184,6 @@ public class AdminController {
             adminService.deleteMeetingById(meetingId);
         }
         kafkaTemplate.send(TOPIC, adminService.createMeetingTopic(userId, houseId, date, time, note));
-
     }
 
     // Delete one by ID

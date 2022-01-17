@@ -1,13 +1,18 @@
 package eeet2582.realestatemgt.service;
 
-import eeet2582.realestatemgt.helper.UserHouse;
+import eeet2582.realestatemgt.model.AppUser;
+import eeet2582.realestatemgt.model.House;
 import eeet2582.realestatemgt.model.Payment;
 import eeet2582.realestatemgt.model.Rental;
+import eeet2582.realestatemgt.model.form.RentalForm;
 import eeet2582.realestatemgt.repository.PaymentRepository;
 import eeet2582.realestatemgt.repository.RentalRepository;
-import eeet2582.realestatemgt.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -15,12 +20,20 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Objects;
 
+import static eeet2582.realestatemgt.config.RedisConfig.*;
+
 // Handle Rental and Payment operations
 @Service
+@RequiredArgsConstructor
 public class RentalService {
+
+    @Autowired
+    private final UserHouseLocationUtil userHouseLocationUtil;
 
     @Autowired
     private final RentalRepository rentalRepository;
@@ -28,25 +41,16 @@ public class RentalService {
     @Autowired
     private final PaymentRepository paymentRepository;
 
-    @Autowired
-    private final UserRepository userRepository;
+    DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-    public RentalService(RentalRepository rentalRepository, PaymentRepository paymentRepository, UserRepository userRepository) {
-        this.rentalRepository = rentalRepository;
-        this.paymentRepository = paymentRepository;
-        this.userRepository = userRepository;
-    }
-
+    @Cacheable(value = RENTALS)
     public List<Rental> getAllRentals() {
         return rentalRepository.findAll();
     }
 
     // Return paginated rentals
+    @Cacheable(value = RENTAL_SEARCH)
     public Page<Rental> getFilteredRentalsAllOrByUserIdOrByHouseId(Long userId, Long houseId, int pageNo, int pageSize, String sortBy, String orderBy) {
-        // convert auth0Id user to simpler userId in database
-        Long auth0Id = userRepository.checkAuthUserFound(userId);
-        userId = auth0Id != null ? auth0Id : userId;
-
         Pageable pageable;
 
         if (orderBy.equals("asc")) {
@@ -56,56 +60,100 @@ public class RentalService {
         }
 
         if (userId != null) {
-            return rentalRepository.findByUserHouse_UserId(userId, pageable);
+            // Try to find the associated user
+            AppUser user = userHouseLocationUtil.getUserById(userId);
+            return rentalRepository.findByUser(user, pageable);
         } else if (houseId != null) {
-            return rentalRepository.findByUserHouse_HouseId(houseId, pageable);
+            // Try to find the associated house
+            House house = userHouseLocationUtil.getHouseById(houseId);
+            return rentalRepository.findByHouse(house, pageable);
         } else {
             return rentalRepository.findAll(pageable);
         }
     }
 
     // Get one by ID, try to reuse the exception
+    @Cacheable(key = RENTAL_ID, value = RENTAL)
     public Rental getRentalById(Long rentalId) {
         return rentalRepository.findById(rentalId).orElseThrow(() -> new IllegalStateException("Rental with rentalId=" + rentalId + " does not exist!"));
     }
 
-    public Rental addNewRental(Rental rental) {
-        return rentalRepository.save(rental);
+    // Add new one
+    @Caching(evict = {
+            @CacheEvict(value = RENTALS, allEntries = true),
+            @CacheEvict(value = RENTAL_SEARCH, allEntries = true)
+    })
+    public Rental addNewRental(@NotNull RentalForm form) {
+        if (form.getUserId() != null && form.getHouseId() != null) {
+            // Find the associated user and house
+            AppUser user = userHouseLocationUtil.getUserById(form.getUserId());
+            House house = userHouseLocationUtil.getHouseById(form.getHouseId());
+
+            // Create new entity from param
+            Rental rental = new Rental(
+                    user,
+                    house,
+                    LocalDate.parse(form.getStartDate(), dateFormat),
+                    LocalDate.parse(form.getEndDate(), dateFormat),
+                    form.getDepositAmount(),
+                    form.getMonthlyFee(),
+                    form.getPayableFee()
+            );
+            return rentalRepository.save(rental);
+        }
+        return null;
     }
 
     // Transactional means "all or nothing", if the transaction fails midway nothing is saved
     @Transactional
-    public Rental updateRentalById(Long rentalId, @NotNull Rental newRental) {
-        Rental oldRental = getRentalById(rentalId);
+    @Caching(evict = {
+            @CacheEvict(value = RENTAL, key = RENTAL_ID),
+            @CacheEvict(value = RENTALS, allEntries = true),
+            @CacheEvict(value = RENTAL_SEARCH, allEntries = true)
+    })
+    public Rental updateRentalById(Long rentalId, @NotNull RentalForm form) {
+        if (form.getUserId() != null && form.getHouseId() != null) {
+            Rental rental = getRentalById(rentalId);
 
-        if (newRental.getUserHouse().getHouseId() != null && newRental.getUserHouse().getUserId() != null) {
-            oldRental.setUserHouse(new UserHouse(newRental.getUserHouse().getUserId(), newRental.getUserHouse().getHouseId()));
+            // Find the associated user and house
+            AppUser user = userHouseLocationUtil.getUserById(form.getUserId());
+            House house = userHouseLocationUtil.getHouseById(form.getHouseId());
+            rental.setUser(user);
+            rental.setHouse(house);
+
+            if (form.getStartDate() != null && !rental.getStartDate()
+                    .isEqual(LocalDate.parse(form.getStartDate(), dateFormat))) {
+                rental.setStartDate(LocalDate.parse(form.getStartDate(), dateFormat));
+            }
+
+            if (form.getEndDate() != null && !rental.getEndDate()
+                    .isEqual(LocalDate.parse(form.getEndDate(), dateFormat))) {
+                rental.setEndDate(LocalDate.parse(form.getEndDate(), dateFormat));
+            }
+
+            if (form.getDepositAmount() != null && !Objects.equals(form.getDepositAmount(), rental.getDepositAmount())) {
+                rental.setDepositAmount(form.getDepositAmount());
+            }
+
+            if (form.getMonthlyFee() != null && !Objects.equals(form.getMonthlyFee(), rental.getMonthlyFee())) {
+                rental.setMonthlyFee(form.getMonthlyFee());
+            }
+
+            if (form.getPayableFee() != null && !Objects.equals(form.getPayableFee(), rental.getPayableFee())) {
+                rental.setPayableFee(form.getPayableFee());
+            }
+            return rentalRepository.save(rental);
         }
-
-        if (newRental.getStartDate() != null && !oldRental.getStartDate().isEqual(newRental.getStartDate())) {
-            oldRental.setStartDate(newRental.getStartDate());
-        }
-
-        if (newRental.getEndDate() != null && !oldRental.getEndDate().isEqual(newRental.getEndDate())) {
-            oldRental.setEndDate(newRental.getEndDate());
-        }
-
-        if (newRental.getDepositAmount() != null && !Objects.equals(newRental.getDepositAmount(), oldRental.getDepositAmount())) {
-            oldRental.setDepositAmount(newRental.getDepositAmount());
-        }
-
-        if (newRental.getMonthlyFee() != null && !Objects.equals(newRental.getMonthlyFee(), oldRental.getMonthlyFee())) {
-            oldRental.setMonthlyFee(newRental.getMonthlyFee());
-        }
-
-        if (newRental.getPayableFee() != null && !Objects.equals(newRental.getPayableFee(), oldRental.getPayableFee())) {
-            oldRental.setPayableFee(newRental.getPayableFee());
-        }
-
-        return oldRental;
+        return null;
     }
 
+    // Delete one
     @Transactional
+    @Caching(evict = {
+            @CacheEvict(value = RENTAL, key = RENTAL_ID),
+            @CacheEvict(value = RENTALS, allEntries = true),
+            @CacheEvict(value = RENTAL_SEARCH, allEntries = true)
+    })
     public void deleteRentalById(Long rentalId) {
         Rental rental = getRentalById(rentalId);
 
@@ -113,27 +161,14 @@ public class RentalService {
         rentalRepository.delete(rental);
     }
 
-    // Delete all rentals having the same userId
-    @Transactional
-    public void deleteRentalsByUserId(Long userId) {
-        // convert auth0Id user to simpler userId in database
-        Long auth0Id = userRepository.checkAuthUserFound(userId);
-        userId = auth0Id != null ? auth0Id : userId;
-        rentalRepository.deleteByUserHouse_UserId(userId);
-    }
-
-    // Delete all rentals having the same houseId
-    @Transactional
-    public void deleteRentalsByHouseId(Long houseId) {
-        rentalRepository.deleteByUserHouse_HouseId(houseId);
-    }
-
     // --- PAYMENT --- //
+    @Cacheable(value = PAYMENTS)
     public List<Payment> getAllPayments() {
         return paymentRepository.findAll();
     }
 
     // Return paginated payments of the provided rental or just all payments
+    @Cacheable(value = PAYMENT_SEARCH_BY_RENTAL)
     public Page<Payment> getFilteredPaymentsAllOrByRentalId(Long rentalId, int pageNo, int pageSize, String sortBy, @NotNull String orderBy) {
         Pageable pageable;
         if (orderBy.equals("asc")) {
@@ -150,25 +185,20 @@ public class RentalService {
     }
 
     // Return paginated payments by userId
+    @Cacheable(value = PAYMENT_SEARCH_BY_USER)
     public Page<Payment> getFilteredPaymentsByUserId(Long userId, int pageNo, int pageSize, String sortBy, @NotNull String orderBy) {
-        // convert auth0Id user to simpler userId in database
-        Long auth0Id = userRepository.checkAuthUserFound(userId);
-        userId = auth0Id != null ? auth0Id : userId;
-
         Pageable pageable;
         if (orderBy.equals("asc")) {
             pageable = PageRequest.of(pageNo, pageSize, Sort.by(sortBy).ascending());
         } else {
             pageable = PageRequest.of(pageNo, pageSize, Sort.by(sortBy).descending());
         }
-
         if (userId != null) {
             return paymentRepository.findPaymentByUserId(userId, pageable);
         } else {
             return paymentRepository.findAll(pageable);
         }
     }
-
 
     // Get one by ID, try to reuse the exception
     public Payment getPaymentById(Long paymentId) {
@@ -178,7 +208,13 @@ public class RentalService {
         return paymentRepository.getById(paymentId);
     }
 
+    // Add new one
     @Transactional
+    @Caching(evict = {
+            @CacheEvict(value = PAYMENTS, allEntries = true),
+            @CacheEvict(value = PAYMENT_SEARCH_BY_RENTAL, allEntries = true),
+            @CacheEvict(value = PAYMENT_SEARCH_BY_USER, allEntries = true)
+    })
     public Payment addNewPaymentByRentalId(Long rentalId, @NotNull Payment payment) {
         // Find the associated rental
         Rental rental = getRentalById(rentalId);
@@ -188,6 +224,12 @@ public class RentalService {
 
     // Transactional means "all or nothing", if the transaction fails midway nothing is saved
     @Transactional
+    @Caching(evict = {
+            @CacheEvict(value = PAYMENT, key = PAYMENT_ID),
+            @CacheEvict(value = PAYMENTS, allEntries = true),
+            @CacheEvict(value = PAYMENT_SEARCH_BY_RENTAL, allEntries = true),
+            @CacheEvict(value = PAYMENT_SEARCH_BY_USER, allEntries = true)
+    })
     public Payment updatePaymentById(Long paymentId, Payment newPayment) {
         Payment oldPayment = getPaymentById(paymentId);
 
@@ -211,6 +253,13 @@ public class RentalService {
         return oldPayment;
     }
 
+    // Delete one
+    @Caching(evict = {
+            @CacheEvict(value = PAYMENT, key = PAYMENT_ID),
+            @CacheEvict(value = PAYMENTS, allEntries = true),
+            @CacheEvict(value = PAYMENT_SEARCH_BY_RENTAL, allEntries = true),
+            @CacheEvict(value = PAYMENT_SEARCH_BY_USER, allEntries = true)
+    })
     public void deletePaymentById(Long paymentId) {
         Payment payment = getPaymentById(paymentId);
         paymentRepository.delete(payment);

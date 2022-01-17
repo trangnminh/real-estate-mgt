@@ -2,6 +2,7 @@ package eeet2582.realestatemgt.controller;
 
 import eeet2582.realestatemgt.model.Payment;
 import eeet2582.realestatemgt.model.Rental;
+import eeet2582.realestatemgt.model.form.RentalForm;
 import eeet2582.realestatemgt.service.RentalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -97,15 +98,15 @@ public class RentalController {
 
     // Add one
     @PostMapping("/rentals")
-    public Rental addNewRental(@RequestBody Rental rental) {
-        return rentalService.addNewRental(rental);
+    public Rental addNewRental(@RequestBody RentalForm form) {
+        return rentalService.addNewRental(form);
     }
 
     // Update one by ID
     @PutMapping("/rentals/{rentalId}")
     @PreAuthorize("hasAuthority('read:admin-messages')")
-    public Rental updateRentalById(@PathVariable(value = "rentalId") Long rentalId, @RequestBody Rental rental) {
-        return rentalService.updateRentalById(rentalId, rental);
+    public Rental updateRentalById(@PathVariable(value = "rentalId") Long rentalId, @RequestBody RentalForm form) {
+        return rentalService.updateRentalById(rentalId, form);
     }
 
     // Delete one by ID

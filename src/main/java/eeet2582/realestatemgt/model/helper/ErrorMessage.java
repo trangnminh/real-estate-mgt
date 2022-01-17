@@ -1,4 +1,4 @@
-package eeet2582.realestatemgt.model;
+package eeet2582.realestatemgt.model.helper;
 
 import lombok.Value;
 

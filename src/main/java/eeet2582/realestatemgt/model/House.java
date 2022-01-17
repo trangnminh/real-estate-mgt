@@ -1,5 +1,7 @@
-package eeet2582.realestatemgt.model.house;
+package eeet2582.realestatemgt.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import eeet2582.realestatemgt.model.helper.HouseLocation;
 import lombok.*;
 
 import javax.persistence.*;
@@ -41,6 +43,21 @@ public class House implements Serializable {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "location_id")
     private HouseLocation location;
+
+    @OneToMany(orphanRemoval = true, mappedBy = "house", fetch = FetchType.LAZY)
+    @JsonIgnore
+    @ToString.Exclude
+    private List<Meeting> meetingList;
+
+    @OneToMany(orphanRemoval = true, mappedBy = "house", fetch = FetchType.LAZY)
+    @JsonIgnore
+    @ToString.Exclude
+    private List<Deposit> depositList;
+
+    @OneToMany(orphanRemoval = true, mappedBy = "house", fetch = FetchType.LAZY)
+    @JsonIgnore
+    @ToString.Exclude
+    private List<Rental> rentalList;
 
     public House(String name,
                  Double price,

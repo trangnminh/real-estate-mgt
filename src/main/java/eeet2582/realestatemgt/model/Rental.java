@@ -1,7 +1,6 @@
 package eeet2582.realestatemgt.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import eeet2582.realestatemgt.helper.UserHouse;
 import lombok.*;
 
 import javax.persistence.*;
@@ -21,8 +20,13 @@ public class Rental implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long rentalId;
 
-    @Embedded
-    private UserHouse userHouse;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private AppUser user;
+
+    @ManyToOne
+    @JoinColumn(name = "house_id", nullable = false)
+    private House house;
 
     private LocalDate startDate;
     private LocalDate endDate;
@@ -35,8 +39,9 @@ public class Rental implements Serializable {
     @ToString.Exclude
     private List<Payment> paymentList;
 
-    public Rental(UserHouse userHouse, LocalDate startDate, LocalDate endDate, Double depositAmount, Double monthlyFee, Double payableFee) {
-        this.userHouse = userHouse;
+    public Rental(AppUser user, House house, LocalDate startDate, LocalDate endDate, Double depositAmount, Double monthlyFee, Double payableFee) {
+        this.user = user;
+        this.house = house;
         this.startDate = startDate;
         this.endDate = endDate;
         this.depositAmount = depositAmount;
