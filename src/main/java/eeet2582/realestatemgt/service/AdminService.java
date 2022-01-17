@@ -174,7 +174,7 @@ public class AdminService {
         return meetingRepository.findAll();
     }
 
-    @Cacheable(value = MEETINGS_BY_DATE_RANGE)
+    @Cacheable(key = "#range", value = MEETINGS_BY_DATE_RANGE)
     public List<Meeting> getMeetingsByDateRange(String range) {
         LocalDate startDate = LocalDate.now();
         LocalDate endDate = LocalDate.now();
@@ -195,6 +195,11 @@ public class AdminService {
                         .with(TemporalAdjusters.lastDayOfMonth());
                 break;
         }
+
+        System.out.println("Search for Meetings from: " +
+                startDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + " to " +
+                endDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+
         return meetingRepository.findByDateBetween(startDate, endDate);
     }
 

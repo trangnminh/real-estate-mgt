@@ -5,7 +5,6 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.List;
 
 @NoArgsConstructor
@@ -25,7 +24,7 @@ public class AppUser implements Serializable {
     private String fullName;
     private String email;
     private String phoneNumber;
-    private LocalDate dob;
+    private String dob;
     private String gender;
     private String password;
 
@@ -44,7 +43,7 @@ public class AppUser implements Serializable {
     @ToString.Exclude
     private List<Rental> rentalList;
 
-    public AppUser(Long auth0Id, String fullName, String email, String phoneNumber, LocalDate dob, String gender, String password) {
+    public AppUser(Long auth0Id, String fullName, String email, String phoneNumber, String dob, String gender, String password) {
         this.auth0Id = auth0Id;
         this.fullName = fullName;
         this.email = email;

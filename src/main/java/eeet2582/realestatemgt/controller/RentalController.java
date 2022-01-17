@@ -2,6 +2,7 @@ package eeet2582.realestatemgt.controller;
 
 import eeet2582.realestatemgt.model.Payment;
 import eeet2582.realestatemgt.model.Rental;
+import eeet2582.realestatemgt.model.form.PaymentForm;
 import eeet2582.realestatemgt.model.form.RentalForm;
 import eeet2582.realestatemgt.service.RentalService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -155,14 +156,14 @@ public class RentalController {
 
     // Add new Payment by Rental (MUST HAVE rentalId)
     @PostMapping("/payments/byRental/{rentalId}")
-    public Payment addNewPaymentByRentalId(@PathVariable(value = "rentalId") Long rentalId, @RequestBody Payment payment) {
+    public Payment addNewPaymentByRentalId(@PathVariable(value = "rentalId") Long rentalId, @RequestBody PaymentForm payment) {
         return rentalService.addNewPaymentByRentalId(rentalId, payment);
     }
 
     // Update one by ID
     @PutMapping("/payments/{paymentId}")
     @PreAuthorize("hasAuthority('read:admin-messages')")
-    public Payment updatePaymentById(@PathVariable(value = "paymentId") Long paymentId, @RequestBody Payment payment) {
+    public Payment updatePaymentById(@PathVariable(value = "paymentId") Long paymentId, @RequestBody PaymentForm payment) {
         return rentalService.updatePaymentById(paymentId, payment);
     }
 
