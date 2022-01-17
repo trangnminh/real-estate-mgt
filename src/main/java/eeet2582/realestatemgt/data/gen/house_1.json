@@ -1,0 +1,2302 @@
+[
+  {
+    "houseId": 1,
+    "name": "Pariatur laboris id ad ex Lorem aute.",
+    "price": 239,
+    "description": "Laborum commodo magna dolore ex ullamco aute magna labore amet excepteur dolore.",
+    "address": "Elit fugiat officia ad mollit voluptate ex mollit adipisicing cupidatat ex magna.",
+    "longitude": 130.491097,
+    "latitude": -4.605955,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/180/180_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/180/180_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/180/180_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/180/180_frontal.jpg"
+    ],
+    "type": "apartment",
+    "numberOfBeds": 5,
+    "squareFeet": 187,
+    "status": "rented",
+    "location": {
+      "city": "Saigon",
+      "district": 7
+    }
+  },
+  {
+    "houseId": 2,
+    "name": "Nostrud commodo laboris anim reprehenderit cillum est ullamco culpa sint proident.",
+    "price": 235,
+    "description": "Amet fugiat adipisicing reprehenderit velit eu occaecat aliquip pariatur eiusmod. Ut anim velit velit consequat fugiat elit consequat dolor.",
+    "address": "Ut quis pariatur amet in magna est ea do sunt.",
+    "longitude": 150.834724,
+    "latitude": -47.144733,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/433/433_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/433/433_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/433/433_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/433/433_frontal.jpg"
+    ],
+    "type": "serviced",
+    "numberOfBeds": 5,
+    "squareFeet": 134,
+    "status": "reserved",
+    "location": {
+      "city": "Saigon",
+      "district": 10
+    }
+  },
+  {
+    "houseId": 3,
+    "name": "Elit laborum laboris elit aliqua sit adipisicing eiusmod fugiat est quis consectetur.",
+    "price": 542,
+    "description": "Do commodo aute ex qui incididunt ipsum sunt consectetur.",
+    "address": "Minim non exercitation labore labore cillum.",
+    "longitude": -44.010867,
+    "latitude": 10.227763,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/441/441_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/441/441_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/441/441_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/441/441_frontal.jpg"
+    ],
+    "type": "apartment",
+    "numberOfBeds": 2,
+    "squareFeet": 202,
+    "status": "reserved",
+    "location": {
+      "city": "Saigon",
+      "district": 10
+    }
+  },
+  {
+    "houseId": 4,
+    "name": "Ipsum laboris occaecat velit incididunt sunt veniam.",
+    "price": 969,
+    "description": "Ex excepteur labore sit dolore officia duis mollit minim reprehenderit eu deserunt.",
+    "address": "Excepteur tempor reprehenderit eu anim et aute esse.",
+    "longitude": 99.16845,
+    "latitude": 0.906248,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/456/456_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/456/456_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/456/456_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/456/456_frontal.jpg"
+    ],
+    "type": "apartment",
+    "numberOfBeds": 4,
+    "squareFeet": 106,
+    "status": "available",
+    "location": {
+      "city": "Saigon",
+      "district": 1
+    }
+  },
+  {
+    "houseId": 5,
+    "name": "Enim adipisicing nostrud anim pariatur voluptate fugiat enim aliquip et elit.",
+    "price": 753,
+    "description": "Elit fugiat incididunt irure.",
+    "address": "Non esse irure do fugiat nostrud irure officia tempor commodo qui.",
+    "longitude": 103.919212,
+    "latitude": 40.355761,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/221/221_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/221/221_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/221/221_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/221/221_frontal.jpg"
+    ],
+    "type": "serviced",
+    "numberOfBeds": 2,
+    "squareFeet": 124,
+    "status": "rented",
+    "location": {
+      "city": "Saigon",
+      "district": 7
+    }
+  },
+  {
+    "houseId": 6,
+    "name": "Duis cillum duis dolore dolore.",
+    "price": 579,
+    "description": "Duis commodo aute culpa ipsum et nostrud sint. Proident adipisicing fugiat ea adipisicing tempor mollit eu esse.",
+    "address": "Laboris anim consequat qui magna consectetur sint nostrud cillum ad commodo.",
+    "longitude": -50.720278,
+    "latitude": 80.915256,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/125/125_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/125/125_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/125/125_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/125/125_frontal.jpg"
+    ],
+    "type": "serviced",
+    "numberOfBeds": 1,
+    "squareFeet": 293,
+    "status": "reserved",
+    "location": {
+      "city": "Saigon",
+      "district": 10
+    }
+  },
+  {
+    "houseId": 7,
+    "name": "Eiusmod elit sunt minim et officia nostrud commodo.",
+    "price": 629,
+    "description": "Voluptate deserunt sint aute reprehenderit ullamco proident.",
+    "address": "Occaecat ad duis sint pariatur mollit et enim voluptate.",
+    "longitude": 91.77972,
+    "latitude": -45.196654,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/18/18_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/18/18_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/18/18_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/18/18_frontal.jpg"
+    ],
+    "type": "apartment",
+    "numberOfBeds": 2,
+    "squareFeet": 227,
+    "status": "available",
+    "location": {
+      "city": "Saigon",
+      "district": 4
+    }
+  },
+  {
+    "houseId": 8,
+    "name": "Officia cupidatat eu velit aliqua est pariatur.",
+    "price": 663,
+    "description": "Sunt magna veniam aute et dolore dolore.",
+    "address": "Nostrud ut tempor minim in ad sunt cupidatat tempor.",
+    "longitude": 87.246122,
+    "latitude": 58.916606,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/209/209_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/209/209_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/209/209_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/209/209_frontal.jpg"
+    ],
+    "type": "serviced",
+    "numberOfBeds": 4,
+    "squareFeet": 163,
+    "status": "available",
+    "location": {
+      "city": "Hanoi",
+      "district": "Cau Giay"
+    }
+  },
+  {
+    "houseId": 9,
+    "name": "Eu id consequat et nostrud aliqua eu officia in ullamco ullamco aliqua.",
+    "price": 550,
+    "description": "Consectetur officia mollit consequat duis veniam.",
+    "address": "Anim id enim labore incididunt adipisicing nisi ipsum qui.",
+    "longitude": -31.945409,
+    "latitude": 62.762053,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/216/216_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/216/216_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/216/216_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/216/216_frontal.jpg"
+    ],
+    "type": "serviced",
+    "numberOfBeds": 1,
+    "squareFeet": 206,
+    "status": "available",
+    "location": {
+      "city": "Hanoi",
+      "district": "Ba Dinh"
+    }
+  },
+  {
+    "houseId": 10,
+    "name": "Mollit culpa duis labore duis aliqua excepteur fugiat minim.",
+    "price": 932,
+    "description": "Voluptate ad ipsum ullamco esse velit in occaecat in excepteur ea irure. Cupidatat incididunt nulla quis ad commodo qui occaecat sunt enim.",
+    "address": "Sit et occaecat ullamco est voluptate cupidatat cillum nulla laborum.",
+    "longitude": 6.990706,
+    "latitude": 25.447147,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/63/63_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/63/63_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/63/63_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/63/63_frontal.jpg"
+    ],
+    "type": "apartment",
+    "numberOfBeds": 5,
+    "squareFeet": 115,
+    "status": "rented",
+    "location": {
+      "city": "Hanoi",
+      "district": "Dong Da"
+    }
+  },
+  {
+    "houseId": 11,
+    "name": "Laborum id incididunt pariatur labore enim voluptate proident duis velit minim.",
+    "price": 282,
+    "description": "Do occaecat aliquip et dolor culpa.",
+    "address": "Veniam sit consequat adipisicing occaecat anim mollit.",
+    "longitude": 93.9337,
+    "latitude": 0.50337,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/411/411_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/411/411_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/411/411_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/411/411_frontal.jpg"
+    ],
+    "type": "serviced",
+    "numberOfBeds": 4,
+    "squareFeet": 244,
+    "status": "rented",
+    "location": {
+      "city": "Saigon",
+      "district": 4
+    }
+  },
+  {
+    "houseId": 12,
+    "name": "Deserunt enim elit et ad ut.",
+    "price": 489,
+    "description": "Cillum occaecat elit et velit quis cillum cillum et labore aliquip dolor.",
+    "address": "Ea laborum in qui.",
+    "longitude": -102.513047,
+    "latitude": 89.250216,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/89/89_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/89/89_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/89/89_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/89/89_frontal.jpg"
+    ],
+    "type": "apartment",
+    "numberOfBeds": 3,
+    "squareFeet": 103,
+    "status": "reserved",
+    "location": {
+      "city": "Saigon",
+      "district": 1
+    }
+  },
+  {
+    "houseId": 13,
+    "name": "Esse aute ex esse in eu commodo exercitation irure.",
+    "price": 426,
+    "description": "Id minim et ad eiusmod sint culpa ullamco elit in.",
+    "address": "Eiusmod commodo quis officia laborum amet nulla.",
+    "longitude": 31.440936,
+    "latitude": 68.276578,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/347/347_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/347/347_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/347/347_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/347/347_frontal.jpg"
+    ],
+    "type": "serviced",
+    "numberOfBeds": 2,
+    "squareFeet": 113,
+    "status": "rented",
+    "location": {
+      "city": "Saigon",
+      "district": 4
+    }
+  },
+  {
+    "houseId": 14,
+    "name": "Id ut et fugiat sint qui non magna.",
+    "price": 430,
+    "description": "Ullamco commodo ad veniam est irure reprehenderit culpa. Ea consectetur ex et excepteur consectetur elit consequat magna dolor adipisicing.",
+    "address": "Aliqua proident consectetur nisi duis fugiat.",
+    "longitude": -143.426219,
+    "latitude": -26.556438,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/493/493_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/493/493_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/493/493_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/493/493_frontal.jpg"
+    ],
+    "type": "serviced",
+    "numberOfBeds": 1,
+    "squareFeet": 101,
+    "status": "reserved",
+    "location": {
+      "city": "Saigon",
+      "district": 4
+    }
+  },
+  {
+    "houseId": 15,
+    "name": "Id eu incididunt esse duis ad.",
+    "price": 226,
+    "description": "Consectetur Lorem laborum nostrud non ea laborum duis ea nostrud.",
+    "address": "Excepteur adipisicing fugiat et pariatur.",
+    "longitude": -130.425252,
+    "latitude": 14.896598,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/124/124_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/124/124_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/124/124_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/124/124_frontal.jpg"
+    ],
+    "type": "serviced",
+    "numberOfBeds": 2,
+    "squareFeet": 103,
+    "status": "available",
+    "location": {
+      "city": "Saigon",
+      "district": 4
+    }
+  },
+  {
+    "houseId": 16,
+    "name": "Fugiat velit eiusmod in non amet laboris enim nisi aliquip.",
+    "price": 683,
+    "description": "Laborum mollit do cillum ut sint.",
+    "address": "Irure mollit pariatur minim.",
+    "longitude": -98.161683,
+    "latitude": -2.245892,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/100/100_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/100/100_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/100/100_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/100/100_frontal.jpg"
+    ],
+    "type": "street",
+    "numberOfBeds": 1,
+    "squareFeet": 148,
+    "status": "available",
+    "location": {
+      "city": "Saigon",
+      "district": 7
+    }
+  },
+  {
+    "houseId": 17,
+    "name": "Sunt ex amet voluptate.",
+    "price": 971,
+    "description": "Qui nisi anim sit cupidatat excepteur Lorem exercitation magna qui non.",
+    "address": "Dolor Lorem laboris excepteur do ea cupidatat nisi.",
+    "longitude": -68.183687,
+    "latitude": -82.38979,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/29/29_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/29/29_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/29/29_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/29/29_frontal.jpg"
+    ],
+    "type": "apartment",
+    "numberOfBeds": 1,
+    "squareFeet": 263,
+    "status": "available",
+    "location": {
+      "city": "Hanoi",
+      "district": "Ba Dinh"
+    }
+  },
+  {
+    "houseId": 18,
+    "name": "Voluptate id ex dolor deserunt anim eiusmod anim eu velit quis anim.",
+    "price": 224,
+    "description": "Ea cillum est tempor mollit esse culpa dolore nisi commodo laboris.",
+    "address": "Reprehenderit nisi culpa fugiat reprehenderit.",
+    "longitude": 158.053502,
+    "latitude": 43.526943,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/338/338_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/338/338_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/338/338_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/338/338_frontal.jpg"
+    ],
+    "type": "apartment",
+    "numberOfBeds": 1,
+    "squareFeet": 153,
+    "status": "available",
+    "location": {
+      "city": "Saigon",
+      "district": 1
+    }
+  },
+  {
+    "houseId": 19,
+    "name": "Et labore consectetur minim consectetur deserunt pariatur eu.",
+    "price": 585,
+    "description": "Aliqua duis ullamco ex aliqua incididunt labore dolor aute. Veniam dolore enim et.",
+    "address": "Qui laboris adipisicing ad quis.",
+    "longitude": 110.722641,
+    "latitude": 40.246882,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/141/141_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/141/141_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/141/141_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/141/141_frontal.jpg"
+    ],
+    "type": "apartment",
+    "numberOfBeds": 1,
+    "squareFeet": 179,
+    "status": "reserved",
+    "location": {
+      "city": "Hanoi",
+      "district": "Ba Dinh"
+    }
+  },
+  {
+    "houseId": 20,
+    "name": "Qui est irure nostrud proident dolore et qui.",
+    "price": 741,
+    "description": "Eu adipisicing amet laborum consectetur veniam est excepteur.",
+    "address": "Incididunt magna amet quis consectetur.",
+    "longitude": -139.334827,
+    "latitude": -39.267457,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/461/461_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/461/461_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/461/461_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/461/461_frontal.jpg"
+    ],
+    "type": "apartment",
+    "numberOfBeds": 5,
+    "squareFeet": 142,
+    "status": "available",
+    "location": {
+      "city": "Saigon",
+      "district": 7
+    }
+  },
+  {
+    "houseId": 21,
+    "name": "Lorem in deserunt sunt dolor est reprehenderit Lorem voluptate.",
+    "price": 389,
+    "description": "Do velit voluptate et et.",
+    "address": "Exercitation magna velit consequat.",
+    "longitude": -118.402448,
+    "latitude": -76.576417,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/367/367_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/367/367_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/367/367_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/367/367_frontal.jpg"
+    ],
+    "type": "apartment",
+    "numberOfBeds": 5,
+    "squareFeet": 259,
+    "status": "available",
+    "location": {
+      "city": "Saigon",
+      "district": 10
+    }
+  },
+  {
+    "houseId": 22,
+    "name": "Aliqua exercitation commodo cillum.",
+    "price": 384,
+    "description": "Veniam incididunt laborum sint consectetur reprehenderit amet minim laborum.",
+    "address": "Adipisicing amet elit incididunt veniam ea dolore.",
+    "longitude": 39.845505,
+    "latitude": -64.452136,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/386/386_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/386/386_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/386/386_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/386/386_frontal.jpg"
+    ],
+    "type": "serviced",
+    "numberOfBeds": 5,
+    "squareFeet": 256,
+    "status": "available",
+    "location": {
+      "city": "Saigon",
+      "district": 7
+    }
+  },
+  {
+    "houseId": 23,
+    "name": "Tempor cupidatat eiusmod anim voluptate.",
+    "price": 912,
+    "description": "Fugiat officia ad deserunt officia voluptate.",
+    "address": "Et in sint cupidatat dolore sit dolor voluptate dolore excepteur deserunt.",
+    "longitude": -99.766166,
+    "latitude": 9.774224,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/115/115_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/115/115_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/115/115_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/115/115_frontal.jpg"
+    ],
+    "type": "street",
+    "numberOfBeds": 1,
+    "squareFeet": 248,
+    "status": "available",
+    "location": {
+      "city": "Hanoi",
+      "district": "Dong Da"
+    }
+  },
+  {
+    "houseId": 24,
+    "name": "Non ex ullamco aute cillum consectetur ex eu id officia.",
+    "price": 206,
+    "description": "Laborum consectetur aliquip veniam do occaecat quis velit non.",
+    "address": "Duis excepteur labore Lorem nulla est nulla.",
+    "longitude": -76.400666,
+    "latitude": 74.889012,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/462/462_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/462/462_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/462/462_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/462/462_frontal.jpg"
+    ],
+    "type": "street",
+    "numberOfBeds": 2,
+    "squareFeet": 268,
+    "status": "available",
+    "location": {
+      "city": "Hanoi",
+      "district": "Dong Da"
+    }
+  },
+  {
+    "houseId": 25,
+    "name": "Esse ex officia id in voluptate eu.",
+    "price": 409,
+    "description": "Nulla eiusmod enim culpa qui.",
+    "address": "Consequat veniam ipsum laboris consequat.",
+    "longitude": 153.902331,
+    "latitude": -25.488719,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/280/280_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/280/280_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/280/280_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/280/280_frontal.jpg"
+    ],
+    "type": "street",
+    "numberOfBeds": 2,
+    "squareFeet": 180,
+    "status": "rented",
+    "location": {
+      "city": "Saigon",
+      "district": 7
+    }
+  },
+  {
+    "houseId": 26,
+    "name": "Minim est veniam id deserunt exercitation.",
+    "price": 768,
+    "description": "Laboris ea elit cillum. Labore ullamco irure ad laborum sint dolore ad culpa ex magna.",
+    "address": "Id non nulla magna non ex veniam do enim elit.",
+    "longitude": -144.390528,
+    "latitude": -33.497009,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/336/336_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/336/336_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/336/336_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/336/336_frontal.jpg"
+    ],
+    "type": "serviced",
+    "numberOfBeds": 4,
+    "squareFeet": 131,
+    "status": "rented",
+    "location": {
+      "city": "Saigon",
+      "district": 10
+    }
+  },
+  {
+    "houseId": 27,
+    "name": "Proident culpa elit proident deserunt et.",
+    "price": 458,
+    "description": "Cillum dolor aliqua officia qui pariatur ad.",
+    "address": "Eu Lorem labore adipisicing et ad consectetur id sunt do ad sit.",
+    "longitude": 179.354855,
+    "latitude": 6.272874,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/192/192_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/192/192_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/192/192_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/192/192_frontal.jpg"
+    ],
+    "type": "apartment",
+    "numberOfBeds": 1,
+    "squareFeet": 182,
+    "status": "available",
+    "location": {
+      "city": "Saigon",
+      "district": 4
+    }
+  },
+  {
+    "houseId": 28,
+    "name": "Nisi duis elit do magna do pariatur incididunt.",
+    "price": 306,
+    "description": "Pariatur pariatur in ullamco reprehenderit duis fugiat incididunt cillum duis. Nisi aliqua qui ullamco deserunt dolor amet ea sint culpa.",
+    "address": "Exercitation dolore ut nulla eiusmod veniam.",
+    "longitude": -175.516154,
+    "latitude": 5.314764,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/429/429_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/429/429_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/429/429_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/429/429_frontal.jpg"
+    ],
+    "type": "apartment",
+    "numberOfBeds": 5,
+    "squareFeet": 262,
+    "status": "rented",
+    "location": {
+      "city": "Saigon",
+      "district": 4
+    }
+  },
+  {
+    "houseId": 29,
+    "name": "Dolore dolor anim laborum consectetur eiusmod commodo ullamco officia.",
+    "price": 733,
+    "description": "Culpa magna nulla exercitation.",
+    "address": "Cupidatat anim sit tempor.",
+    "longitude": -92.438531,
+    "latitude": 65.798939,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/9/9_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/9/9_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/9/9_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/9/9_frontal.jpg"
+    ],
+    "type": "serviced",
+    "numberOfBeds": 3,
+    "squareFeet": 227,
+    "status": "rented",
+    "location": {
+      "city": "Hanoi",
+      "district": "Ba Dinh"
+    }
+  },
+  {
+    "houseId": 30,
+    "name": "Excepteur sunt exercitation nostrud sit eiusmod eiusmod.",
+    "price": 533,
+    "description": "Proident magna veniam anim culpa. Nulla cupidatat occaecat ullamco ullamco commodo minim dolor labore.",
+    "address": "Magna minim veniam in incididunt ullamco pariatur ut occaecat.",
+    "longitude": -10.113238,
+    "latitude": -14.218139,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/152/152_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/152/152_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/152/152_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/152/152_frontal.jpg"
+    ],
+    "type": "serviced",
+    "numberOfBeds": 1,
+    "squareFeet": 120,
+    "status": "available",
+    "location": {
+      "city": "Hanoi",
+      "district": "Ba Dinh"
+    }
+  },
+  {
+    "houseId": 31,
+    "name": "Minim velit qui amet pariatur cillum incididunt ipsum.",
+    "price": 993,
+    "description": "Nisi laboris non culpa laborum velit esse.",
+    "address": "Esse culpa est deserunt aliquip veniam laboris dolor qui nulla magna eu.",
+    "longitude": 30.899425,
+    "latitude": 48.433465,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/396/396_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/396/396_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/396/396_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/396/396_frontal.jpg"
+    ],
+    "type": "serviced",
+    "numberOfBeds": 5,
+    "squareFeet": 218,
+    "status": "available",
+    "location": {
+      "city": "Saigon",
+      "district": 7
+    }
+  },
+  {
+    "houseId": 32,
+    "name": "Minim irure excepteur laborum laboris ea fugiat tempor ad commodo.",
+    "price": 303,
+    "description": "Amet exercitation consequat anim ad veniam aute.",
+    "address": "Ex aute ullamco ea enim duis.",
+    "longitude": 95.038206,
+    "latitude": -43.147346,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/379/379_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/379/379_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/379/379_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/379/379_frontal.jpg"
+    ],
+    "type": "apartment",
+    "numberOfBeds": 3,
+    "squareFeet": 204,
+    "status": "rented",
+    "location": {
+      "city": "Hanoi",
+      "district": "Dong Da"
+    }
+  },
+  {
+    "houseId": 33,
+    "name": "Pariatur est ad veniam velit adipisicing deserunt sint do irure nisi incididunt.",
+    "price": 548,
+    "description": "Officia non consequat aute. Non nulla est occaecat fugiat duis consectetur eu culpa officia Lorem.",
+    "address": "Magna esse cupidatat do in minim id et Lorem.",
+    "longitude": -118.796547,
+    "latitude": 39.374898,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/436/436_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/436/436_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/436/436_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/436/436_frontal.jpg"
+    ],
+    "type": "street",
+    "numberOfBeds": 2,
+    "squareFeet": 200,
+    "status": "rented",
+    "location": {
+      "city": "Saigon",
+      "district": 1
+    }
+  },
+  {
+    "houseId": 34,
+    "name": "Anim incididunt veniam amet ipsum reprehenderit.",
+    "price": 750,
+    "description": "Incididunt aute consectetur consequat consequat quis veniam officia.",
+    "address": "Officia velit minim excepteur exercitation sit.",
+    "longitude": -62.131703,
+    "latitude": 22.833993,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/499/499_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/499/499_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/499/499_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/499/499_frontal.jpg"
+    ],
+    "type": "street",
+    "numberOfBeds": 3,
+    "squareFeet": 264,
+    "status": "available",
+    "location": {
+      "city": "Hanoi",
+      "district": "Dong Da"
+    }
+  },
+  {
+    "houseId": 35,
+    "name": "Anim elit exercitation dolore et.",
+    "price": 235,
+    "description": "Eiusmod sint dolor eiusmod amet voluptate id.",
+    "address": "Fugiat pariatur fugiat veniam id.",
+    "longitude": 129.103149,
+    "latitude": -0.772651,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/7/7_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/7/7_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/7/7_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/7/7_frontal.jpg"
+    ],
+    "type": "apartment",
+    "numberOfBeds": 1,
+    "squareFeet": 266,
+    "status": "reserved",
+    "location": {
+      "city": "Saigon",
+      "district": 4
+    }
+  },
+  {
+    "houseId": 36,
+    "name": "Aliqua ullamco ullamco anim enim tempor reprehenderit aute in ad.",
+    "price": 260,
+    "description": "In consequat culpa Lorem anim elit cillum fugiat voluptate ex excepteur.",
+    "address": "Aute esse exercitation reprehenderit anim consectetur officia excepteur.",
+    "longitude": 3.754766,
+    "latitude": -65.075623,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/307/307_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/307/307_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/307/307_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/307/307_frontal.jpg"
+    ],
+    "type": "serviced",
+    "numberOfBeds": 4,
+    "squareFeet": 101,
+    "status": "reserved",
+    "location": {
+      "city": "Saigon",
+      "district": 1
+    }
+  },
+  {
+    "houseId": 37,
+    "name": "Aliqua proident occaecat ea adipisicing deserunt proident adipisicing.",
+    "price": 387,
+    "description": "Id adipisicing officia aute proident aliquip elit.",
+    "address": "Eiusmod esse Lorem incididunt nisi qui eiusmod veniam.",
+    "longitude": 62.185047,
+    "latitude": -87.318027,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/355/355_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/355/355_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/355/355_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/355/355_frontal.jpg"
+    ],
+    "type": "apartment",
+    "numberOfBeds": 2,
+    "squareFeet": 217,
+    "status": "rented",
+    "location": {
+      "city": "Hanoi",
+      "district": "Cau Giay"
+    }
+  },
+  {
+    "houseId": 38,
+    "name": "Adipisicing nostrud laboris dolore non non dolore occaecat et laboris irure consectetur.",
+    "price": 457,
+    "description": "Adipisicing tempor ut aliqua. Et consequat exercitation magna minim mollit deserunt.",
+    "address": "Aliqua veniam culpa dolore ullamco consectetur.",
+    "longitude": 153.17903,
+    "latitude": 8.094229,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/47/47_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/47/47_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/47/47_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/47/47_frontal.jpg"
+    ],
+    "type": "apartment",
+    "numberOfBeds": 1,
+    "squareFeet": 213,
+    "status": "available",
+    "location": {
+      "city": "Hanoi",
+      "district": "Dong Da"
+    }
+  },
+  {
+    "houseId": 39,
+    "name": "Lorem laboris fugiat nostrud consequat.",
+    "price": 374,
+    "description": "Culpa elit sunt labore.",
+    "address": "Incididunt officia reprehenderit sit proident veniam pariatur.",
+    "longitude": 171.552275,
+    "latitude": -19.869909,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/391/391_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/391/391_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/391/391_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/391/391_frontal.jpg"
+    ],
+    "type": "apartment",
+    "numberOfBeds": 4,
+    "squareFeet": 195,
+    "status": "available",
+    "location": {
+      "city": "Hanoi",
+      "district": "Dong Da"
+    }
+  },
+  {
+    "houseId": 40,
+    "name": "Ipsum ex anim veniam reprehenderit laboris ex cillum voluptate proident cupidatat.",
+    "price": 884,
+    "description": "Enim elit id laboris culpa. Esse commodo et dolor occaecat aute elit ad est consequat.",
+    "address": "Eiusmod consectetur est anim do magna sit.",
+    "longitude": 64.890826,
+    "latitude": -50.879106,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/377/377_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/377/377_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/377/377_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/377/377_frontal.jpg"
+    ],
+    "type": "street",
+    "numberOfBeds": 3,
+    "squareFeet": 232,
+    "status": "available",
+    "location": {
+      "city": "Hanoi",
+      "district": "Cau Giay"
+    }
+  },
+  {
+    "houseId": 41,
+    "name": "Culpa officia mollit minim nostrud tempor in velit.",
+    "price": 992,
+    "description": "Sint deserunt veniam est commodo quis cillum pariatur eiusmod culpa amet. Amet aliquip reprehenderit consequat cillum cupidatat.",
+    "address": "Irure esse in voluptate ullamco.",
+    "longitude": -62.234952,
+    "latitude": -55.166518,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/254/254_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/254/254_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/254/254_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/254/254_frontal.jpg"
+    ],
+    "type": "street",
+    "numberOfBeds": 4,
+    "squareFeet": 265,
+    "status": "rented",
+    "location": {
+      "city": "Saigon",
+      "district": 10
+    }
+  },
+  {
+    "houseId": 42,
+    "name": "Ipsum amet ex mollit.",
+    "price": 751,
+    "description": "Incididunt aliquip velit ipsum magna dolore consequat.",
+    "address": "Ullamco veniam incididunt magna commodo reprehenderit adipisicing amet aliquip.",
+    "longitude": 146.361322,
+    "latitude": -7.791636,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/281/281_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/281/281_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/281/281_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/281/281_frontal.jpg"
+    ],
+    "type": "apartment",
+    "numberOfBeds": 3,
+    "squareFeet": 240,
+    "status": "reserved",
+    "location": {
+      "city": "Saigon",
+      "district": 7
+    }
+  },
+  {
+    "houseId": 43,
+    "name": "Non do qui fugiat fugiat culpa ipsum veniam eu quis est occaecat.",
+    "price": 284,
+    "description": "Cupidatat velit ex deserunt sint. Dolore non et fugiat aliqua ad elit quis officia eiusmod minim.",
+    "address": "Est culpa consequat quis laboris.",
+    "longitude": -152.698782,
+    "latitude": 76.006908,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/56/56_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/56/56_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/56/56_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/56/56_frontal.jpg"
+    ],
+    "type": "street",
+    "numberOfBeds": 2,
+    "squareFeet": 260,
+    "status": "reserved",
+    "location": {
+      "city": "Saigon",
+      "district": 1
+    }
+  },
+  {
+    "houseId": 44,
+    "name": "Sit voluptate exercitation commodo laborum labore quis ullamco laborum.",
+    "price": 868,
+    "description": "Cillum duis labore duis nisi est incididunt anim ea duis laboris. Nisi esse nisi reprehenderit consectetur.",
+    "address": "Sunt aliquip cupidatat cillum.",
+    "longitude": 116.288748,
+    "latitude": -33.412698,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/276/276_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/276/276_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/276/276_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/276/276_frontal.jpg"
+    ],
+    "type": "serviced",
+    "numberOfBeds": 3,
+    "squareFeet": 211,
+    "status": "available",
+    "location": {
+      "city": "Hanoi",
+      "district": "Ba Dinh"
+    }
+  },
+  {
+    "houseId": 45,
+    "name": "Pariatur quis incididunt esse laborum sit.",
+    "price": 560,
+    "description": "Aute nostrud commodo consequat in sit nostrud laboris. Fugiat reprehenderit do ad amet aliquip.",
+    "address": "Magna qui laborum velit esse adipisicing.",
+    "longitude": -73.213053,
+    "latitude": 10.965845,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/337/337_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/337/337_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/337/337_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/337/337_frontal.jpg"
+    ],
+    "type": "serviced",
+    "numberOfBeds": 5,
+    "squareFeet": 231,
+    "status": "reserved",
+    "location": {
+      "city": "Saigon",
+      "district": 10
+    }
+  },
+  {
+    "houseId": 46,
+    "name": "Sit velit dolor aute veniam nulla amet aute.",
+    "price": 978,
+    "description": "Laboris ut officia commodo eiusmod laboris minim tempor cupidatat duis cillum.",
+    "address": "Consectetur non aliqua excepteur nisi id.",
+    "longitude": -105.484086,
+    "latitude": 83.319259,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/494/494_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/494/494_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/494/494_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/494/494_frontal.jpg"
+    ],
+    "type": "street",
+    "numberOfBeds": 5,
+    "squareFeet": 246,
+    "status": "reserved",
+    "location": {
+      "city": "Saigon",
+      "district": 1
+    }
+  },
+  {
+    "houseId": 47,
+    "name": "Pariatur proident nostrud irure do deserunt.",
+    "price": 779,
+    "description": "Ad commodo consectetur elit. Qui veniam exercitation ex eiusmod fugiat ea ipsum adipisicing.",
+    "address": "Nulla excepteur pariatur est deserunt proident.",
+    "longitude": 112.521205,
+    "latitude": 8.61079,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/229/229_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/229/229_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/229/229_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/229/229_frontal.jpg"
+    ],
+    "type": "street",
+    "numberOfBeds": 3,
+    "squareFeet": 257,
+    "status": "available",
+    "location": {
+      "city": "Saigon",
+      "district": 10
+    }
+  },
+  {
+    "houseId": 48,
+    "name": "Ut veniam magna sit cillum ut et ut aliqua.",
+    "price": 878,
+    "description": "Laboris laborum nulla enim laboris. Consequat eu eu Lorem fugiat reprehenderit.",
+    "address": "Consectetur sunt cillum adipisicing minim commodo enim magna qui.",
+    "longitude": 122.256336,
+    "latitude": -41.11164,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/271/271_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/271/271_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/271/271_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/271/271_frontal.jpg"
+    ],
+    "type": "apartment",
+    "numberOfBeds": 2,
+    "squareFeet": 180,
+    "status": "reserved",
+    "location": {
+      "city": "Saigon",
+      "district": 4
+    }
+  },
+  {
+    "houseId": 49,
+    "name": "Ad adipisicing exercitation reprehenderit quis in aliqua exercitation veniam cupidatat ipsum laboris.",
+    "price": 945,
+    "description": "Ipsum eu et velit ex eu. Officia voluptate cillum reprehenderit id ad ipsum.",
+    "address": "Dolor consectetur ullamco incididunt mollit duis duis nulla velit et.",
+    "longitude": 172.506546,
+    "latitude": -5.692212,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/352/352_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/352/352_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/352/352_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/352/352_frontal.jpg"
+    ],
+    "type": "apartment",
+    "numberOfBeds": 2,
+    "squareFeet": 289,
+    "status": "available",
+    "location": {
+      "city": "Hanoi",
+      "district": "Ba Dinh"
+    }
+  },
+  {
+    "houseId": 50,
+    "name": "Consectetur veniam ea aliquip consequat Lorem cupidatat incididunt dolor.",
+    "price": 414,
+    "description": "Aute quis exercitation id tempor culpa elit ad tempor dolore mollit. Ea non dolore esse nisi mollit.",
+    "address": "Laborum deserunt duis ex enim aute consectetur ex fugiat laboris tempor tempor.",
+    "longitude": 72.758377,
+    "latitude": 40.155879,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/337/337_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/337/337_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/337/337_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/337/337_frontal.jpg"
+    ],
+    "type": "apartment",
+    "numberOfBeds": 2,
+    "squareFeet": 186,
+    "status": "available",
+    "location": {
+      "city": "Saigon",
+      "district": 4
+    }
+  },
+  {
+    "houseId": 51,
+    "name": "Nulla laboris ullamco reprehenderit ex consequat excepteur et ex anim.",
+    "price": 589,
+    "description": "Lorem fugiat aliqua sint enim eiusmod.",
+    "address": "Pariatur irure dolore pariatur aute eu.",
+    "longitude": -173.489173,
+    "latitude": -84.413263,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/222/222_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/222/222_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/222/222_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/222/222_frontal.jpg"
+    ],
+    "type": "apartment",
+    "numberOfBeds": 2,
+    "squareFeet": 116,
+    "status": "rented",
+    "location": {
+      "city": "Hanoi",
+      "district": "Dong Da"
+    }
+  },
+  {
+    "houseId": 52,
+    "name": "Reprehenderit sint est proident ea adipisicing mollit.",
+    "price": 542,
+    "description": "Dolor irure consequat enim ipsum occaecat minim tempor. Occaecat et laboris adipisicing occaecat occaecat proident deserunt Lorem nulla magna laborum.",
+    "address": "Qui ipsum elit esse mollit anim aliqua nisi.",
+    "longitude": -43.391355,
+    "latitude": 19.987053,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/457/457_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/457/457_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/457/457_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/457/457_frontal.jpg"
+    ],
+    "type": "street",
+    "numberOfBeds": 1,
+    "squareFeet": 273,
+    "status": "reserved",
+    "location": {
+      "city": "Saigon",
+      "district": 7
+    }
+  },
+  {
+    "houseId": 53,
+    "name": "Qui ipsum consequat ullamco aliquip tempor.",
+    "price": 897,
+    "description": "Aliqua eu dolore ullamco ex occaecat mollit aliqua veniam. Tempor voluptate velit qui veniam do consequat irure.",
+    "address": "Occaecat sit officia cillum veniam.",
+    "longitude": 165.064631,
+    "latitude": -43.233518,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/428/428_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/428/428_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/428/428_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/428/428_frontal.jpg"
+    ],
+    "type": "apartment",
+    "numberOfBeds": 3,
+    "squareFeet": 215,
+    "status": "available",
+    "location": {
+      "city": "Hanoi",
+      "district": "Cau Giay"
+    }
+  },
+  {
+    "houseId": 54,
+    "name": "Cupidatat sit dolor incididunt aliqua aliquip eu aute.",
+    "price": 367,
+    "description": "Proident adipisicing occaecat tempor.",
+    "address": "Veniam anim esse voluptate sint aliqua sit cillum.",
+    "longitude": 172.133622,
+    "latitude": -86.307456,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/349/349_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/349/349_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/349/349_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/349/349_frontal.jpg"
+    ],
+    "type": "street",
+    "numberOfBeds": 4,
+    "squareFeet": 235,
+    "status": "rented",
+    "location": {
+      "city": "Hanoi",
+      "district": "Cau Giay"
+    }
+  },
+  {
+    "houseId": 55,
+    "name": "Eu enim laboris veniam commodo est sunt non irure labore amet cupidatat.",
+    "price": 266,
+    "description": "Labore laborum esse voluptate enim ut id.",
+    "address": "Mollit voluptate do ipsum ea ex nostrud ad.",
+    "longitude": 124.353972,
+    "latitude": -51.188451,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/82/82_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/82/82_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/82/82_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/82/82_frontal.jpg"
+    ],
+    "type": "street",
+    "numberOfBeds": 4,
+    "squareFeet": 121,
+    "status": "rented",
+    "location": {
+      "city": "Saigon",
+      "district": 1
+    }
+  },
+  {
+    "houseId": 56,
+    "name": "Veniam esse reprehenderit consequat duis dolore amet dolore dolor duis.",
+    "price": 976,
+    "description": "Aute magna pariatur eu officia veniam esse reprehenderit amet consequat. Do aliqua nulla qui velit nostrud ea.",
+    "address": "Lorem elit elit quis enim laboris.",
+    "longitude": -157.520695,
+    "latitude": -79.58896,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/115/115_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/115/115_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/115/115_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/115/115_frontal.jpg"
+    ],
+    "type": "street",
+    "numberOfBeds": 5,
+    "squareFeet": 273,
+    "status": "rented",
+    "location": {
+      "city": "Saigon",
+      "district": 1
+    }
+  },
+  {
+    "houseId": 57,
+    "name": "Occaecat irure id ex ullamco.",
+    "price": 985,
+    "description": "Minim nostrud qui ad velit. Eu cillum eiusmod pariatur fugiat magna sit aliqua aute exercitation ad.",
+    "address": "Duis ea quis duis fugiat quis consequat laboris officia.",
+    "longitude": 169.577749,
+    "latitude": -2.896597,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/500/500_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/500/500_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/500/500_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/500/500_frontal.jpg"
+    ],
+    "type": "serviced",
+    "numberOfBeds": 1,
+    "squareFeet": 200,
+    "status": "available",
+    "location": {
+      "city": "Hanoi",
+      "district": "Cau Giay"
+    }
+  },
+  {
+    "houseId": 58,
+    "name": "Id duis minim aute ea sunt deserunt cillum.",
+    "price": 558,
+    "description": "Minim aliquip est duis.",
+    "address": "Aliquip sint fugiat adipisicing tempor proident eu sit incididunt dolor.",
+    "longitude": -162.81138,
+    "latitude": -5.368549,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/163/163_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/163/163_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/163/163_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/163/163_frontal.jpg"
+    ],
+    "type": "street",
+    "numberOfBeds": 3,
+    "squareFeet": 111,
+    "status": "rented",
+    "location": {
+      "city": "Hanoi",
+      "district": "Cau Giay"
+    }
+  },
+  {
+    "houseId": 59,
+    "name": "Nisi sunt sunt adipisicing.",
+    "price": 997,
+    "description": "Excepteur eu velit consequat ea nulla proident elit exercitation. Est minim amet ullamco nulla mollit.",
+    "address": "Pariatur in sunt sint et commodo sint ut veniam.",
+    "longitude": -70.971893,
+    "latitude": -81.599524,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/434/434_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/434/434_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/434/434_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/434/434_frontal.jpg"
+    ],
+    "type": "serviced",
+    "numberOfBeds": 4,
+    "squareFeet": 271,
+    "status": "available",
+    "location": {
+      "city": "Saigon",
+      "district": 10
+    }
+  },
+  {
+    "houseId": 60,
+    "name": "Pariatur pariatur et fugiat adipisicing occaecat non quis et id sit minim.",
+    "price": 972,
+    "description": "Do nulla labore nulla Lorem id occaecat officia culpa proident pariatur occaecat.",
+    "address": "Consectetur ex in mollit nisi ipsum officia non magna.",
+    "longitude": -160.562857,
+    "latitude": -79.178829,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/112/112_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/112/112_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/112/112_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/112/112_frontal.jpg"
+    ],
+    "type": "apartment",
+    "numberOfBeds": 3,
+    "squareFeet": 299,
+    "status": "available",
+    "location": {
+      "city": "Saigon",
+      "district": 1
+    }
+  },
+  {
+    "houseId": 61,
+    "name": "Ex nulla excepteur non sit ex sint ullamco officia.",
+    "price": 244,
+    "description": "Eu in consequat sit id consequat enim exercitation voluptate. Sit amet consequat ad cillum.",
+    "address": "Id laborum reprehenderit esse ad occaecat aute id proident.",
+    "longitude": -50.030762,
+    "latitude": -62.062497,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/119/119_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/119/119_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/119/119_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/119/119_frontal.jpg"
+    ],
+    "type": "apartment",
+    "numberOfBeds": 2,
+    "squareFeet": 235,
+    "status": "available",
+    "location": {
+      "city": "Hanoi",
+      "district": "Cau Giay"
+    }
+  },
+  {
+    "houseId": 62,
+    "name": "Consectetur veniam non sit eu culpa qui.",
+    "price": 844,
+    "description": "Non anim commodo exercitation amet velit officia.",
+    "address": "Veniam ad irure sint nostrud do qui Lorem dolor dolor veniam.",
+    "longitude": 9.516971,
+    "latitude": -70.974697,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/83/83_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/83/83_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/83/83_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/83/83_frontal.jpg"
+    ],
+    "type": "street",
+    "numberOfBeds": 4,
+    "squareFeet": 279,
+    "status": "rented",
+    "location": {
+      "city": "Hanoi",
+      "district": "Cau Giay"
+    }
+  },
+  {
+    "houseId": 63,
+    "name": "Voluptate exercitation dolore qui reprehenderit nulla est esse laboris cillum.",
+    "price": 688,
+    "description": "Ullamco eu culpa enim et magna amet velit Lorem magna minim proident. Incididunt esse qui dolor cupidatat minim.",
+    "address": "Id quis nisi cillum sit.",
+    "longitude": 88.932013,
+    "latitude": -70.582484,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/25/25_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/25/25_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/25/25_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/25/25_frontal.jpg"
+    ],
+    "type": "street",
+    "numberOfBeds": 1,
+    "squareFeet": 205,
+    "status": "rented",
+    "location": {
+      "city": "Saigon",
+      "district": 10
+    }
+  },
+  {
+    "houseId": 64,
+    "name": "Dolor minim veniam reprehenderit dolor pariatur.",
+    "price": 576,
+    "description": "Duis ex eu quis. Mollit dolor ipsum non officia pariatur sint ea ea deserunt ullamco est.",
+    "address": "Ea sunt cillum aliqua reprehenderit sit proident magna velit qui consectetur non.",
+    "longitude": -115.075886,
+    "latitude": -67.679032,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/361/361_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/361/361_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/361/361_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/361/361_frontal.jpg"
+    ],
+    "type": "street",
+    "numberOfBeds": 5,
+    "squareFeet": 250,
+    "status": "available",
+    "location": {
+      "city": "Saigon",
+      "district": 1
+    }
+  },
+  {
+    "houseId": 65,
+    "name": "Elit sit cupidatat enim non irure.",
+    "price": 695,
+    "description": "Cillum cupidatat ex velit nisi proident aliqua consectetur. Ullamco dolore dolor labore tempor aliquip labore anim.",
+    "address": "Occaecat reprehenderit irure ullamco exercitation officia.",
+    "longitude": -140.891399,
+    "latitude": 28.507278,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/178/178_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/178/178_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/178/178_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/178/178_frontal.jpg"
+    ],
+    "type": "serviced",
+    "numberOfBeds": 3,
+    "squareFeet": 247,
+    "status": "available",
+    "location": {
+      "city": "Hanoi",
+      "district": "Dong Da"
+    }
+  },
+  {
+    "houseId": 66,
+    "name": "Sit adipisicing amet ad.",
+    "price": 604,
+    "description": "Elit deserunt cillum incididunt tempor eiusmod Lorem consectetur veniam sit.",
+    "address": "Tempor consectetur minim ut.",
+    "longitude": -146.602643,
+    "latitude": -57.768563,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/233/233_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/233/233_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/233/233_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/233/233_frontal.jpg"
+    ],
+    "type": "serviced",
+    "numberOfBeds": 5,
+    "squareFeet": 155,
+    "status": "reserved",
+    "location": {
+      "city": "Saigon",
+      "district": 7
+    }
+  },
+  {
+    "houseId": 67,
+    "name": "Reprehenderit dolor ex Lorem adipisicing ullamco incididunt eu.",
+    "price": 933,
+    "description": "Quis exercitation qui magna laboris elit amet duis nisi ullamco ea. Aute aute proident consequat tempor quis eu.",
+    "address": "Nulla in officia officia est non anim deserunt aliquip occaecat sunt excepteur.",
+    "longitude": 122.120973,
+    "latitude": 21.707052,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/227/227_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/227/227_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/227/227_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/227/227_frontal.jpg"
+    ],
+    "type": "apartment",
+    "numberOfBeds": 5,
+    "squareFeet": 123,
+    "status": "available",
+    "location": {
+      "city": "Hanoi",
+      "district": "Dong Da"
+    }
+  },
+  {
+    "houseId": 68,
+    "name": "Occaecat occaecat laboris minim irure voluptate labore incididunt nisi pariatur.",
+    "price": 285,
+    "description": "Proident eiusmod dolore id esse fugiat cupidatat.",
+    "address": "Consequat laboris consequat eiusmod nulla consectetur officia sunt voluptate.",
+    "longitude": -81.06494,
+    "latitude": 48.63003,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/345/345_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/345/345_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/345/345_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/345/345_frontal.jpg"
+    ],
+    "type": "serviced",
+    "numberOfBeds": 5,
+    "squareFeet": 118,
+    "status": "rented",
+    "location": {
+      "city": "Saigon",
+      "district": 4
+    }
+  },
+  {
+    "houseId": 69,
+    "name": "Sit veniam excepteur incididunt occaecat ad.",
+    "price": 272,
+    "description": "Duis nulla non culpa qui.",
+    "address": "Non id eiusmod sint ullamco velit fugiat ipsum veniam ad.",
+    "longitude": 21.57201,
+    "latitude": 87.856738,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/238/238_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/238/238_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/238/238_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/238/238_frontal.jpg"
+    ],
+    "type": "street",
+    "numberOfBeds": 5,
+    "squareFeet": 172,
+    "status": "reserved",
+    "location": {
+      "city": "Hanoi",
+      "district": "Cau Giay"
+    }
+  },
+  {
+    "houseId": 70,
+    "name": "Voluptate culpa officia id ad Lorem.",
+    "price": 617,
+    "description": "Consectetur commodo eiusmod in tempor est dolor adipisicing aliqua voluptate sint. Duis nulla do qui et aliquip mollit deserunt sint ut officia esse.",
+    "address": "Excepteur cupidatat enim ex ut veniam consequat aliquip pariatur.",
+    "longitude": -146.863418,
+    "latitude": -56.310311,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/380/380_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/380/380_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/380/380_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/380/380_frontal.jpg"
+    ],
+    "type": "street",
+    "numberOfBeds": 1,
+    "squareFeet": 245,
+    "status": "rented",
+    "location": {
+      "city": "Hanoi",
+      "district": "Dong Da"
+    }
+  },
+  {
+    "houseId": 71,
+    "name": "Velit dolor pariatur consequat adipisicing.",
+    "price": 233,
+    "description": "Et in tempor aliqua quis incididunt pariatur anim do.",
+    "address": "Culpa Lorem occaecat in incididunt aute id.",
+    "longitude": -104.221216,
+    "latitude": -18.1349,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/174/174_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/174/174_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/174/174_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/174/174_frontal.jpg"
+    ],
+    "type": "apartment",
+    "numberOfBeds": 4,
+    "squareFeet": 132,
+    "status": "available",
+    "location": {
+      "city": "Saigon",
+      "district": 10
+    }
+  },
+  {
+    "houseId": 72,
+    "name": "Non veniam duis laboris.",
+    "price": 857,
+    "description": "Ipsum enim qui pariatur Lorem irure exercitation.",
+    "address": "Ad officia nostrud in laboris id voluptate incididunt velit commodo.",
+    "longitude": -84.230181,
+    "latitude": 2.095165,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/229/229_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/229/229_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/229/229_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/229/229_frontal.jpg"
+    ],
+    "type": "apartment",
+    "numberOfBeds": 3,
+    "squareFeet": 282,
+    "status": "rented",
+    "location": {
+      "city": "Saigon",
+      "district": 7
+    }
+  },
+  {
+    "houseId": 73,
+    "name": "Adipisicing anim sunt eiusmod deserunt voluptate elit labore.",
+    "price": 934,
+    "description": "Velit ex in aliquip ipsum eu consequat occaecat.",
+    "address": "Laboris officia deserunt qui adipisicing quis non.",
+    "longitude": -53.493159,
+    "latitude": -54.543042,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/95/95_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/95/95_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/95/95_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/95/95_frontal.jpg"
+    ],
+    "type": "serviced",
+    "numberOfBeds": 5,
+    "squareFeet": 197,
+    "status": "available",
+    "location": {
+      "city": "Hanoi",
+      "district": "Dong Da"
+    }
+  },
+  {
+    "houseId": 74,
+    "name": "Id tempor aliquip laborum dolore laboris reprehenderit reprehenderit.",
+    "price": 495,
+    "description": "Nisi nisi laboris eu minim.",
+    "address": "Nulla aliqua velit eiusmod aliquip.",
+    "longitude": 22.517344,
+    "latitude": 43.662277,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/185/185_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/185/185_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/185/185_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/185/185_frontal.jpg"
+    ],
+    "type": "apartment",
+    "numberOfBeds": 5,
+    "squareFeet": 136,
+    "status": "reserved",
+    "location": {
+      "city": "Saigon",
+      "district": 4
+    }
+  },
+  {
+    "houseId": 75,
+    "name": "Nostrud enim consectetur Lorem amet duis culpa.",
+    "price": 703,
+    "description": "Exercitation irure pariatur elit minim qui exercitation aliquip.",
+    "address": "Laborum commodo quis tempor voluptate.",
+    "longitude": -60.665306,
+    "latitude": -7.575208,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/232/232_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/232/232_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/232/232_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/232/232_frontal.jpg"
+    ],
+    "type": "apartment",
+    "numberOfBeds": 1,
+    "squareFeet": 159,
+    "status": "rented",
+    "location": {
+      "city": "Hanoi",
+      "district": "Cau Giay"
+    }
+  },
+  {
+    "houseId": 76,
+    "name": "Officia est aliquip nulla dolore nulla fugiat et.",
+    "price": 671,
+    "description": "Eiusmod exercitation amet ex dolore irure laboris id incididunt anim dolor. Dolor adipisicing aute ipsum laboris id fugiat culpa adipisicing sit irure voluptate.",
+    "address": "Nulla culpa laboris qui mollit pariatur labore eiusmod labore.",
+    "longitude": -54.417137,
+    "latitude": -80.832705,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/90/90_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/90/90_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/90/90_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/90/90_frontal.jpg"
+    ],
+    "type": "apartment",
+    "numberOfBeds": 3,
+    "squareFeet": 204,
+    "status": "rented",
+    "location": {
+      "city": "Saigon",
+      "district": 7
+    }
+  },
+  {
+    "houseId": 77,
+    "name": "Excepteur velit reprehenderit minim commodo sunt.",
+    "price": 688,
+    "description": "Lorem nostrud velit ad voluptate elit exercitation excepteur quis non laborum. Esse labore Lorem minim tempor deserunt quis labore quis quis minim consectetur.",
+    "address": "Ut laboris commodo non consequat do eu sunt fugiat.",
+    "longitude": -74.332844,
+    "latitude": -40.575256,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/452/452_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/452/452_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/452/452_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/452/452_frontal.jpg"
+    ],
+    "type": "serviced",
+    "numberOfBeds": 1,
+    "squareFeet": 223,
+    "status": "available",
+    "location": {
+      "city": "Hanoi",
+      "district": "Dong Da"
+    }
+  },
+  {
+    "houseId": 78,
+    "name": "Eiusmod veniam non anim anim aliquip.",
+    "price": 683,
+    "description": "Do ullamco amet nostrud dolore. Dolore occaecat laboris non sunt in.",
+    "address": "Amet excepteur laborum eiusmod in non est reprehenderit magna laboris.",
+    "longitude": 100.479869,
+    "latitude": -25.064223,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/120/120_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/120/120_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/120/120_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/120/120_frontal.jpg"
+    ],
+    "type": "serviced",
+    "numberOfBeds": 4,
+    "squareFeet": 106,
+    "status": "available",
+    "location": {
+      "city": "Saigon",
+      "district": 7
+    }
+  },
+  {
+    "houseId": 79,
+    "name": "Enim magna eiusmod ad.",
+    "price": 994,
+    "description": "Cillum anim laborum mollit cupidatat reprehenderit ut sint.",
+    "address": "Culpa do cupidatat veniam excepteur.",
+    "longitude": 18.393628,
+    "latitude": -84.986895,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/360/360_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/360/360_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/360/360_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/360/360_frontal.jpg"
+    ],
+    "type": "apartment",
+    "numberOfBeds": 5,
+    "squareFeet": 291,
+    "status": "reserved",
+    "location": {
+      "city": "Saigon",
+      "district": 7
+    }
+  },
+  {
+    "houseId": 80,
+    "name": "Consequat pariatur proident eu tempor incididunt culpa ipsum laborum magna qui.",
+    "price": 336,
+    "description": "Enim labore consequat tempor. Labore ut quis sint aliqua dolor officia laborum Lorem ullamco.",
+    "address": "Tempor non eu ad labore voluptate aliqua non.",
+    "longitude": 139.110247,
+    "latitude": -10.641665,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/394/394_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/394/394_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/394/394_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/394/394_frontal.jpg"
+    ],
+    "type": "serviced",
+    "numberOfBeds": 4,
+    "squareFeet": 239,
+    "status": "available",
+    "location": {
+      "city": "Saigon",
+      "district": 4
+    }
+  },
+  {
+    "houseId": 81,
+    "name": "Minim laborum enim ad non cupidatat enim proident duis.",
+    "price": 334,
+    "description": "Reprehenderit sit est consequat nulla sint velit ea labore do.",
+    "address": "Eu ex labore dolore reprehenderit mollit ad elit magna deserunt sit ipsum.",
+    "longitude": 125.969576,
+    "latitude": -28.723628,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/466/466_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/466/466_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/466/466_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/466/466_frontal.jpg"
+    ],
+    "type": "street",
+    "numberOfBeds": 5,
+    "squareFeet": 274,
+    "status": "rented",
+    "location": {
+      "city": "Hanoi",
+      "district": "Dong Da"
+    }
+  },
+  {
+    "houseId": 82,
+    "name": "Fugiat duis nisi Lorem id ad non mollit.",
+    "price": 779,
+    "description": "Laborum sunt eu ullamco deserunt laborum ea. Voluptate cillum consectetur minim quis sint exercitation adipisicing.",
+    "address": "Id ut qui id nostrud nisi proident.",
+    "longitude": -96.596101,
+    "latitude": -67.889578,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/46/46_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/46/46_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/46/46_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/46/46_frontal.jpg"
+    ],
+    "type": "street",
+    "numberOfBeds": 2,
+    "squareFeet": 229,
+    "status": "available",
+    "location": {
+      "city": "Saigon",
+      "district": 7
+    }
+  },
+  {
+    "houseId": 83,
+    "name": "Id labore excepteur ea aliquip.",
+    "price": 262,
+    "description": "Dolor elit do id incididunt Lorem nulla amet.",
+    "address": "Eu sint labore sit est enim et enim dolore qui labore magna.",
+    "longitude": 179.361776,
+    "latitude": 75.344978,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/183/183_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/183/183_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/183/183_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/183/183_frontal.jpg"
+    ],
+    "type": "apartment",
+    "numberOfBeds": 5,
+    "squareFeet": 261,
+    "status": "available",
+    "location": {
+      "city": "Hanoi",
+      "district": "Ba Dinh"
+    }
+  },
+  {
+    "houseId": 84,
+    "name": "Qui esse irure do elit exercitation sunt.",
+    "price": 581,
+    "description": "Id ex ad proident magna excepteur ipsum est amet ad veniam incididunt.",
+    "address": "Duis officia id minim elit et pariatur sint esse.",
+    "longitude": -18.335823,
+    "latitude": 71.440277,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/159/159_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/159/159_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/159/159_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/159/159_frontal.jpg"
+    ],
+    "type": "serviced",
+    "numberOfBeds": 2,
+    "squareFeet": 212,
+    "status": "available",
+    "location": {
+      "city": "Hanoi",
+      "district": "Dong Da"
+    }
+  },
+  {
+    "houseId": 85,
+    "name": "Dolore anim et aliquip et aute adipisicing reprehenderit ullamco occaecat deserunt.",
+    "price": 269,
+    "description": "Tempor anim esse ipsum eiusmod.",
+    "address": "Ullamco mollit id Lorem ex sunt.",
+    "longitude": -57.5063,
+    "latitude": 71.077324,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/388/388_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/388/388_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/388/388_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/388/388_frontal.jpg"
+    ],
+    "type": "serviced",
+    "numberOfBeds": 3,
+    "squareFeet": 234,
+    "status": "reserved",
+    "location": {
+      "city": "Saigon",
+      "district": 1
+    }
+  },
+  {
+    "houseId": 86,
+    "name": "Reprehenderit ad laborum minim commodo est anim irure exercitation occaecat adipisicing dolore.",
+    "price": 545,
+    "description": "Voluptate tempor elit id. Consectetur adipisicing est enim exercitation veniam enim aliquip in.",
+    "address": "Mollit culpa cupidatat esse aute duis laboris eu nostrud.",
+    "longitude": 84.355012,
+    "latitude": -60.15218,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/407/407_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/407/407_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/407/407_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/407/407_frontal.jpg"
+    ],
+    "type": "serviced",
+    "numberOfBeds": 3,
+    "squareFeet": 194,
+    "status": "reserved",
+    "location": {
+      "city": "Hanoi",
+      "district": "Cau Giay"
+    }
+  },
+  {
+    "houseId": 87,
+    "name": "Reprehenderit elit non nisi commodo aliquip esse reprehenderit sunt.",
+    "price": 964,
+    "description": "Lorem deserunt ex velit excepteur eu ex officia officia commodo Lorem ullamco.",
+    "address": "Ipsum mollit nisi eiusmod voluptate culpa in cupidatat veniam voluptate.",
+    "longitude": 46.323102,
+    "latitude": -10.548839,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/171/171_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/171/171_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/171/171_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/171/171_frontal.jpg"
+    ],
+    "type": "serviced",
+    "numberOfBeds": 4,
+    "squareFeet": 153,
+    "status": "rented",
+    "location": {
+      "city": "Saigon",
+      "district": 1
+    }
+  },
+  {
+    "houseId": 88,
+    "name": "Proident duis velit qui aliqua eu reprehenderit proident culpa.",
+    "price": 381,
+    "description": "Occaecat adipisicing velit anim. Culpa mollit magna ea cillum irure duis ipsum exercitation qui veniam ullamco.",
+    "address": "Velit ea quis mollit laborum eiusmod ullamco.",
+    "longitude": -106.441016,
+    "latitude": -75.187086,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/260/260_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/260/260_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/260/260_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/260/260_frontal.jpg"
+    ],
+    "type": "street",
+    "numberOfBeds": 4,
+    "squareFeet": 244,
+    "status": "rented",
+    "location": {
+      "city": "Saigon",
+      "district": 4
+    }
+  },
+  {
+    "houseId": 89,
+    "name": "Laboris cillum esse eu excepteur adipisicing ea.",
+    "price": 408,
+    "description": "Veniam irure tempor cillum. Pariatur pariatur sit exercitation sunt.",
+    "address": "Anim id irure in sint occaecat aliqua mollit do.",
+    "longitude": 60.842532,
+    "latitude": -24.203742,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/494/494_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/494/494_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/494/494_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/494/494_frontal.jpg"
+    ],
+    "type": "serviced",
+    "numberOfBeds": 2,
+    "squareFeet": 244,
+    "status": "reserved",
+    "location": {
+      "city": "Saigon",
+      "district": 10
+    }
+  },
+  {
+    "houseId": 90,
+    "name": "Cupidatat duis consectetur culpa nostrud commodo pariatur.",
+    "price": 641,
+    "description": "Eu veniam do duis.",
+    "address": "Minim non reprehenderit amet consequat occaecat ullamco est consequat amet.",
+    "longitude": -121.792964,
+    "latitude": 1.32851,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/2/2_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/2/2_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/2/2_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/2/2_frontal.jpg"
+    ],
+    "type": "apartment",
+    "numberOfBeds": 4,
+    "squareFeet": 112,
+    "status": "available",
+    "location": {
+      "city": "Hanoi",
+      "district": "Cau Giay"
+    }
+  },
+  {
+    "houseId": 91,
+    "name": "Est esse non irure in tempor sunt id.",
+    "price": 541,
+    "description": "Reprehenderit adipisicing deserunt deserunt Lorem sunt. Excepteur dolore sit aliqua labore.",
+    "address": "Quis culpa aliquip velit exercitation tempor sunt nulla cupidatat.",
+    "longitude": 100.446978,
+    "latitude": 2.154491,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/159/159_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/159/159_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/159/159_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/159/159_frontal.jpg"
+    ],
+    "type": "street",
+    "numberOfBeds": 4,
+    "squareFeet": 246,
+    "status": "rented",
+    "location": {
+      "city": "Hanoi",
+      "district": "Ba Dinh"
+    }
+  },
+  {
+    "houseId": 92,
+    "name": "Et quis nisi ea fugiat.",
+    "price": 318,
+    "description": "Eiusmod ex laboris qui.",
+    "address": "Adipisicing esse tempor irure eu do.",
+    "longitude": -136.636008,
+    "latitude": -62.736134,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/91/91_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/91/91_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/91/91_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/91/91_frontal.jpg"
+    ],
+    "type": "serviced",
+    "numberOfBeds": 5,
+    "squareFeet": 140,
+    "status": "rented",
+    "location": {
+      "city": "Saigon",
+      "district": 1
+    }
+  },
+  {
+    "houseId": 93,
+    "name": "Sint reprehenderit do adipisicing.",
+    "price": 472,
+    "description": "Eu aliquip cillum excepteur labore minim enim. Eu ad ipsum in est aliquip est aliquip minim.",
+    "address": "Esse Lorem occaecat esse officia nulla est sint nisi ipsum.",
+    "longitude": -100.06898,
+    "latitude": 87.081212,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/412/412_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/412/412_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/412/412_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/412/412_frontal.jpg"
+    ],
+    "type": "apartment",
+    "numberOfBeds": 5,
+    "squareFeet": 118,
+    "status": "available",
+    "location": {
+      "city": "Saigon",
+      "district": 7
+    }
+  },
+  {
+    "houseId": 94,
+    "name": "Labore ex nostrud ullamco incididunt incididunt excepteur ad dolor deserunt nostrud eiusmod.",
+    "price": 366,
+    "description": "Cupidatat sint id deserunt aliquip cupidatat aute veniam mollit sint. Reprehenderit non est commodo commodo sunt sit.",
+    "address": "Sit sit cillum eu velit tempor quis in nisi eu cillum.",
+    "longitude": 13.995883,
+    "latitude": -1.415496,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/288/288_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/288/288_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/288/288_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/288/288_frontal.jpg"
+    ],
+    "type": "street",
+    "numberOfBeds": 5,
+    "squareFeet": 182,
+    "status": "available",
+    "location": {
+      "city": "Hanoi",
+      "district": "Cau Giay"
+    }
+  },
+  {
+    "houseId": 95,
+    "name": "Deserunt ipsum quis eu consequat cupidatat enim ullamco.",
+    "price": 429,
+    "description": "Commodo pariatur velit exercitation adipisicing excepteur dolore aliqua. Fugiat incididunt quis incididunt.",
+    "address": "Ea officia ipsum cupidatat culpa ex officia et irure.",
+    "longitude": 167.210905,
+    "latitude": 73.581755,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/287/287_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/287/287_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/287/287_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/287/287_frontal.jpg"
+    ],
+    "type": "street",
+    "numberOfBeds": 3,
+    "squareFeet": 270,
+    "status": "reserved",
+    "location": {
+      "city": "Saigon",
+      "district": 4
+    }
+  },
+  {
+    "houseId": 96,
+    "name": "Minim aliqua excepteur deserunt enim qui magna laborum.",
+    "price": 508,
+    "description": "Aliquip eu proident dolore dolor aute in tempor culpa. Elit labore cupidatat tempor occaecat.",
+    "address": "Proident eiusmod consectetur veniam sunt exercitation adipisicing eu duis occaecat.",
+    "longitude": 160.520874,
+    "latitude": -49.775469,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/273/273_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/273/273_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/273/273_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/273/273_frontal.jpg"
+    ],
+    "type": "apartment",
+    "numberOfBeds": 1,
+    "squareFeet": 144,
+    "status": "available",
+    "location": {
+      "city": "Saigon",
+      "district": 10
+    }
+  },
+  {
+    "houseId": 97,
+    "name": "Amet pariatur eu Lorem quis reprehenderit ut laborum dolore ullamco.",
+    "price": 614,
+    "description": "Nulla esse adipisicing consequat deserunt eu amet. Culpa esse aliquip veniam deserunt.",
+    "address": "Commodo deserunt qui dolor nisi occaecat.",
+    "longitude": -118.956904,
+    "latitude": 81.322474,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/187/187_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/187/187_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/187/187_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/187/187_frontal.jpg"
+    ],
+    "type": "apartment",
+    "numberOfBeds": 2,
+    "squareFeet": 245,
+    "status": "reserved",
+    "location": {
+      "city": "Saigon",
+      "district": 4
+    }
+  },
+  {
+    "houseId": 98,
+    "name": "Nulla ut eiusmod elit veniam cupidatat nostrud.",
+    "price": 422,
+    "description": "Lorem reprehenderit laborum dolor.",
+    "address": "Eu in Lorem labore cupidatat incididunt enim in cupidatat consequat.",
+    "longitude": -87.458225,
+    "latitude": -16.68005,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/416/416_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/416/416_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/416/416_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/416/416_frontal.jpg"
+    ],
+    "type": "serviced",
+    "numberOfBeds": 2,
+    "squareFeet": 114,
+    "status": "reserved",
+    "location": {
+      "city": "Saigon",
+      "district": 1
+    }
+  },
+  {
+    "houseId": 99,
+    "name": "Dolor do dolor dolore.",
+    "price": 464,
+    "description": "Exercitation culpa dolore in laboris cupidatat aute enim sunt. Exercitation cupidatat incididunt culpa sit aute.",
+    "address": "Ipsum incididunt sunt in.",
+    "longitude": -3.11984,
+    "latitude": -74.231875,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/268/268_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/268/268_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/268/268_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/268/268_frontal.jpg"
+    ],
+    "type": "street",
+    "numberOfBeds": 5,
+    "squareFeet": 143,
+    "status": "reserved",
+    "location": {
+      "city": "Hanoi",
+      "district": "Cau Giay"
+    }
+  },
+  {
+    "houseId": 100,
+    "name": "Pariatur et minim veniam duis.",
+    "price": 579,
+    "description": "Fugiat elit Lorem id.",
+    "address": "Aute occaecat aliquip anim cillum fugiat qui Lorem.",
+    "longitude": -57.430578,
+    "latitude": 17.955991,
+    "image": [
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/90/90_bathroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/90/90_kitchen.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/90/90_bedroom.jpg",
+      "https://realestatemgt.s3.ap-southeast-1.amazonaws.com/dataset/90/90_frontal.jpg"
+    ],
+    "type": "serviced",
+    "numberOfBeds": 3,
+    "squareFeet": 159,
+    "status": "reserved",
+    "location": {
+      "city": "Hanoi",
+      "district": "Cau Giay"
+    }
+  }
+]

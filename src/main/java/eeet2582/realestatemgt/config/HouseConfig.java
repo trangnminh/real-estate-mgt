@@ -30,8 +30,7 @@ public class HouseConfig {
 
                     // Increase limit to get more rows
                     for (int i = 1; i <= limit; i++) {
-//                        Reader reader = Files.newBufferedReader(Paths.get("src/main/java/eeet2582/realestatemgt/data/house/house_" + i + ".json"));
-                        Reader reader = Files.newBufferedReader(Paths.get("src/main/java/eeet2582/realestatemgt/data/house.json"));
+                        Reader reader = Files.newBufferedReader(Paths.get("src/main/java/eeet2582/realestatemgt/data/gen/house_" + i + ".json"));
 
                         List<House> houses =
                                 gson.fromJson(reader,

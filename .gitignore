@@ -8,7 +8,8 @@ target/
 .env
 /src/main/resources/application.yaml
 /src/main/resources/redisson.yaml
-/src/main/java/eeet2582/realestatemgt/data/house/
+/src/main/java/eeet2582/realestatemgt/data/gen/node_modules/**
+
 dump.rdb
 
 ### STS ###

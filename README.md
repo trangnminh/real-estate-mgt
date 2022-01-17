@@ -2,6 +2,7 @@
 
 ## Note
 ### **FRONTEND REPOSITORY**
+
 - Get latest config files and Auth0 instructions here: https://github.com/phu0n9/real-estate
 
 ### **INSTRUCTION**
@@ -11,7 +12,21 @@
 - Install Kafka to test the message queue and email: https://kafka.apache.org/quickstart
 - Get the `application.yaml` and `redisson.yaml` files and put them in `src/resources`
 - Get the `.env` file and put it in the root folder (same level as `README.md`)
-- Get the zip file and put the `house` folder inside `data` folder
+
+#### **House Generator**
+
+- HouseConfig now reads sample data from `data/gen` folder
+- House price range is now 200 - 1000 (USD/month)
+- There is already a sample `house_1.json` file, but if you want to add more:
+
+```
+// Go to the Node project for house generation and install dependencies
+cd src/main/java/eeet2582/realestatemgt/data/gen
+npm i
+
+// Modify the code, then run it
+node index.js
+```
 
 ### **HOUSE QUERY FORMAT (POSTMAN)**
 
@@ -25,8 +40,8 @@
 {
     "city": "Hanoi",
     "district": "Ba Dinh",
-    "priceFrom": 250000,
-    "priceTo": 300000,
+    "priceFrom": 200,
+    "priceTo": 1000,
     "statusList": [
         "available",
         "reserved",

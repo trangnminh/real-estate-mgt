@@ -65,19 +65,16 @@ public class HouseService {
 
     // Find houses by search form
     public List<House> getHousesBySearchFormSortByPrice(HouseSearchForm form, String orderBy) {
-        System.out.println("getHousesBySearchFormSortByPrice: " + form.toString());
-
         // Find by location, if null default to Saigon 7
         String city = (form.getCity() != null && !form.getCity().trim().isEmpty()) ? form.getCity() : "Saigon";
         String district = (form.getDistrict() != null && !form.getDistrict().trim().isEmpty()) ? form.getDistrict() : "7";
         HouseLocation location = locationRepository.findByCityAndDistrict(city, district)
                 .orElseThrow(() -> new IllegalStateException("Location not found!"));
-        List<House> matchLocation = houseRepository.findByLocation(location);
+        List<House> matchLocation = houseRepository.findByLocation_CityAndLocation_District(location.getCity(), location.getDistrict());
 
-        // Find by price range, if null default to 100K - 300K
-        double priceFrom = (form.getPriceFrom() != null && form.getPriceFrom() >= 0) ? form.getPriceFrom() : 100000;
-        double priceTo = (form.getPriceTo() != null && form.getPriceTo() >= 0) ? form.getPriceTo() : 300000;
-        priceTo = Math.max(priceFrom, priceTo);
+        // Find by price range, if null default to 200 - 1000
+        double priceFrom = (form.getPriceFrom() != null && form.getPriceFrom() > 0) ? form.getPriceFrom() : 200;
+        double priceTo = (form.getPriceTo() != null && form.getPriceTo() > 0) ? form.getPriceTo() : 1000;
         List<House> matchPrice = houseRepository.findByPriceBetween(priceFrom, priceTo);
 
         // Find by status, if null takes all types
