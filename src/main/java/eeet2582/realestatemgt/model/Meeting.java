@@ -16,6 +16,7 @@ import java.time.LocalTime;
 @ToString
 @Entity
 public class Meeting implements Serializable {
+
     @Serial
     private static final long serialVersionUID = 1L;
 
