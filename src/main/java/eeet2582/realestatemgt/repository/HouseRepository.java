@@ -1,6 +1,6 @@
 package eeet2582.realestatemgt.repository;
 
-import eeet2582.realestatemgt.model.house.House;
+import eeet2582.realestatemgt.model.House;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

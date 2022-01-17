@@ -1,6 +1,6 @@
 package eeet2582.realestatemgt.config;
 
-import eeet2582.realestatemgt.model.ErrorMessage;
+import eeet2582.realestatemgt.model.helper.ErrorMessage;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;

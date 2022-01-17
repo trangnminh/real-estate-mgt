@@ -1,6 +1,7 @@
-package eeet2582.realestatemgt.model.house;
+package eeet2582.realestatemgt.model.helper;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import eeet2582.realestatemgt.model.House;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

@@ -12,6 +12,6 @@ public interface PaymentRepository extends JpaRepository<Payment, Long> {
 
     Page<Payment> findByRental_RentalId(Long rentalId, Pageable pageable);
 
-    @Query("select distinct p from Payment p inner join Rental r on r.rentalId = p.rental.rentalId where r.userHouse.userId=?1")
+    @Query("select distinct p from Payment p inner join Rental r on r.rentalId = p.rental.rentalId where r.user.userId=?1")
     Page<Payment> findPaymentByUserId(Long userId, Pageable pageable);
 }

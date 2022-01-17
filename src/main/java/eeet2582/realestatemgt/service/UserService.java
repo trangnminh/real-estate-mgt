@@ -2,38 +2,38 @@ package eeet2582.realestatemgt.service;
 
 import eeet2582.realestatemgt.model.AppUser;
 import eeet2582.realestatemgt.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+import static eeet2582.realestatemgt.config.RedisConfig.*;
+
 // UserService only wires UserRepository, everything else is handled by child services
 @Service
+@RequiredArgsConstructor
 public class UserService {
 
     @Autowired
     private final UserRepository userRepository;
 
     @Autowired
-    private final AdminService adminService;
+    private final UserHouseLocationUtil userHouseLocationUtil;
 
-    @Autowired
-    private final RentalService rentalService;
-
-    public UserService(UserRepository userRepository, AdminService adminService, RentalService rentalService) {
-        this.userRepository = userRepository;
-        this.adminService = adminService;
-        this.rentalService = rentalService;
-    }
-
+    @Cacheable(value = USERS)
     public List<AppUser> getAllUsers() {
         return userRepository.findAll();
     }
 
     // Find users matching by full name, email or phone number
+    @Cacheable(value = USER_SEARCH)
     public Page<AppUser> getFilteredUsers(String query, int pageNo, int pageSize, String sortBy, String orderBy) {
         AppUser user = new AppUser();
         user.setFullName(query);
@@ -55,18 +55,25 @@ public class UserService {
         return userRepository.findAll(example, pageable);
     }
 
-    // Get one by ID, try to reuse the exception
-    public AppUser getUserById(Long userId) {
-        if (userRepository.checkIfIdMatch(userId) != 1) { // if user logged in with Google or Facebook
-            // convert auth0Id user to simpler userId in database
-            Long userIdByAuth0Id = userRepository.checkAuthUserFound(userId);
-            return userRepository.findById(userIdByAuth0Id).orElseThrow(() -> new IllegalStateException("User with userId=" + userIdByAuth0Id + " does not exist!"));
-        }
-        return userRepository
-                .findById(userId)
-                .orElseThrow(() -> new IllegalStateException("User with userId=" + userId + " does not exist!"));
+    // Find users by full name
+    @Cacheable(value = USER_SEARCH_BY_NAME)
+    public List<AppUser> getUsersByName(String name, int pageNo) {
+        Pageable limit = PageRequest.of(pageNo, 10);
+        return userRepository.findAppUserByFullName(name, limit);
     }
 
+    // Get one by ID, try to reuse the exception
+    @Cacheable(key = USER_ID, value = USER)
+    public AppUser getUserById(Long userId) {
+        return userHouseLocationUtil.getUserById(userId);
+    }
+
+    // Add new one
+    @Caching(evict = {
+            @CacheEvict(value = USERS, allEntries = true),
+            @CacheEvict(value = USER_SEARCH, allEntries = true),
+            @CacheEvict(value = USER_SEARCH_BY_NAME, allEntries = true)
+    })
     public AppUser addNewUser(AppUser user) {
         // Do input checking here
         if (user.getAuth0Id() != null && userRepository.checkAuthUserFound(user.getAuth0Id()) == null) {
@@ -80,6 +87,12 @@ public class UserService {
 
     // Transactional means "all or nothing", if the transaction fails midway nothing is saved
     @Transactional
+    @Caching(evict = {
+            @CacheEvict(value = USER, key = USER_ID),
+            @CacheEvict(value = USERS, allEntries = true),
+            @CacheEvict(value = USER_SEARCH, allEntries = true),
+            @CacheEvict(value = USER_SEARCH_BY_NAME, allEntries = true)
+    })
     public AppUser updateUserById(Long userId, @NotNull AppUser newUser) {
         AppUser oldUser = getUserById(userId);
 
@@ -97,20 +110,14 @@ public class UserService {
     }
 
     @Transactional
+    @Caching(evict = {
+            @CacheEvict(value = USER, key = USER_ID),
+            @CacheEvict(value = USERS, allEntries = true),
+            @CacheEvict(value = USER_SEARCH, allEntries = true),
+            @CacheEvict(value = USER_SEARCH_BY_NAME, allEntries = true)
+    })
     public void deleteUserById(Long userId) {
         AppUser user = getUserById(userId);
-
-        // Delete all classes that depend on current user
-        adminService.deleteDepositsByUserId(userId);
-        adminService.deleteMeetingsByUserId(userId);
-        rentalService.deleteRentalsByUserId(userId);
-
-        // Finally, delete the user
         userRepository.delete(user);
-    }
-
-    public List<AppUser> findUsersByName(String name, int pageNo) {
-        Pageable limit = PageRequest.of(pageNo, 10);
-        return userRepository.findAppUserByFullName(name, limit);
     }
 }

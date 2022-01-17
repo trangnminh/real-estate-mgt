@@ -1,12 +1,11 @@
 package eeet2582.realestatemgt.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -28,6 +27,21 @@ public class AppUser {
     private LocalDate dob;
     private String gender;
     private String password;
+
+    @OneToMany(orphanRemoval = true, mappedBy = "user", fetch = FetchType.LAZY)
+    @JsonIgnore
+    @ToString.Exclude
+    private List<Meeting> meetingList;
+
+    @OneToMany(orphanRemoval = true, mappedBy = "user", fetch = FetchType.LAZY)
+    @JsonIgnore
+    @ToString.Exclude
+    private List<Deposit> depositList;
+
+    @OneToMany(orphanRemoval = true, mappedBy = "user", fetch = FetchType.LAZY)
+    @JsonIgnore
+    @ToString.Exclude
+    private List<Rental> rentalList;
 
     public AppUser(Long auth0Id, String fullName, String email, String phoneNumber, LocalDate dob, String gender, String password) {
         this.auth0Id = auth0Id;

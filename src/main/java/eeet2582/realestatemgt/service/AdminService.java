@@ -1,18 +1,18 @@
 package eeet2582.realestatemgt.service;
 
-import eeet2582.realestatemgt.helper.UserHouse;
 import eeet2582.realestatemgt.model.AppUser;
 import eeet2582.realestatemgt.model.Deposit;
+import eeet2582.realestatemgt.model.House;
 import eeet2582.realestatemgt.model.Meeting;
-import eeet2582.realestatemgt.model.house.House;
+import eeet2582.realestatemgt.model.form.DepositForm;
 import eeet2582.realestatemgt.repository.DepositRepository;
-import eeet2582.realestatemgt.repository.HouseRepository;
 import eeet2582.realestatemgt.repository.MeetingRepository;
-import eeet2582.realestatemgt.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -23,18 +23,26 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAdjusters;
 import java.util.List;
 import java.util.Objects;
 
+import static eeet2582.realestatemgt.config.RedisConfig.*;
+
 // Handle Deposit and Meeting operations
 @Service
+@RequiredArgsConstructor
 public class AdminService {
 
     public static final String SENDER_MAIL = "eeet2582.realestatemgt@gmail.com";
-    private static final Logger LOGGER = LoggerFactory.getLogger(AdminService.class);
+
+    @Autowired
+    private final UserHouseLocationUtil userHouseLocationUtil;
 
     @Autowired
     private final MeetingRepository meetingRepository;
@@ -43,63 +51,43 @@ public class AdminService {
     private final DepositRepository depositRepository;
 
     @Autowired
-    private final UserRepository userRepository;
-
-    @Autowired
-    private final HouseRepository houseRepository;
-
-    @Autowired
     private final JavaMailSender mailSender;
 
-    public AdminService(MeetingRepository meetingRepository,
-                        DepositRepository depositRepository,
-                        UserRepository userRepository,
-                        HouseRepository houseRepository,
-                        JavaMailSender mailSender) {
-        this.meetingRepository = meetingRepository;
-        this.depositRepository = depositRepository;
-        this.userRepository = userRepository;
-        this.houseRepository = houseRepository;
-        this.mailSender = mailSender;
-    }
+    DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH:mm");
 
     // --- DEPOSIT --- //
 
+    @Cacheable(value = DEPOSITS)
     public List<Deposit> getAllDeposits() {
         return depositRepository.findAll();
     }
 
-    // Return paginated payments of the provided user or house or just all payments
-    public Page<Deposit> getFilteredDepositsAllOrByUserIdOrByHouseId(Long userId, Long houseId, int pageNo, int pageSize, String sortBy, String orderBy) {
-        // convert auth0Id user to simpler userId in database
-        Long auth0Id = userRepository.checkAuthUserFound(userId);
-        userId = auth0Id != null ? auth0Id : userId;
+    // Return paginated deposits of the provided user or house or just all deposits
+    @Cacheable(value = DEPOSIT_SEARCH)
+    public Page<Deposit> getFilteredDepositsAllOrByUserIdOrByHouseId(Long userId, Long houseId, int pageNo, int pageSize, @NotNull String orderBy) {
         Pageable pageable;
-
         if (orderBy.equals("asc")) {
-            if (sortBy.equals("dateTime")) {
-                pageable = PageRequest.of(pageNo, pageSize, Sort.by("date").ascending().and(Sort.by("time").ascending()));
-            } else {
-                pageable = PageRequest.of(pageNo, pageSize, Sort.by(sortBy).ascending());
-            }
+            pageable = PageRequest.of(pageNo, pageSize, Sort.by("date").ascending().and(Sort.by("time").ascending()));
         } else {
-            if (sortBy.equals("dateTime")) {
-                pageable = PageRequest.of(pageNo, pageSize, Sort.by("date").descending().and(Sort.by("time").descending()));
-            } else {
-                pageable = PageRequest.of(pageNo, pageSize, Sort.by(sortBy).descending());
-            }
+            pageable = PageRequest.of(pageNo, pageSize, Sort.by("date").descending().and(Sort.by("time").descending()));
         }
 
         if (userId != null) {
-            return depositRepository.findByUserHouse_UserId(userId, pageable);
+            // Try to find the associated user
+            AppUser user = userHouseLocationUtil.getUserById(userId);
+            return depositRepository.findByUser(user, pageable);
         } else if (houseId != null) {
-            return depositRepository.findByUserHouse_HouseId(houseId, pageable);
+            // Try to find the associated house
+            House house = userHouseLocationUtil.getHouseById(houseId);
+            return depositRepository.findByHouse(house, pageable);
         } else {
             return depositRepository.findAll(pageable);
         }
     }
 
     // Get one by ID, try to reuse the exception
+    @Cacheable(key = DEPOSIT_ID, value = DEPOSIT)
     public Deposit getDepositById(Long depositId) {
         if (!depositRepository.existsById(depositId))
             throw new IllegalStateException("Deposit with depositId=" + depositId + " does not exist!");
@@ -108,71 +96,112 @@ public class AdminService {
     }
 
     // Add new one
-    public Deposit addNewDeposit(Deposit deposit) {
-        LOGGER.info("addNewDeposit: " + deposit.toString());
-        return depositRepository.save(deposit);
+    @Caching(evict = {
+            @CacheEvict(value = DEPOSITS, allEntries = true),
+            @CacheEvict(value = DEPOSIT_SEARCH, allEntries = true)
+    })
+    public Deposit addNewDeposit(@NotNull DepositForm form) {
+        if (form.getUserId() != null && form.getHouseId() != null) {
+            // Find the associated user and house
+            AppUser user = userHouseLocationUtil.getUserById(form.getUserId());
+            House house = userHouseLocationUtil.getHouseById(form.getHouseId());
+
+            // Create new entity from param
+            Deposit deposit = new Deposit(
+                    user,
+                    house,
+                    form.getAmount(),
+                    LocalDate.parse(form.getDate(), dateFormat),
+                    LocalTime.parse(form.getTime(), timeFormat),
+                    form.getNote()
+            );
+            return depositRepository.save(deposit);
+        }
+        return null;
     }
 
     // Transactional means "all or nothing", if the transaction fails midway nothing is saved
     @Transactional
-    public Deposit updateDepositById(Long depositId, @NotNull Deposit newDeposit) {
-        Deposit oldDeposit = getDepositById(depositId);
+    @Caching(evict = {
+            @CacheEvict(value = DEPOSIT, key = DEPOSIT_ID),
+            @CacheEvict(value = DEPOSITS, allEntries = true),
+            @CacheEvict(value = DEPOSIT_SEARCH, allEntries = true)
+    })
+    public Deposit updateDepositById(Long depositId, @NotNull DepositForm form) {
+        if (form.getUserId() != null && form.getHouseId() != null) {
+            Deposit deposit = getDepositById(depositId);
 
-        if (newDeposit.getUserHouse().getHouseId() != null && newDeposit.getUserHouse().getUserId() != null) {
-            oldDeposit.setUserHouse(new UserHouse(newDeposit.getUserHouse().getUserId(), newDeposit.getUserHouse().getHouseId()));
+            // Find the associated user and house
+            AppUser user = userHouseLocationUtil.getUserById(form.getUserId());
+            House house = userHouseLocationUtil.getHouseById(form.getHouseId());
+            deposit.setUser(user);
+            deposit.setHouse(house);
+
+            if (form.getAmount() != null && !Objects.equals(form.getAmount(), deposit.getAmount())) {
+                deposit.setAmount(form.getAmount());
+            }
+
+            if (form.getDate() != null && !deposit.getDate().isEqual(LocalDate.parse(form.getDate(), dateFormat))) {
+                deposit.setDate(LocalDate.parse(form.getDate(), dateFormat));
+            }
+
+            if (form.getTime() != null && !deposit.getTime().equals(LocalTime.parse(form.getTime(), timeFormat))) {
+                deposit.setTime(LocalTime.parse(form.getTime(), timeFormat));
+            }
+
+            if (form.getNote() != null && !form.getNote().isBlank() && !deposit.getNote().equals(form.getNote())) {
+                deposit.setNote(form.getNote());
+            }
+            return depositRepository.save(deposit);
         }
-
-        if (newDeposit.getAmount() != null && !Objects.equals(newDeposit.getAmount(), oldDeposit.getAmount())) {
-            oldDeposit.setAmount(newDeposit.getAmount());
-        }
-
-        if (newDeposit.getDate() != null && !oldDeposit.getDate().isEqual(newDeposit.getDate())) {
-            oldDeposit.setDate(newDeposit.getDate());
-        }
-
-        if (newDeposit.getTime() != null && !oldDeposit.getTime().equals(newDeposit.getTime())) {
-            oldDeposit.setTime(newDeposit.getTime());
-        }
-
-        if (newDeposit.getNote() != null && !newDeposit.getNote().isBlank() && !oldDeposit.getNote().equals(newDeposit.getNote())) {
-            oldDeposit.setNote(newDeposit.getNote());
-        }
-
-        return oldDeposit;
+        return null;
     }
 
+    @Caching(evict = {
+            @CacheEvict(value = DEPOSIT, key = DEPOSIT_ID),
+            @CacheEvict(value = DEPOSITS, allEntries = true),
+            @CacheEvict(value = DEPOSIT_SEARCH, allEntries = true)
+    })
     public void deleteDepositById(Long depositId) {
         Deposit deposit = getDepositById(depositId);
         depositRepository.delete(deposit);
     }
 
-    @Transactional
-    public void deleteDepositsByUserId(Long userId) {
-        // convert auth0Id user to simpler userId in database
-        Long auth0Id = userRepository.checkAuthUserFound(userId);
-        userId = auth0Id != null ? auth0Id : userId;
-        depositRepository.deleteByUserHouse_UserId(userId);
-    }
-
-    @Transactional
-    public void deleteDepositsByHouseId(Long houseId) {
-        depositRepository.deleteByUserHouse_HouseId(houseId);
-    }
-
     // --- MEETING--- //
 
+    @Cacheable(value = MEETINGS)
     public List<Meeting> getAllMeetings() {
         return meetingRepository.findAll();
     }
 
+    @Cacheable(value = MEETINGS_BY_DATE_RANGE)
+    public List<Meeting> getMeetingsByDateRange(String range) {
+        LocalDate startDate = LocalDate.now();
+        LocalDate endDate = LocalDate.now();
+
+        switch (range) {
+            case "today":
+                break;
+            case "week":
+                startDate = LocalDate.now(ZoneId.systemDefault())
+                        .with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
+                endDate = LocalDate.now(ZoneId.systemDefault())
+                        .with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY));
+                break;
+            case "month":
+                startDate = LocalDate.now(ZoneId.systemDefault())
+                        .with(TemporalAdjusters.firstDayOfMonth());
+                endDate = LocalDate.now(ZoneId.systemDefault())
+                        .with(TemporalAdjusters.lastDayOfMonth());
+                break;
+        }
+        return meetingRepository.findByDateBetween(startDate, endDate);
+    }
+
     // Return paginated meetings of the provided user or house or just all meetings
+    @Cacheable(value = MEETING_SEARCH)
     public Page<Meeting> getFilteredMeetingsAllOrByUserIdOrByHouseId(Long userId, Long houseId, int pageNo, int pageSize, @NotNull String orderBy) {
-        // convert auth0Id user to simpler userId in database
-        Long auth0Id = userRepository.checkAuthUserFound(userId);
-        userId = auth0Id != null ? auth0Id : userId;
-
         Pageable pageable;
-
         if (orderBy.equals("asc")) {
             pageable = PageRequest.of(pageNo, pageSize, Sort.by("date").ascending().and(Sort.by("time").ascending()));
         } else {
@@ -180,15 +209,20 @@ public class AdminService {
         }
 
         if (userId != null) {
-            return meetingRepository.findByUserHouse_UserId(userId, pageable);
+            // Try to find the associated user
+            AppUser user = userHouseLocationUtil.getUserById(userId);
+            return meetingRepository.findByUser(user, pageable);
         } else if (houseId != null) {
-            return meetingRepository.findByUserHouse_HouseId(houseId, pageable);
+            // Try to find the associated house
+            House house = userHouseLocationUtil.getHouseById(houseId);
+            return meetingRepository.findByHouse(house, pageable);
         } else {
             return meetingRepository.findAll(pageable);
         }
     }
 
     // Get one by ID, try to reuse the exception
+    @Cacheable(key = MEETING_ID, value = MEETING)
     public Meeting getMeetingById(Long meetingId) {
         if (!meetingRepository.existsById(meetingId))
             throw new IllegalStateException("Meeting with meetingId=" + meetingId + " does not exist!");
@@ -198,16 +232,12 @@ public class AdminService {
 
     // Create a new meeting or update one from params
     public Meeting createMeetingTopic(Long userId, Long houseId, String date, String time, String note) {
-        // convert auth0Id user to simpler userId in database
-        Long auth0Id = userRepository.checkAuthUserFound(userId);
-        userId = auth0Id != null ? auth0Id : userId;
-
         // If ID is provided, try to find the current item, else make new one
         Meeting meeting = new Meeting();
-        // Do input checking here
 
         // Save the cleaned item
-        meeting.setUserHouse(new UserHouse(userId, houseId));
+        meeting.setUser(userHouseLocationUtil.getUserById(userId));
+        meeting.setHouse(userHouseLocationUtil.getHouseById(houseId));
         meeting.setDate(LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         meeting.setTime(LocalTime.parse(time, DateTimeFormatter.ofPattern("HH:mm")));
         meeting.setNote(note);
@@ -218,9 +248,13 @@ public class AdminService {
     // Save the meeting retrieved from Kafka into database
     @Transactional
     @KafkaListener(topics = "meeting", groupId = "group_id")
-    public void saveMeetingById(@NotNull Meeting meeting) {
-        LOGGER.info("saveMeetingById: " + meeting);
-        meetingRepository.save(meeting);
+    @Caching(evict = {
+            @CacheEvict(value = MEETINGS, allEntries = true),
+            @CacheEvict(value = MEETINGS_BY_DATE_RANGE, allEntries = true),
+            @CacheEvict(value = MEETING_SEARCH, allEntries = true)
+    })
+    public Meeting addNewMeeting(@NotNull Meeting meeting) {
+        return meetingRepository.save(meeting);
     }
 
     // Create the email body for meeting reminder
@@ -240,8 +274,8 @@ public class AdminService {
 
     @KafkaListener(topics = "meeting", groupId = "email_group")
     public void sendSimpleEmail(@NotNull Meeting meeting) {
-        AppUser user = userRepository.getById(meeting.getUserHouse().getUserId());
-        House house = houseRepository.getById(meeting.getUserHouse().getHouseId());
+        AppUser user = userHouseLocationUtil.getUserById(meeting.getUser().getUserId());
+        House house = userHouseLocationUtil.getHouseById(meeting.getHouse().getHouseId());
 
         SimpleMailMessage sendMessage = new SimpleMailMessage();
         sendMessage.setFrom(SENDER_MAIL);
@@ -255,21 +289,14 @@ public class AdminService {
         mailSender.send(sendMessage);
     }
 
+    @Caching(evict = {
+            @CacheEvict(value = MEETING, key = MEETING_ID),
+            @CacheEvict(value = MEETINGS, allEntries = true),
+            @CacheEvict(value = MEETINGS_BY_DATE_RANGE, allEntries = true),
+            @CacheEvict(value = MEETING_SEARCH, allEntries = true)
+    })
     public void deleteMeetingById(Long meetingId) {
         Meeting meeting = getMeetingById(meetingId);
         meetingRepository.delete(meeting);
-    }
-
-    @Transactional
-    public void deleteMeetingsByUserId(Long userId) {
-        // convert auth0Id user to simpler userId in database
-        Long auth0Id = userRepository.checkAuthUserFound(userId);
-        userId = auth0Id != null ? auth0Id : userId;
-        meetingRepository.deleteByUserHouse_UserId(userId);
-    }
-
-    @Transactional
-    public void deleteMeetingsByHouseId(Long houseId) {
-        meetingRepository.deleteByUserHouse_HouseId(houseId);
     }
 }

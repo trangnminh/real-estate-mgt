@@ -1,4 +1,4 @@
-package eeet2582.realestatemgt.helper;
+package eeet2582.realestatemgt.data.gson;
 
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;

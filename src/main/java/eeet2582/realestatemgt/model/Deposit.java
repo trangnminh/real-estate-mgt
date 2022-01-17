@@ -1,6 +1,5 @@
 package eeet2582.realestatemgt.model;
 
-import eeet2582.realestatemgt.helper.UserHouse;
 import lombok.*;
 
 import javax.persistence.*;
@@ -19,16 +18,22 @@ public class Deposit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long depositId;
 
-    @Embedded
-    private UserHouse userHouse;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private AppUser user;
+
+    @ManyToOne
+    @JoinColumn(name = "house_id", nullable = false)
+    private House house;
 
     private Double amount;
     private LocalDate date;
     private LocalTime time;
     private String note;
 
-    public Deposit(UserHouse userHouse, Double amount, LocalDate date, LocalTime time, String note) {
-        this.userHouse = userHouse;
+    public Deposit(AppUser user, House house, Double amount, LocalDate date, LocalTime time, String note) {
+        this.user = user;
+        this.house = house;
         this.amount = amount;
         this.date = date;
         this.time = time;

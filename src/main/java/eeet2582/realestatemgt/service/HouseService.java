@@ -2,25 +2,30 @@ package eeet2582.realestatemgt.service;
 
 import eeet2582.realestatemgt.bucket.BucketName;
 import eeet2582.realestatemgt.filestore.FileStore;
-import eeet2582.realestatemgt.model.house.House;
-import eeet2582.realestatemgt.model.house.HouseLocation;
-import eeet2582.realestatemgt.model.house.HouseSearchForm;
+import eeet2582.realestatemgt.model.House;
+import eeet2582.realestatemgt.model.form.HouseForm;
+import eeet2582.realestatemgt.model.helper.HouseLocation;
+import eeet2582.realestatemgt.model.helper.HouseSearchForm;
 import eeet2582.realestatemgt.repository.HouseRepository;
-import eeet2582.realestatemgt.repository.LocationRepository;
 import lombok.RequiredArgsConstructor;
 import org.apache.http.entity.ContentType;
 import org.jetbrains.annotations.NotNull;
 import org.redisson.api.RMap;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.data.domain.*;
+import org.springframework.cache.annotation.Caching;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.*;
+
+import static eeet2582.realestatemgt.config.RedisConfig.*;
 
 // HouseService only wires HouseRepository, everything else is handled by child services
 @Service
@@ -30,6 +35,7 @@ public class HouseService {
     public static final int HOUSE_BATCH_SIZE = 200;
     private static final ContentType IMAGE_PNG = ContentType.IMAGE_PNG;
     private static final ContentType IMAGE_JPEG = ContentType.IMAGE_JPEG;
+
     private static final List<String> STATUS_LIST = new ArrayList<>() {
         {
             add("available");
@@ -37,6 +43,7 @@ public class HouseService {
             add("rented");
         }
     };
+
     private static final List<String> TYPE_LIST = new ArrayList<>() {
         {
             add("apartment");
@@ -49,28 +56,19 @@ public class HouseService {
     private final HouseRepository houseRepository;
 
     @Autowired
-    private final LocationRepository locationRepository;
-
-    @Autowired
-    private final AdminService adminService;
-
-    @Autowired
-    private final RentalService rentalService;
-
-    @Autowired
     private final FileStore fileStore;
 
     @Autowired
     private final RedissonClient redissonClient;
 
+    @Autowired
+    private final UserHouseLocationUtil userHouseLocationUtil;
+
     // Find houses by search form
-    @Cacheable(value = "HouseSearch")
+    @Cacheable(value = HOUSE_SEARCH)
     public List<House> getHousesBySearchForm(HouseSearchForm form) {
         // Find by location, if null default to Saigon 7
-        String city = (form.getCity() != null && !form.getCity().trim().isEmpty()) ? form.getCity() : "Saigon";
-        String district = (form.getDistrict() != null && !form.getDistrict().trim().isEmpty()) ? form.getDistrict() : "7";
-        HouseLocation location = locationRepository.findByCityAndDistrict(city, district)
-                .orElseThrow(() -> new IllegalStateException("Location not found!"));
+        HouseLocation location = userHouseLocationUtil.getHouseLocation(form.getCity(), form.getDistrict());
         List<House> matchLocation = houseRepository.findByLocation_CityAndLocation_District(location.getCity(), location.getDistrict());
 
         // Find by price range, if null default to 200 - 1000
@@ -107,132 +105,43 @@ public class HouseService {
         return matchQuery;
     }
 
-    // Find houses matching by name, description or address
-    @Cacheable(value = "FilteredHouses")
-    public List<House> getFilteredHousesCache(String query, String sortBy, String orderBy, int batchNo) {
-        House house = new House();
-        house.setName(query);
-        house.setDescription(query);
-        house.setAddress(query);
-
-        ExampleMatcher matcher = ExampleMatcher.matchingAny()
-                .withMatcher("name", ExampleMatcher.GenericPropertyMatchers.contains().ignoreCase())
-                .withMatcher("description", ExampleMatcher.GenericPropertyMatchers.contains().ignoreCase())
-                .withMatcher("address", ExampleMatcher.GenericPropertyMatchers.contains().ignoreCase());
-        Example<House> example = Example.of(house, matcher);
-
-        Pageable limit = (orderBy.equals("asc")) ? PageRequest.of(batchNo, HOUSE_BATCH_SIZE, Sort.by(sortBy).ascending()) :
-                PageRequest.of(batchNo, HOUSE_BATCH_SIZE, Sort.by(sortBy).descending());
-
-        return houseRepository.findAll(example, limit).getContent();
-    }
-
-    // Find houses within a price range
-    @Cacheable(value = "FilteredHousesByPriceBetween")
-    public List<House> getFilteredHousesByPriceBetweenCache(Double low, Double high, String sortBy, String orderBy, int batchNo) {
-        Pageable limit = (orderBy.equals("asc")) ? PageRequest.of(batchNo, HOUSE_BATCH_SIZE, Sort.by(sortBy).ascending()) :
-                PageRequest.of(batchNo, HOUSE_BATCH_SIZE, Sort.by(sortBy).descending());
-
-        return houseRepository.findByPriceBetween(low, high, limit).getContent();
-    }
-
     // Get one by ID, try to reuse the exception
+    @Cacheable(key = HOUSE_ID, value = HOUSE)
     public House getHouseById(Long houseId) {
-        return houseRepository
-                .findById(houseId)
-                .orElseThrow(() -> new IllegalStateException("House with houseId=" + houseId + " does not exist!"));
+        return userHouseLocationUtil.getHouseById(houseId);
     }
 
     // Add new one
-    public String addNewHouse(@NotNull House house, @NotNull MultipartFile[] files) {
-        List<String> imageList = addImages(files, null);
-        House houseObj = House.builder()
-                .name(house.getName())
-                .price(house.getPrice())
-                .description(house.getDescription())
-                .address(house.getAddress())
-                .longitude(house.getLongitude())
-                .latitude(house.getLatitude())
-                .image(imageList)
-                .type(house.getType())
-                .numberOfBeds(house.getNumberOfBeds())
-                .squareFeet(house.getSquareFeet())
-                .status(house.getStatus()).build();
+    @CacheEvict(value = HOUSE_SEARCH, allEntries = true)
+    public String addNewHouse(@NotNull HouseForm form, @NotNull MultipartFile[] files) {
+        // Get house images
+        List<String> imageList = addImagesToBucket(files, null);
+        HouseLocation location = userHouseLocationUtil.getHouseLocation(form.getCity(), form.getDistrict());
+
+        House house = new House(
+                form.getName(),
+                form.getPrice(),
+                form.getDescription(),
+                form.getAddress(),
+                form.getLongitude(),
+                form.getLatitude(),
+                imageList,
+                form.getType(),
+                form.getNumberOfBeds(),
+                form.getSquareFeet(),
+                form.getStatus(),
+                location
+        );
 
         // Manually put new House into cache using houseId
-        House savedHouse = houseRepository.save(houseObj);
+        House savedHouse = houseRepository.save(house);
         RMap<Long, House> map = redissonClient.getMap("House");
         map.putIfAbsent(savedHouse.getHouseId(), savedHouse);
         return "House added successfully!";
     }
 
-    // Update house by multiple attributes
-    @Transactional
-    public void updateHouseById(Long houseId, @NotNull House newHouse) {
-        House oldHouse = getHouseById(houseId);
-
-        if (newHouse.getName() != null && !newHouse.getName().isBlank() && !oldHouse.getName().equals(newHouse.getName())) {
-            oldHouse.setName(newHouse.getName());
-        }
-
-        if (newHouse.getPrice() != null && !Objects.equals(oldHouse.getPrice(), newHouse.getPrice())) {
-            oldHouse.setPrice(newHouse.getPrice());
-        }
-
-        if (newHouse.getDescription() != null && !newHouse.getDescription().isBlank() && !oldHouse.getDescription().equals(newHouse.getDescription())) {
-            oldHouse.setDescription(newHouse.getDescription());
-        }
-
-        if (newHouse.getAddress() != null && !newHouse.getAddress().isBlank() && !oldHouse.getAddress().equals(newHouse.getAddress())) {
-            oldHouse.setAddress(newHouse.getAddress());
-        }
-
-        if (newHouse.getLongitude() != null && !Objects.equals(oldHouse.getLongitude(), newHouse.getLongitude())) {
-            oldHouse.setLongitude(newHouse.getLongitude());
-        }
-
-        if (newHouse.getLatitude() != null && !Objects.equals(oldHouse.getLatitude(), newHouse.getLatitude())) {
-            oldHouse.setLatitude(newHouse.getLatitude());
-        }
-
-        if (newHouse.getType() != null && !newHouse.getType().isBlank() && !oldHouse.getType().equals(newHouse.getType())) {
-            oldHouse.setType(newHouse.getType());
-        }
-
-        if (newHouse.getNumberOfBeds() != null && !Objects.equals(oldHouse.getNumberOfBeds(), newHouse.getNumberOfBeds())) {
-            oldHouse.setNumberOfBeds(newHouse.getNumberOfBeds());
-        }
-
-        if (newHouse.getSquareFeet() != null && !Objects.equals(oldHouse.getSquareFeet(), newHouse.getSquareFeet())) {
-            oldHouse.setSquareFeet(newHouse.getSquareFeet());
-        }
-
-        if (newHouse.getStatus() != null && !newHouse.getStatus().isBlank() && !oldHouse.getStatus().equals(newHouse.getStatus())) {
-            oldHouse.setStatus(newHouse.getStatus());
-        }
-
-        // Delete one or multiple images in a folder
-        if (newHouse.getImage().size() != 0) {
-            List<String> imagePath = new ArrayList<>();
-
-            List<String> newImageURL = newHouse.getImage();
-            List<String> oldImageURL = oldHouse.getImage();
-
-            if (oldImageURL.size() == 0) {
-                throw new IllegalStateException("Image list is empty!");
-            }
-
-            oldImageURL.removeAll(newImageURL);
-            for (String path : oldImageURL) {
-                imagePath.add(path.substring(path.indexOf("com/") + 4));
-            }
-
-            fileStore.deletePicturesInFolder(imagePath);
-            oldHouse.setImage(newImageURL);
-        }
-    }
-
-    public List<String> addImages(@NotNull MultipartFile[] files, String imageFolder) {
+    // Add images to cloud database
+    public List<String> addImagesToBucket(@NotNull MultipartFile[] files, String imageFolder) {
         // Check if the file is empty
         Arrays.stream(files).forEach(file -> {
             if (file.isEmpty()) {
@@ -275,8 +184,99 @@ public class HouseService {
         return imageList;
     }
 
+    // Update house by multiple attributes
     @Transactional
-    public void addHouseImage(Long houseId, MultipartFile @NotNull [] files) {
+    @Caching(evict = {
+            @CacheEvict(value = HOUSE_SEARCH, allEntries = true),
+            @CacheEvict(value = HOUSE, key = HOUSE_ID)
+    })
+    public void updateHouseById(Long houseId, @NotNull HouseForm form) {
+        House house = getHouseById(houseId);
+
+        if (form.getName() != null && !form.getName().isBlank() && !house.getName().equals(form.getName())) {
+            house.setName(form.getName());
+        }
+
+        if (form.getPrice() != null && !Objects.equals(house.getPrice(), form.getPrice())) {
+            house.setPrice(form.getPrice());
+        }
+
+        if (form.getDescription() != null && !form.getDescription().isBlank() && !house.getDescription().equals(form.getDescription())) {
+            house.setDescription(form.getDescription());
+        }
+
+        if (form.getAddress() != null && !form.getAddress().isBlank() && !house.getAddress().equals(form.getAddress())) {
+            house.setAddress(form.getAddress());
+        }
+
+        if (form.getLongitude() != null && !Objects.equals(house.getLongitude(), form.getLongitude())) {
+            house.setLongitude(form.getLongitude());
+        }
+
+        if (form.getLatitude() != null && !Objects.equals(house.getLatitude(), form.getLatitude())) {
+            house.setLatitude(form.getLatitude());
+        }
+
+        if (form.getType() != null && !form.getType().isBlank() && !house.getType().equals(form.getType())) {
+            house.setType(form.getType());
+        }
+
+        if (form.getNumberOfBeds() != null && !Objects.equals(house.getNumberOfBeds(), form.getNumberOfBeds())) {
+            house.setNumberOfBeds(form.getNumberOfBeds());
+        }
+
+        if (form.getSquareFeet() != null && !Objects.equals(house.getSquareFeet(), form.getSquareFeet())) {
+            house.setSquareFeet(form.getSquareFeet());
+        }
+
+        if (form.getStatus() != null && !form.getStatus().isBlank() && !house.getStatus().equals(form.getStatus())) {
+            house.setStatus(form.getStatus());
+        }
+
+        // Delete one or multiple images in a folder
+        if (form.getImage().size() != 0) {
+            List<String> imagePath = new ArrayList<>();
+
+            List<String> newImageURL = form.getImage();
+            List<String> oldImageURL = house.getImage();
+
+            if (oldImageURL.size() == 0) {
+                throw new IllegalStateException("Image list is empty!");
+            }
+
+            oldImageURL.removeAll(newImageURL);
+            for (String path : oldImageURL) {
+                imagePath.add(path.substring(path.indexOf("com/") + 4));
+            }
+
+            fileStore.deletePicturesInFolder(imagePath);
+            house.setImage(newImageURL);
+        }
+    }
+
+    // Delete house and bucket images
+    @Caching(evict = {
+            @CacheEvict(value = HOUSE_SEARCH, allEntries = true),
+            @CacheEvict(value = HOUSE, key = HOUSE_ID)
+    })
+    public String deleteHouseById(Long houseId) {
+        House houseObj = getHouseById(houseId);
+
+        String path = houseObj.getImage()
+                .get(0).substring(houseObj.getImage()
+                        .get(0).indexOf("t/") + 2, houseObj.getImage().get(0).lastIndexOf("/"));
+        String key = fileStore.delete(path);
+        houseRepository.deleteById(houseId);
+        return key;
+    }
+
+    // Add more images to already saved house
+    @Transactional
+    @Caching(evict = {
+            @CacheEvict(value = HOUSE_SEARCH, allEntries = true),
+            @CacheEvict(value = HOUSE, key = HOUSE_ID)
+    })
+    public void addMoreImagesToHouse(Long houseId, MultipartFile @NotNull [] files) {
         House oldHouse = getHouseById(houseId);
 
         // Upload more images in a folder
@@ -288,22 +288,8 @@ public class HouseService {
                 imageFolder = oldHouse.getImage().get(0).substring(oldHouse.getImage().get(0).indexOf("t/") + 2, oldHouse.getImage().get(0).lastIndexOf("/"));
             }
             List<String> imageList = oldHouse.getImage();
-            imageList.addAll(addImages(files, imageFolder));
+            imageList.addAll(addImagesToBucket(files, imageFolder));
             oldHouse.setImage(imageList);
         }
-    }
-
-    public String deleteHouseById(Long houseId) {
-        House houseObj = getHouseById(houseId);
-
-        // Delete all classes that depend on current house
-        adminService.deleteDepositsByHouseId(houseId);
-        adminService.deleteMeetingsByHouseId(houseId);
-        rentalService.deleteRentalsByHouseId(houseId);
-        String path = houseObj.getImage().get(0).substring(houseObj.getImage().get(0).indexOf("t/") + 2, houseObj.getImage().get(0).lastIndexOf("/"));
-
-        String key = fileStore.delete(path);
-        houseRepository.deleteById(houseId);
-        return key;
     }
 }
