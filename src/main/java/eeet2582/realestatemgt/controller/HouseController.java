@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import static eeet2582.realestatemgt.service.HouseService.HOUSE_BATCH_SIZE;
@@ -51,14 +52,20 @@ public class HouseController {
     }
 
     @PostMapping("/search/form")
-    @Cacheable(value = "HouseSearch")
     public Page<House> getHousesBySearchForm(@RequestBody HouseSearchForm form,
                                              @RequestParam(value = "pageNo", defaultValue = "1") int pageNo,
                                              @RequestParam(value = "pageSize", defaultValue = "20") int pageSize,
                                              @RequestParam(value = "orderBy", defaultValue = "asc") String orderBy) {
+        System.out.println(form);
+
         int visitedEntries = Math.max(0, (pageNo - 1) * pageSize);
         int batchNo = visitedEntries / HOUSE_BATCH_SIZE;
-        List<House> batch = houseService.getHousesBySearchFormSortByPrice(form, orderBy);
+        List<House> batch = houseService.getHousesBySearchForm(form);
+
+        if (orderBy.equals("asc"))
+            batch.sort(Comparator.comparing(House::getPrice));
+        else
+            batch.sort(Comparator.comparing(House::getPrice).reversed());
 
         return getPageFromBatch(pageNo, pageSize, visitedEntries, batchNo, HOUSE_BATCH_SIZE, batch);
     }

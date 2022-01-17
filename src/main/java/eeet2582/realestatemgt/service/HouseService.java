@@ -64,7 +64,8 @@ public class HouseService {
     private final RedissonClient redissonClient;
 
     // Find houses by search form
-    public List<House> getHousesBySearchFormSortByPrice(HouseSearchForm form, String orderBy) {
+    @Cacheable(value = "HouseSearch")
+    public List<House> getHousesBySearchForm(HouseSearchForm form) {
         // Find by location, if null default to Saigon 7
         String city = (form.getCity() != null && !form.getCity().trim().isEmpty()) ? form.getCity() : "Saigon";
         String district = (form.getDistrict() != null && !form.getDistrict().trim().isEmpty()) ? form.getDistrict() : "7";
@@ -103,11 +104,6 @@ public class HouseService {
         matchQuery.retainAll(matchPrice);
         matchQuery.retainAll(matchStatus);
         matchQuery.retainAll(matchType);
-
-        if (orderBy.equals("asc"))
-            matchQuery.sort(Comparator.comparing(House::getPrice));
-        else
-            matchQuery.sort(Comparator.comparing(House::getPrice).reversed());
         return matchQuery;
     }
 
