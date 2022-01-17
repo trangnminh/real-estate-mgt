@@ -110,7 +110,7 @@ public class HouseController {
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     @PreAuthorize("hasAuthority('read:admin-messages')")
-    public ResponseEntity<String> addNewHouse(@ModelAttribute HouseForm house, @RequestParam("files") MultipartFile[] file) {
+    public ResponseEntity<House> addNewHouse(@ModelAttribute HouseForm house, @RequestParam("files") MultipartFile[] file) {
         return new ResponseEntity<>(houseService.addNewHouse(house, file), HttpStatus.OK);
     }
 

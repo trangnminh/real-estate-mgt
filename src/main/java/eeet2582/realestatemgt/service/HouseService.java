@@ -10,8 +10,6 @@ import eeet2582.realestatemgt.repository.HouseRepository;
 import lombok.RequiredArgsConstructor;
 import org.apache.http.entity.ContentType;
 import org.jetbrains.annotations.NotNull;
-import org.redisson.api.RMap;
-import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -57,9 +55,6 @@ public class HouseService {
 
     @Autowired
     private final FileStore fileStore;
-
-    @Autowired
-    private final RedissonClient redissonClient;
 
     @Autowired
     private final UserHouseLocationUtil userHouseLocationUtil;
@@ -112,7 +107,7 @@ public class HouseService {
 
     // Add new one
     @CacheEvict(value = HOUSE_SEARCH, allEntries = true)
-    public String addNewHouse(@NotNull HouseForm form, @NotNull MultipartFile[] files) {
+    public House addNewHouse(@NotNull HouseForm form, @NotNull MultipartFile[] files) {
         // Get house images
         List<String> imageList = addImagesToBucket(files, null);
         HouseLocation location = userHouseLocationUtil.getHouseLocation(form.getCity(), form.getDistrict());
@@ -132,11 +127,7 @@ public class HouseService {
                 location
         );
 
-        // Manually put new House into cache using houseId
-        House savedHouse = houseRepository.save(house);
-        RMap<Long, House> map = redissonClient.getMap("House");
-        map.putIfAbsent(savedHouse.getHouseId(), savedHouse);
-        return "House added successfully!";
+        return houseRepository.save(house);
     }
 
     // Add images to cloud database
