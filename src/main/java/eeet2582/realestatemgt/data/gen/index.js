@@ -1,5 +1,6 @@
 const fs = require("fs");
 const LoremIpsum = require("lorem-ipsum").LoremIpsum;
+const mock = require("./mockaroo.json");
 
 // Template values
 const typeList = ["apartment", "serviced", "street"];
@@ -55,7 +56,7 @@ function getRandomInRange(from, to, fixed) {
 
 let fileNo = 1;
 let n = 1;
-let len = 100;
+let len = mock.length;
 
 // Generate n files, each having {len} records
 for (fileNo; fileNo <= 1; fileNo++) {
@@ -64,6 +65,9 @@ for (fileNo; fileNo <= 1; fileNo++) {
 
   // Generate 100000 rows per file
   for (n; n <= len; n++) {
+    let nameRand = Math.floor(Math.random() * mock.length);
+    let descRand = Math.floor(Math.random() * mock.length);
+    let addressRand = Math.floor(Math.random() * mock.length);
     let typeRand = Math.floor(Math.random() * typeList.length);
     let statusRand = Math.floor(Math.random() * statusList.length);
     let locationRand = Math.floor(Math.random() * locationList.length);
@@ -72,11 +76,11 @@ for (fileNo; fileNo <= 1; fileNo++) {
 
     let house = {
       houseId: n,
-      name: lorem.generateSentences(1),
+      name: mock[nameRand].name,
       price: Math.floor(Math.random() * (1000 - 200 + 1)) + 200,
       // Math.floor(Math.random() * (maximum - minimum + 1)) + minimum;
-      description: lorem.generateParagraphs(1),
-      address: lorem.generateSentences(1),
+      description: mock[descRand].description,
+      address: mock[addressRand].address,
       longitude: getRandomInRange(-180, 180, 6),
       latitude: getRandomInRange(-90, 90, 6),
       image: [

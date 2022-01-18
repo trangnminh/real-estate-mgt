@@ -8,6 +8,7 @@ target/
 .env
 /src/main/resources/application.yaml
 /src/main/resources/redisson.yaml
+/src/main/java/eeet2582/realestatemgt/data/gen/mockaroo.json
 /src/main/java/eeet2582/realestatemgt/data/gen/node_modules/**
 
 dump.rdb
