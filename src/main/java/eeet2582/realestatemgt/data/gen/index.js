@@ -1,6 +1,6 @@
 const fs = require("fs");
 const LoremIpsum = require("lorem-ipsum").LoremIpsum;
-const mock = require("./mockaroo.json");
+const mock = require("./housemock.json");
 
 // Template values
 const typeList = ["apartment", "serviced", "street"];
@@ -55,15 +55,16 @@ function getRandomInRange(from, to, fixed) {
 }
 
 let fileNo = 1;
+let fileNum = 1;
 let n = 1;
-let len = mock.length;
+let len = 1000;
 
-// Generate n files, each having {len} records
-for (fileNo; fileNo <= 1; fileNo++) {
+// Generate files, each having {len} records
+for (fileNo; fileNo <= fileNum; fileNo++) {
   // Reset array for each file
   let data = [];
 
-  // Generate 100000 rows per file
+  // Generate rows per file
   for (n; n <= len; n++) {
     let nameRand = Math.floor(Math.random() * mock.length);
     let descRand = Math.floor(Math.random() * mock.length);
@@ -77,6 +78,7 @@ for (fileNo; fileNo <= 1; fileNo++) {
     let house = {
       houseId: n,
       name: mock[nameRand].name,
+      // name: lorem.generateWords(5),
       price: Math.floor(Math.random() * (1000 - 200 + 1)) + 200,
       // Math.floor(Math.random() * (maximum - minimum + 1)) + minimum;
       description: mock[descRand].description,
@@ -110,5 +112,5 @@ for (fileNo; fileNo <= 1; fileNo++) {
   });
 
   // Update len
-  len += len;
+  len += 1000;
 }
