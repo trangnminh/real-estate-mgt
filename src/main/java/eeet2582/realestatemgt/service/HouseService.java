@@ -259,7 +259,7 @@ public class HouseService {
             fileStore.deletePicturesInFolder(imagePath);
             house.setImage(newImageURL);
         }
-        return house;
+        return houseRepository.save(house);
     }
 
     // Delete house and bucket images
@@ -284,7 +284,7 @@ public class HouseService {
             @CacheEvict(value = HOUSE_SEARCH, allEntries = true),
             @CacheEvict(value = HOUSE, key = HOUSE_ID)
     })
-    public void addMoreImagesToHouse(Long houseId, MultipartFile @NotNull [] files) {
+    public House addMoreImagesToHouse(Long houseId, MultipartFile @NotNull [] files) {
         House oldHouse = getHouseById(houseId);
 
         // Upload more images in a folder
@@ -299,5 +299,6 @@ public class HouseService {
             imageList.addAll(addImagesToBucket(files, imageFolder));
             oldHouse.setImage(imageList);
         }
+        return houseRepository.save(oldHouse);
     }
 }

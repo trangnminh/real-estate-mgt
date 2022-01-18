@@ -133,8 +133,8 @@ public class HouseController {
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     @PreAuthorize("hasAuthority('read:admin-messages')")
-    public void addHouseImage(@RequestParam("houseId") Long houseId, @RequestParam("files") MultipartFile[] file) {
-        houseService.addMoreImagesToHouse(houseId, file);
+    public House addHouseImage(@RequestParam("houseId") Long houseId, @RequestParam("files") MultipartFile[] file) {
+        return houseService.addMoreImagesToHouse(houseId, file);
     }
 
     // Delete one by ID

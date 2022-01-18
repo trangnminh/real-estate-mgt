@@ -240,6 +240,7 @@ public class AdminService {
         // If ID is provided, try to find the current item, else make new one
         Meeting meeting = new Meeting();
 
+
         // Save the cleaned item
         meeting.setUser(userHouseLocationUtil.getUserById(userId));
         meeting.setHouse(userHouseLocationUtil.getHouseById(houseId));

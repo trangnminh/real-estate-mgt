@@ -175,11 +175,11 @@ public class AdminController {
     // Update one by ID or add new one (send Kafka topic)
     @PostMapping("/meetings")
     public void saveMeetingById(@RequestParam(value = "meetingId", required = false) Long meetingId,
-                                @RequestParam Long userId,
-                                @RequestParam Long houseId,
-                                @RequestParam String date,
-                                @RequestParam String time,
-                                @RequestParam String note) {
+                                @RequestParam(value = "userId") Long userId,
+                                @RequestParam(value = "houseId") Long houseId,
+                                @RequestParam(value = "date") String date,
+                                @RequestParam(value = "time") String time,
+                                @RequestParam(value = "note") String note) {
         if (meetingId != null) {
             adminService.deleteMeetingById(meetingId);
         }
