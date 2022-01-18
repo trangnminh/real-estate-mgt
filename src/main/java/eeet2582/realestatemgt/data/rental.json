@@ -1,0 +1,1002 @@
+[
+  {
+    "rentalId": 1,
+    "user": 88,
+    "house": 28,
+    "startDate": "2021-01-19",
+    "endDate": "2023-01-19",
+    "depositAmount": 343.0,
+    "monthlyFee": 446,
+    "payableFee": 412.11
+  },
+  {
+    "rentalId": 2,
+    "user": 26,
+    "house": 42,
+    "startDate": "2021-01-05",
+    "endDate": "2023-01-05",
+    "depositAmount": 194.68,
+    "monthlyFee": 125,
+    "payableFee": 243.95
+  },
+  {
+    "rentalId": 3,
+    "user": 26,
+    "house": 74,
+    "startDate": "2021-01-02",
+    "endDate": "2022-01-02",
+    "depositAmount": 405.46,
+    "monthlyFee": 342,
+    "payableFee": 328.62
+  },
+  {
+    "rentalId": 4,
+    "user": 99,
+    "house": 87,
+    "startDate": "2021-01-28",
+    "endDate": "2023-01-28",
+    "depositAmount": 456.08,
+    "monthlyFee": 140,
+    "payableFee": 121.52
+  },
+  {
+    "rentalId": 5,
+    "user": 20,
+    "house": 49,
+    "startDate": "2021-01-19",
+    "endDate": "2022-01-19",
+    "depositAmount": 367.14,
+    "monthlyFee": 454,
+    "payableFee": 338.23
+  },
+  {
+    "rentalId": 6,
+    "user": 24,
+    "house": 2,
+    "startDate": "2021-01-27",
+    "endDate": "2023-01-27",
+    "depositAmount": 105.22,
+    "monthlyFee": 415,
+    "payableFee": 258.2
+  },
+  {
+    "rentalId": 7,
+    "user": 36,
+    "house": 61,
+    "startDate": "2021-01-06",
+    "endDate": "2022-01-06",
+    "depositAmount": 418.66,
+    "monthlyFee": 117,
+    "payableFee": 437.97
+  },
+  {
+    "rentalId": 8,
+    "user": 49,
+    "house": 63,
+    "startDate": "2021-01-10",
+    "endDate": "2023-01-10",
+    "depositAmount": 497.73,
+    "monthlyFee": 449,
+    "payableFee": 475.22
+  },
+  {
+    "rentalId": 9,
+    "user": 12,
+    "house": 39,
+    "startDate": "2021-01-07",
+    "endDate": "2022-01-07",
+    "depositAmount": 408.07,
+    "monthlyFee": 128,
+    "payableFee": 350.49
+  },
+  {
+    "rentalId": 10,
+    "user": 38,
+    "house": 87,
+    "startDate": "2021-01-08",
+    "endDate": "2023-01-08",
+    "depositAmount": 486.45,
+    "monthlyFee": 332,
+    "payableFee": 325.24
+  },
+  {
+    "rentalId": 11,
+    "user": 10,
+    "house": 82,
+    "startDate": "2021-01-18",
+    "endDate": "2022-01-18",
+    "depositAmount": 170.86,
+    "monthlyFee": 294,
+    "payableFee": 124.98
+  },
+  {
+    "rentalId": 12,
+    "user": 79,
+    "house": 87,
+    "startDate": "2021-01-09",
+    "endDate": "2023-01-09",
+    "depositAmount": 420.89,
+    "monthlyFee": 476,
+    "payableFee": 310.06
+  },
+  {
+    "rentalId": 13,
+    "user": 60,
+    "house": 19,
+    "startDate": "2021-01-18",
+    "endDate": "2023-01-18",
+    "depositAmount": 364.5,
+    "monthlyFee": 329,
+    "payableFee": 496.56
+  },
+  {
+    "rentalId": 14,
+    "user": 69,
+    "house": 94,
+    "startDate": "2021-01-09",
+    "endDate": "2022-01-09",
+    "depositAmount": 430.66,
+    "monthlyFee": 165,
+    "payableFee": 415.23
+  },
+  {
+    "rentalId": 15,
+    "user": 2,
+    "house": 70,
+    "startDate": "2021-01-23",
+    "endDate": "2023-01-23",
+    "depositAmount": 151.57,
+    "monthlyFee": 222,
+    "payableFee": 460.37
+  },
+  {
+    "rentalId": 16,
+    "user": 65,
+    "house": 79,
+    "startDate": "2021-01-21",
+    "endDate": "2023-01-21",
+    "depositAmount": 206.88,
+    "monthlyFee": 325,
+    "payableFee": 206.56
+  },
+  {
+    "rentalId": 17,
+    "user": 80,
+    "house": 14,
+    "startDate": "2021-01-11",
+    "endDate": "2022-01-11",
+    "depositAmount": 134.2,
+    "monthlyFee": 193,
+    "payableFee": 266.51
+  },
+  {
+    "rentalId": 18,
+    "user": 68,
+    "house": 24,
+    "startDate": "2021-01-24",
+    "endDate": "2023-01-24",
+    "depositAmount": 338.72,
+    "monthlyFee": 184,
+    "payableFee": 192.18
+  },
+  {
+    "rentalId": 19,
+    "user": 62,
+    "house": 99,
+    "startDate": "2021-01-29",
+    "endDate": "2023-01-29",
+    "depositAmount": 386.53,
+    "monthlyFee": 252,
+    "payableFee": 271.22
+  },
+  {
+    "rentalId": 20,
+    "user": 57,
+    "house": 31,
+    "startDate": "2021-01-27",
+    "endDate": "2023-01-27",
+    "depositAmount": 228.48,
+    "monthlyFee": 327,
+    "payableFee": 365.99
+  },
+  {
+    "rentalId": 21,
+    "user": 77,
+    "house": 23,
+    "startDate": "2021-01-04",
+    "endDate": "2023-01-04",
+    "depositAmount": 175.91,
+    "monthlyFee": 296,
+    "payableFee": 292.35
+  },
+  {
+    "rentalId": 22,
+    "user": 87,
+    "house": 39,
+    "startDate": "2021-01-29",
+    "endDate": "2022-01-29",
+    "depositAmount": 469.86,
+    "monthlyFee": 249,
+    "payableFee": 302.54
+  },
+  {
+    "rentalId": 23,
+    "user": 97,
+    "house": 97,
+    "startDate": "2021-01-28",
+    "endDate": "2022-01-28",
+    "depositAmount": 293.27,
+    "monthlyFee": 287,
+    "payableFee": 320.05
+  },
+  {
+    "rentalId": 24,
+    "user": 14,
+    "house": 62,
+    "startDate": "2021-01-08",
+    "endDate": "2022-01-08",
+    "depositAmount": 172.47,
+    "monthlyFee": 433,
+    "payableFee": 399.24
+  },
+  {
+    "rentalId": 25,
+    "user": 72,
+    "house": 45,
+    "startDate": "2021-01-05",
+    "endDate": "2023-01-05",
+    "depositAmount": 272.07,
+    "monthlyFee": 297,
+    "payableFee": 437.48
+  },
+  {
+    "rentalId": 26,
+    "user": 58,
+    "house": 11,
+    "startDate": "2021-01-12",
+    "endDate": "2023-01-12",
+    "depositAmount": 375.15,
+    "monthlyFee": 221,
+    "payableFee": 352.21
+  },
+  {
+    "rentalId": 27,
+    "user": 3,
+    "house": 39,
+    "startDate": "2021-01-06",
+    "endDate": "2023-01-06",
+    "depositAmount": 456.73,
+    "monthlyFee": 338,
+    "payableFee": 202.69
+  },
+  {
+    "rentalId": 28,
+    "user": 17,
+    "house": 80,
+    "startDate": "2021-01-16",
+    "endDate": "2023-01-16",
+    "depositAmount": 446.87,
+    "monthlyFee": 418,
+    "payableFee": 114.15
+  },
+  {
+    "rentalId": 29,
+    "user": 6,
+    "house": 25,
+    "startDate": "2021-01-31",
+    "endDate": "2023-01-31",
+    "depositAmount": 221.41,
+    "monthlyFee": 143,
+    "payableFee": 414.85
+  },
+  {
+    "rentalId": 30,
+    "user": 32,
+    "house": 78,
+    "startDate": "2021-01-07",
+    "endDate": "2023-01-07",
+    "depositAmount": 449.16,
+    "monthlyFee": 175,
+    "payableFee": 253.3
+  },
+  {
+    "rentalId": 31,
+    "user": 33,
+    "house": 10,
+    "startDate": "2021-01-09",
+    "endDate": "2022-01-09",
+    "depositAmount": 385.88,
+    "monthlyFee": 339,
+    "payableFee": 189.84
+  },
+  {
+    "rentalId": 32,
+    "user": 89,
+    "house": 75,
+    "startDate": "2021-01-30",
+    "endDate": "2022-01-30",
+    "depositAmount": 427.35,
+    "monthlyFee": 451,
+    "payableFee": 450.56
+  },
+  {
+    "rentalId": 33,
+    "user": 75,
+    "house": 30,
+    "startDate": "2021-01-21",
+    "endDate": "2023-01-21",
+    "depositAmount": 267.75,
+    "monthlyFee": 235,
+    "payableFee": 207.15
+  },
+  {
+    "rentalId": 34,
+    "user": 51,
+    "house": 61,
+    "startDate": "2021-01-13",
+    "endDate": "2022-01-13",
+    "depositAmount": 403.17,
+    "monthlyFee": 302,
+    "payableFee": 464.56
+  },
+  {
+    "rentalId": 35,
+    "user": 77,
+    "house": 46,
+    "startDate": "2021-01-20",
+    "endDate": "2023-01-20",
+    "depositAmount": 381.08,
+    "monthlyFee": 424,
+    "payableFee": 464.32
+  },
+  {
+    "rentalId": 36,
+    "user": 20,
+    "house": 20,
+    "startDate": "2021-01-09",
+    "endDate": "2022-01-09",
+    "depositAmount": 495.8,
+    "monthlyFee": 184,
+    "payableFee": 407.35
+  },
+  {
+    "rentalId": 37,
+    "user": 68,
+    "house": 8,
+    "startDate": "2021-01-21",
+    "endDate": "2022-01-21",
+    "depositAmount": 267.13,
+    "monthlyFee": 260,
+    "payableFee": 251.06
+  },
+  {
+    "rentalId": 38,
+    "user": 56,
+    "house": 33,
+    "startDate": "2021-01-25",
+    "endDate": "2022-01-25",
+    "depositAmount": 323.21,
+    "monthlyFee": 451,
+    "payableFee": 359.48
+  },
+  {
+    "rentalId": 39,
+    "user": 62,
+    "house": 62,
+    "startDate": "2021-01-26",
+    "endDate": "2022-01-26",
+    "depositAmount": 476.99,
+    "monthlyFee": 387,
+    "payableFee": 187.01
+  },
+  {
+    "rentalId": 40,
+    "user": 60,
+    "house": 89,
+    "startDate": "2021-01-11",
+    "endDate": "2022-01-11",
+    "depositAmount": 446.22,
+    "monthlyFee": 310,
+    "payableFee": 391.44
+  },
+  {
+    "rentalId": 41,
+    "user": 95,
+    "house": 68,
+    "startDate": "2021-01-12",
+    "endDate": "2022-01-12",
+    "depositAmount": 389.47,
+    "monthlyFee": 213,
+    "payableFee": 488.15
+  },
+  {
+    "rentalId": 42,
+    "user": 14,
+    "house": 25,
+    "startDate": "2021-01-31",
+    "endDate": "2022-01-31",
+    "depositAmount": 255.02,
+    "monthlyFee": 442,
+    "payableFee": 423.35
+  },
+  {
+    "rentalId": 43,
+    "user": 85,
+    "house": 15,
+    "startDate": "2021-01-19",
+    "endDate": "2022-01-19",
+    "depositAmount": 131.52,
+    "monthlyFee": 496,
+    "payableFee": 315.68
+  },
+  {
+    "rentalId": 44,
+    "user": 82,
+    "house": 10,
+    "startDate": "2021-01-27",
+    "endDate": "2023-01-27",
+    "depositAmount": 237.04,
+    "monthlyFee": 253,
+    "payableFee": 372.37
+  },
+  {
+    "rentalId": 45,
+    "user": 26,
+    "house": 37,
+    "startDate": "2021-01-10",
+    "endDate": "2023-01-10",
+    "depositAmount": 417.53,
+    "monthlyFee": 442,
+    "payableFee": 214.15
+  },
+  {
+    "rentalId": 46,
+    "user": 71,
+    "house": 51,
+    "startDate": "2021-01-11",
+    "endDate": "2022-01-11",
+    "depositAmount": 258.51,
+    "monthlyFee": 367,
+    "payableFee": 483.47
+  },
+  {
+    "rentalId": 47,
+    "user": 77,
+    "house": 51,
+    "startDate": "2021-01-30",
+    "endDate": "2022-01-30",
+    "depositAmount": 360.03,
+    "monthlyFee": 316,
+    "payableFee": 497.69
+  },
+  {
+    "rentalId": 48,
+    "user": 89,
+    "house": 27,
+    "startDate": "2021-01-26",
+    "endDate": "2022-01-26",
+    "depositAmount": 351.29,
+    "monthlyFee": 440,
+    "payableFee": 103.14
+  },
+  {
+    "rentalId": 49,
+    "user": 20,
+    "house": 79,
+    "startDate": "2021-01-29",
+    "endDate": "2022-01-29",
+    "depositAmount": 175.14,
+    "monthlyFee": 288,
+    "payableFee": 127.81
+  },
+  {
+    "rentalId": 50,
+    "user": 56,
+    "house": 15,
+    "startDate": "2021-01-06",
+    "endDate": "2023-01-06",
+    "depositAmount": 278.38,
+    "monthlyFee": 153,
+    "payableFee": 449.8
+  },
+  {
+    "rentalId": 51,
+    "user": 78,
+    "house": 17,
+    "startDate": "2021-01-28",
+    "endDate": "2023-01-28",
+    "depositAmount": 472.85,
+    "monthlyFee": 413,
+    "payableFee": 186.31
+  },
+  {
+    "rentalId": 52,
+    "user": 41,
+    "house": 32,
+    "startDate": "2021-01-22",
+    "endDate": "2023-01-22",
+    "depositAmount": 387.21,
+    "monthlyFee": 172,
+    "payableFee": 171.39
+  },
+  {
+    "rentalId": 53,
+    "user": 86,
+    "house": 5,
+    "startDate": "2021-01-12",
+    "endDate": "2022-01-12",
+    "depositAmount": 382.48,
+    "monthlyFee": 474,
+    "payableFee": 412.93
+  },
+  {
+    "rentalId": 54,
+    "user": 24,
+    "house": 35,
+    "startDate": "2021-01-26",
+    "endDate": "2023-01-26",
+    "depositAmount": 236.05,
+    "monthlyFee": 398,
+    "payableFee": 226.1
+  },
+  {
+    "rentalId": 55,
+    "user": 66,
+    "house": 23,
+    "startDate": "2021-01-17",
+    "endDate": "2022-01-17",
+    "depositAmount": 377.75,
+    "monthlyFee": 268,
+    "payableFee": 342.51
+  },
+  {
+    "rentalId": 56,
+    "user": 77,
+    "house": 73,
+    "startDate": "2021-01-24",
+    "endDate": "2023-01-24",
+    "depositAmount": 379.01,
+    "monthlyFee": 317,
+    "payableFee": 255.01
+  },
+  {
+    "rentalId": 57,
+    "user": 77,
+    "house": 28,
+    "startDate": "2021-01-22",
+    "endDate": "2023-01-22",
+    "depositAmount": 124.8,
+    "monthlyFee": 455,
+    "payableFee": 216.86
+  },
+  {
+    "rentalId": 58,
+    "user": 36,
+    "house": 42,
+    "startDate": "2021-01-22",
+    "endDate": "2023-01-22",
+    "depositAmount": 445.62,
+    "monthlyFee": 379,
+    "payableFee": 459.85
+  },
+  {
+    "rentalId": 59,
+    "user": 88,
+    "house": 36,
+    "startDate": "2021-01-03",
+    "endDate": "2023-01-03",
+    "depositAmount": 401.79,
+    "monthlyFee": 356,
+    "payableFee": 202.82
+  },
+  {
+    "rentalId": 60,
+    "user": 33,
+    "house": 22,
+    "startDate": "2021-01-04",
+    "endDate": "2023-01-04",
+    "depositAmount": 255.75,
+    "monthlyFee": 152,
+    "payableFee": 474.13
+  },
+  {
+    "rentalId": 61,
+    "user": 47,
+    "house": 39,
+    "startDate": "2021-01-17",
+    "endDate": "2023-01-17",
+    "depositAmount": 316.26,
+    "monthlyFee": 374,
+    "payableFee": 357.21
+  },
+  {
+    "rentalId": 62,
+    "user": 97,
+    "house": 94,
+    "startDate": "2021-01-08",
+    "endDate": "2023-01-08",
+    "depositAmount": 402.74,
+    "monthlyFee": 174,
+    "payableFee": 317.73
+  },
+  {
+    "rentalId": 63,
+    "user": 40,
+    "house": 95,
+    "startDate": "2021-01-09",
+    "endDate": "2023-01-09",
+    "depositAmount": 499.2,
+    "monthlyFee": 265,
+    "payableFee": 461.95
+  },
+  {
+    "rentalId": 64,
+    "user": 41,
+    "house": 25,
+    "startDate": "2021-01-21",
+    "endDate": "2022-01-21",
+    "depositAmount": 207.0,
+    "monthlyFee": 319,
+    "payableFee": 496.87
+  },
+  {
+    "rentalId": 65,
+    "user": 73,
+    "house": 87,
+    "startDate": "2021-01-07",
+    "endDate": "2022-01-07",
+    "depositAmount": 276.99,
+    "monthlyFee": 192,
+    "payableFee": 335.83
+  },
+  {
+    "rentalId": 66,
+    "user": 70,
+    "house": 10,
+    "startDate": "2021-01-29",
+    "endDate": "2023-01-29",
+    "depositAmount": 269.52,
+    "monthlyFee": 317,
+    "payableFee": 451.04
+  },
+  {
+    "rentalId": 67,
+    "user": 12,
+    "house": 63,
+    "startDate": "2021-01-19",
+    "endDate": "2022-01-19",
+    "depositAmount": 283.65,
+    "monthlyFee": 429,
+    "payableFee": 324.72
+  },
+  {
+    "rentalId": 68,
+    "user": 89,
+    "house": 82,
+    "startDate": "2021-01-04",
+    "endDate": "2023-01-04",
+    "depositAmount": 443.62,
+    "monthlyFee": 403,
+    "payableFee": 451.35
+  },
+  {
+    "rentalId": 69,
+    "user": 17,
+    "house": 28,
+    "startDate": "2021-01-02",
+    "endDate": "2022-01-02",
+    "depositAmount": 388.2,
+    "monthlyFee": 272,
+    "payableFee": 135.37
+  },
+  {
+    "rentalId": 70,
+    "user": 1,
+    "house": 10,
+    "startDate": "2021-01-25",
+    "endDate": "2023-01-25",
+    "depositAmount": 252.32,
+    "monthlyFee": 263,
+    "payableFee": 296.65
+  },
+  {
+    "rentalId": 71,
+    "user": 7,
+    "house": 82,
+    "startDate": "2021-01-02",
+    "endDate": "2023-01-02",
+    "depositAmount": 379.02,
+    "monthlyFee": 355,
+    "payableFee": 170.58
+  },
+  {
+    "rentalId": 72,
+    "user": 23,
+    "house": 95,
+    "startDate": "2021-01-25",
+    "endDate": "2022-01-25",
+    "depositAmount": 376.53,
+    "monthlyFee": 224,
+    "payableFee": 233.45
+  },
+  {
+    "rentalId": 73,
+    "user": 97,
+    "house": 84,
+    "startDate": "2021-01-22",
+    "endDate": "2022-01-22",
+    "depositAmount": 380.66,
+    "monthlyFee": 133,
+    "payableFee": 170.63
+  },
+  {
+    "rentalId": 74,
+    "user": 18,
+    "house": 29,
+    "startDate": "2021-01-07",
+    "endDate": "2023-01-07",
+    "depositAmount": 424.26,
+    "monthlyFee": 414,
+    "payableFee": 159.51
+  },
+  {
+    "rentalId": 75,
+    "user": 10,
+    "house": 88,
+    "startDate": "2021-01-09",
+    "endDate": "2022-01-09",
+    "depositAmount": 250.35,
+    "monthlyFee": 406,
+    "payableFee": 417.04
+  },
+  {
+    "rentalId": 76,
+    "user": 36,
+    "house": 76,
+    "startDate": "2021-01-24",
+    "endDate": "2023-01-24",
+    "depositAmount": 439.95,
+    "monthlyFee": 101,
+    "payableFee": 496.48
+  },
+  {
+    "rentalId": 77,
+    "user": 29,
+    "house": 81,
+    "startDate": "2021-01-05",
+    "endDate": "2023-01-05",
+    "depositAmount": 165.44,
+    "monthlyFee": 160,
+    "payableFee": 243.61
+  },
+  {
+    "rentalId": 78,
+    "user": 35,
+    "house": 21,
+    "startDate": "2021-01-03",
+    "endDate": "2022-01-03",
+    "depositAmount": 140.5,
+    "monthlyFee": 319,
+    "payableFee": 405.52
+  },
+  {
+    "rentalId": 79,
+    "user": 47,
+    "house": 74,
+    "startDate": "2021-01-26",
+    "endDate": "2023-01-26",
+    "depositAmount": 490.73,
+    "monthlyFee": 250,
+    "payableFee": 496.58
+  },
+  {
+    "rentalId": 80,
+    "user": 31,
+    "house": 43,
+    "startDate": "2021-01-21",
+    "endDate": "2022-01-21",
+    "depositAmount": 372.66,
+    "monthlyFee": 125,
+    "payableFee": 270.7
+  },
+  {
+    "rentalId": 81,
+    "user": 68,
+    "house": 23,
+    "startDate": "2021-01-12",
+    "endDate": "2023-01-12",
+    "depositAmount": 272.58,
+    "monthlyFee": 247,
+    "payableFee": 262.35
+  },
+  {
+    "rentalId": 82,
+    "user": 53,
+    "house": 79,
+    "startDate": "2021-01-16",
+    "endDate": "2023-01-16",
+    "depositAmount": 400.71,
+    "monthlyFee": 470,
+    "payableFee": 228.24
+  },
+  {
+    "rentalId": 83,
+    "user": 31,
+    "house": 52,
+    "startDate": "2021-01-08",
+    "endDate": "2023-01-08",
+    "depositAmount": 317.36,
+    "monthlyFee": 321,
+    "payableFee": 389.68
+  },
+  {
+    "rentalId": 84,
+    "user": 74,
+    "house": 51,
+    "startDate": "2021-01-30",
+    "endDate": "2022-01-30",
+    "depositAmount": 252.62,
+    "monthlyFee": 425,
+    "payableFee": 228.97
+  },
+  {
+    "rentalId": 85,
+    "user": 9,
+    "house": 27,
+    "startDate": "2021-01-12",
+    "endDate": "2023-01-12",
+    "depositAmount": 261.4,
+    "monthlyFee": 123,
+    "payableFee": 279.73
+  },
+  {
+    "rentalId": 86,
+    "user": 84,
+    "house": 35,
+    "startDate": "2021-01-08",
+    "endDate": "2022-01-08",
+    "depositAmount": 111.6,
+    "monthlyFee": 417,
+    "payableFee": 110.83
+  },
+  {
+    "rentalId": 87,
+    "user": 34,
+    "house": 46,
+    "startDate": "2021-01-28",
+    "endDate": "2023-01-28",
+    "depositAmount": 302.75,
+    "monthlyFee": 282,
+    "payableFee": 375.53
+  },
+  {
+    "rentalId": 88,
+    "user": 47,
+    "house": 96,
+    "startDate": "2021-01-29",
+    "endDate": "2022-01-29",
+    "depositAmount": 337.47,
+    "monthlyFee": 176,
+    "payableFee": 357.05
+  },
+  {
+    "rentalId": 89,
+    "user": 21,
+    "house": 54,
+    "startDate": "2021-01-09",
+    "endDate": "2022-01-09",
+    "depositAmount": 108.92,
+    "monthlyFee": 481,
+    "payableFee": 173.74
+  },
+  {
+    "rentalId": 90,
+    "user": 96,
+    "house": 72,
+    "startDate": "2021-01-06",
+    "endDate": "2023-01-06",
+    "depositAmount": 135.49,
+    "monthlyFee": 382,
+    "payableFee": 428.15
+  },
+  {
+    "rentalId": 91,
+    "user": 24,
+    "house": 10,
+    "startDate": "2021-01-05",
+    "endDate": "2023-01-05",
+    "depositAmount": 178.45,
+    "monthlyFee": 133,
+    "payableFee": 344.46
+  },
+  {
+    "rentalId": 92,
+    "user": 47,
+    "house": 98,
+    "startDate": "2021-01-24",
+    "endDate": "2023-01-24",
+    "depositAmount": 218.71,
+    "monthlyFee": 394,
+    "payableFee": 174.56
+  },
+  {
+    "rentalId": 93,
+    "user": 89,
+    "house": 58,
+    "startDate": "2021-01-07",
+    "endDate": "2022-01-07",
+    "depositAmount": 314.18,
+    "monthlyFee": 218,
+    "payableFee": 413.69
+  },
+  {
+    "rentalId": 94,
+    "user": 31,
+    "house": 9,
+    "startDate": "2021-01-08",
+    "endDate": "2022-01-08",
+    "depositAmount": 212.79,
+    "monthlyFee": 480,
+    "payableFee": 411.13
+  },
+  {
+    "rentalId": 95,
+    "user": 14,
+    "house": 95,
+    "startDate": "2021-01-18",
+    "endDate": "2023-01-18",
+    "depositAmount": 414.11,
+    "monthlyFee": 235,
+    "payableFee": 166.25
+  },
+  {
+    "rentalId": 96,
+    "user": 99,
+    "house": 18,
+    "startDate": "2021-01-08",
+    "endDate": "2022-01-08",
+    "depositAmount": 494.44,
+    "monthlyFee": 125,
+    "payableFee": 155.62
+  },
+  {
+    "rentalId": 97,
+    "user": 65,
+    "house": 63,
+    "startDate": "2021-01-29",
+    "endDate": "2022-01-29",
+    "depositAmount": 129.5,
+    "monthlyFee": 373,
+    "payableFee": 253.56
+  },
+  {
+    "rentalId": 98,
+    "user": 6,
+    "house": 41,
+    "startDate": "2021-01-22",
+    "endDate": "2023-01-22",
+    "depositAmount": 145.96,
+    "monthlyFee": 412,
+    "payableFee": 288.62
+  },
+  {
+    "rentalId": 99,
+    "user": 3,
+    "house": 59,
+    "startDate": "2021-01-02",
+    "endDate": "2022-01-02",
+    "depositAmount": 321.17,
+    "monthlyFee": 242,
+    "payableFee": 151.42
+  },
+  {
+    "rentalId": 100,
+    "user": 22,
+    "house": 16,
+    "startDate": "2021-01-10",
+    "endDate": "2022-01-10",
+    "depositAmount": 303.84,
+    "monthlyFee": 271,
+    "payableFee": 320.44
+  }
+]
