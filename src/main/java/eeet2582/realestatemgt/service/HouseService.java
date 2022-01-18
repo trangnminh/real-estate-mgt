@@ -59,6 +59,21 @@ public class HouseService {
     @Autowired
     private final UserHouseLocationUtil userHouseLocationUtil;
 
+    // Get some random houses
+    @Cacheable(value = HOUSE_RANDOM, key = "#num")
+    public List<House> getRandomHouses(int num) {
+        List<House> houses = houseRepository.findAll();
+        List<House> results = new ArrayList<>();
+
+        Random rand = new Random();
+        for (int i = 0; i < num; i++) {
+            int index = rand.nextInt(houses.size());
+            House house = houses.get(index);
+            results.add(house);
+        }
+        return results;
+    }
+
     // Find houses by search form
     @Cacheable(value = HOUSE_SEARCH)
     public List<House> getHousesBySearchForm(HouseSearchForm form) {

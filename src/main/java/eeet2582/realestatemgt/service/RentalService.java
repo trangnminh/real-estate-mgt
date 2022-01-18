@@ -197,7 +197,10 @@ public class RentalService {
             pageable = PageRequest.of(pageNo, pageSize, Sort.by(sortBy).descending());
         }
         if (userId != null) {
-            return paymentRepository.findPaymentByUserId(userId, pageable);
+            // Get the associated user
+            AppUser user = userHouseLocationUtil.getUserById(userId);
+            // Find by the referenced user inside rental
+            return paymentRepository.findByRental_User(user, pageable);
         } else {
             return paymentRepository.findAll(pageable);
         }

@@ -19,6 +19,7 @@ public class RedisConfig {
 
     public static final String HOUSE = "House";
     public static final String HOUSE_SEARCH = "HouseSearch";
+    public static final String HOUSE_RANDOM = "HouseRandom";
     public static final String HOUSE_ID = "#houseId";
 
     public static final String USER = "User";
@@ -66,6 +67,7 @@ public class RedisConfig {
 
         map.put(HOUSE, config);
         map.put(HOUSE_SEARCH, config);
+        map.put(HOUSE_RANDOM, config);
 
         map.put(USER, config);
         map.put(USERS, config);

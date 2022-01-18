@@ -48,6 +48,11 @@ public class HouseController {
         this.houseService = houseService;
     }
 
+    @GetMapping("random/{num}")
+    public List<House> getRandomHouses(@PathVariable int num) {
+        return houseService.getRandomHouses(num);
+    }
+
     @PostMapping("/search/form")
     public Page<House> getHousesBySearchForm(@RequestBody HouseSearchForm form,
                                              @RequestParam(value = "pageNo", defaultValue = "1") int pageNo,
