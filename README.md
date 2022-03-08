@@ -1,5 +1,9 @@
 # real-estate-mgt
 
+Fullstack CRUD app for real estate management.
+
+![class diagram](https://raw.githubusercontent.com/mnskgrayce/real-estate-mgt/master/class_diagram.png)
+
 ## Note
 
 ### **FRONTEND REPOSITORY**
